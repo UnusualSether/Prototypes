@@ -1,0 +1,12 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/GachaScreen.uss?fileID=7433441132597879392&amp;guid=cea012037a5885348b5bcca3f12e70f5&amp;type=3#GachaScreen" />
+    <engine:VisualElement name="MainPanel" style="flex-grow: 1;">
+        <engine:VisualElement name="DisplayFragments" class="Panel" style="flex-grow: 1; flex-direction: column; align-items: center; justify-content: center;">
+            <engine:Label text="Fragments" name="Frags" />
+            <engine:Label name="FragmentCount" />
+        </engine:VisualElement>
+        <engine:VisualElement name="Controls" class="Panel" style="flex-grow: 1; align-items: center; justify-content: center;">
+            <engine:Button text="Pull" name="PullButton" class="button" style="transition-property: all; transition-duration: 0s; transition-timing-function: ease; transition-delay: 0s;" />
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>

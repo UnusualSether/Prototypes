@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3aa8ae37b6b7a740b1a7f2d97b0f554, type: 3}
+  m_Name: LockerRoomData
+  m_EditorClassIdentifier: 
+  RoomName: LockerRoom
+  prefab: {fileID: 7637759960313038078, guid: 5e5d506f11c04cb4aaf0a5f02d1169b4, type: 3}
+  possibleRewards:
+  - {fileID: 11400000, guid: 289611560babe584f82bada217b1fb48, type: 2}
+  - {fileID: 11400000, guid: 86eeda60448666c41b7511f3bc699298, type: 2}

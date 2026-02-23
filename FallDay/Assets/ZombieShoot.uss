@@ -1,0 +1,48 @@
+.bulletDisplay {
+    margin-top: 4px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    margin-left: 4px;
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 60px;
+    height: 66px;
+}
+
+.shitBullet {
+    background-color: rgb(190, 40, 20);
+}
+
+.goodBullet {
+    background-color: rgb(249, 213, 3);
+}
+
+.bulletButton {
+    flex-direction: row;
+    width: 57px;
+    height: 52px;
+}
+
+.epicBullet {
+    background-color: rgb(28, 208, 211);
+}
+
+.zombieSpot {
+    background-color: rgb(163, 163, 163);
+    -unity-background-scale-mode: stretch-to-fill;
+    border-top-width: 40px;
+    border-right-width: 40px;
+    border-bottom-width: 40px;
+    border-left-width: 40px;
+}
+
+.zombieSpotOccupied {
+    background-color: rgb(13, 101, 0);
+}
+
+.aimed {
+    scale: 0.5 0.5;
+}
+
+.used {
+    scale: 0.5 0.5;
+}
