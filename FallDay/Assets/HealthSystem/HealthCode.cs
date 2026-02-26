@@ -9,15 +9,20 @@ public class HealthCode : MonoBehaviour
     [SerializeField]
     private RectTransform healthBar;
 
-    //Quantidade de Vida
+    [SerializeField]
+    private RectTransform nohealthBar;
+
+    //Quantidade de Vida e Ttamanho da Barra
     public void CurrentHealth(float MaxHealth)
     {
         float CurrentHP = (HP / MaxHP) * SizeX;
 
         healthBar.sizeDelta = new Vector2(CurrentHP, SizeY);
+        nohealthBar.sizeDelta = new Vector2(SizeX, SizeY);
+
     }
 
-    //
+    //Calculo do HP
     public void ManualHP(float HPvalor)
     {
         HP += HPvalor;
@@ -26,8 +31,11 @@ public class HealthCode : MonoBehaviour
         CurrentHealth(MaxHP);
     }
 
+    //Botões para curar e receber dano
     void Update()
     {
+        CurrentHealth(MaxHP);
+ 
         if (Input.GetKeyDown("a"))
         {
             ManualHP(-Damage);
@@ -36,6 +44,8 @@ public class HealthCode : MonoBehaviour
         {
             ManualHP(Heal);
         }
+
     }
+
 
 }
