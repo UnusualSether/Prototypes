@@ -331,6 +331,7 @@ MonoBehaviour:
   Damage: 5
   Heal: 10
   healthBar: {fileID: 492692556}
+  nohealthBar: {fileID: 1327523430}
 --- !u!114 &1327523433
 MonoBehaviour:
   m_ObjectHideFlags: 0
