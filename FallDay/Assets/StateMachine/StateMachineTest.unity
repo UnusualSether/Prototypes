@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 226025949}
   - component: {fileID: 226025948}
+  - component: {fileID: 226025950}
   m_Layer: 0
   m_Name: StateMachine
   m_TagString: Untagged
@@ -148,6 +149,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 430dbb81c75f4834aaa14122ddfc52b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OnRailsStateMachine
+  currentState: 0
+  stateFlow: 000000000100000002000000
 --- !u!4 &226025949
 Transform:
   m_ObjectHideFlags: 0
@@ -163,6 +166,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &226025950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 226025947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c366f785b0c8cc840b5547b4b6b51a58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AuditTest
+  RailsStateMachine: {fileID: 226025948}
 --- !u!1 &1622056987
 GameObject:
   m_ObjectHideFlags: 0

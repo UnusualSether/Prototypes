@@ -79,7 +79,7 @@ public class OnRailsStateMachine : MonoBehaviour
         //Activate the newly switched to state's function
 
         Action whichAction = stateToFunction[currentState];
-        whichAction.Invoke();
+        whichAction?.Invoke();
        
 
     }
@@ -89,37 +89,37 @@ public class OnRailsStateMachine : MonoBehaviour
     public void StartRails()
     {
         Debug.Log("Now on Rails");
-        RailStarted.Invoke();
+        RailStarted?.Invoke();
 
         
     }
 
     public void EndRails()
     {
-        RailEnded.Invoke();
+        RailEnded?.Invoke();
     }
     
     public void StartEncounter()
     {
         Debug.Log("Now on Encounter");
-        EncounterStarted.Invoke();
+        EncounterStarted?.Invoke();
     }
 
     public void EncounterEnd()
     {
-        EncounterEnded.Invoke();
+        EncounterEnded?.Invoke();
     }
 
 
     public void StartCleanup()
     {
         Debug.Log("Now on Cleanup");
-        CleanupStarted.Invoke();
+        CleanupStarted?.Invoke();
     }
        
     public void CleanupEnd()
     {
-        CleanupEnded.Invoke();
+        CleanupEnded?.Invoke();
     }
 
 

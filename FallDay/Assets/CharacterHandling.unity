@@ -358,6 +358,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
 --- !u!212 &360695941
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -376,6 +377,8 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -397,9 +400,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -409,7 +414,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &360695942
 Transform:
@@ -437,7 +441,6 @@ GameObject:
   - component: {fileID: 496145166}
   - component: {fileID: 496145165}
   - component: {fileID: 496145167}
-  - component: {fileID: 496145168}
   m_Layer: 0
   m_Name: CharacterSpawner
   m_TagString: Untagged
@@ -496,22 +499,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 178de426d319c4d41a9b59067cf7f7fd, type: 2}
   - {fileID: 11400000, guid: b49f5fd5ba8573b479dacc18af70be38, type: 2}
   charactersToSpawnInstances: []
---- !u!114 &496145168
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 496145164}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4b988648f98e0946a02f52e37579fb5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  charactersToBattle: []
-  battleType: 0
-  shakeIntens: 2.44
-  shakeDuration: 2.82
 --- !u!1 &500424723
 GameObject:
   m_ObjectHideFlags: 0

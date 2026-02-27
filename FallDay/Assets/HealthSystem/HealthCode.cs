@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,9 +9,14 @@ public class HealthCode : MonoBehaviour
 
     [SerializeField]
     private RectTransform healthBar;
-
     [SerializeField]
     private RectTransform nohealthBar;
+
+    #region Events
+
+    public event Action HealthDroppedToZero;
+
+    #endregion
 
     //Quantidade de Vida e Ttamanho da Barra
     public void CurrentHealth(float MaxHealth)
@@ -23,13 +29,34 @@ public class HealthCode : MonoBehaviour
     }
 
     //Calculo do HP
-    public void ManualHP(float HPvalor)
+    public void ManualHP(float newlyRecievedValue)
     {
-        HP += HPvalor;
+        HP += newlyRecievedValue;
         HP = Mathf.Clamp(HP, 0, MaxHP);
+
+        if (DeathCheck(HP))
+        {
+            Debug.Log("[HealthSystem] The player died!!! But I'm not going to do anything myself, I'm just gonna spread the word is all.");
+            HealthDroppedToZero?.Invoke();
+        }
 
         CurrentHealth(MaxHP);
     }
+
+    private bool DeathCheck(float currentHP)
+    {
+        if (currentHP <= 0)
+        {
+            return true;
+        }
+
+        else
+        {
+            return false;
+        }
+    }
+
+
 
     //Botões para curar e receber dano
     void Update()
