@@ -32,7 +32,7 @@ public class GameHandler : MonoBehaviour
     //Bullets player has selected.
     public List<string> readyBullets = new List<string>();
 
-    bool shotGate = false;
+
 
 
     public UIDocument uiDoc;
@@ -45,8 +45,16 @@ public class GameHandler : MonoBehaviour
 
     public Weapon currentWeapon = new Shotgun();
 
-    
+    #region Events
+    //Player related events
+    public event Action SucessfulShot;
+    public event Action FailedShot;
 
+    //Zombie related events
+    public event Action ZombieSpawned;
+    public event Action ZombieKilled;
+
+    #endregion
 
 
     [Header("Zombies!")]
@@ -138,7 +146,7 @@ public class GameHandler : MonoBehaviour
 
             new BulletType()
             {
-               name = "badBullet",
+               name = "shitBullet",
                description = "A bad bullet.",
                Damage = 5
             },
@@ -218,6 +226,10 @@ public class GameHandler : MonoBehaviour
         
 
         Debug.Log("Grahh....");
+
+        ZombieSpawned?.Invoke();
+        
+        
 
         int nextZombieID;
         
@@ -308,6 +320,8 @@ public class GameHandler : MonoBehaviour
             numberOfZombiesInLookup = zombieLookup.Count();
             numberOfZombiesinList = ZombieList.Count();
 
+            ZombieKilled?.Invoke();
+
             SelectedZombie = ZombieList.First().id;
 
         }
@@ -382,14 +396,15 @@ public class GameHandler : MonoBehaviour
             BulletType realBulletType = bulletLookup[bulletTypeUsed];
 
             //Debug.Log($"I shot{realBulletType.name}");
-          
 
 
+                SucessfulShot?.Invoke();
                 HandleDamage(realBulletType,numberUsed);
                 ClearUsedBullets();
 
                 readyBullets.Clear();
 
+                 
 
             }
 
@@ -435,6 +450,8 @@ public class GameHandler : MonoBehaviour
 
             //Clear the ready bullets list
             readyBullets.Clear();
+
+            FailedShot?.Invoke();
             }
         
 
