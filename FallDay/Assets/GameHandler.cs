@@ -138,7 +138,7 @@ public class GameHandler : MonoBehaviour
 
             new BulletType()
             {
-               name = "badBullet",
+               name = "shitBullet",
                description = "A bad bullet.",
                Damage = 5
             },
