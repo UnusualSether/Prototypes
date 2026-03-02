@@ -91,9 +91,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthCode
   HP: 80
   MaxHP: 80
-  SizeX: 600
-  SizeY: 60
-  Damage: 5
+  SizeX: 725.2
+  SizeY: 65.2
+  Damage: 10.9
   Heal: 10
   healthBar: {fileID: 2415572531020920398}
   nohealthBar: {fileID: 187548070144772686}
