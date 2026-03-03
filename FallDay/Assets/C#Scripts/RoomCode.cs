@@ -1,11 +1,13 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class RoomCode
 {
-    private string Name;
-    private int EnemyCount;
-    private Transform SpawnPoint;
+    public string Name;
+    public int EnemyCount;
+    public Transform SpawnPoint;
     public RoomCode(string Name, int EnemyCount, Transform SpawnPoint)
     {
         this.Name = Name;
@@ -21,31 +23,34 @@ public class RoomCode
         return SpawnPoint;
     }
 }
+
+[Serializable]
 public class RoomManeger
 {
-    private Dictionary<string, RoomCode> Rooms = new Dictionary<string, RoomCode>();
-
+    private Dictionary<string, RoomCode> RoomLookup = new Dictionary<string, RoomCode>();
+    public List<RoomCode> RoomsList = new List<RoomCode>();
     public void AddRoom(string Name, int EnemyCount, Transform SpawnPoint)
     {
         RoomCode room = new RoomCode(Name, EnemyCount, SpawnPoint);
-        Rooms.Add(Name, room);
+        RoomLookup.Add(Name, room);
+        RoomsList.Add(room);
         Debug.Log("Room " + Name + " added with " + EnemyCount + " enemies.");
     }
     public void RemoveRoom(string Name)
     {
-        Rooms.Remove(Name);
+        RoomLookup.Remove(Name);
         Debug.Log("Room " + Name + " removed.");
     }
     public int GetEnemysNum(string Name)
     {
         Debug.Log("Getting Room " + Name);
-        RoomCode room = Rooms[Name];
+        RoomCode room = RoomLookup[Name];
         Debug.Log("Room Enemys = " + room.ReturnEnemysCount());
         return room.ReturnEnemysCount();
     }
     public Transform GetSpawnPoint(string Name)
     {
-        RoomCode a = Rooms[Name];
+        RoomCode a = RoomLookup[Name];
         Debug.Log("Transform is this" + a.ReturnSpawn());
         return a.ReturnSpawn();
     }

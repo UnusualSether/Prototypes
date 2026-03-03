@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class RoomCodeTester : MonoBehaviour
 {
-    private RoomManeger roomManager = new RoomManeger();
+    public RoomManeger roomManager = new RoomManeger();
     public Transform secondTransform;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
