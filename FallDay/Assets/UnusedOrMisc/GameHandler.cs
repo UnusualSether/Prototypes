@@ -39,6 +39,8 @@ public class GameHandler : MonoBehaviour
 
     public VisualElement ui;
 
+    public OnRailsStateMachine railMachine;
+
     public VisualElement[] bulletButton;
 
     public BulletTable bulletTable;
@@ -79,6 +81,21 @@ public class GameHandler : MonoBehaviour
     public float zombieSpawnTimer;
 
     
+
+    //Event Subbing and Unsubbing
+
+    private void OnEnable()
+    {
+        railMachine.EncounterStarted += ActivateMinigame;
+        railMachine.EncounterEnded += DeactivateMinigame;
+    }
+
+    private void OnDisable()
+    {
+        railMachine.EncounterStarted -= ActivateMinigame;
+        railMachine.EncounterEnded -= DeactivateMinigame;
+    }
+
 
     public Dictionary<string, BulletType> bulletLookup;
     public class BulletType
@@ -184,10 +201,7 @@ public class GameHandler : MonoBehaviour
     }
 
 
-    private void OnEnable()
-    {
-        
-    }
+    
 
 
     public void Update()
@@ -592,6 +606,20 @@ public class GameHandler : MonoBehaviour
         {
             Debug.Log($"This is the indivual zombie id {zombie.id}");
         }
+    }
+
+
+
+
+    public void ActivateMinigame()
+    {
+        ui.visible = true;
+        Debug.Log("I should activate now!");
+    }
+    public void DeactivateMinigame()
+    {
+        ui.visible = false;
+        Debug.Log("I should deactivate now!");
     }
 
 }
