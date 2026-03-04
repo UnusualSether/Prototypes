@@ -21,10 +21,4 @@ public class RoomCodeTester : MonoBehaviour
         Debug.Log("Rooamdm" + "Enemys Num: " + room);
         Debug.Log("Rooamdm " + "Spawn Point: " + spawnPoint.position);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }
