@@ -1,0 +1,1547 @@
+fileFormatVersion: 2
+guid: 161cbc1b880c62c40b73156ce4187903
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4321653723399947185
+    second: Marine_transparent_0
+  - first:
+      213: 4849390801851796245
+    second: Marine_transparent_1
+  - first:
+      213: 5499008801976378315
+    second: Marine_transparent_2
+  - first:
+      213: -6032018501453112685
+    second: Marine_transparent_3
+  - first:
+      213: -5759680799168518519
+    second: Marine_transparent_4
+  - first:
+      213: 3567926066619078250
+    second: Marine_transparent_5
+  - first:
+      213: 4786940073092466032
+    second: Marine_transparent_6
+  - first:
+      213: 4763202352769144593
+    second: Marine_transparent_7
+  - first:
+      213: 3583798281427740325
+    second: Marine_transparent_8
+  - first:
+      213: -889246289393406870
+    second: Marine_transparent_9
+  - first:
+      213: -5280855465474173809
+    second: Marine_transparent_10
+  - first:
+      213: -3953286473515842003
+    second: Marine_transparent_11
+  - first:
+      213: -8888315120999843312
+    second: Marine_transparent_12
+  - first:
+      213: 3846315981402653888
+    second: Marine_transparent_13
+  - first:
+      213: 2663522705909173037
+    second: Marine_transparent_14
+  - first:
+      213: 1469193187319807656
+    second: Marine_transparent_15
+  - first:
+      213: -8639823760674704529
+    second: Marine_transparent_16
+  - first:
+      213: -3308477331221018110
+    second: Marine_transparent_17
+  - first:
+      213: -2648383985293446056
+    second: Marine_transparent_18
+  - first:
+      213: 4840259005870577965
+    second: Marine_transparent_19
+  - first:
+      213: 1478702624672418110
+    second: Marine_transparent_20
+  - first:
+      213: -7641327474446602615
+    second: Marine_transparent_21
+  - first:
+      213: -6243599443043986353
+    second: Marine_transparent_22
+  - first:
+      213: 2885805158948065315
+    second: Marine_transparent_23
+  - first:
+      213: 5609681256143189360
+    second: Marine_transparent_24
+  - first:
+      213: 7898244296288866180
+    second: Marine_transparent_25
+  - first:
+      213: 2263997693210226689
+    second: Marine_transparent_26
+  - first:
+      213: 8711859318180496291
+    second: Marine_transparent_27
+  - first:
+      213: -7605624936075255179
+    second: Marine_transparent_28
+  - first:
+      213: 4965503279598379351
+    second: Marine_transparent_29
+  - first:
+      213: 8818939342097895714
+    second: Marine_transparent_30
+  - first:
+      213: 5791635434482295741
+    second: Marine_transparent_31
+  - first:
+      213: -7513897477770437737
+    second: Marine_transparent_32
+  - first:
+      213: 8394852579894973580
+    second: Marine_transparent_33
+  - first:
+      213: -1407866949305858815
+    second: Marine_transparent_34
+  - first:
+      213: 7631093077921795001
+    second: Marine_transparent_35
+  - first:
+      213: -4544885031208125191
+    second: Marine_transparent_36
+  - first:
+      213: 7191028438848659059
+    second: Marine_transparent_37
+  - first:
+      213: -8113300758477487486
+    second: Marine_transparent_38
+  - first:
+      213: 2733064363788815554
+    second: Marine_transparent_39
+  - first:
+      213: 5585162758489252701
+    second: Marine_transparent_40
+  - first:
+      213: -3712699562514793379
+    second: Marine_transparent_41
+  - first:
+      213: -5004114454650243163
+    second: Marine_transparent_42
+  - first:
+      213: -2003912759798772576
+    second: Marine_transparent_43
+  - first:
+      213: 2368577755984239320
+    second: Marine_transparent_44
+  - first:
+      213: -337647674071963842
+    second: Marine_transparent_45
+  - first:
+      213: -1759453506224034082
+    second: Marine_transparent_46
+  - first:
+      213: 1598957016821802018
+    second: Marine_transparent_47
+  - first:
+      213: 1351019510909216615
+    second: Marine_transparent_48
+  - first:
+      213: 2287198096502918272
+    second: Marine_transparent_49
+  - first:
+      213: 3788780385222472666
+    second: Marine_transparent_50
+  - first:
+      213: 7505274319592105514
+    second: Marine_transparent_51
+  - first:
+      213: 4801957394449345017
+    second: Marine_transparent_52
+  - first:
+      213: -7891073550716498613
+    second: Marine_transparent_53
+  - first:
+      213: 5796529121579579815
+    second: Marine_transparent_54
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Marine_transparent_0
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 361
+        width: 39
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4c708ee5d66604c0800000000000000
+      internalID: -4321653723399947185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_1
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 419
+        width: 45
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51b4c69bd3f7c4340800000000000000
+      internalID: 4849390801851796245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_2
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 361
+        width: 37
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc36c82de57605c40800000000000000
+      internalID: 5499008801976378315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_3
+      rect:
+        serializedVersion: 2
+        x: 178
+        y: 419
+        width: 40
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39a9d46c127f94ca0800000000000000
+      internalID: -6032018501453112685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_4
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 361
+        width: 41
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9862ce944d08110b0800000000000000
+      internalID: -5759680799168518519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_5
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 419
+        width: 43
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a66dfa99ad1d38130800000000000000
+      internalID: 3567926066619078250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_6
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 360
+        width: 37
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07542c952a0ae6240800000000000000
+      internalID: 4786940073092466032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_7
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 419
+        width: 42
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1171c16ad4b4a1240800000000000000
+      internalID: 4763202352769144593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_8
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 361
+        width: 46
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a6e7279c853cb130800000000000000
+      internalID: 3583798281427740325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_9
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 419
+        width: 30
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6c2fd21633c8a3f0800000000000000
+      internalID: -889246289393406870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_10
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 361
+        width: 48
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f845b3eeee1a6b6b0800000000000000
+      internalID: -5280855465474173809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_11
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 419
+        width: 30
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d264bb2d5ea1329c0800000000000000
+      internalID: -3953286473515842003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_12
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 303
+        width: 45
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01a32116d7c56a480800000000000000
+      internalID: -8888315120999843312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_13
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 303
+        width: 39
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c4c965a10cd06530800000000000000
+      internalID: 3846315981402653888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_14
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 245
+        width: 44
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2b47e00acbb6f420800000000000000
+      internalID: 2663522705909173037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_15
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 303
+        width: 40
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8aefe947b6f936410800000000000000
+      internalID: 1469193187319807656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_16
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 245
+        width: 43
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f63310fb01e291880800000000000000
+      internalID: -8639823760674704529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_17
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 303
+        width: 37
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20a8325756de512d0800000000000000
+      internalID: -3308477331221018110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_18
+      rect:
+        serializedVersion: 2
+        x: 251
+        y: 245
+        width: 44
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85430cf0ccc0f3bd0800000000000000
+      internalID: -2648383985293446056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_19
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 303
+        width: 53
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d291dc9cbed0c2340800000000000000
+      internalID: 4840259005870577965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_20
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 303
+        width: 56
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e398900e338658410800000000000000
+      internalID: 1478702624672418110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_21
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 245
+        width: 49
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98e6d21c52d84f590800000000000000
+      internalID: -7641327474446602615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_22
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 189
+        width: 37
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f445985f2674a59a0800000000000000
+      internalID: -6243599443043986353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_23
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 189
+        width: 36
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 320d61e90807c0820800000000000000
+      internalID: 2885805158948065315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_24
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 189
+        width: 38
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 075f49f816799dd40800000000000000
+      internalID: 5609681256143189360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_25
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 245
+        width: 41
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48f8d8d37533c9d60800000000000000
+      internalID: 7898244296288866180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_26
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 245
+        width: 45
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 100791428e55b6f10800000000000000
+      internalID: 2263997693210226689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_27
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 130
+        width: 42
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a3435974edb6e870800000000000000
+      internalID: 8711859318180496291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_28
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 189
+        width: 39
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 572a16eba64637690800000000000000
+      internalID: -7605624936075255179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_29
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 130
+        width: 39
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 751af77ace209e440800000000000000
+      internalID: 4965503279598379351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_30
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 130
+        width: 46
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 221567d5b9a236a70800000000000000
+      internalID: 8818939342097895714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_31
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 189
+        width: 30
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db3e1e40eb5006050800000000000000
+      internalID: 5791635434482295741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_32
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 189
+        width: 27
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79b1ac6ed0649b790800000000000000
+      internalID: -7513897477770437737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_33
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 77
+        width: 47
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c84596e81f1808470800000000000000
+      internalID: 8394852579894973580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_34
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 130
+        width: 46
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1058c930870467ce0800000000000000
+      internalID: -1407866949305858815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_35
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 129
+        width: 37
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bb887d19b617e960800000000000000
+      internalID: 7631093077921795001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_36
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 15
+        width: 47
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9fc79d9d4235de0c0800000000000000
+      internalID: -4544885031208125191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_37
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 77
+        width: 38
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37e5e43f34aabc360800000000000000
+      internalID: 7191028438848659059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_38
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 77
+        width: 40
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 282ca0f32f3c76f80800000000000000
+      internalID: -8113300758477487486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_39
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 77
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2cc49e7fe8bcde520800000000000000
+      internalID: 2733064363788815554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_40
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 77
+        width: 54
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d532e78ffeb728d40800000000000000
+      internalID: 5585162758489252701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_41
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 77
+        width: 55
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5cbe8a2b67d97cc0800000000000000
+      internalID: -3712699562514793379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_42
+      rect:
+        serializedVersion: 2
+        x: 347
+        y: 77
+        width: 54
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a7bc2b9a60dd8ab0800000000000000
+      internalID: -5004114454650243163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_43
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 15
+        width: 41
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ac425f46fba034e0800000000000000
+      internalID: -2003912759798772576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_44
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 15
+        width: 51
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8da15587be0eed020800000000000000
+      internalID: 2368577755984239320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_45
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 15
+        width: 56
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3724b7ba3f605bf0800000000000000
+      internalID: -337647674071963842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_46
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 15
+        width: 59
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ede63baab5a2597e0800000000000000
+      internalID: -1759453506224034082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_47
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 41
+        width: 28
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22428c66fe2a03610800000000000000
+      internalID: 1598957016821802018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_48
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 47
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 767ad505619cfb210800000000000000
+      internalID: 1351019510909216615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_49
+      rect:
+        serializedVersion: 2
+        x: 254
+        y: 15
+        width: 61
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08c8109fc82cdbf10800000000000000
+      internalID: 2287198096502918272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_50
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 41
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad33721cfa3749430800000000000000
+      internalID: 3788780385222472666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_51
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 15
+        width: 61
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a262621aa37182860800000000000000
+      internalID: 7505274319592105514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_52
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 496
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f9a6b2fecaf3a240800000000000000
+      internalID: 4801957394449345017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_53
+      rect:
+        serializedVersion: 2
+        x: 374
+        y: 15
+        width: 61
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4d00111a664d7290800000000000000
+      internalID: -7891073550716498613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marine_transparent_54
+      rect:
+        serializedVersion: 2
+        x: 434
+        y: 15
+        width: 61
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a935f55688617050800000000000000
+      internalID: 5796529121579579815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Marine_transparent_0: -4321653723399947185
+      Marine_transparent_1: 4849390801851796245
+      Marine_transparent_10: -5280855465474173809
+      Marine_transparent_11: -3953286473515842003
+      Marine_transparent_12: -8888315120999843312
+      Marine_transparent_13: 3846315981402653888
+      Marine_transparent_14: 2663522705909173037
+      Marine_transparent_15: 1469193187319807656
+      Marine_transparent_16: -8639823760674704529
+      Marine_transparent_17: -3308477331221018110
+      Marine_transparent_18: -2648383985293446056
+      Marine_transparent_19: 4840259005870577965
+      Marine_transparent_2: 5499008801976378315
+      Marine_transparent_20: 1478702624672418110
+      Marine_transparent_21: -7641327474446602615
+      Marine_transparent_22: -6243599443043986353
+      Marine_transparent_23: 2885805158948065315
+      Marine_transparent_24: 5609681256143189360
+      Marine_transparent_25: 7898244296288866180
+      Marine_transparent_26: 2263997693210226689
+      Marine_transparent_27: 8711859318180496291
+      Marine_transparent_28: -7605624936075255179
+      Marine_transparent_29: 4965503279598379351
+      Marine_transparent_3: -6032018501453112685
+      Marine_transparent_30: 8818939342097895714
+      Marine_transparent_31: 5791635434482295741
+      Marine_transparent_32: -7513897477770437737
+      Marine_transparent_33: 8394852579894973580
+      Marine_transparent_34: -1407866949305858815
+      Marine_transparent_35: 7631093077921795001
+      Marine_transparent_36: -4544885031208125191
+      Marine_transparent_37: 7191028438848659059
+      Marine_transparent_38: -8113300758477487486
+      Marine_transparent_39: 2733064363788815554
+      Marine_transparent_4: -5759680799168518519
+      Marine_transparent_40: 5585162758489252701
+      Marine_transparent_41: -3712699562514793379
+      Marine_transparent_42: -5004114454650243163
+      Marine_transparent_43: -2003912759798772576
+      Marine_transparent_44: 2368577755984239320
+      Marine_transparent_45: -337647674071963842
+      Marine_transparent_46: -1759453506224034082
+      Marine_transparent_47: 1598957016821802018
+      Marine_transparent_48: 1351019510909216615
+      Marine_transparent_49: 2287198096502918272
+      Marine_transparent_5: 3567926066619078250
+      Marine_transparent_50: 3788780385222472666
+      Marine_transparent_51: 7505274319592105514
+      Marine_transparent_52: 4801957394449345017
+      Marine_transparent_53: -7891073550716498613
+      Marine_transparent_54: 5796529121579579815
+      Marine_transparent_6: 4786940073092466032
+      Marine_transparent_7: 4763202352769144593
+      Marine_transparent_8: 3583798281427740325
+      Marine_transparent_9: -889246289393406870
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
