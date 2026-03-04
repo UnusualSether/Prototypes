@@ -8,12 +8,13 @@ public class RoomCode
     public string Name;
     public int EnemyCount;
     public Transform SpawnPoint;
-    public RoomCode(string Name, int EnemyCount, Transform SpawnPoint)
+    public RoomCode(string Name, int EnemyCount, Transform SpawnPoint) //<= Isso serve para forçar a criação de um objeto RoomCode com os parametros necessários.
     {
         this.Name = Name;
         this.EnemyCount = EnemyCount;
         this.SpawnPoint = SpawnPoint;
     }
+    // Conciderando que as variaveis são publicas, não é necessário criar getters, Devo Rmover eles ou deixar como estão?
     public int ReturnEnemysCount()
     {
         return EnemyCount;
