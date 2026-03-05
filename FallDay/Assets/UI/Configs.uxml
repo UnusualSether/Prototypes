@@ -1,0 +1,13 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1;">
+        <ui:VisualElement style="flex-grow: 1;">
+            <ui:Button text="Return" name="Return" style="width: 92px; height: 53px;"/>
+            <ui:Label text="Options" style="align-self: center; font-size: 32px; margin-top: 25px;"/>
+        </ui:VisualElement>
+        <ui:VisualElement name="VisualElement" style="flex-grow: 1;">
+            <ui:Slider label="Master Volume" value="42" high-value="100" enabled="true" style="display: flex; overflow: hidden; visibility: visible; -unity-font-style: bold;"/>
+            <ui:Slider label="Music" value="42" high-value="100" name="Slider" style="margin-top: 2px; visibility: visible; overflow: hidden;"/>
+        </ui:VisualElement>
+        <ui:VisualElement style="flex-grow: 1;"/>
+    </ui:VisualElement>
+</ui:UXML>

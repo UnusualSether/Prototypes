@@ -1,0 +1,12 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/menu-button.uss?fileID=7433441132597879392&amp;guid=5ff4fe793556fb647bf035ecb21b8114&amp;type=3#menu-button"/>
+    <ui:VisualElement style="flex-grow: 1; height: auto;">
+        <ui:VisualElement style="flex-grow: 1; width: auto; align-self: auto; height: auto; justify-content: center;">
+            <ui:Label text="Game" name="GameName" style="align-self: center;"/>
+        </ui:VisualElement>
+        <ui:VisualElement style="flex-grow: 1;">
+            <ui:Button text="Iniciar" name="Play" class="menu-button" style="opacity: 1; margin-left: 4px; margin-bottom: 30px; top: auto; align-self: center; width: 200px;"/>
+            <ui:Button text="Configurações&#10;" name="Config" class="menu-button" style="margin-top: 24px; align-self: center; width: 200px;"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
