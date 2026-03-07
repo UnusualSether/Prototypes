@@ -221,6 +221,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1923126321}
   - component: {fileID: 1923126320}
+  - component: {fileID: 1923126322}
+  - component: {fileID: 1923126323}
+  - component: {fileID: 1923126324}
   m_Layer: 0
   m_Name: Configs
   m_TagString: Untagged
@@ -266,6 +269,48 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1923126322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1923126319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7235a93add4415b48b518c85404f5087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuManager
+--- !u!114 &1923126323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1923126319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 070bc1638138c1141ab8ba7f058c4682, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VolumeScript
+  volumeControl: {fileID: 24100000, guid: a99669484a911c741872814f5a57f88a, type: 2}
+  UIDocument: {fileID: 0}
+  sliderName: Volume
+--- !u!114 &1923126324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1923126319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 070bc1638138c1141ab8ba7f058c4682, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VolumeScript
+  volumeControl: {fileID: 24100000, guid: a99669484a911c741872814f5a57f88a, type: 2}
+  UIDocument: {fileID: 1923126320}
+  sliderName: Volume
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

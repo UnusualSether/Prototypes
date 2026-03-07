@@ -9,17 +9,40 @@ public class MenuManager : MonoBehaviour
     {
         var uiDocument = GetComponent<UIDocument>();
 
-        Button startButton = uiDocument.rootVisualElement.Q<Button>("Play");
+        Button startbutton = uiDocument.rootVisualElement.Q<Button>("Play");
 
-        if (startButton != null)
+        Button configbutton = uiDocument.rootVisualElement.Q<Button>("Config");
+
+        Button returnbutton = uiDocument.rootVisualElement.Q<Button>("Return");
+
+        if (startbutton != null)
         {
-            startButton.clicked += SceneLoader;
+            startbutton.clicked += StartGame;
+        }
+
+        if (configbutton != null)
+        {
+            configbutton.clicked += configmenu;
+        }
+
+        if (returnbutton != null)
+        {
+            returnbutton.clicked += returnmenu;
         }
     }
 
-    private void SceneLoader()
+    private void configmenu()
+    {
+        SceneManager.LoadScene("Scenes/Configs");
+    }
+
+    private void StartGame()
     {
         SceneManager.LoadScene("Scenes/MainScene");
     }
 
+    private void returnmenu()
+    {
+        SceneManager.LoadScene("Scenes/MainMenu");
+    }
 }

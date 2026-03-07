@@ -5,8 +5,8 @@
             <ui:Label text="Options" style="align-self: center; font-size: 32px; margin-top: 25px;"/>
         </ui:VisualElement>
         <ui:VisualElement name="VisualElement" style="flex-grow: 1;">
-            <ui:Slider label="Master Volume" value="42" high-value="100" enabled="true" style="display: flex; overflow: hidden; visibility: visible; -unity-font-style: bold;"/>
-            <ui:Slider label="Music" value="42" high-value="100" name="Slider" style="margin-top: 2px; visibility: visible; overflow: hidden;"/>
+            <ui:Slider label="Master Volume" value="42" high-value="2" enabled="true" name="MasterVolume" low-value="0.0001" fill="true" focusable="true" style="display: flex; overflow: hidden; visibility: visible; -unity-font-style: bold;"/>
+            <ui:Slider label="Music" value="42" high-value="100" name="MusicVolume" fill="true" style="margin-top: 2px; visibility: visible; overflow: hidden;"/>
         </ui:VisualElement>
         <ui:VisualElement style="flex-grow: 1;"/>
     </ui:VisualElement>
