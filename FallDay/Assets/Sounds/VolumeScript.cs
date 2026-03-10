@@ -6,37 +6,56 @@ public class VolumeScript : MonoBehaviour
 {
     [SerializeField] private AudioMixer volumeControl;
     [SerializeField] private UIDocument UIDocument;
-    [SerializeField] private string sliderName = "Volume";
 
-    private Slider _Volume;
+    private Slider _Masterslider;
+    private Slider _Musicslider;
 
     private void OnEnable()
     {
 
         var root = UIDocument.rootVisualElement;
 
-        _Volume = root.Q<Slider>("MasterVolume");
+        _Masterslider = root.Q<Slider>("MasterVolume");
+        _Musicslider = root.Q<Slider>("MusicVolume");
 
-        if (_Volume != null)
+        if (_Masterslider != null)
         {
-            _Volume.RegisterValueChangedCallback(evt => SetVolume(evt.newValue));
+            _Masterslider.RegisterValueChangedCallback(evt => MainVolume(evt.newValue));
 
-            SetVolume(_Volume.value);
+            MainVolume(_Masterslider.value);
+        }
+
+        if (_Musicslider != null)
+        {
+            _Musicslider.RegisterValueChangedCallback(evt => MusicVolume(evt.newValue));
+
+            MusicVolume(_Musicslider.value);
         }
 
     }
 
-    public void SetVolume(float volume)
+    public void MainVolume(float volume)
     {
         float dbValue = Mathf.Log10(Mathf.Clamp(volume, 0.0001f, 1f)) * 20;
         volumeControl.SetFloat("MasterVolume", dbValue);
     }
 
+    public void MusicVolume(float volume)
+    {
+        float dbValue = Mathf.Log10(Mathf.Clamp(volume, 0.0001f, 1f)) * 20;
+        volumeControl.SetFloat("MusicVolume", dbValue);
+    }
+
     void OnDisable()
     {
-        if (_Volume != null)
+        if (_Masterslider != null)
         {
-            _Volume.UnregisterValueChangedCallback(evt => SetVolume(evt.newValue));
+            _Masterslider.UnregisterValueChangedCallback(evt => MainVolume(evt.newValue));
+        }
+
+        if (_Musicslider != null)
+        {
+            _Musicslider.UnregisterValueChangedCallback(evt => MusicVolume(evt.newValue));
         }
 
     }
