@@ -17,6 +17,8 @@ public class EightWaySpriteView : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public Transform cameraTransform;
 
+    public Transform directionSource;
+
     public void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -50,11 +52,11 @@ public class EightWaySpriteView : MonoBehaviour
         toCamera.y = 0f;
         toCamera.Normalize();
 
-        Vector3 spriteFront = Vector3.forward;
+        Vector3 spriteFront = directionSource.forward;
         spriteFront.y = 0f;
         spriteFront.Normalize();
 
-        float angle = Vector3.SignedAngle(toCamera, spriteFront, Vector3.up);
+        float angle = Vector3.SignedAngle(toCamera, spriteFront, directionSource.up);
 
         if (angle < 0f)
         {

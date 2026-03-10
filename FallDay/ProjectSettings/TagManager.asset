@@ -4,11 +4,7 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - Item
-  - Interact
-  - Door
-  - LockedDoor
-  - SpawnPoint
+  - Wall
   layers:
   - Default
   - TransparentFX
