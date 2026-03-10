@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class TechDemoCamera : MonoBehaviour
 {
-    public Transform[] povs = new Transform[4];
+  
     public Transform toLookAt;
     
 
@@ -34,12 +34,18 @@ public class TechDemoCamera : MonoBehaviour
     {
         Vector3 rayOrigin = transform.position;
         Vector3 rayDirection = transform.forward;
-        float maxDistance = 100f;
         RaycastHit hitObject;
 
-        if (Physics.Raycast(rayOrigin,rayDirection,out hitObject, maxDistance))
+
+
+        if (Physics.Linecast(rayOrigin, toLookAt.transform.position, out hitObject))
         {
-            
+            if (!hitObject.transform.gameObject.CompareTag("Wall"))
+            {
+                return;
+            }
+              
+
 
             if (hitObject.transform.gameObject.CompareTag("Wall"))
             {
