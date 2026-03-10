@@ -23,4 +23,4 @@ Pré-requisitos: É necessário ter o Unity Hub instalado na sua máquina.
 
 1. Clone este repositório:
 ```bash
-git clone [https://github.com/seu-usuario/nome-do-repositorio.git](https://github.com/seu-usuario/nome-do-repositorio.git)
+git clone [https://github.com/UnusualSether/Prototypes/tree/main]
