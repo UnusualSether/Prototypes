@@ -5,8 +5,8 @@
 ---
 
 ### SEMANA 1 – 24/02
-- [ ] Orientações gerais e leitura do documento de entregáveis
-- [ ] Grupos entregam lista com o registro de toda a equipe
+- [x] Orientações gerais e leitura do documento de entregáveis
+- [x] Grupos entregam lista com o registro de toda a equipe
 - [ ] Grupos devem criar o nome e o logotipo do estúdio
 
 ### SEMANA 2 – 03/03 (High Concept)
