@@ -24,3 +24,10 @@ Pré-requisitos: É necessário ter o Unity Hub instalado na sua máquina.
 1. Clone este repositório:
 ```bash
 https://github.com/UnusualSether/Prototypes/tree/main
+```
+2. GDD
+```bash
+https://www.notion.so/Match-3-Game-GDD-31124c705b5e81bca6fee3a494d514a2
+
+
+  
