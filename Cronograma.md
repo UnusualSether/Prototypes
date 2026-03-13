@@ -10,17 +10,17 @@
 - [ ] Grupos devem criar o nome e o logotipo do estúdio
 
 ### SEMANA 2 – 03/03 (High Concept)
-- [ ] Premissa do jogo (o que o jogador tem que fazer para ganhar)
-- [ ] Estilo do jogo (FPS, estratégia, corrida etc.)
-- [ ] Perspectiva de visão (2D, 3D, primeira pessoa, terceira pessoa, isométrico)
-- [ ] Interação/gameplay (movimentação WASD, mouse etc.)
-- [ ] Plataforma (mobile, PC, browser, console etc.)
-- [ ] Engine que será utilizada
-- [ ] Multiplayer? (local, remoto, realtime, etc)
-- [ ] Referências (jogos similares e/ou outras obras de áreas distintas)
+- [x] Premissa do jogo (o que o jogador tem que fazer para ganhar)
+- [x] Estilo do jogo (FPS, estratégia, corrida etc.)
+- [x] Perspectiva de visão (2D, 3D, primeira pessoa, terceira pessoa, isométrico)
+- [x] Interação/gameplay (movimentação WASD, mouse etc.)
+- [x] Plataforma (mobile, PC, browser, console etc.)
+- [x] Engine que será utilizada
+- [x] Multiplayer? (local, remoto, realtime, etc)
+- [x] Referências (jogos similares e/ou outras obras de áreas distintas)
 
 ### SEMANA 3 – 10/03
-- [ ] Detalhamento da mecânica (sketches, estudos, referências)
+- [x] Detalhamento da mecânica (sketches, estudos, referências)
 - [ ] Público-alvo
 
 ### SEMANA 4 – 17/03
