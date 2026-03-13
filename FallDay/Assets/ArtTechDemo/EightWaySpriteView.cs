@@ -52,7 +52,7 @@ public class EightWaySpriteView : MonoBehaviour
         toCamera.y = 0f;
         toCamera.Normalize();
 
-        Vector3 spriteFront = directionSource.forward;
+        Vector3 spriteFront = directionSource.transform.forward;
         spriteFront.y = 0f;
         spriteFront.Normalize();
 
