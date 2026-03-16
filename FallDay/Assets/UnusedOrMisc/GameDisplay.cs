@@ -67,6 +67,10 @@ public class GameDisplay : MonoBehaviour
     private void OnEnable()
     {
 
+        //Events
+
+        handler.ZombieKilled += RemoveCrosshair;
+
 
         //Find the Bullet Displays using a for loop
         var bulletDisplaysFound = ui.Query<VisualElement>().Where(e => e.name.StartsWith("BSpot")).ToList();
@@ -123,6 +127,11 @@ public class GameDisplay : MonoBehaviour
 
         cachedZombies = handler.ZombieList.ToList();
 
+    }
+
+    private void OnDisable()
+    {
+        handler.ZombieKilled -= RemoveCrosshair;
     }
 
     IEnumerator WaitForBullets()
@@ -271,11 +280,11 @@ public class GameDisplay : MonoBehaviour
 
         //ZombieDisplay zombieDisplay = zombieDisplayLookup[elementId - 1];
 
-        //handler.SelectedZombie = zombieDisplay.displayedZombie.id;
+        //handler.preferenceZombie = zombieDisplay.displayedZombie.id;
 
-        int selectedZombieID = occupiedZombieDisplay.Find(e => e.displayElement == selectedElement).displayedZombie.id;
+        int preferenceZombieID = occupiedZombieDisplay.Find(e => e.displayElement == selectedElement).displayedZombie.id;
 
-        handler.SelectedZombie = selectedZombieID;
+        handler.preferenceZombie = preferenceZombieID;
 
         ClickedCrosshair(selectedElement);
     }
@@ -295,6 +304,17 @@ public class GameDisplay : MonoBehaviour
         clickedElement.AddToClassList("aimed");
     }
 
+    private void RemoveCrosshair()
+    {
+        foreach (var display in occupiedZombieDisplay)
+        {
+            if (display.displayElement.ClassListContains("aimed"))
+            {
+                display.displayElement.RemoveFromClassList("aimed");
+            }
+        }
+    }
+
     private void FindNewCrossHairPosition()
     {
         
@@ -309,7 +329,7 @@ public class GameDisplay : MonoBehaviour
             display.displayElement.RemoveFromClassList("aimed");
         }
 
-        var newSelectedDisplay = occupiedZombieDisplay.Find(e => e.displayedZombie.id == handler.SelectedZombie).displayElement;
+        var newSelectedDisplay = occupiedZombieDisplay.Find(e => e.displayedZombie.id == handler.preferenceZombie).displayElement;
 
         newSelectedDisplay.AddToClassList("aimed");
 

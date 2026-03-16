@@ -72,7 +72,8 @@ public class GameHandler : MonoBehaviour
 
     private int stachedZombieID;
 
-    public int SelectedZombie;
+    public int preferenceZombie;
+    public int nulledPreference = -1;
 
     public List<Zombie> ZombieList = new List<Zombie>();
 
@@ -112,6 +113,11 @@ public class GameHandler : MonoBehaviour
         public List<BulletType> bulletTypes;
     }
 
+
+
+    /// <summary>
+    /// The Zombie class which contains HP, its id which is used by the gamehandler to find out which zombie to damage & an enum for checking how close the zombie is to the player.
+    /// </summary>
     public class Zombie
     {
         public int id = 0;
@@ -291,16 +297,17 @@ public class GameHandler : MonoBehaviour
 
     }
 
-    public void ApplyDamage(int damage)
+    public void ApplyDamage(int damage, Zombie zombieToDamage)
     {
 
         
 
-        var zombieToDamage = zombieLookup[SelectedZombie];
+        
 
         if (zombieToDamage == null)
         {
             Debug.Log("Tried to damage invalid zombie, try again!");
+            ApplyDamage(damage, zombieToAimAt());
             return;
         }
 
@@ -334,9 +341,11 @@ public class GameHandler : MonoBehaviour
             numberOfZombiesInLookup = zombieLookup.Count();
             numberOfZombiesinList = ZombieList.Count();
 
+            preferenceZombie = nulledPreference;
+
             ZombieKilled?.Invoke();
 
-            SelectedZombie = ZombieList.First().id;
+           
 
         }
 
@@ -354,6 +363,23 @@ public class GameHandler : MonoBehaviour
         
 
         
+    }
+
+    public Zombie zombieToAimAt()
+    {
+        if (preferenceZombie != nulledPreference)
+        {
+            var foundZombie = zombieLookup[preferenceZombie];
+            if (foundZombie == null)
+            {
+                Debug.Log("Preference zombie did not return a valid zombie! Auto aiming fail safe activating...");
+                return ZombieList.First();
+            }
+
+            return foundZombie;
+        }
+
+        return ZombieList.First();
     }
 
     #endregion
@@ -523,11 +549,11 @@ public class GameHandler : MonoBehaviour
 
          int rawDamage= bulletType.Damage * numberUsed;
 
-        var totalDamage = currentWeapon.WeaponEffect(numberUsed, rawDamage, zombieLookup[SelectedZombie]);
+        var totalDamage = currentWeapon.WeaponEffect(numberUsed, rawDamage, zombieToAimAt());
 
         Debug.Log($"Did {totalDamage} damage with {numberUsed} {bulletType.name}s!");
 
-        ApplyDamage(totalDamage);
+        ApplyDamage(totalDamage, zombieToAimAt());
       
     }
 
