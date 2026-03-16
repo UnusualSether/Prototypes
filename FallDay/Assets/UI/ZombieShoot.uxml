@@ -1,7 +1,7 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/ZombieShoot.uss?fileID=7433441132597879392&amp;guid=7bdd305a16666ca42885e8dadd49b420&amp;type=3#ZombieShoot"/>
     <engine:VisualElement style="flex-grow: 1; flex-basis: -13%; align-self: center;">
-        <engine:VisualElement name="SceneDisplayArea" style="flex-grow: 1; flex-direction: row; align-items: center; justify-content: space-around; align-self: flex-start; width: 266px;">
+        <engine:VisualElement name="SceneDisplayArea" style="flex-grow: 1; flex-direction: row; align-items: center; justify-content: space-between; align-self: center; width: 266px;">
             <engine:VisualElement enabled="false" name="ZombieSpot1" class="zombieSpot" style="background-size: 188% 100%;"/>
             <engine:VisualElement enabled="false" name="ZombieSpot2" class="zombieSpot" style="background-size: 188% 100%;"/>
             <engine:VisualElement enabled="false" name="ZombieSpot3" class="zombieSpot" style="background-size: 188% 100%;"/>
