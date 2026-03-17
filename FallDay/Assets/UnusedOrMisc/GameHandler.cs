@@ -118,7 +118,7 @@ public class GameHandler : MonoBehaviour
 
         public int hp;
 
-       public enum ZombiePhase
+        public enum ZombiePhase
         {
             Far,
             Approach,
@@ -130,7 +130,6 @@ public class GameHandler : MonoBehaviour
 
         public int currentDisplay;
     }
-
 
     private void Start()
     {
@@ -152,7 +151,7 @@ public class GameHandler : MonoBehaviour
 
         //Add the bullets
         bulletTable.bulletTypes = new List<BulletType>()
-            {
+        {
 
             new BulletType()
             {
@@ -176,8 +175,7 @@ public class GameHandler : MonoBehaviour
             }
 
 
-            };
-        
+        };
 
         bulletLookup = new Dictionary<string, BulletType>();
 
@@ -189,32 +187,20 @@ public class GameHandler : MonoBehaviour
 
         zombieLookup = new Dictionary<int, Zombie>();
 
-
-
         //Sync display and game handler bulletArrays
 
         //Print Used weapon
 
         Debug.Log($"You're currently using the {currentWeapon.name}");
-
-        
     }
-
-
-    
-
 
     public void Update()
     {
-
         HandleBulletSelect();
 
         RestockBullet();
 
-       
-       Reload();
-       
-  
+        Reload();
 
         if (ZombieSpawnGate == false)
         {
@@ -227,8 +213,6 @@ public class GameHandler : MonoBehaviour
                 StartCoroutine(ZombieSpawner());
             }
         }
-
-
     }
 
     #region Zombie Handling
@@ -237,16 +221,11 @@ public class GameHandler : MonoBehaviour
         ZombieSpawnGate = true;
         yield return new WaitForSeconds(zombieSpawnTimer);
 
-        
-
         Debug.Log("Grahh....");
 
         ZombieSpawned?.Invoke();
-        
-        
 
         int nextZombieID;
-        
 
         //Give them a brand new Id which is just the last zombies ID plus 1;
         if (ZombieList.Count == 0)
@@ -263,38 +242,27 @@ public class GameHandler : MonoBehaviour
 
         ZombieList.Add(new Zombie()
         {
-
             id = stachedZombieID,
 
             hp = zombieHP,
 
             phase = Zombie.ZombiePhase.Far
-
         }
-
         );
 
         var newZombie = ZombieList.Last();
 
         zombieLookup.Add(newZombie.id, newZombie);
 
-
         //Check to make sure list and dictionary line up
         numberOfZombiesInLookup = zombieLookup.Count;
         numberOfZombiesinList = ZombieList.Count;
 
-
         ZombieSpawnGate = false;
-
-        
-
-
     }
 
     public void ApplyDamage(int damage)
     {
-
-        
 
         var zombieToDamage = zombieLookup[SelectedZombie];
 
@@ -304,22 +272,15 @@ public class GameHandler : MonoBehaviour
             return;
         }
 
-        
-
         var zombieDeathCheck = zombieToDamage.hp -= damage;
-       
-        
+
         if (zombieDeathCheck <= 0)
         {
             Debug.Log($"killed zombie ID {zombieToDamage.id} removing them from selectable zombies.");
 
-           
             ZombieList.Remove(zombieToDamage);
 
             zombieLookup.Remove(zombieToDamage.id);
-
-
-            
 
             //Update the dictionary with the new zombie ids
 
@@ -337,7 +298,6 @@ public class GameHandler : MonoBehaviour
             ZombieKilled?.Invoke();
 
             SelectedZombie = ZombieList.First().id;
-
         }
 
         else
@@ -346,23 +306,13 @@ public class GameHandler : MonoBehaviour
 
             Debug.Log($"Zombie with id {zombieToDamage.id} took {damage} damage and now has {zombieToDamage.hp} hp.");
         }
-           
-        
-        
-
-            
-        
-
-        
     }
 
     #endregion
     public void HandleBulletSelect()
     {
-   
         if (Input.touchCount > 0)
         {
-            
              var currentTouch = Input.GetTouch(0);
             //Debug.Log($"There's a finger on the screen! ID : {currentTouch.fingerId}");
 
@@ -370,62 +320,44 @@ public class GameHandler : MonoBehaviour
               {
                 HandleShot();
               }
-
-            
-           
         }
-
-        
-
-
-
-
-
-        
-        
     }
 
     public void HandleShot()
     {
-
         Debug.Log("Shoot!");
-      
 
-            if (readyBullets.Distinct().Count() <= 1 && readyBullets.Count > 2)
-            {
-                //Debug.Log("Shot Went through!");
+        if (readyBullets.Distinct().Count() <= 1 && readyBullets.Count > 2)
+        {
+            //Debug.Log("Shot Went through!");
 
-               string bulletTypeUsed;
-               int numberUsed;
+            string bulletTypeUsed;
+            int numberUsed;
 
             //Find the number of bullets used
             numberUsed = readyBullets.Count();
 
             //Debug.Log($"Used {numberUsed} number of bullets");
 
-              //Grab the name of bullet used in the successful shot
-              bulletTypeUsed = readyBullets.First();
+            //Grab the name of bullet used in the successful shot
+            bulletTypeUsed = readyBullets.First();
 
             //Declare it's actual type as stored in BulletTypes.
             BulletType realBulletType = bulletLookup[bulletTypeUsed];
 
             //Debug.Log($"I shot{realBulletType.name}");
 
+            SucessfulShot?.Invoke();
+            HandleDamage(realBulletType,numberUsed);
+            ClearUsedBullets();
 
-                SucessfulShot?.Invoke();
-                HandleDamage(realBulletType,numberUsed);
-                ClearUsedBullets();
+            readyBullets.Clear();
+        }
 
-                readyBullets.Clear();
-
-                 
-
-            }
-
-            //If selected bullets don't match, no damage goes through
-            if (readyBullets.Distinct().Count() != 0 && readyBullets.Count > 2)
-            {
-                Debug.Log("Shot Failed!");
+        //If selected bullets don't match, no damage goes through
+        if (readyBullets.Distinct().Count() != 0 && readyBullets.Count > 2)
+        {
+            Debug.Log("Shot Failed!");
 
             //Find all bullets previously tagged with used and remove them from the class list.
 
@@ -441,43 +373,32 @@ public class GameHandler : MonoBehaviour
 
             //Clear the ready bullets list
             readyBullets.Clear();
+        }
 
-
-            }
-
-            //Cancel the shot altogether if there arent enough bullets.
-            if (readyBullets.Count() < 3)
-            {
+        //Cancel the shot altogether if there arent enough bullets.
+        if (readyBullets.Count() < 3)
+        {
             Debug.Log("Not Enough bullets selected!");
 
             //Find all bullets previously tagged with used and remove them from the class list.
 
             foreach (var bullet in bulletButton)
             {
-
                 if (bullet.ClassListContains("Used"))
                 {
                     bullet.RemoveFromClassList("Used");
                 }
-
             }
 
             //Clear the ready bullets list
             readyBullets.Clear();
 
             FailedShot?.Invoke();
-            }
-        
-
-        
+        }
     }
-
-
-    
 
     public void ClearUsedBullets()
     {
-
         //Debug.Log("Clearing Used Bullets...");
         int currentBulletIndex = 0;
 
@@ -500,8 +421,6 @@ public class GameHandler : MonoBehaviour
                 Debug.Log("Checked all bullets, backing out.");
             }
         }
-        
-
     }
 
     public void RestockBullet()
@@ -516,21 +435,16 @@ public class GameHandler : MonoBehaviour
         }
     }
 
-
-
     public void HandleDamage(BulletType bulletType, int numberUsed)
     {
-
-         int rawDamage= bulletType.Damage * numberUsed;
+        int rawDamage= bulletType.Damage * numberUsed;
 
         var totalDamage = currentWeapon.WeaponEffect(numberUsed, rawDamage, zombieLookup[SelectedZombie]);
 
         Debug.Log($"Did {totalDamage} damage with {numberUsed} {bulletType.name}s!");
 
         ApplyDamage(totalDamage);
-      
     }
-
 
     public void SelectedBullet(PointerEnterEvent ev)
     {
@@ -549,11 +463,7 @@ public class GameHandler : MonoBehaviour
                     targButtonIdenity = i;
 
                     readyBullets.Add(selectableBullets[targButtonIdenity]);
-
-
                 }
-
-
             }
         }
 
@@ -563,11 +473,8 @@ public class GameHandler : MonoBehaviour
         }
     }
 
-   
-
     public void Reload()
     {
-
         bool reloadGate = false;
 
         if (Input.GetKey(KeyCode.R) && reloadGate == false)
@@ -581,25 +488,11 @@ public class GameHandler : MonoBehaviour
 
             reloadGate = false;
         }
-
-        
-       
-
-
-           
-
-            
-        
-        
     }
-    
-  
-
 
     [ContextMenu("Debug Buttons")]
     public void DebugFunction()
     {
-
         Debug.Log(ZombieList.Count()+ " This is the number of zombies in zombie list");
         
         foreach (var zombie in ZombieList)
@@ -607,9 +500,6 @@ public class GameHandler : MonoBehaviour
             Debug.Log($"This is the indivual zombie id {zombie.id}");
         }
     }
-
-
-
 
     public void ActivateMinigame()
     {
@@ -621,5 +511,4 @@ public class GameHandler : MonoBehaviour
         ui.visible = false;
         Debug.Log("I should deactivate now!");
     }
-
 }
