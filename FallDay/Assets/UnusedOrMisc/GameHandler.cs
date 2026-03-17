@@ -16,12 +16,8 @@ using UnityEngine.SceneManagement;
 
 public class GameHandler : MonoBehaviour
 {
-
-
     //Names are extremely important due to the way unity's UI toolkit builder works, for that reason be very
     // careful when changing names of anything in the bullet arrays or in the UI itself.
-
-    
 
     //Bullet types that can show up in the grid.
     public string[] bulletList;
@@ -32,9 +28,7 @@ public class GameHandler : MonoBehaviour
     //Bullets player has selected.
     public List<string> readyBullets = new List<string>();
 
-
-
-
+    #region OtherClasses
     public UIDocument uiDoc;
 
     public VisualElement ui;
@@ -46,6 +40,7 @@ public class GameHandler : MonoBehaviour
     public BulletTable bulletTable;
 
     public Weapon currentWeapon = new Shotgun();
+    #endregion
 
     #region Events
     //Player related events
@@ -58,11 +53,10 @@ public class GameHandler : MonoBehaviour
 
     #endregion
 
-
+    #region Variables
     [Header("Zombies!")]
 
     public int numberOfZombiesInLookup;
-
 
     public int numberOfZombiesinList;
 
@@ -80,10 +74,11 @@ public class GameHandler : MonoBehaviour
 
     public float zombieSpawnTimer;
 
-    
+    public delegate void ZombieUpdateHandler(float DeltaTime);
+    public static event ZombieUpdateHandler OnZombieUpdate;
+    #endregion
 
     //Event Subbing and Unsubbing
-
     private void OnEnable()
     {
         railMachine.EncounterStarted += ActivateMinigame;
@@ -96,7 +91,7 @@ public class GameHandler : MonoBehaviour
         railMachine.EncounterEnded -= DeactivateMinigame;
     }
 
-
+    #region Internal Classes
     public Dictionary<string, BulletType> bulletLookup;
     public class BulletType
     {
@@ -107,7 +102,7 @@ public class GameHandler : MonoBehaviour
         public int Damage;
     }
 
-    public class BulletTable
+    public class BulletTable   //<== Why is this a class and not just a list? _RLH107
     {
         public List<BulletType> bulletTypes;
     }
@@ -115,22 +110,56 @@ public class GameHandler : MonoBehaviour
     public class Zombie
     {
         public int id = 0;
-
         public int hp;
-
+        public float PhaseTimer = 5;
+        private float PhT1 = 0;
+        private bool IsFirstUpdate = true;
         public enum ZombiePhase
         {
             Far,
             Approach,
             Close
-
         }
 
         public ZombiePhase phase;
 
         public int currentDisplay;
-    }
 
+        public void UpdatePhase(float deltaTime)
+        {
+            if(phase == ZombiePhase.Close) { return; }
+            else if (IsFirstUpdate) 
+            { 
+                IsFirstUpdate = false; 
+                PhT1 = PhaseTimer; 
+            }
+            else if (PhT1 <= 0)
+            {
+                PhT1 = PhaseTimer;
+                ChangePhase();
+            }
+            else
+            {
+                PhT1 -= deltaTime;
+            }
+        }
+        private void ChangePhase()
+        {
+            if (phase == ZombiePhase.Far)
+            {
+                phase = ZombiePhase.Approach;
+                Debug.Log($"Zombie with id {id} has changed phase to {phase}");
+            }
+            else if (phase == ZombiePhase.Approach)
+            {
+                phase = ZombiePhase.Close;
+                Debug.Log($"Zombie with id {id} has changed phase to {phase}");
+            }
+        }
+    }
+    #endregion
+
+    #region Unity Functions
     private void Start()
     {
         ui = uiDoc.rootVisualElement;
@@ -173,8 +202,6 @@ public class GameHandler : MonoBehaviour
                 description = "An epic bullet!",
                 Damage = 20
             }
-
-
         };
 
         bulletLookup = new Dictionary<string, BulletType>();
@@ -196,11 +223,14 @@ public class GameHandler : MonoBehaviour
 
     public void Update()
     {
+
         HandleBulletSelect();
 
         RestockBullet();
 
         Reload();
+        
+        OnZombieUpdate?.Invoke(Time.deltaTime);
 
         if (ZombieSpawnGate == false)
         {
@@ -210,10 +240,11 @@ public class GameHandler : MonoBehaviour
             }
             else
             {
-                StartCoroutine(ZombieSpawner());
+                StartCoroutine(ZombieSpawner());    //<== Why Spawn the Zombie in update? If max is 4 spawn 4 and reset the code when dead. And hide when not in action. _RLH107
             }
         }
     }
+    #endregion
 
     #region Zombie Handling
     IEnumerator ZombieSpawner()
@@ -246,17 +277,21 @@ public class GameHandler : MonoBehaviour
 
             hp = zombieHP,
 
-            phase = Zombie.ZombiePhase.Far
+            phase = Zombie.ZombiePhase.Far,
+
+            PhaseTimer = 3f
         }
         );
 
         var newZombie = ZombieList.Last();
-
+        OnZombieUpdate += newZombie.UpdatePhase;
         zombieLookup.Add(newZombie.id, newZombie);
 
         //Check to make sure list and dictionary line up
         numberOfZombiesInLookup = zombieLookup.Count;
         numberOfZombiesinList = ZombieList.Count;
+
+        Debug.Log($"Spawned zombie with id {newZombie.id} and {newZombie.hp} hp! There are now {ZombieList.Count} zombies in the list and {zombieLookup.Count} zombies in the lookup!");
 
         ZombieSpawnGate = false;
     }
@@ -281,7 +316,7 @@ public class GameHandler : MonoBehaviour
             ZombieList.Remove(zombieToDamage);
 
             zombieLookup.Remove(zombieToDamage.id);
-
+            OnZombieUpdate -= zombieToDamage.UpdatePhase;
             //Update the dictionary with the new zombie ids
 
             zombieLookup.Clear();
@@ -309,6 +344,8 @@ public class GameHandler : MonoBehaviour
     }
 
     #endregion
+
+    #region Bullet Handling
     public void HandleBulletSelect()
     {
         if (Input.touchCount > 0)
@@ -489,7 +526,9 @@ public class GameHandler : MonoBehaviour
             reloadGate = false;
         }
     }
+    #endregion
 
+    #region Debug & Active Inactive Minigame
     [ContextMenu("Debug Buttons")]
     public void DebugFunction()
     {
@@ -511,4 +550,5 @@ public class GameHandler : MonoBehaviour
         ui.visible = false;
         Debug.Log("I should deactivate now!");
     }
+    #endregion
 }

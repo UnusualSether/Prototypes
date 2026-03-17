@@ -56,8 +56,6 @@ public class HealthCode : MonoBehaviour
         }
     }
 
-
-
     //Botões para curar e receber dano
     void Update()
     {
@@ -71,8 +69,5 @@ public class HealthCode : MonoBehaviour
         {
             ManualHP(Heal);
         }
-
     }
-
-
 }
