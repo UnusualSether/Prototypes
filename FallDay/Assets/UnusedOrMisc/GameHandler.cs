@@ -13,6 +13,7 @@ using System.Collections;
 using UnityEngine.UIElements;
 using System.Globalization;
 using UnityEngine.SceneManagement;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 public class GameHandler : MonoBehaviour
 {
@@ -537,12 +538,88 @@ public class GameHandler : MonoBehaviour
             if (string.IsNullOrEmpty(selectableBullets[i]))
             {
                 int randomBulletIndex = UnityEngine.Random.Range(0,bulletList.Length);
-                selectableBullets[i] = bulletList[randomBulletIndex];
+
+                //Create new varibales which will be used to check if the new board is valid
+                string[] futureBoard = selectableBullets;
+                var newBulletToAdd = bulletList[randomBulletIndex];
+
+                futureBoard[i] = newBulletToAdd;
+
+                if (InvalidBoard(futureBoard))
+                {
+                    RestockBullet();
+                    return;
+                }
+
+                selectableBullets[i] = newBulletToAdd;
+
+
+                
             }
         }
     }
 
+    #region Softlock prevention
 
+    private bool InvalidBoard(string[] futureBoard)
+    {
+
+
+
+        if (futureBoard.Distinct().Count() == 3)
+        {
+           
+
+        }
+
+
+        int numberOfMatches = 0;
+
+        foreach(var space in futureBoard)
+        {
+            string[] neighbours = FetchNeighbours(Array.IndexOf(futureBoard,space),futureBoard);
+
+            if (neighbours.Count(x => x == space) >= 2)
+            {
+                numberOfMatches += 1;
+            }
+        }
+
+        Debug.Log($"The number of matches are currently {numberOfMatches / 3 }");
+
+        if (numberOfMatches == 0)
+        {
+            return true;
+        }
+
+        return false;
+        
+    }
+
+    public string[] FetchNeighbours(int spaceInt, string[] futureBoard)
+    {
+        List<String> listToReturn = new List<String>();
+
+        
+
+
+        foreach (var space in futureBoard)
+        {
+            
+                listToReturn.Add(space);
+
+                Debug.Log($"Bullet spot {spaceInt} has {listToReturn.Count} neighbours");
+            
+        }
+
+       
+
+        return listToReturn.ToArray();
+
+
+    }
+
+    #endregion
 
     public void HandleDamage(BulletType bulletType, int numberUsed)
     {
