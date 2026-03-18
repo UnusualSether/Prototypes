@@ -124,7 +124,10 @@ public class GameHandler : MonoBehaviour
 
         public void UpdatePhase(float deltaTime)
         {
-            if(phase == ZombiePhase.Close) { return; }
+            if(phase == ZombiePhase.Close && PhT1 <= 0) 
+            {
+                PlayerTookDamage.Invoke(1f);
+            }
             else if (IsFirstUpdate) 
             { 
                 IsFirstUpdate = false; 
@@ -172,22 +175,11 @@ public class GameHandler : MonoBehaviour
         Debug.Log("Calling Delegate");
         PlayerTookDamage?.Invoke(damage);
     }
-    public void DelegetTester(float d)
-    {
-        Debug.Log("I was called! Delegate Tester");
-    }
-    public void Test2(float Demege)
-    {
-        Debug.Log("TestCall2");
-    }
     #endregion
 
     #region Unity Functions
     private void Start()
     {
-        PlayerTookDamage += DelegetTester;
-        PlayerTookDamage += Test2;
-
         ui = uiDoc.rootVisualElement;
 
         //Fetch all bullet buttons
