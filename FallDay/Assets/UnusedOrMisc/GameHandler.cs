@@ -1,34 +1,26 @@
-using NUnit.Framework;
 using UnityEngine;
 using System.Collections.Generic;
-using UnityEditor.Profiling.Memory.Experimental;
-using UnityEngine.Jobs;
-using Unity.VisualScripting;
-using JetBrains.Annotations;
-using UnityEngine.Rendering.Universal;
-using UnityEngine.AI;
 using System.Linq;
 using System;
 using System.Collections;
 using UnityEngine.UIElements;
-using System.Globalization;
-using UnityEngine.SceneManagement;
+
 
 public class GameHandler : MonoBehaviour
 {
     //Names are extremely important due to the way unity's UI toolkit builder works, for that reason be very
     // careful when changing names of anything in the bullet arrays or in the UI itself.
-
+    
+    #region Lists and Arrays
     //Bullet types that can show up in the grid.
     public string[] bulletList;
-
     //Currently available to select bullets player has not yet selected.
     public string[] selectableBullets;
-    
     //Bullets player has selected.
     public List<string> readyBullets = new List<string>();
+    #endregion
 
-    #region OtherClasses
+    #region OtherClassesInUse
     public UIDocument uiDoc;
 
     public VisualElement ui;
@@ -73,12 +65,17 @@ public class GameHandler : MonoBehaviour
     public Dictionary<int, Zombie> zombieLookup;
 
     public float zombieSpawnTimer;
-
-    public delegate void ZombieUpdateHandler(float DeltaTime);
-    public static event ZombieUpdateHandler OnZombieUpdate;
     #endregion
 
-    //Event Subbing and Unsubbing
+    #region Delegates
+    public delegate void ZombieUpdateHandler(float DeltaTime);
+    public static ZombieUpdateHandler OnZombieUpdate;
+    
+    public delegate void PlayerIsDemeged(float damage);
+    public static PlayerIsDemeged PlayerTookDamage;
+    #endregion
+
+    #region EnableDisable
     private void OnEnable()
     {
         railMachine.EncounterStarted += ActivateMinigame;
@@ -90,15 +87,14 @@ public class GameHandler : MonoBehaviour
         railMachine.EncounterStarted -= ActivateMinigame;
         railMachine.EncounterEnded -= DeactivateMinigame;
     }
+    #endregion
 
     #region Internal Classes
     public Dictionary<string, BulletType> bulletLookup;
     public class BulletType
     {
         public string name;
-
         public string description;
-
         public int Damage;
     }
 
@@ -114,6 +110,7 @@ public class GameHandler : MonoBehaviour
         public float PhaseTimer = 5;
         private float PhT1 = 0;
         private bool IsFirstUpdate = true;
+
         public enum ZombiePhase
         {
             Far,
@@ -159,13 +156,41 @@ public class GameHandler : MonoBehaviour
     }
     #endregion
 
+    #region Player Deamge Handling
+    [ContextMenu("InspectorDemageCall")]
+    public void InspectorDemageCall()
+    {
+        Debug.Log("Calling Delegate from Inspector");
+        CallPlayerDamage(0);
+    }
+    public void CallPlayerDamage(float damage)
+    {
+        if (damage != 0)
+        {
+            damage = 1f;
+        }
+        Debug.Log("Calling Delegate");
+        PlayerTookDamage?.Invoke(damage);
+    }
+    public void DelegetTester(float d)
+    {
+        Debug.Log("I was called! Delegate Tester");
+    }
+    public void Test2(float Demege)
+    {
+        Debug.Log("TestCall2");
+    }
+    #endregion
+
     #region Unity Functions
     private void Start()
     {
+        PlayerTookDamage += DelegetTester;
+        PlayerTookDamage += Test2;
+
         ui = uiDoc.rootVisualElement;
 
         //Fetch all bullet buttons
-
         var bulletDisplaysFound = ui.Query<VisualElement>().Where(e => e.name.StartsWith("BSpot"));
 
         bulletButton = bulletDisplaysFound.ToList().ToArray();
@@ -279,7 +304,7 @@ public class GameHandler : MonoBehaviour
 
             phase = Zombie.ZombiePhase.Far,
 
-            PhaseTimer = 3f
+            PhaseTimer = 6f
         }
         );
 
@@ -292,7 +317,6 @@ public class GameHandler : MonoBehaviour
         numberOfZombiesinList = ZombieList.Count;
 
         Debug.Log($"Spawned zombie with id {newZombie.id} and {newZombie.hp} hp! There are now {ZombieList.Count} zombies in the list and {zombieLookup.Count} zombies in the lookup!");
-
         ZombieSpawnGate = false;
     }
 
@@ -342,7 +366,6 @@ public class GameHandler : MonoBehaviour
             Debug.Log($"Zombie with id {zombieToDamage.id} took {damage} damage and now has {zombieToDamage.hp} hp.");
         }
     }
-
     #endregion
 
     #region Bullet Handling
@@ -490,7 +513,6 @@ public class GameHandler : MonoBehaviour
         if (selectedElement.ClassListContains("Used") == false)
         {
             selectedElement.AddToClassList("Used");
-
             int targButtonIdenity;
 
             for (int i = 0; i < bulletButton.Length; i++)
@@ -498,12 +520,10 @@ public class GameHandler : MonoBehaviour
                 if (selectedElement.name == bulletButton[i].name)
                 {
                     targButtonIdenity = i;
-
                     readyBullets.Add(selectableBullets[targButtonIdenity]);
                 }
             }
         }
-
         else
         {
             Debug.Log("This bullet has already been selected!");
@@ -539,7 +559,6 @@ public class GameHandler : MonoBehaviour
             Debug.Log($"This is the indivual zombie id {zombie.id}");
         }
     }
-
     public void ActivateMinigame()
     {
         ui.visible = true;
