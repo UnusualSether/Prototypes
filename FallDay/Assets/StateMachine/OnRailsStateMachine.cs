@@ -4,10 +4,13 @@ using System.Collections.Generic;
 using System;
 using System.Threading.Tasks;
 using System.Collections;
+using Unity.VisualScripting;
 
 [Serializable]
 public class OnRailsStateMachine : MonoBehaviour
 {
+
+    public static OnRailsStateMachine instance;
     public enum States
     {
         OnRail,
@@ -35,6 +38,7 @@ public class OnRailsStateMachine : MonoBehaviour
     public event Action CleanupEnded;
 
     public Dictionary<States, Action> stateToFunction;
+    public Dictionary<States, Action> stateToFunctionEnds;
 
     private void Start()
     {
@@ -43,6 +47,16 @@ public class OnRailsStateMachine : MonoBehaviour
             {States.OnRail, StartRails },
             {States.Encounter, StartEncounter },
             {States.Cleanup, StartCleanup }
+
+        };
+
+        stateToFunctionEnds = new Dictionary<States, Action>
+
+        {
+            {States.OnRail, EndRails },
+            {States.Encounter, EncounterEnd },
+            {States.Cleanup, CleanupEnd }
+
 
         };
     }
@@ -72,6 +86,7 @@ public class OnRailsStateMachine : MonoBehaviour
     public void AdvanceStateFlow()
     {
         //Set the public States to the next state
+        States endingState = currentState;
         int currentStateIndexer = Array.IndexOf(stateFlow, currentState);
         currentStateIndexer  = (currentStateIndexer + 1) % stateFlow.Length;
         currentState = stateFlow[currentStateIndexer];
@@ -80,6 +95,9 @@ public class OnRailsStateMachine : MonoBehaviour
 
         Action whichAction = stateToFunction[currentState];
         whichAction?.Invoke();
+
+        Action whichActioEnd = stateToFunctionEnds[endingState];
+        whichActioEnd?.Invoke();
        
 
     }

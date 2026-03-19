@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class HealthCode : MonoBehaviour
 {
-
     public float HP, MaxHP, SizeX, SizeY, Damage, Heal;
 
     [SerializeField]
@@ -25,7 +24,6 @@ public class HealthCode : MonoBehaviour
 
         healthBar.sizeDelta = new Vector2(CurrentHP, SizeY);
         nohealthBar.sizeDelta = new Vector2(SizeX, SizeY);
-
     }
 
     //Calculo do HP
@@ -56,7 +54,21 @@ public class HealthCode : MonoBehaviour
         }
     }
 
+    public void OnDemegedTest(float d)
+    {
+        Debug.Log("HealthCode dameged Called");
+    }
+    public void TestLessHP(float Demage)
+    {
+        ManualHP(-Damage);
+    }
 
+    void Start()
+    {
+        Debug.Log("Helth start");
+        GameHandler.PlayerTookDamage += OnDemegedTest;
+        GameHandler.PlayerTookDamage += TestLessHP;
+    }
 
     //Botões para curar e receber dano
     void Update()
@@ -71,8 +83,5 @@ public class HealthCode : MonoBehaviour
         {
             ManualHP(Heal);
         }
-
     }
-
-
 }
