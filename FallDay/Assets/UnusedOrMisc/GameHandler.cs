@@ -564,15 +564,8 @@ public class GameHandler : MonoBehaviour
     private bool InvalidBoard(string[] futureBoard)
     {
 
-
-
-        if (futureBoard.Distinct().Count() == 3)
-        {
-           
-
-        }
-
-
+        
+        
         int numberOfMatches = 0;
 
         foreach(var space in futureBoard)
@@ -585,7 +578,7 @@ public class GameHandler : MonoBehaviour
             }
         }
 
-        Debug.Log($"The number of matches are currently {numberOfMatches / 3 }");
+        Debug.Log($"The number of matches are currently {numberOfMatches}");
 
         if (numberOfMatches == 0)
         {
@@ -600,15 +593,18 @@ public class GameHandler : MonoBehaviour
     {
         List<String> listToReturn = new List<String>();
 
-        
+
+        int boardSize = 3;
 
 
+        //Turn the 1d array into a 2d one.
         foreach (var space in futureBoard)
         {
-            
-                listToReturn.Add(space);
+            int row = Array.IndexOf(futureBoard, space) / boardSize;
+            int column = Array.IndexOf(futureBoard, space) / boardSize;
 
-                Debug.Log($"Bullet spot {spaceInt} has {listToReturn.Count} neighbours");
+            int[] spacesToTravelHoriz = { 1, -1, 0, 0 };
+            int[] spacesToTravelVerti = { 0, 0, 1, -1 };
             
         }
 
