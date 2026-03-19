@@ -1,9 +1,11 @@
-using UnityEngine;
-using System.Collections.Generic;
-using System.Linq;
+using JetBrains.Annotations;
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 using UnityEngine.UIElements;
+using static GameHandler;
 
 
 public class GameHandler : MonoBehaviour
@@ -18,6 +20,7 @@ public class GameHandler : MonoBehaviour
     public string[] selectableBullets;
     //Bullets player has selected.
     public List<string> readyBullets = new List<string>();
+    public Dictionary<string, BulletType> bulletLookup;
     #endregion
 
     #region OtherClassesInUse
@@ -28,8 +31,6 @@ public class GameHandler : MonoBehaviour
     public OnRailsStateMachine railMachine;
 
     public VisualElement[] bulletButton;
-
-    public BulletTable bulletTable;
 
     public Weapon currentWeapon = new Shotgun();
     #endregion
@@ -47,23 +48,15 @@ public class GameHandler : MonoBehaviour
 
     #region Variables
     [Header("Zombies!")]
-
     public int numberOfZombiesInLookup;
-
     public int numberOfZombiesinList;
-
     bool ZombieSpawnGate;
-
     public int zombieHP;
-
     private int stachedZombieID;
-
     public int SelectedZombie;
-
     public List<Zombie> ZombieList = new List<Zombie>();
-
+    public List<BulletType> bulletTypes = new List<BulletType>();
     public Dictionary<int, Zombie> zombieLookup;
-
     public float zombieSpawnTimer;
     #endregion
 
@@ -73,6 +66,10 @@ public class GameHandler : MonoBehaviour
     
     public delegate void PlayerIsDemeged(float damage);
     public static PlayerIsDemeged PlayerTookDamage;
+
+    public delegate void DestroyZombie(int id);
+    public static DestroyZombie destroyZombie;
+
     #endregion
 
     #region EnableDisable
@@ -90,17 +87,11 @@ public class GameHandler : MonoBehaviour
     #endregion
 
     #region Internal Classes
-    public Dictionary<string, BulletType> bulletLookup;
     public class BulletType
     {
         public string name;
         public string description;
         public int Damage;
-    }
-
-    public class BulletTable   //<== Why is this a class and not just a list? _RLH107
-    {
-        public List<BulletType> bulletTypes;
     }
 
     public class Zombie
@@ -127,6 +118,9 @@ public class GameHandler : MonoBehaviour
             if(phase == ZombiePhase.Close && PhT1 <= 0) 
             {
                 PlayerTookDamage.Invoke(1f);
+                // <= Place a Destroy Zombie Call
+                
+                destroyZombie?.Invoke(id);
             }
             else if (IsFirstUpdate) 
             { 
@@ -180,8 +174,9 @@ public class GameHandler : MonoBehaviour
     #region Unity Functions
     private void Start()
     {
-        ui = uiDoc.rootVisualElement;
 
+        ui = uiDoc.rootVisualElement;
+        destroyZombie += _KillZombie;
         //Fetch all bullet buttons
         var bulletDisplaysFound = ui.Query<VisualElement>().Where(e => e.name.StartsWith("BSpot"));
 
@@ -191,12 +186,9 @@ public class GameHandler : MonoBehaviour
         {
             bullet.RegisterCallback<PointerEnterEvent>(SelectedBullet);
         }
-        //Create the current usable bullets
-
-        bulletTable = new BulletTable();
 
         //Add the bullets
-        bulletTable.bulletTypes = new List<BulletType>()
+        bulletTypes = new List<BulletType>()
         {
 
             new BulletType()
@@ -205,7 +197,7 @@ public class GameHandler : MonoBehaviour
                 description = "A good bullet.",
                 Damage = 10
             },
-
+        
             new BulletType()
             {
                name = "shitBullet",
@@ -223,7 +215,7 @@ public class GameHandler : MonoBehaviour
 
         bulletLookup = new Dictionary<string, BulletType>();
 
-        foreach (var bullet in bulletTable.bulletTypes)
+        foreach (var bullet in bulletTypes)
         {
             bulletLookup.Add(bullet.name, bullet);
             //Debug.Log($"Added{bullet.name} to bulletLookup.");
@@ -324,40 +316,49 @@ public class GameHandler : MonoBehaviour
         }
 
         var zombieDeathCheck = zombieToDamage.hp -= damage;
-
         if (zombieDeathCheck <= 0)
         {
-            Debug.Log($"killed zombie ID {zombieToDamage.id} removing them from selectable zombies.");
-
-            ZombieList.Remove(zombieToDamage);
-
-            zombieLookup.Remove(zombieToDamage.id);
-            OnZombieUpdate -= zombieToDamage.UpdatePhase;
-            //Update the dictionary with the new zombie ids
-
-            zombieLookup.Clear();
-
-            foreach (var zombie in ZombieList)
-            {
-                zombieLookup.Add(zombie.id, zombie);
-            }
-
-            //Check to make sure list and dictionary line up
-            numberOfZombiesInLookup = zombieLookup.Count();
-            numberOfZombiesinList = ZombieList.Count();
-
-            ZombieKilled?.Invoke();
-
-            SelectedZombie = ZombieList.First().id;
+            _KillZombie(zombieToDamage);
         }
-
         else
         {
             zombieToDamage.hp -= damage;
-
             Debug.Log($"Zombie with id {zombieToDamage.id} took {damage} damage and now has {zombieToDamage.hp} hp.");
         }
     }
+    public void _KillZombie(int id)
+    {
+        _KillZombie(zombieLookup[id]);
+    }
+    public void _KillZombie(Zombie zombieToKill) //<= same as zombie damege ,just skipping a step
+    {
+        Debug.Log($"killed zombie ID {zombieToKill.id} removing them from selectable zombies.");
+        if (zombieLookup[zombieToKill.id] != null)
+        {
+            ZombieList.Remove(zombieToKill);
+            zombieLookup.Remove(zombieToKill.id);
+            OnZombieUpdate -= zombieToKill.UpdatePhase;
+
+            //Update the dictionary with the new zombie ids
+            int a = 0;
+            zombieLookup.Clear();
+            foreach (var zombie in ZombieList)
+            {
+                zombie.id = a;
+                zombieLookup.Add(zombie.id, zombie);
+                a++;
+            }
+
+            //Debug:  Check to make sure list and dictionary line up
+            numberOfZombiesInLookup = zombieLookup.Count();
+            numberOfZombiesinList = ZombieList.Count();
+            ZombieKilled?.Invoke();
+            SelectedZombie = ZombieList.First().id;
+        }
+    }
+
+
+
     #endregion
 
     #region Bullet Handling
@@ -412,10 +413,8 @@ public class GameHandler : MonoBehaviour
             Debug.Log("Shot Failed!");
 
             //Find all bullets previously tagged with used and remove them from the class list.
-
             foreach (var bullet in bulletButton)
             {
-
                 if (bullet.ClassListContains("Used"))
                 { 
                     bullet.RemoveFromClassList("Used");
