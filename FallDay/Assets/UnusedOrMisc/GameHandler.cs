@@ -58,6 +58,7 @@ public class GameHandler : MonoBehaviour
     public List<BulletType> bulletTypes = new List<BulletType>();
     public Dictionary<int, Zombie> zombieLookup;
     public float zombieSpawnTimer;
+    public int TotalZombiesToSpawn = 5; // <== Defult value, change in inspector to adjust how many zombies spawn in each encounter. _RLH107
     #endregion
 
     #region Delegates
@@ -258,9 +259,14 @@ public class GameHandler : MonoBehaviour
     #region Zombie Handling
     IEnumerator ZombieSpawner()
     {
+        if(TotalZombiesToSpawn <= 0)
+        {
+            yield break;
+        }
         ZombieSpawnGate = true;
         yield return new WaitForSeconds(zombieSpawnTimer);
-
+        Debug.Log("Trying to spawn a zombie...");
+        Debug.Log("Total zombies to spawn is greater than 0, spawning zombie... " + TotalZombiesToSpawn);
         Debug.Log("Grahh....");
 
         ZombieSpawned?.Invoke();
@@ -273,7 +279,6 @@ public class GameHandler : MonoBehaviour
             nextZombieID = 0;
             stachedZombieID = nextZombieID;
         }
-
         if (ZombieList.Count > 0)
         {
             nextZombieID = ZombieList.Last().id + 1;
@@ -301,12 +306,24 @@ public class GameHandler : MonoBehaviour
         numberOfZombiesinList = ZombieList.Count;
 
         Debug.Log($"Spawned zombie with id {newZombie.id} and {newZombie.hp} hp! There are now {ZombieList.Count} zombies in the list and {zombieLookup.Count} zombies in the lookup!");
+        TotalZombiesToSpawn--;
+        Debug.Log($"Zombies left to spawn in this encounter: {TotalZombiesToSpawn}");
         ZombieSpawnGate = false;
+    }
+
+    public void ChangeZombiesToSpawn(int newSpawnNumber) // <== Pode ser alterado a qualquer Instante Pode ser Interessante No futuro. Não so no Inicio do Minigame. _RLH107
+    {
+        TotalZombiesToSpawn = newSpawnNumber;
+        Debug.Log($"Changed total zombies to spawn to {TotalZombiesToSpawn}");
     }
 
     public void ApplyDamage(int damage)
     {
-
+        if(zombieLookup.Count <= 0)
+        {
+            Debug.Log("There are no zombies to damage!");
+            return;
+        }
         var zombieToDamage = zombieLookup[SelectedZombie];
 
         if (zombieToDamage == null)
@@ -332,6 +349,11 @@ public class GameHandler : MonoBehaviour
     }
     public void _KillZombie(Zombie zombieToKill) //<= same as zombie damege ,just skipping a step
     {
+        if (zombieLookup.Count <= 0)
+        {
+            Debug.Log("There are no zombies to Kill!");
+            return;
+        }
         Debug.Log($"killed zombie ID {zombieToKill.id} removing them from selectable zombies.");
         if (zombieLookup[zombieToKill.id] != null)
         {
@@ -353,11 +375,26 @@ public class GameHandler : MonoBehaviour
             numberOfZombiesInLookup = zombieLookup.Count();
             numberOfZombiesinList = ZombieList.Count();
             ZombieKilled?.Invoke();
-            SelectedZombie = ZombieList.First().id;
+            if (ZombieList.Count > 0)
+            {
+                SelectedZombie = ZombieList.First().id;
+            }
+            else
+            {
+                Debug.Log("All zombies are dead!");
+                CheckPlayerWinn();
+            }
         }
     }
 
-
+    public void CheckPlayerWinn() 
+    {         
+        if (ZombieList.Count <= 0) // <== Talveiz PreciseChecar o Hp do Player também, para evitar que o jogador ganhe mesmo morrendo no mesmo frame que mata o ultimo zumbi. _RLH107
+        {
+            Debug.Log("Player wins!");
+            // <= Place a call to end the encounter and reward the player.
+        }
+    }
 
     #endregion
 
