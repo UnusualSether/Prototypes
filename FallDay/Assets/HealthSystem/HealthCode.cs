@@ -34,7 +34,7 @@ public class HealthCode : MonoBehaviour
 
         if (DeathCheck(HP))
         {
-            Debug.LogWarning("[HealthSystem] The player died!!! But I'm not going to do anything myself, I'm just gonna spread the word is all.");
+            Debug.Log("[HealthSystem] The player died!!! But I'm not going to do anything myself, I'm just gonna spread the word is all.");
             HealthDroppedToZero?.Invoke();
         }
 
