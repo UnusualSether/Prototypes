@@ -131,7 +131,7 @@ public class GameHandler : MonoBehaviour
         {
             if(phase == ZombiePhase.Close && PhT1 <= 0) 
             {
-                PlayerTookDamage.Invoke(1f);
+                PlayerTookDamage?.Invoke(1f);
                 // <= Place a Destroy Zombie Call
                 
                 destroyZombie?.Invoke(id);
@@ -246,7 +246,6 @@ public class GameHandler : MonoBehaviour
 
     public void Update()
     {
-
         HandleBulletSelect();
 
         RestockBullet();
@@ -274,9 +273,8 @@ public class GameHandler : MonoBehaviour
     {
         ZombieSpawnGate = true;
         yield return new WaitForSeconds(zombieSpawnTimer);
-
+        
         Debug.Log("Grahh....");
-
         ZombieSpawned?.Invoke();
 
         int nextZombieID;
@@ -317,14 +315,15 @@ public class GameHandler : MonoBehaviour
         Debug.Log($"Spawned zombie with id {newZombie.id} and {newZombie.hp} hp! There are now {ZombieList.Count} zombies in the list and {zombieLookup.Count} zombies in the lookup!");
         ZombieSpawnGate = false;
     }
+    
+    public void ApplyDamage(int damage)
+    {
+        ApplyDamage(damage, zombieToAimAt());
+    }
 
     public void ApplyDamage(int damage, Zombie zombieToDamage)
     {
-
-        
-
-        
-        var zombieToDamage = zombieLookup[SelectedZombie];
+        //zombieToDamage = zombieLookup[SelectedZombie];
 
         if (zombieToDamage == null)
         {
@@ -366,7 +365,6 @@ public class GameHandler : MonoBehaviour
                 zombieLookup.Add(zombie.id, zombie);
                 a++;
             }
-
             //Debug:  Check to make sure list and dictionary line up
             numberOfZombiesInLookup = zombieLookup.Count();
             numberOfZombiesinList = ZombieList.Count();
@@ -374,23 +372,16 @@ public class GameHandler : MonoBehaviour
             preferenceZombie = nulledPreference;
 
             ZombieKilled?.Invoke();
-
-           
-
         }
-
         else
         {
-            zombieToDamage.hp -= damage;
+            zombieToKill.hp = 0;
 
-            Debug.Log($"Zombie with id {zombieToDamage.id} took {damage} damage and now has {zombieToDamage.hp} hp.");
+            Debug.Log($"Zombie with id {zombieToKill.id} took fatal damage and now has {zombieToKill.hp} hp.");
             ZombieKilled?.Invoke();
             SelectedZombie = ZombieList.First().id;
         }
     }
-
-
-
     public Zombie zombieToAimAt()
     {
         if (preferenceZombie != nulledPreference)
@@ -544,8 +535,6 @@ public class GameHandler : MonoBehaviour
         Debug.Log($"Did {totalDamage} damage with {numberUsed} {bulletType.name}s!");
 
         ApplyDamage(totalDamage, zombieToAimAt());
-      
-        ApplyDamage(totalDamage);
     }
 
     public void SelectedBullet(PointerEnterEvent ev)
