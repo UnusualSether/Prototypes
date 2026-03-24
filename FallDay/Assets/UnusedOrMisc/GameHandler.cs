@@ -515,7 +515,7 @@ public class GameHandler : MonoBehaviour
             if (bullet.ClassListContains("Used"))
             {
                 selectableBullets[currentBulletIndex] = null;
-                //Debug.Log($"Nulled {currentBulletIndex} ");                
+                               
                 bullet.RemoveFromClassList("Used");
             }
 
@@ -533,30 +533,63 @@ public class GameHandler : MonoBehaviour
 
     public void RestockBullet()
     {
+        if (!BulletsNeedStock())
+        {
+            return;
+        }
+
         for (int i = 0; i < selectableBullets.Length; i++)
         {
             if (string.IsNullOrEmpty(selectableBullets[i]))
             {
-                int randomBulletIndex = UnityEngine.Random.Range(0,bulletList.Length);
+                int maxAttempts = 100;
+                int attempts = 0;
+                string chosenBullet;
 
-                //Create new varibales which will be used to check if the new board is valid
-                string[] futureBoard = selectableBullets;
-                var newBulletToAdd = bulletList[randomBulletIndex];
-
-                futureBoard[i] = newBulletToAdd;
-
-                if (InvalidBoard(futureBoard))
+                do
                 {
-                    RestockBullet();
-                    return;
+                    int randomBulletIndex = UnityEngine.Random.Range(0, bulletList.Length);
+                    chosenBullet = bulletList[randomBulletIndex];
+
+
+                    if (selectableBullets.Length <= 0)
+                    {
+                        selectableBullets[i] = chosenBullet;
+                    }
+
+                    string[] futureBoard = (string[])selectableBullets.Clone();
+                    futureBoard[i] = chosenBullet;
+
+                    if (!InvalidBoard(futureBoard))
+                        break;
+
+                    attempts++;
+                    if (attempts >= maxAttempts)
+                    {
+                        Debug.LogWarning("Could not find a valid board after 100 attempts!");
+                        break;
+                    }
                 }
+                while (true);
 
-                selectableBullets[i] = newBulletToAdd;
-
-
-                
+                selectableBullets[i] = chosenBullet;
             }
         }
+    }
+
+    public bool BulletsNeedStock()
+    {
+
+         var list = selectableBullets.ToList();
+        foreach( var item in list)
+        {
+            if (string.IsNullOrEmpty(item))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     #region Softlock prevention
@@ -564,53 +597,72 @@ public class GameHandler : MonoBehaviour
     private bool InvalidBoard(string[] futureBoard)
     {
 
-        
-        
-        int numberOfMatches = 0;
 
-        foreach(var space in futureBoard)
+        
+
+
+        
+        bool[] visited = new bool[futureBoard.Length];
+
+        for (int i = 0; i < futureBoard.Length; i++)
         {
-            string[] neighbours = FetchNeighbours(Array.IndexOf(futureBoard,space),futureBoard);
+            if (visited[i] || string.IsNullOrEmpty(futureBoard[i]))
+                continue;
 
-            if (neighbours.Count(x => x == space) >= 2)
+            
+            List<int> group = new List<int>();
+            Queue<int> queue = new Queue<int>();
+            queue.Enqueue(i);
+            visited[i] = true;
+
+            while (queue.Count > 0)
             {
-                numberOfMatches += 1;
+                int current = queue.Dequeue();
+                group.Add(current);
+
+                foreach (int neighbor in FetchNeighbours(current))
+                {
+                    if (!visited[neighbor] && futureBoard[neighbor] == futureBoard[i])
+                    {
+                        visited[neighbor] = true;
+                        queue.Enqueue(neighbor);
+                    }
+                }
             }
+
+            if (group.Count >= 3)
+                return false; 
         }
 
-        Debug.Log($"The number of matches are currently {numberOfMatches}");
+        return true; 
 
-        if (numberOfMatches == 0)
-        {
-            return true;
-        }
-
-        return false;
-        
     }
 
-    public string[] FetchNeighbours(int spaceInt, string[] futureBoard)
+    public int[] FetchNeighbours(int index)
     {
-        List<String> listToReturn = new List<String>();
+        
 
+        
+        List<int> neighbours = new List<int>();
+        int cols = 3;
+        int rows = 3;
 
-        int boardSize = 3;
+        int row = index / cols;
+        int col = index % cols; 
 
+        int[] dr = { 0, 0, 1, -1 };
+        int[] dc = { 1, -1, 0, 0 };
 
-        //Turn the 1d array into a 2d one.
-        foreach (var space in futureBoard)
+        for (int d = 0; d < 4; d++)
         {
-            int row = Array.IndexOf(futureBoard, space) / boardSize;
-            int column = Array.IndexOf(futureBoard, space) / boardSize;
+            int newRow = row + dr[d];
+            int newCol = col + dc[d];
 
-            int[] spacesToTravelHoriz = { 1, -1, 0, 0 };
-            int[] spacesToTravelVerti = { 0, 0, 1, -1 };
-            
+            if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols)
+                neighbours.Add(newRow * cols + newCol);
         }
 
-       
-
-        return listToReturn.ToArray();
+        return neighbours.ToArray();
 
 
     }
