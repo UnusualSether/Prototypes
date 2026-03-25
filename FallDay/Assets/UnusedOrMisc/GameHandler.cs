@@ -641,7 +641,7 @@ public class GameHandler : MonoBehaviour
     public int[] FetchNeighbours(int index)
     {
         
-
+        //Need to fix, because these calculations on account for x and y and doesnt detect diagonal neighbours.
         
         List<int> neighbours = new List<int>();
         int cols = 3;
