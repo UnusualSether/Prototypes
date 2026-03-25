@@ -6,6 +6,9 @@ using UnityEngine.AI;
 using UnityEngine.InputSystem;
 using JetBrains.Annotations;
 using System.Security.Cryptography;
+using Unity.AI.Navigation;
+using System.Linq;
+using Unity.VisualScripting;
 
 public class CharacterMove : MonoBehaviour
 {
@@ -15,6 +18,8 @@ public class CharacterMove : MonoBehaviour
     public float speed = 0.2f;
 
     public NavMeshAgent navMesh;
+
+    public NavMeshSurface surface;
     public void Start()
     {
         charTransform = this.gameObject.GetComponent<Transform>();
@@ -105,6 +110,25 @@ public class CharacterMove : MonoBehaviour
 
             wayPointList.Add(newWaypoint);
         }
+
+        surface.BuildNavMesh();
+
+
+    }
+
+    public void WayPointMaintenance()
+    {
+        if (!NewWayPoints())
+        {
+            return;
+        }
+
+        wayPointList.Clear();
+
+        InitializeWaypoints();
+        
+        
+        
     }
 
 
@@ -139,6 +163,10 @@ public class CharacterMove : MonoBehaviour
     private void CheckStatus()
     {
 
+        if (encounterGate)
+        {
+            return;
+        }
 
         Vector3 inertStatus = new Vector3(0, 0, 0);
 
@@ -149,7 +177,7 @@ public class CharacterMove : MonoBehaviour
 
         }
 
-        if (transform.position == wayPointList[0].wayPointPosition)
+        if (transform.position == wayPointList[0].wayPointPosition) 
         {
             if (encounterHere(wayPointList[0]) && !encounterGate)
             {
@@ -202,5 +230,21 @@ public class CharacterMove : MonoBehaviour
 
 
         return false;
+    }
+
+    public bool NewWayPoints()
+    {
+
+        var findableWaypoints = GameObject.FindGameObjectsWithTag("Waypoint");
+
+        if (findableWaypoints.Length > wayPointList.Count)
+        {
+            return true;
+        }
+
+        return false;
+        
+
+
     }
 }
