@@ -9,6 +9,7 @@ using System.Security.Cryptography;
 using Unity.AI.Navigation;
 using System.Linq;
 using Unity.VisualScripting;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 public class CharacterMove : MonoBehaviour
 {
@@ -163,7 +164,7 @@ public class CharacterMove : MonoBehaviour
     private void CheckStatus()
     {
 
-        if (encounterGate)
+        if (wayPointList.Count <= 0)
         {
             return;
         }

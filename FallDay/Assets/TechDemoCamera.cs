@@ -112,6 +112,11 @@ public class TechDemoCamera : MonoBehaviour
             return;
         }
 
+        if (cachedWalls.Count() <= 0)
+        {
+            return;
+        }
+
         foreach(var wall in cachedWalls)
         {
             if (!HitObjectToGO.Contains(wall))
