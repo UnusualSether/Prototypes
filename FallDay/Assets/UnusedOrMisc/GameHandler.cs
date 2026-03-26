@@ -54,6 +54,8 @@ public class GameHandler : MonoBehaviour
     public int zombieHP;
     private int stachedZombieID;
 
+    private int ZombiesToSpawn = 4; // <= Default  
+
     public int preferenceZombie;
     public int nulledPreference = -1;
 
@@ -273,46 +275,50 @@ public class GameHandler : MonoBehaviour
     {
         ZombieSpawnGate = true;
         yield return new WaitForSeconds(zombieSpawnTimer);
-        
-        Debug.Log("Grahh....");
-        ZombieSpawned?.Invoke();
 
-        int nextZombieID;
-
-        //Give them a brand new Id which is just the last zombies ID plus 1;
-        if (ZombieList.Count == 0)
+        if (ZombiesToSpawn >= 0)
         {
-            nextZombieID = 0;
-            stachedZombieID = nextZombieID;
+            ZombiesToSpawn--;
+            Debug.Log("Grahh....");
+            ZombieSpawned?.Invoke();
+
+            int nextZombieID;
+
+            //Give them a brand new Id which is just the last zombies ID plus 1;
+            if (ZombieList.Count == 0)
+            {
+                nextZombieID = 0;
+                stachedZombieID = nextZombieID;
+            }
+
+            if (ZombieList.Count > 0)
+            {
+                nextZombieID = ZombieList.Last().id + 1;
+                stachedZombieID = nextZombieID;
+            }
+
+            ZombieList.Add(new Zombie()
+            {
+                id = stachedZombieID,
+
+                hp = zombieHP,
+
+                phase = Zombie.ZombiePhase.Far,
+
+                PhaseTimer = 6f
+            }
+            );
+
+            var newZombie = ZombieList.Last();
+            OnZombieUpdate += newZombie.UpdatePhase;
+            zombieLookup.Add(newZombie.id, newZombie);
+
+            //Check to make sure list and dictionary line up
+            numberOfZombiesInLookup = zombieLookup.Count;
+            numberOfZombiesinList = ZombieList.Count;
+
+            Debug.Log($"Spawned zombie with id {newZombie.id} and {newZombie.hp} hp! There are now {ZombieList.Count} zombies in the list and {zombieLookup.Count} zombies in the lookup!");
         }
-
-        if (ZombieList.Count > 0)
-        {
-            nextZombieID = ZombieList.Last().id + 1;
-            stachedZombieID = nextZombieID;
-        }
-
-        ZombieList.Add(new Zombie()
-        {
-            id = stachedZombieID,
-
-            hp = zombieHP,
-
-            phase = Zombie.ZombiePhase.Far,
-
-            PhaseTimer = 6f
-        }
-        );
-
-        var newZombie = ZombieList.Last();
-        OnZombieUpdate += newZombie.UpdatePhase;
-        zombieLookup.Add(newZombie.id, newZombie);
-
-        //Check to make sure list and dictionary line up
-        numberOfZombiesInLookup = zombieLookup.Count;
-        numberOfZombiesinList = ZombieList.Count;
-
-        Debug.Log($"Spawned zombie with id {newZombie.id} and {newZombie.hp} hp! There are now {ZombieList.Count} zombies in the list and {zombieLookup.Count} zombies in the lookup!");
         ZombieSpawnGate = false;
     }
     
@@ -370,7 +376,7 @@ public class GameHandler : MonoBehaviour
             numberOfZombiesinList = ZombieList.Count();
 
             preferenceZombie = nulledPreference;
-
+            CheckForWin();
             ZombieKilled?.Invoke();
         }
         else
@@ -399,6 +405,13 @@ public class GameHandler : MonoBehaviour
         return ZombieList.First();
     }
 
+    public void CheckForWin()
+    {
+        if (ZombieList.Count <= 0 && ZombiesToSpawn >= 0) // <=  May need the Health check in here too. If the player Dies before all zombies are dead, they lose should do. _RLH107
+        {
+            Debug.LogWarning("Player win!");
+        }
+    }
     #endregion
 
     #region Bullet Handling
