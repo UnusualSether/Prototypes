@@ -14,6 +14,13 @@ using System.Runtime.InteropServices.WindowsRuntime;
 public class CharacterMove : MonoBehaviour
 {
 
+
+    #region Events
+    public static event Action PlayerMoved;
+
+    #endregion
+
+
     public Transform charTransform;
 
     public float speed = 0.2f;
@@ -24,7 +31,9 @@ public class CharacterMove : MonoBehaviour
     public void Start()
     {
         charTransform = this.gameObject.GetComponent<Transform>();
-        navMesh = gameObject.GetComponent<NavMeshAgent>(); 
+        navMesh = gameObject.GetComponent<NavMeshAgent>();
+
+       
     }
 
     public void Update()
@@ -34,9 +43,13 @@ public class CharacterMove : MonoBehaviour
         LookRight();
         ClickControls();
         CheckStatus();
+       
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            FindNextWayPoint();
+        }
 
-
-    }
+}
 
 
     [Serializable]
@@ -94,23 +107,27 @@ public class CharacterMove : MonoBehaviour
     
     public void InitializeWaypoints()
     {
-         var foundObjects = GameObject.FindGameObjectsWithTag("Waypoint");
+
+        var foundObjects = GameObject.FindGameObjectsWithTag("Waypoint");
 
         foreach (var item in foundObjects)
         {
-            
+
 
             var newWaypoint = new Waypoint()
             {
                 wayPointPosition = item.transform.position,
                 numberOfEnemies = UnityEngine.Random.Range(0, 5),
-                hasEncounter = UnityEngine.Random.Range(0,1) == 0,
-                 
+                hasEncounter = UnityEngine.Random.Range(0, 1) == 0,
+
 
             };
 
             wayPointList.Add(newWaypoint);
+
+            Destroy(item);
         }
+
 
         surface.BuildNavMesh();
 
@@ -138,7 +155,7 @@ public class CharacterMove : MonoBehaviour
     {
         if(wayPointList.Count <= 0)
         {
-            return;
+            InitializeWaypoints();
         }
 
         var nextWayPoint = wayPointList[0];
@@ -146,7 +163,7 @@ public class CharacterMove : MonoBehaviour
         if (nextWayPoint == null)
         {
             Debug.Log("Error, could not find first of nextwaypoint list.");
-            return;
+            FindNextWayPoint();
         }
 
         wayPointList.RemoveAt(0);
@@ -158,6 +175,8 @@ public class CharacterMove : MonoBehaviour
     {
 
          navMesh.SetDestination(nextWaypoint.wayPointPosition);
+
+        PlayerMoved?.Invoke();
     }
 
     bool encounterGate = false;
@@ -180,6 +199,9 @@ public class CharacterMove : MonoBehaviour
 
         if (transform.position == wayPointList[0].wayPointPosition) 
         {
+
+            InitializeWaypoints();
+
             if (encounterHere(wayPointList[0]) && !encounterGate)
             {
                 Debug.Log("I'm in an encounter!");
