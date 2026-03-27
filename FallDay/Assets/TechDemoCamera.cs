@@ -10,12 +10,15 @@ using System.Runtime.CompilerServices;
 
 public class TechDemoCamera : MonoBehaviour
 {
-  
+
     public Transform toLookAt;
-    
+    public Vector3 offset;
 
-    
 
+    public void LateUpdate()
+    {
+        transform.position = toLookAt.position + offset;
+    }
     public void Update()
     {
         transform.LookAt(toLookAt.position);
@@ -29,7 +32,7 @@ public class TechDemoCamera : MonoBehaviour
     private void CamControls()
     {
         float speed = 18f;
-        float horizontal = Input.GetAxis("Horizontal");
+        //float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical"); 
 
         if (!CanCameraMoveDown(vertical))
@@ -48,7 +51,7 @@ public class TechDemoCamera : MonoBehaviour
             }
         }
         
-        transform.Translate(Vector3.right * horizontal * speed * Time.deltaTime, Space.Self);
+        transform.Translate(Vector3.right * 0 * speed * Time.deltaTime, Space.Self);
 
         
         transform.Translate(Vector3.up * vertical * speed * Time.deltaTime, Space.Self);
@@ -167,6 +170,7 @@ public class TechDemoCamera : MonoBehaviour
             return false;
         }
     }
+
 
 
 
