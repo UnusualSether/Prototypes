@@ -6,17 +6,22 @@ using System.Threading.Tasks;
 using System.Collections;
 using Unity.VisualScripting;
 
-[Serializable]
-public class OnRailsStateMachine : MonoBehaviour
-{
 
-    public static OnRailsStateMachine instance;
+public partial class ThreeDGameHandler
+{
+    
+
+    
     public enum States
     {
         OnRail,
         Encounter,
         Cleanup
     }
+
+
+    [Header("RAILS STATE MACHINE")]
+    [Space(10)]
     public States currentState;
 
     public States[] stateFlow = 
@@ -28,19 +33,19 @@ public class OnRailsStateMachine : MonoBehaviour
 
 
     //State Start Events
-    public event Action RailStarted;
-    public event Action EncounterStarted;
-    public event Action CleanupStarted;
+    public static event Action RailStarted;
+    public static event Action EncounterStarted;
+    public static event Action CleanupStarted;
 
     //State End Events
-    public event Action RailEnded;
-    public event Action EncounterEnded;
-    public event Action CleanupEnded;
+    public static event Action RailEnded;
+    public static event Action EncounterEnded;
+    public static event Action CleanupEnded;
 
     public Dictionary<States, Action> stateToFunction;
     public Dictionary<States, Action> stateToFunctionEnds;
 
-    private void Start()
+    partial void OnStartExtendRailMethod()
     {
         stateToFunction = new Dictionary<States, Action>
         {

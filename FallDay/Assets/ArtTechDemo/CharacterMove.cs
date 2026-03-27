@@ -10,6 +10,7 @@ using Unity.AI.Navigation;
 using System.Linq;
 using Unity.VisualScripting;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Net;
 
 public class CharacterMove : MonoBehaviour
 {
@@ -32,9 +33,12 @@ public class CharacterMove : MonoBehaviour
     {
         charTransform = this.gameObject.GetComponent<Transform>();
         navMesh = gameObject.GetComponent<NavMeshAgent>();
-
-       
     }
+    
+    //Subscribe the player move to next waypoint function to whenevr the gamehandler deetcts that we're suppose to be on rails/
+    void OnEnable() { ThreeDGameHandler.RailStarted += FindNextWaypoint; ThreeDGameHandler.RoomSetupComplete += InitializeWaypoints; }
+    void OnDisable() { ThreeDGameHandler.RailStarted -= FindNextWaypoint; ThreeDGameHandler.RoomSetupComplete -= InitializeWaypoints; }
+    
 
     public void Update()
     {
@@ -43,11 +47,8 @@ public class CharacterMove : MonoBehaviour
         LookRight();
         ClickControls();
         CheckStatus();
-       
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            FindNextWayPoint();
-        }
+
+        
 
 }
 
@@ -110,6 +111,9 @@ public class CharacterMove : MonoBehaviour
 
         var foundObjects = GameObject.FindGameObjectsWithTag("Waypoint");
 
+       
+            
+
         foreach (var item in foundObjects)
         {
 
@@ -151,7 +155,7 @@ public class CharacterMove : MonoBehaviour
 
 
     [ContextMenu("GoToNextWaypoint")]
-        public void FindNextWayPoint()
+        public void FindNextWaypoint()
     {
         if(wayPointList.Count <= 0)
         {
@@ -163,7 +167,7 @@ public class CharacterMove : MonoBehaviour
         if (nextWayPoint == null)
         {
             Debug.Log("Error, could not find first of nextwaypoint list.");
-            FindNextWayPoint();
+            FindNextWaypoint();
         }
 
         wayPointList.RemoveAt(0);

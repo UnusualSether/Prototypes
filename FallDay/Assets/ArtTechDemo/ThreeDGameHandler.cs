@@ -7,15 +7,29 @@ using System.Runtime.InteropServices.WindowsRuntime;
 
 public partial class ThreeDGameHandler : MonoBehaviour
 {
-
+    [Header("ROOM TRACKING")]
+    [Space(10)]
     public GameObject roomPrefab;
     public List<GameObject> spawnedRooms = new List<GameObject>();
 
     public Queue<GameObject> roomsQueue = new Queue<GameObject>();
 
-    
 
 
+    /// <summary>
+    /// This is a function which you can call on any other partial ThreeDGameHandler script, it is basically a 
+    ///start which doesn't cause conflict between partial classes. Basically, use this instead of Start().
+    /// </summary>
+    partial void OnStartExtendRoomCulling();
+
+    partial void OnStartExtendRailMethod();
+
+    private void Start()
+    {
+        OnStartExtendRailMethod();
+
+        OnStartExtendRoomCulling();
+    }
 
     [ContextMenu("SpawnNewRoom")]
     public void CreateNewRoom()

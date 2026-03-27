@@ -3,11 +3,16 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System;
 
 public partial class ThreeDGameHandler
 {
+
+
+   
     public int maxNumberOfRooms;
 
+    public static event Action RoomSetupComplete;
 
 
 
@@ -15,9 +20,10 @@ public partial class ThreeDGameHandler
     {
         Destroy(room);
 
+        spawnedRooms.Remove(room);
 
     }
-    private void Start()
+    partial void OnStartExtendRoomCulling()
     {
         roomsQueue.Enqueue(spawnedRooms.First());
 
@@ -36,10 +42,12 @@ public partial class ThreeDGameHandler
     {
 
 
-        while (roomsQueue.Count != 3)
+        while (roomsQueue.Count != maxNumberOfRooms)
         {
             CreateNewRoom();
         }
+
+        RoomSetupComplete?.Invoke();
     }
     public bool RoomsNeedCulling()
     {

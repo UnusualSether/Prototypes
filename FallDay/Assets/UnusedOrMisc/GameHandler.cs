@@ -28,8 +28,6 @@ public class GameHandler : MonoBehaviour
 
     public VisualElement ui;
 
-    public OnRailsStateMachine railMachine;
-
     public VisualElement[] bulletButton;
 
     public Weapon currentWeapon = new Shotgun();
@@ -77,17 +75,17 @@ public class GameHandler : MonoBehaviour
     #endregion
 
     #region EnableDisable
-    private void OnEnable()
+    void OnEnable()
     {
-        railMachine.EncounterStarted += ActivateMinigame;
-        railMachine.EncounterEnded += DeactivateMinigame;
+        ThreeDGameHandler.EncounterStarted += ActivateMinigame;
+        ThreeDGameHandler.EncounterEnded += DeactivateMinigame;
     }
 
-    private void OnDisable()
+    void OnDisable()
     {
-        railMachine.EncounterStarted -= ActivateMinigame;
-        railMachine.EncounterEnded -= DeactivateMinigame;
-    }
+        ThreeDGameHandler.EncounterStarted -= ActivateMinigame;
+        ThreeDGameHandler.EncounterEnded -= DeactivateMinigame;
+    }   
     #endregion
 
     #region Internal Classes
@@ -167,7 +165,7 @@ public class GameHandler : MonoBehaviour
     }
     #endregion
 
-    #region Player Deamge Handling
+    #region Player Damage Handling
     [ContextMenu("InspectorDemageCall")]
     public void InspectorDemageCall()
     {
