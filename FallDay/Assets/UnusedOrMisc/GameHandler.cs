@@ -54,7 +54,7 @@ public class GameHandler : MonoBehaviour
     public int zombieHP;
     private int stachedZombieID;
 
-    private int ZombiesToSpawn = 4; // <= Default  
+    public int ZombiesToSpawn = 4; // <= Default  
 
     public int preferenceZombie;
     public int nulledPreference = -1;
@@ -76,6 +76,8 @@ public class GameHandler : MonoBehaviour
     public delegate void DestroyZombie(int id);
     public static DestroyZombie destroyZombie;
 
+    public delegate void MinigamePlayerWin();
+    public static MinigamePlayerWin PlayerWin;
     #endregion
 
     #region EnableDisable
@@ -322,6 +324,14 @@ public class GameHandler : MonoBehaviour
         ZombieSpawnGate = false;
     }
     
+    public void NOfZombiesToSpawn(int NumderOfZombies)
+    {
+        ZombiesToSpawn = NumderOfZombies;
+    }
+    public void NOfZombiesToSpawn(int clampMin, int clampMax)
+    {
+            ZombiesToSpawn = UnityEngine.Random.Range(clampMin, clampMax);
+    }
     public void ApplyDamage(int damage)
     {
         ApplyDamage(damage, zombieToAimAt());
@@ -410,6 +420,7 @@ public class GameHandler : MonoBehaviour
         if (ZombieList.Count <= 0 && ZombiesToSpawn >= 0) // <=  May need the Health check in here too. If the player Dies before all zombies are dead, they lose should do. _RLH107
         {
             Debug.LogWarning("Player win!");
+            PlayerWin.Invoke();
         }
     }
     #endregion
