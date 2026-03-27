@@ -15,7 +15,8 @@ public class CharacterMove : MonoBehaviour
     // Variáveis para controle de toque/swipe
     private Vector2 touchStartPos;
     private bool isTouching = false;
-    private float swipeThreshold = 50f; // Distância mínima para considerar um swipe
+    // Distância mínima para considerar um swipe
+    private float swipeThreshold = 50f; 
 
     public void Start()
     {
@@ -25,14 +26,14 @@ public class CharacterMove : MonoBehaviour
         // Se for usar movimento manual, é bom pausar o destino do navmesh inicialmente
         if (navMesh != null)
         {
-            navMesh.updatePosition = true; // Nós moveremos o transform, o navmesh segue
+            navMesh.updatePosition = true; 
         }
     }
 
     public void Update()
     {
         HandleMobileInput();
-        ClickControls(); // Mantido o seu método original
+        ClickControls(); 
         CheckStatus();
     }
 
@@ -40,19 +41,18 @@ public class CharacterMove : MonoBehaviour
     {
         isTouching = false;
 
-        // 1. Detecta Input de Celular (Touch)
+        
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
-            isTouching = true; // Dedo está na tela, vai andar
-
+            isTouching = true; 
             if (touch.phase == TouchPhase.Began)
             {
                 touchStartPos = touch.position;
             }
             else if (touch.phase == TouchPhase.Ended)
             {
-                // Verifica Swipe para Rotação ao soltar o dedo
+               
                 Vector2 touchEndPos = touch.position;
                 float deltaX = touchEndPos.x - touchStartPos.x;
 
@@ -65,17 +65,17 @@ public class CharacterMove : MonoBehaviour
                 }
             }
         }
-        // 2. Detecta Input no PC (Clique longo do Mouse) para testes no Editor
+        
         else if (Input.GetMouseButton(0))
         {
             isTouching = true;
         }
 
-        // Detecta setas no PC para testar a rotação sem precisar simular swipe
+        
         if (Input.GetKeyDown(KeyCode.LeftArrow)) LookLeft();
         if (Input.GetKeyDown(KeyCode.RightArrow)) LookRight();
 
-        // 3. Executa a caminhada
+        
         if (isTouching)
         {
             WalkForwardMobile();
@@ -91,7 +91,7 @@ public class CharacterMove : MonoBehaviour
     [ContextMenu("Move Right")]
     public void LookRight()
     {
-        charTransform.Rotate(0, 90, 0); // Corrigido para somar 90 graus a partir de 0 local
+        charTransform.Rotate(0, 90, 0); 
     }
 
     public void WalkForwardMobile()
@@ -103,7 +103,7 @@ public class CharacterMove : MonoBehaviour
 
         Vector3 movement = transform.forward * speed * Time.deltaTime;
 
-        // Move usando NavMeshAgent para respeitar colisão, se ativado
+       
         if (navMesh != null && navMesh.enabled)
         {
             navMesh.Move(movement);
@@ -114,7 +114,7 @@ public class CharacterMove : MonoBehaviour
         }
     }
 
-    // --- RESTANTE DO SEU CÓDIGO ORIGINAL MANTIDO INTACTO ABAIXO ---
+    
 
     [Serializable]
     public class Waypoint
@@ -128,12 +128,12 @@ public class CharacterMove : MonoBehaviour
 
     private void ClickControls()
     {
-        if (Input.GetMouseButtonDown(1)) // Mudei para botão direito (1) para não conflitar com o "segurar para andar" (0)
+        if (Input.GetMouseButtonDown(1)) 
         {
             Vector3 clickPoint = Input.mousePosition;
             Vector3 worldPostion = Camera.main.ScreenToWorldPoint(clickPoint);
             NavMeshPath newPath = new NavMeshPath();
-            // Lógica de pathfinding manual aqui...
+           
         }
     }
 
@@ -148,7 +148,7 @@ public class CharacterMove : MonoBehaviour
             {
                 wayPointPosition = item.transform.position,
                 numberOfEnemies = UnityEngine.Random.Range(0, 5),
-                hasEncounter = UnityEngine.Random.Range(0, 2) == 0, // Ajustado para dar 50% de chance (0 ou 1)
+                hasEncounter = UnityEngine.Random.Range(0, 2) == 0, 
             };
             wayPointList.Add(newWaypoint);
         }
@@ -195,22 +195,22 @@ public class CharacterMove : MonoBehaviour
         if (GetComponent<Rigidbody>().linearVelocity != inertStatus)
         {
             encounterGate = false;
-            // Debug.Log("I'm walking and on rails!");
+            
         }
 
-        if (Vector3.Distance(transform.position, wayPointList[0].wayPointPosition) < 0.5f) // Melhor usar distância que igualdade exata
+        if (Vector3.Distance(transform.position, wayPointList[0].wayPointPosition) < 0.5f) 
         {
             if (encounterHere(wayPointList[0]) && !encounterGate)
             {
                 Debug.Log("I'm in an encounter!");
-                encounterGate = true; // Evita que floode o console
+                encounterGate = true; 
             }
         }
     }
 
     public bool encounterHere(Waypoint waypoint)
     {
-        return waypoint.hasEncounter; // Simplificado
+        return waypoint.hasEncounter; 
     }
 
     public bool PathBlocked()
@@ -220,7 +220,7 @@ public class CharacterMove : MonoBehaviour
 
         if (Physics.Raycast(transform.position, transform.forward, out hit, maxDistanceToObstacle))
         {
-            // Opcional: Verificar se o objeto atingido não é um trigger ou o chão
+            
             if (!hit.collider.isTrigger)
             {
                 return true;
@@ -232,6 +232,6 @@ public class CharacterMove : MonoBehaviour
     public bool NewWayPoints()
     {
         var findableWaypoints = GameObject.FindGameObjectsWithTag("Waypoint");
-        return findableWaypoints.Length > wayPointList.Count; // Simplificado
+        return findableWaypoints.Length > wayPointList.Count; 
     }
 }
