@@ -19,6 +19,7 @@ public partial class ThreeDGameHandler
         Cleanup
     }
 
+    
 
     [Header("RAILS STATE MACHINE")]
     [Space(10)]
@@ -67,6 +68,9 @@ public partial class ThreeDGameHandler
     }
 
 
+    
+    
+
     #region Test Purposes
     public void CheckCurrentState(States stateToCheck)
     {
@@ -113,36 +117,53 @@ public partial class ThreeDGameHandler
     {
         Debug.Log("Now on Rails");
         RailStarted?.Invoke();
+        currentState = States.OnRail;
 
-        
+        EndRails();
+
     }
 
     public void EndRails()
     {
         RailEnded?.Invoke();
+
+        StartEncounter();
     }
     
     public void StartEncounter()
     {
+        currentState = States.Encounter;
         Debug.Log("Now on Encounter");
         EncounterStarted?.Invoke();
     }
 
     public void EncounterEnd()
     {
-        EncounterEnded?.Invoke();
+        if (currentState == States.Encounter)
+        {
+            EncounterEnded?.Invoke();
+            StartCleanup();
+        }
+        
     }
 
 
     public void StartCleanup()
     {
-        Debug.Log("Now on Cleanup");
+        currentState = States.Cleanup;
+
         CleanupStarted?.Invoke();
+
+        CleanupEnd();
     }
        
     public void CleanupEnd()
     {
         CleanupEnded?.Invoke();
+
+       
+        StartRails();
+        
     }
 
 

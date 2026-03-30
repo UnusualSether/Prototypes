@@ -31,9 +31,7 @@ public partial class ThreeDGameHandler
 
     }
 
-    void OnEnable() { CharacterMove.PlayerMoved += CullOldRooms; CharacterMove.PlayerMoved += CreateNewRoom; }
-
-    void OnDisable() { CharacterMove.PlayerMoved -= CullOldRooms; CharacterMove.PlayerMoved -= CreateNewRoom; }
+   
 
 
 

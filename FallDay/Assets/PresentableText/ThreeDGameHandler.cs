@@ -14,6 +14,7 @@ public partial class ThreeDGameHandler : MonoBehaviour
 
     public Queue<GameObject> roomsQueue = new Queue<GameObject>();
 
+    public GameHandler handler;
 
 
     /// <summary>
@@ -24,11 +25,32 @@ public partial class ThreeDGameHandler : MonoBehaviour
 
     partial void OnStartExtendRailMethod();
 
+
+
     private void Start()
     {
         OnStartExtendRailMethod();
 
         OnStartExtendRoomCulling();
+    }
+
+
+    void OnEnable() 
+    { 
+        //Room Culling Events
+        CharacterMove.PlayerMoved += CullOldRooms; CharacterMove.PlayerMoved += CreateNewRoom;
+        //On Rails Events
+        handler.playerKilledAllZombies += EncounterEnd;
+        
+    }
+
+    void OnDisable() 
+    {
+        //Room Culling Events
+        CharacterMove.PlayerMoved -= CullOldRooms; CharacterMove.PlayerMoved -= CreateNewRoom;
+        //On Rails Events
+        handler.playerKilledAllZombies -= EncounterEnd;
+
     }
 
     [ContextMenu("SpawnNewRoom")]

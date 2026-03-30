@@ -588,7 +588,7 @@ MonoBehaviour:
   roomPrefab: {fileID: 38049718111097171, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
   spawnedRooms:
   - {fileID: 1447974799}
-  handler: {fileID: 2043720488}
+  handler: {fileID: 2102250459}
   currentState: 1
   stateFlow: 000000000100000002000000
   maxNumberOfRooms: 3
@@ -1206,6 +1206,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3697116812921849275, guid: eaaffc07808ebaf4fae8b342b82799c9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8265007308132618024, guid: eaaffc07808ebaf4fae8b342b82799c9, type: 3}
       propertyPath: m_Name
       value: MainMinigame
@@ -1218,7 +1222,7 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1132351140}
   m_SourcePrefab: {fileID: 100100000, guid: eaaffc07808ebaf4fae8b342b82799c9, type: 3}
---- !u!114 &2043720488 stripped
+--- !u!114 &2102250459 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1769905274112778612, guid: eaaffc07808ebaf4fae8b342b82799c9, type: 3}
   m_PrefabInstance: {fileID: 2043720487}

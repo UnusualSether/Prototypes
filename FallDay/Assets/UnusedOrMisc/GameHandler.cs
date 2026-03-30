@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 using static GameHandler;
@@ -42,6 +43,9 @@ public class GameHandler : MonoBehaviour
     public event Action ZombieSpawned;
     public event Action ZombieKilled;
 
+    //Objective related events
+    public event Action playerKilledAllZombies;
+
     #endregion
 
     #region Variables
@@ -60,6 +64,9 @@ public class GameHandler : MonoBehaviour
     public List<BulletType> bulletTypes = new List<BulletType>();
     public Dictionary<int, Zombie> zombieLookup;
     public float zombieSpawnTimer;
+
+    int enemyDefeatTarget = 1;
+    int zombiesSpawned = 0;
     #endregion
 
     #region Delegates
@@ -254,6 +261,11 @@ public class GameHandler : MonoBehaviour
 
         if (ZombieSpawnGate == false)
         {
+            if (!CanISpawnEnemies())
+            {
+                return;
+            }
+
             if (ZombieList.Count == 4)
             {
                 return;
@@ -269,6 +281,9 @@ public class GameHandler : MonoBehaviour
     #region Zombie Handling
     IEnumerator ZombieSpawner()
     {
+
+       
+
         ZombieSpawnGate = true;
         yield return new WaitForSeconds(zombieSpawnTimer);
         
@@ -312,8 +327,35 @@ public class GameHandler : MonoBehaviour
 
         Debug.Log($"Spawned zombie with id {newZombie.id} and {newZombie.hp} hp! There are now {ZombieList.Count} zombies in the list and {zombieLookup.Count} zombies in the lookup!");
         ZombieSpawnGate = false;
+        zombiesSpawned++;
     }
     
+
+    private bool CanISpawnEnemies()
+    {
+        if (!uiDoc.gameObject.activeSelf)
+        {
+            return false;
+        }
+
+        if (zombiesSpawned >= enemyDefeatTarget)
+        {
+            return false;
+        }
+
+
+        return true;
+    }
+
+    private bool HasPlayerCompletedTheEncounter()
+    {
+        if (zombiesSpawned >= enemyDefeatTarget && zombieLookup.Count == 0)
+        {
+            return true;
+        }
+
+        return false;
+    }
     public void ApplyDamage(int damage)
     {
         ApplyDamage(damage, zombieToAimAt());
@@ -370,6 +412,11 @@ public class GameHandler : MonoBehaviour
             preferenceZombie = nulledPreference;
 
             ZombieKilled?.Invoke();
+
+            if (HasPlayerCompletedTheEncounter())
+            {
+                playerKilledAllZombies?.Invoke();
+            }
         }
         else
         {
@@ -591,12 +638,20 @@ public class GameHandler : MonoBehaviour
     public void ActivateMinigame()
     {
         ui.visible = true;
+        InitializeEncounter();
         Debug.Log("I should activate now!");
     }
     public void DeactivateMinigame()
     {
         ui.visible = false;
         Debug.Log("I should deactivate now!");
+    }
+
+
+    public void InitializeEncounter()
+    {
+        enemyDefeatTarget = UnityEngine.Random.Range(4, 8);
+        zombiesSpawned = 0;
     }
     #endregion
 }
