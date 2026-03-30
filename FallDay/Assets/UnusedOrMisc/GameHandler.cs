@@ -561,15 +561,141 @@ public class GameHandler : MonoBehaviour
 
     public void RestockBullet()
     {
+        if (!BulletsNeedStock())
+        {
+            return;
+        }
+
         for (int i = 0; i < selectableBullets.Length; i++)
         {
             if (string.IsNullOrEmpty(selectableBullets[i]))
             {
-                int randomBulletIndex = UnityEngine.Random.Range(0,bulletList.Length);
-                selectableBullets[i] = bulletList[randomBulletIndex];
+                int maxAttempts = 100;
+                int attempts = 0;
+                string chosenBullet;
+
+                do
+                {
+                    int randomBulletIndex = UnityEngine.Random.Range(0, bulletList.Length);
+                    chosenBullet = bulletList[randomBulletIndex];
+
+
+                    if (selectableBullets.Length <= 0)
+                    {
+                        selectableBullets[i] = chosenBullet;
+                    }
+
+                    string[] futureBoard = (string[])selectableBullets.Clone();
+                    futureBoard[i] = chosenBullet;
+
+                    if (!InvalidBoard(futureBoard))
+                        break;
+
+                    attempts++;
+                    if (attempts >= maxAttempts)
+                    {
+                        Debug.LogWarning("Could not find a valid board after 100 attempts!");
+                        break;
+                    }
+                }
+                while (true);
+
+                selectableBullets[i] = chosenBullet;
             }
         }
     }
+
+    public bool BulletsNeedStock()
+    {
+
+        var list = selectableBullets.ToList();
+        foreach (var item in list)
+        {
+            if (string.IsNullOrEmpty(item))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    #region Softlock prevention
+
+    private bool InvalidBoard(string[] futureBoard)
+    {
+
+
+
+
+
+
+        bool[] visited = new bool[futureBoard.Length];
+
+        for (int i = 0; i < futureBoard.Length; i++)
+        {
+            if (visited[i] || string.IsNullOrEmpty(futureBoard[i]))
+                continue;
+
+
+            List<int> group = new List<int>();
+            Queue<int> queue = new Queue<int>();
+            queue.Enqueue(i);
+            visited[i] = true;
+
+            while (queue.Count > 0)
+            {
+                int current = queue.Dequeue();
+                group.Add(current);
+
+                foreach (int neighbor in FetchNeighbours(current))
+                {
+                    if (!visited[neighbor] && futureBoard[neighbor] == futureBoard[i])
+                    {
+                        visited[neighbor] = true;
+                        queue.Enqueue(neighbor);
+                    }
+                }
+            }
+
+            if (group.Count >= 3)
+                return false;
+        }
+
+        return true;
+
+    }
+
+    public int[] FetchNeighbours(int index)
+    {
+
+        //Need to fix, because these calculations on account for x and y and doesnt detect diagonal neighbours.
+
+        List<int> neighbours = new List<int>();
+        int cols = 3;
+        int rows = 3;
+
+        int row = index / cols;
+        int col = index % cols;
+
+        int[] dr = { 0, 0, 1, -1 };
+        int[] dc = { 1, -1, 0, 0 };
+
+        for (int d = 0; d < 4; d++)
+        {
+            int newRow = row + dr[d];
+            int newCol = col + dc[d];
+
+            if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols)
+                neighbours.Add(newRow * cols + newCol);
+        }
+
+        return neighbours.ToArray();
+
+
+    }
+
+    #endregion
 
     public void HandleDamage(BulletType bulletType, int numberUsed)
     {
