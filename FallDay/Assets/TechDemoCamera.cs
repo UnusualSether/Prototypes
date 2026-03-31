@@ -1,20 +1,76 @@
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Xml;
+
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.Video;
 using System.Collections.Generic;
 using System.Collections;
-using System.Runtime.CompilerServices;
+
 
 public class TechDemoCamera : MonoBehaviour
 {
+    
+    [Header("Ajustes de Camera")]
+    [SerializeField] Transform _target;
+    [SerializeField] float _distanceFromTarget = 0;
+    [SerializeField] float _heightOffset = 2.0f;
+    [SerializeField] float _initialPitch = 20.0f;
+    [SerializeField]private float sensitivity = 10f;
+    [SerializeField] private float _maxRotation = 60f;
+    private float _yam = 0f;
+    private float _pitch = 0f;
 
+
+     void Start()
+    {
+        
+        
+    }
+    void Update()
+    {
+        
+        HandleInput();
+
+        Quaternion yamRotation = Quaternion.Euler(_initialPitch, _yam, 0f);
+
+        RotateCamera(yamRotation);
+    }
+    
+    public void HandleInput()
+    {
+        Vector2 inputDelta= Vector2.zero;
+
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+            inputDelta = touch.deltaPosition*0.1f;
+
+        }
+        _yam += inputDelta.x * sensitivity * Time.deltaTime;
+        //_pitch -= inputDelta.y * sensitivity * Time.deltaTime;
+        // não precisa desse codigo se for deixar o jogador modificar a pisção da camera
+        _yam = Mathf.Clamp(_yam, -_maxRotation, _maxRotation);
+       // _pitch = Mathf.Clamp(_yam, -_maxRotation, _maxRotation);
+        
+    }
+
+    void RotateCamera(Quaternion rotation)
+    {
+
+        Vector3 targetPositionWithHeight = _target.position + Vector3.up * _heightOffset;
+        Vector3 positionOffset = rotation * new Vector3(0, 0, -_distanceFromTarget);
+        transform.position = targetPositionWithHeight + positionOffset;
+        transform.rotation = rotation;
+        /*
+        Vector3 positionOffset = rotation * new Vector3(0, 0, -_distanceFromTarget);
+        transform.position = _target.position + positionOffset;
+        transform.rotation = rotation;
+        */
+    }
+
+
+    /*
     public Transform toLookAt;
     public Vector3 offset;
 
-
+    
     public void LateUpdate()
     {
         transform.position = toLookAt.position + offset;
@@ -171,7 +227,7 @@ public class TechDemoCamera : MonoBehaviour
         }
     }
 
-
+    */
 
 
 

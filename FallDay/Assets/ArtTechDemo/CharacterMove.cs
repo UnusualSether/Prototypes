@@ -32,7 +32,7 @@ public class CharacterMove : MonoBehaviour
 
     public void Update()
     {
-        HandleMobileInput();
+        //HandleMobileInput();
         ClickControls(); 
         CheckStatus();
     }

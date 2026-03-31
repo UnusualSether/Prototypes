@@ -1723,12 +1723,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5794b5052a8a65e4ebc1c99e4a1cf61a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TechDemoCamera
-  toLookAt: {fileID: 1088469944}
-  offset: {x: -2.74, y: 3.96, z: -11}
-  cachedWalls: []
-  hitObjectNames: []
-  cameraCachedPos: {x: 0, y: 0, z: 0}
-  playerCachedPos: {x: 0, y: 0, z: 0}
+  _target: {fileID: 1088469944}
+  _distanceFromTarget: 8.9
+  _heightOffset: 0.79
+  _initialPitch: 10.4
+  sensitivity: 100
+  _maxRotation: 60
 --- !u!1 &1447974799 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 38049718111097171, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
