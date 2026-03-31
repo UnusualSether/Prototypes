@@ -9,7 +9,7 @@ using UnityEngine.UIElements;
 using static GameHandler;
 
 
-public class GameHandler : MonoBehaviour
+public partial class GameHandler : MonoBehaviour
 {
     //Names are extremely important due to the way unity's UI toolkit builder works, for that reason be very
     // careful when changing names of anything in the bullet arrays or in the UI itself.
@@ -774,10 +774,51 @@ public class GameHandler : MonoBehaviour
     }
 
 
+
+    #endregion
+    #region Encounters 
+
+
+    
+
+    [Serializable]
+    public class Encounter
+    {
+        enum Difficulty
+        {
+            Easy,
+            Medium,
+            Difficult
+        }
+
+        Difficulty difficulty;
+
+        int zombiesToSpawn;
+
+        float zombieTimer;
+
+        void Start()
+        {
+            var values = Enum.GetValues(typeof(Difficulty));
+            difficulty = (Difficulty)UnityEngine.Random.Range(0, 2);
+            
+        }
+
+        void SetDifficultyValues()
+        {
+            int[] easyZombieEncounter = new int[] { 4, 8 };
+            int[] mediumZombieEncounter = new int[] { 6, 10 };
+            int[] difficultZombieEncounter = new int[] { 8, 12 };
+        }
+
+
+    }
     public void InitializeEncounter()
     {
         enemyDefeatTarget = UnityEngine.Random.Range(4, 8);
         zombiesSpawned = 0;
     }
+
     #endregion
+
 }
