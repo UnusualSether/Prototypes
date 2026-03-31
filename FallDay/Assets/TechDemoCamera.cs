@@ -18,7 +18,7 @@ public class TechDemoCamera : MonoBehaviour
     [SerializeField] float _initialPitch = 20.0f;
     [SerializeField] private float sensitivity = 10f;
     [SerializeField] private float _maxRotation = 60f;
-    private float _yam = 0f;
+    private float _yam = 21f;
     private float _pitch = 0f;
 
     [Header("Ajustes de Touch cont")]
