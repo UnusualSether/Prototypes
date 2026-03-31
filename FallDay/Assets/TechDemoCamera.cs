@@ -17,7 +17,7 @@ public class TechDemoCamera : MonoBehaviour
     private float _yam = 0f;
     private float _pitch = 0f;
 
-    //touch cont
+    [Header("Ajustes de Touch cont")]
     private float _touchTime = 0f;
     private bool _isTouching = false;
 
