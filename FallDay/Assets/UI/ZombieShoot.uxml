@@ -7,7 +7,7 @@
             <engine:VisualElement enabled="false" name="ZombieSpot3" class="zombieSpot" style="background-size: 188% 100%;"/>
             <engine:VisualElement enabled="false" name="ZombieSpot4" class="zombieSpot" style="background-size: 188% 100%;"/>
         </engine:VisualElement>
-        <engine:VisualElement name="HudDisplayArea" style="flex-grow: 1; flex-direction: row; align-items: center; flex-wrap: wrap; align-self: center; justify-content: center; flex-basis: -13px;">
+        <engine:VisualElement name="HudDisplayArea" style="flex-grow: 1; flex-direction: row; align-items: center; flex-wrap: wrap; align-self: center; justify-content: center; flex-basis: 36px;">
             <engine:VisualElement name="BSpot1" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center; transition-property: scale; transition-duration: 0.9s; transition-timing-function: ease-in-elastic; transition-delay: 0.5s;"/>
             <engine:VisualElement name="BSpot2" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
             <engine:VisualElement name="BSpot3" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
@@ -17,6 +17,46 @@
             <engine:VisualElement name="BSpot7" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
             <engine:VisualElement name="BSpot8" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
             <engine:VisualElement name="BSpot9" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot10" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot11" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot12" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot13" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot14" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot15" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot16" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot17" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot18" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot19" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot20" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot21" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot22" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot23" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot24" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot25" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot26" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot27" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot28" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot29" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot30" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot31" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot32" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot33" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot34" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot35" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot36" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot37" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot38" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot39" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot40" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot41" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot42" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot43" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot44" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot45" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot46" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot47" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot48" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot49" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
         </engine:VisualElement>
     </engine:VisualElement>
 </engine:UXML>
