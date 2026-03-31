@@ -4,45 +4,78 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-
     private void OnEnable()
     {
         var uiDocument = GetComponent<UIDocument>();
 
-        Button startbutton = uiDocument.rootVisualElement.Q<Button>("Play");
+        Button startButton = uiDocument.rootVisualElement.Q<Button>("Play");
 
-        Button configbutton = uiDocument.rootVisualElement.Q<Button>("Config");
-
-        Button returnbutton = uiDocument.rootVisualElement.Q<Button>("Return");
-
-        if (startbutton != null)
+        if (startButton != null)
         {
-            startbutton.clicked += StartGame;
-        }
+            startButton.clicked += SceneLoader;
 
-        if (configbutton != null)
-        {
-            configbutton.clicked += configmenu;
-        }
+            Button startbutton = uiDocument.rootVisualElement.Q<Button>("Play");
+            Button configbutton = uiDocument.rootVisualElement.Q<Button>("Config");
+            Button returnbutton = uiDocument.rootVisualElement.Q<Button>("Return");
+            Button level1button = uiDocument.rootVisualElement.Q<Button>("level1");
+            Button level2button = uiDocument.rootVisualElement.Q<Button>("level2");
 
-        if (returnbutton != null)
-        {
-            returnbutton.clicked += returnmenu;
+            if (startbutton != null)
+            {
+                startbutton.clicked += LevelSelect;
+            }
+
+            if (configbutton != null)
+            {
+                configbutton.clicked += configmenu;
+            }
+
+            if (returnbutton != null)
+            {
+                returnbutton.clicked += returnmenu;
+            }
+
+            if (level1button != null)
+            {
+                level1button.clicked += Level1;
+            }
+            if (level2button != null)
+            {
+                level2button.clicked += Level2;
+            }
         }
+    }
+        
+
+    private void SceneLoader()
+    {
+        SceneManager.LoadScene("Scenes/MainScene");
     }
 
     private void configmenu()
     {
         SceneManager.LoadScene("Scenes/Configs");
     }
-
     private void StartGame()
     {
         SceneManager.LoadScene("Scenes/MainScene");
     }
-
+    private void LevelSelect()
+    {
+        SceneManager.LoadScene("Scenes/LevelSelect");
+    }
     private void returnmenu()
     {
         SceneManager.LoadScene("Scenes/MainMenu");
+    }
+    private void Level1()
+    {
+        //Debug.Log("Level 1");
+        StartGame();
+    }
+    private void Level2()
+    {
+        //Debug.Log("Level 2");
+        StartGame();
     }
 }
