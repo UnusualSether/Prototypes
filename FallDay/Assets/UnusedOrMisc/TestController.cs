@@ -2,15 +2,9 @@ using UnityEngine;
 
 public class TestController : MonoBehaviour
 {
-    [SerializeField] public OnRailsStateMachine stateMachine;
 
-    private void Start()
-    {
-        stateMachine.RailStarted += OnRailsProtocol;
-        stateMachine.EncounterStarted += EncounterProtocol;
-        stateMachine.CleanupStarted += CleanUpProtocol;
-    }
 
+ 
     private void OnRailsProtocol()
     {
         Debug.Log("[Test Controller] Moving the Player Forward!");

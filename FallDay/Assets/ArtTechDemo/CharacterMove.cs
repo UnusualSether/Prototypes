@@ -6,20 +6,39 @@ using UnityEngine.AI;
 using UnityEngine.InputSystem;
 using JetBrains.Annotations;
 using System.Security.Cryptography;
+using Unity.AI.Navigation;
+using System.Linq;
+using Unity.VisualScripting;
+using System.Runtime.InteropServices.WindowsRuntime;
+using System.Net;
 
 public class CharacterMove : MonoBehaviour
 {
+
+
+    #region Events
+    public static event Action PlayerMoved;
+
+    #endregion
+
 
     public Transform charTransform;
 
     public float speed = 0.2f;
 
     public NavMeshAgent navMesh;
+
+    public NavMeshSurface surface;
     public void Start()
     {
         charTransform = this.gameObject.GetComponent<Transform>();
-        navMesh = gameObject.GetComponent<NavMeshAgent>(); 
+        navMesh = gameObject.GetComponent<NavMeshAgent>();
     }
+    
+    //Subscribe the player move to next waypoint function to whenevr the gamehandler deetcts that we're suppose to be on rails/
+    void OnEnable() { ThreeDGameHandler.RailStarted += FindNextWaypoint; ThreeDGameHandler.RoomSetupComplete += InitializeWaypoints; }
+    void OnDisable() { ThreeDGameHandler.RailStarted -= FindNextWaypoint; ThreeDGameHandler.RoomSetupComplete -= InitializeWaypoints; }
+    
 
     public void Update()
     {
@@ -29,8 +48,9 @@ public class CharacterMove : MonoBehaviour
         ClickControls();
         CheckStatus();
 
+        
 
-    }
+}
 
 
     [Serializable]
@@ -88,32 +108,58 @@ public class CharacterMove : MonoBehaviour
     
     public void InitializeWaypoints()
     {
-         var foundObjects = GameObject.FindGameObjectsWithTag("Waypoint");
+
+        var foundObjects = GameObject.FindGameObjectsWithTag("Waypoint");
+
+       
+            
 
         foreach (var item in foundObjects)
         {
-            
+
 
             var newWaypoint = new Waypoint()
             {
                 wayPointPosition = item.transform.position,
                 numberOfEnemies = UnityEngine.Random.Range(0, 5),
-                hasEncounter = UnityEngine.Random.Range(0,1) == 0,
-                 
+                hasEncounter = UnityEngine.Random.Range(0, 1) == 0,
+
 
             };
 
             wayPointList.Add(newWaypoint);
+
+            Destroy(item);
         }
+
+
+        surface.BuildNavMesh();
+
+
+    }
+
+    public void WayPointMaintenance()
+    {
+        if (!NewWayPoints())
+        {
+            return;
+        }
+
+        wayPointList.Clear();
+
+        InitializeWaypoints();
+        
+        
+        
     }
 
 
     [ContextMenu("GoToNextWaypoint")]
-        public void FindNextWayPoint()
+        public void FindNextWaypoint()
     {
         if(wayPointList.Count <= 0)
         {
-            return;
+            InitializeWaypoints();
         }
 
         var nextWayPoint = wayPointList[0];
@@ -121,7 +167,7 @@ public class CharacterMove : MonoBehaviour
         if (nextWayPoint == null)
         {
             Debug.Log("Error, could not find first of nextwaypoint list.");
-            return;
+            FindNextWaypoint();
         }
 
         wayPointList.RemoveAt(0);
@@ -133,12 +179,18 @@ public class CharacterMove : MonoBehaviour
     {
 
          navMesh.SetDestination(nextWaypoint.wayPointPosition);
+
+        PlayerMoved?.Invoke();
     }
 
     bool encounterGate = false;
     private void CheckStatus()
     {
 
+        if (wayPointList.Count <= 0)
+        {
+            return;
+        }
 
         Vector3 inertStatus = new Vector3(0, 0, 0);
 
@@ -149,8 +201,11 @@ public class CharacterMove : MonoBehaviour
 
         }
 
-        if (transform.position == wayPointList[0].wayPointPosition)
+        if (transform.position == wayPointList[0].wayPointPosition) 
         {
+
+            InitializeWaypoints();
+
             if (encounterHere(wayPointList[0]) && !encounterGate)
             {
                 Debug.Log("I'm in an encounter!");
@@ -202,5 +257,21 @@ public class CharacterMove : MonoBehaviour
 
 
         return false;
+    }
+
+    public bool NewWayPoints()
+    {
+
+        var findableWaypoints = GameObject.FindGameObjectsWithTag("Waypoint");
+
+        if (findableWaypoints.Length > wayPointList.Count)
+        {
+            return true;
+        }
+
+        return false;
+        
+
+
     }
 }
