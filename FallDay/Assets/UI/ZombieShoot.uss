@@ -9,7 +9,8 @@
 }
 
 .shitBullet {
-    background-color: rgb(190, 40, 20);
+    background-color: rgba(245, 245, 245, 0);
+    background-image: url("project://database/Assets/Sprites/BulletButtons/BulletRenderedCrushed.png?fileID=2800000&guid=751336ed3179f0d4bbaebf3cc7a4c214&type=3#BulletRenderedCrushed");
 }
 
 .goodBullet {
@@ -23,7 +24,8 @@
 }
 
 .epicBullet {
-    background-color: rgb(28, 208, 211);
+    background-color: rgba(255, 255, 255, 0);
+    background-image: url("project://database/Assets/Sprites/BulletButtons/EpicBulletBitCrushed.png?fileID=2800000&guid=bb84194fb8034df4d93f0100f85d782b&type=3#EpicBulletBitCrushed");
 }
 
 .zombieSpot {
