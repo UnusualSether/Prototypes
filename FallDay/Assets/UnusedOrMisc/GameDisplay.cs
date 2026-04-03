@@ -13,7 +13,7 @@ using System.Diagnostics.Contracts;
 using Unity.Jobs;
 using UnityEditor.AssetImporters;
 
-public class GameDisplay : MonoBehaviour
+public partial class GameDisplay : MonoBehaviour
 {
 
     public VisualElement ui;
@@ -70,6 +70,12 @@ public class GameDisplay : MonoBehaviour
         //Events
 
         handler.ZombieKilled += RemoveCrosshair;
+
+        handler.BulletSelected += ShakeBullet;
+
+        handler.BulletSelected += PlayerClickSound;
+
+        handler.SucessfulShot += ShakeScreen;
 
 
         //Find the Bullet Displays using a for loop

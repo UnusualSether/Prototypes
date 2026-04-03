@@ -762,7 +762,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5794b5052a8a65e4ebc1c99e4a1cf61a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TechDemoCamera
-  toLookAt: {fileID: 0}
   _target: {fileID: 1088469944}
   _distanceFromTarget: 8.9
   _heightOffset: 0.79

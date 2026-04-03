@@ -36,15 +36,16 @@ public partial class GameHandler : MonoBehaviour
 
     #region Events
     //Player related events
-    public event Action SucessfulShot;
+    public event Action<int> SucessfulShot;
     public event Action FailedShot;
+    public event Action<VisualElement> BulletSelected;
 
     //Zombie related events
     public event Action ZombieSpawned;
     public event Action ZombieKilled;
 
     //Objective related events
-    public event Action playerKilledAllZombies;
+    public event Action PlayerKilledAllZombies;
 
     #endregion
 
@@ -415,7 +416,7 @@ public partial class GameHandler : MonoBehaviour
 
             if (HasPlayerCompletedTheEncounter())
             {
-                playerKilledAllZombies?.Invoke();
+                PlayerKilledAllZombies?.Invoke();
             }
         }
         else
@@ -485,7 +486,7 @@ public partial class GameHandler : MonoBehaviour
 
             //Debug.Log($"I shot{realBulletType.name}");
 
-            SucessfulShot?.Invoke();
+            
             HandleDamage(realBulletType,numberUsed);
             ClearUsedBullets();
 
@@ -500,9 +501,9 @@ public partial class GameHandler : MonoBehaviour
             //Find all bullets previously tagged with used and remove them from the class list.
             foreach (var bullet in bulletButton)
             {
-                if (bullet.ClassListContains("Used"))
+                if (bullet.ClassListContains("used"))
                 { 
-                    bullet.RemoveFromClassList("Used");
+                    bullet.RemoveFromClassList("used");
                 }
 
             }
@@ -520,9 +521,9 @@ public partial class GameHandler : MonoBehaviour
 
             foreach (var bullet in bulletButton)
             {
-                if (bullet.ClassListContains("Used"))
+                if (bullet.ClassListContains("used"))
                 {
-                    bullet.RemoveFromClassList("Used");
+                    bullet.RemoveFromClassList("used");
                 }
             }
 
@@ -542,11 +543,11 @@ public partial class GameHandler : MonoBehaviour
         {
             
 
-            if (bullet.ClassListContains("Used"))
+            if (bullet.ClassListContains("used"))
             {
                 selectableBullets[currentBulletIndex] = null;
                 //Debug.Log($"Nulled {currentBulletIndex} ");                
-                bullet.RemoveFromClassList("Used");
+                bullet.RemoveFromClassList("used");
             }
 
             currentBulletIndex++;
@@ -705,6 +706,8 @@ public partial class GameHandler : MonoBehaviour
 
         Debug.Log($"Did {totalDamage} damage with {numberUsed} {bulletType.name}s!");
 
+        SucessfulShot?.Invoke(totalDamage);
+
         ApplyDamage(totalDamage, zombieToAimAt());
     }
 
@@ -712,9 +715,10 @@ public partial class GameHandler : MonoBehaviour
     {
         var selectedElement = (VisualElement)ev.currentTarget;
 
-        if (selectedElement.ClassListContains("Used") == false)
+        if (selectedElement.ClassListContains("used") == false)
         {
-            selectedElement.AddToClassList("Used");
+            selectedElement.AddToClassList("used");
+            BulletSelected(selectedElement);
             int targButtonIdenity;
 
             for (int i = 0; i < bulletButton.Length; i++)

@@ -10,11 +10,12 @@
 
 .shitBullet {
     background-color: rgba(245, 245, 245, 0);
-    background-image: url("project://database/Assets/Sprites/BulletButtons/BulletRenderedCrushed.png?fileID=2800000&guid=751336ed3179f0d4bbaebf3cc7a4c214&type=3#BulletRenderedCrushed");
+    background-image: url("project://database/Assets/Sprites/BulletButtons/SmallBulletRenderedCrushedShadowed.png?fileID=2800000&guid=751514017931a5246986e94b189d3aaf&type=3#SmallBulletRenderedCrushedShadowed");
 }
 
 .goodBullet {
-    background-color: rgb(249, 213, 3);
+    background-color: rgba(245, 245, 245, 0);
+    background-image: url("project://database/Assets/Sprites/BulletButtons/BulletRenderedCrushedShadowedAse.png?fileID=2800000&guid=b93b692265ed1d3409ca06cf763e32d4&type=3#BulletRenderedCrushedShadowedAse");
 }
 
 .bulletButton {
@@ -25,7 +26,7 @@
 
 .epicBullet {
     background-color: rgba(255, 255, 255, 0);
-    background-image: url("project://database/Assets/Sprites/BulletButtons/EpicBulletBitCrushed.png?fileID=2800000&guid=bb84194fb8034df4d93f0100f85d782b&type=3#EpicBulletBitCrushed");
+    background-image: url("project://database/Assets/Sprites/BulletButtons/EpicBulletBitCrushedShadowed.png?fileID=2800000&guid=0ddf7567a1a6ae14ab387c08bd995835&type=3#EpicBulletBitCrushedShadowed");
 }
 
 .zombieSpot {
@@ -46,5 +47,6 @@
 }
 
 .used {
-    scale: 0.5 0.5;
+    scale: 0.9 0.9;
+    -unity-background-image-tint-color: rgb(255, 252, 184);
 }

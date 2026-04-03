@@ -8,7 +8,7 @@
             <engine:VisualElement enabled="false" name="ZombieSpot4" class="zombieSpot" style="background-size: 188% 100%;"/>
         </engine:VisualElement>
         <engine:VisualElement name="HudDisplayArea" style="flex-grow: 1; flex-direction: row; align-items: center; flex-wrap: wrap; align-self: center; justify-content: center; flex-basis: -13px;">
-            <engine:VisualElement name="BSpot1" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center; transition-property: scale; transition-duration: 0.9s; transition-timing-function: ease-in-elastic; transition-delay: 0.5s;"/>
+            <engine:VisualElement name="BSpot1" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
             <engine:VisualElement name="BSpot2" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
             <engine:VisualElement name="BSpot3" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
             <engine:VisualElement name="BSpot4" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
