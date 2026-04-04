@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 
-public class TutorialControler : MonoBehaviour
+public partial class TutorialControler : MonoBehaviour
 {
     private VisualElement top, left, right, hole, bottom, arrow;
     private Label text;
@@ -11,6 +11,8 @@ public class TutorialControler : MonoBehaviour
     public GameObject Tutorial;
 
     private int tutorialpage = 1;
+
+    public static bool TutorialEnded = false;
 
     private void OnEnable()
     {
@@ -91,7 +93,9 @@ public class TutorialControler : MonoBehaviour
        if (Tutorial != null)
        {
         Tutorial.SetActive(false);
-       }
+            TutorialEnded = true;
+        }
     }
+
 }
 

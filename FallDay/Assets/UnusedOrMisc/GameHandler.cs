@@ -123,6 +123,7 @@ public class GameHandler : MonoBehaviour
 
         public enum ZombiePhase
         {
+            Stop,
             Far,
             Approach,
             Close
@@ -134,7 +135,12 @@ public class GameHandler : MonoBehaviour
 
         public void UpdatePhase(float deltaTime)
         {
-            if(phase == ZombiePhase.Close && PhT1 <= 0) 
+            if (TutorialControler.TutorialEnded == false)
+            {
+                phase = ZombiePhase.Stop;
+            }
+
+            if (phase == ZombiePhase.Close && PhT1 <= 0) 
             {
                 PlayerTookDamage?.Invoke(1f);
                 // <= Place a Destroy Zombie Call
