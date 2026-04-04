@@ -8,11 +8,11 @@ public class MenuManager : MonoBehaviour
     {
         var uiDocument = GetComponent<UIDocument>();
 
-        Button startButton = uiDocument.rootVisualElement.Q<Button>("Play");
+        //Button startButton = uiDocument.rootVisualElement.Q<Button>("Play");
 
-        if (startButton != null)
+        if (uiDocument != null)
         {
-            startButton.clicked += SceneLoader;
+            //startButton.clicked += SceneLoader;
 
             Button startbutton = uiDocument.rootVisualElement.Q<Button>("Play");
             Button configbutton = uiDocument.rootVisualElement.Q<Button>("Config");
