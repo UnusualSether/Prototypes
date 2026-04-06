@@ -40,7 +40,7 @@ public partial class ThreeDGameHandler : MonoBehaviour
         //Room Culling Events
         CharacterMove.PlayerMoved += CullOldRooms; CharacterMove.PlayerMoved += CreateNewRoom;
         //On Rails Events
-        handler.playerKilledAllZombies += EncounterEnd;
+        handler.PlayerKilledAllZombies += EncounterEnd;
         
     }
 
@@ -49,7 +49,7 @@ public partial class ThreeDGameHandler : MonoBehaviour
         //Room Culling Events
         CharacterMove.PlayerMoved -= CullOldRooms; CharacterMove.PlayerMoved -= CreateNewRoom;
         //On Rails Events
-        handler.playerKilledAllZombies -= EncounterEnd;
+        handler.PlayerKilledAllZombies -= EncounterEnd;
 
     }
 
