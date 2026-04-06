@@ -14,6 +14,21 @@ public partial class TutorialControler : MonoBehaviour
 
     public static bool TutorialEnded = false;
 
+    private void Start()
+    {
+        ZombieTutorial();
+        Debug.Log("Funcionou");
+    }
+
+    public void ZombieTutorial()
+    {
+        text.text = "Aqui é a area aonde os zumbis irão aparecer, quando o cubo ficar verde, você pode clicar nele para mirar no zumbi";
+        top.style.height = 100;
+        bottom.style.height = 380;
+        arrow.style.opacity = 100;
+        next.style.opacity = 100;
+    }
+
     private void OnEnable()
     {
         var root = GetComponent<UIDocument>().rootVisualElement;

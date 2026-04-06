@@ -1,18 +1,18 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement name="Border" style="flex-grow: 1;">
-        <ui:VisualElement name="Top" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0.71); height: 100px;"/>
+    <ui:VisualElement name="Border" enabled="true" style="flex-grow: 1; opacity: 1;">
+        <ui:VisualElement name="Top" enabled="true" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0.71); height: 0; opacity: 1;"/>
         <ui:VisualElement name="Middle" style="flex-grow: 0; flex-direction: row;">
             <ui:VisualElement name="Left" style="flex-grow: 0; position: relative; background-color: rgba(0, 0, 0, 0.71); width: 0;"/>
             <ui:VisualElement name="Hole" style="flex-grow: 0; width: 270px; position: relative; height: 90px;"/>
-            <ui:VisualElement name="Right" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0.71); width: 0;"/>
+            <ui:VisualElement name="Right" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0.71); width: 0; opacity: 1;"/>
         </ui:VisualElement>
     </ui:VisualElement>
-    <ui:VisualElement name="Bottom" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0.71); height: 380px;"/>
+    <ui:VisualElement name="Bottom" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0.71); height: 0;"/>
     <ui:VisualElement name="Tutorial" style="flex-grow: 1; position: absolute;">
         <ui:VisualElement name="Information" style="flex-grow: 1; position: absolute; height: 302px; width: 245px; top: 211px; left: 9px; background-color: rgba(0, 0, 0, 0);">
-            <ui:Image name="Arrow" style="background-image: url(&quot;project://database/Assets/UnusedOrMisc/pngimg.com%20-%20red_arrow_PNG1.png?fileID=2800000&amp;guid=6ccca48abcccd594db79ae4aca2294fa&amp;type=3#pngimg.com - red_arrow_PNG1&quot;); height: 60px; background-color: rgba(0, 0, 0, 0); position: relative; width: 60px; rotate: -90deg;"/>
-            <ui:Label text="Aqui é a area aonde os zumbis irão aparecer, quando o cubo ficar verde, você pode clicar nele para mirar no zumbi" name="Text" style="height: 87px; color: rgb(207, 224, 204); -unity-font-definition: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&amp;guid=90d2d8ed0a1fdfe46a7126bdc0df9cb7&amp;type=3#NotInter-Regular&quot;); font-size: 16px; align-self: auto; justify-content: flex-start; align-items: auto; align-content: flex-start; -unity-text-align: upper-left; white-space: normal;"/>
-            <ui:Button text="Next..." name="Next" style="margin-top: 91px; bottom: 70px;"/>
+            <ui:Image name="Arrow" enabled="true" style="background-image: url(&quot;project://database/Assets/UnusedOrMisc/pngimg.com%20-%20red_arrow_PNG1.png?fileID=2800000&amp;guid=6ccca48abcccd594db79ae4aca2294fa&amp;type=3#pngimg.com - red_arrow_PNG1&quot;); height: 60px; background-color: rgba(0, 0, 0, 0); position: relative; width: 60px; rotate: -90deg; opacity: 0;"/>
+            <ui:Label text="&#10;" name="Text" enabled="true" style="height: 87px; color: rgb(207, 224, 204); -unity-font-definition: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&amp;guid=90d2d8ed0a1fdfe46a7126bdc0df9cb7&amp;type=3#NotInter-Regular&quot;); font-size: 16px; align-self: auto; justify-content: flex-start; align-items: auto; align-content: flex-start; -unity-text-align: upper-left; white-space: normal; opacity: 1;"/>
+            <ui:Button text="Next..." name="Next" style="margin-top: 91px; bottom: 70px; opacity: 0;"/>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
