@@ -9,11 +9,13 @@
 }
 
 .shitBullet {
-    background-color: rgb(190, 40, 20);
+    background-color: rgba(245, 245, 245, 0);
+    background-image: url("project://database/Assets/Sprites/BulletButtons/SmallBulletRenderedCrushedShadowed.png?fileID=2800000&guid=751514017931a5246986e94b189d3aaf&type=3#SmallBulletRenderedCrushedShadowed");
 }
 
 .goodBullet {
-    background-color: rgb(249, 213, 3);
+    background-color: rgba(245, 245, 245, 0);
+    background-image: url("project://database/Assets/Sprites/BulletButtons/BulletRenderedCrushedShadowedAse.png?fileID=2800000&guid=b93b692265ed1d3409ca06cf763e32d4&type=3#BulletRenderedCrushedShadowedAse");
 }
 
 .bulletButton {
@@ -23,7 +25,8 @@
 }
 
 .epicBullet {
-    background-color: rgb(28, 208, 211);
+    background-color: rgba(255, 255, 255, 0);
+    background-image: url("project://database/Assets/Sprites/BulletButtons/EpicBulletBitCrushedShadowed.png?fileID=2800000&guid=0ddf7567a1a6ae14ab387c08bd995835&type=3#EpicBulletBitCrushedShadowed");
 }
 
 .zombieSpot {
@@ -44,5 +47,6 @@
 }
 
 .used {
-    scale: 0.5 0.5;
+    scale: 0.9 0.9;
+    -unity-background-image-tint-color: rgb(255, 252, 184);
 }
