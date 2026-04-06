@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class HealthCode : MonoBehaviour
 {
@@ -10,6 +11,37 @@ public class HealthCode : MonoBehaviour
     private RectTransform healthBar;
     [SerializeField]
     private RectTransform nohealthBar;
+
+    [SerializeField]private UIToggleManager UIToggleManager;
+    
+
+
+
+    void Start()
+    {
+   
+        Debug.Log("Helth start");
+        GameHandler.PlayerTookDamage += OnDemegedTest;
+        GameHandler.PlayerTookDamage += TestLessHP;
+    }
+
+    void Update()
+    {
+        if (HP <= 0)
+        {
+            UIToggleManager.ToggleUI();
+        }
+        CurrentHealth(MaxHP);
+
+        if (Input.GetKeyDown("a"))
+        {
+            ManualHP(-Damage);
+        }
+        if (Input.GetKeyDown("d"))
+        {
+            ManualHP(Heal);
+        }
+    }
 
     #region Events
 
@@ -25,6 +57,7 @@ public class HealthCode : MonoBehaviour
         healthBar.sizeDelta = new Vector2(CurrentHP, SizeY);
         nohealthBar.sizeDelta = new Vector2(SizeX, SizeY);
     }
+
 
     //Calculo do HP
     public void ManualHP(float newlyRecievedValue)
@@ -63,25 +96,7 @@ public class HealthCode : MonoBehaviour
         ManualHP(-Damage);
     }
 
-    void Start()
-    {
-        Debug.Log("Helth start");
-        GameHandler.PlayerTookDamage += OnDemegedTest;
-        GameHandler.PlayerTookDamage += TestLessHP;
-    }
 
     //Botões para curar e receber dano
-    void Update()
-    {
-        CurrentHealth(MaxHP);
- 
-        if (Input.GetKeyDown("a"))
-        {
-            ManualHP(-Damage);
-        }
-        if (Input.GetKeyDown("d"))
-        {
-            ManualHP(Heal);
-        }
-    }
+    
 }

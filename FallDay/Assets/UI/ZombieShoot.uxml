@@ -9,7 +9,7 @@
         </engine:VisualElement>
         <engine:VisualElement name="lineCanvas" picking-mode="Ignore" style="flex-grow: 1; position: absolute; top: 0%; left: 0%; right: 0%; bottom: 0%;"/>
         <engine:VisualElement name="HudDisplayArea" style="flex-grow: 1; flex-direction: row; align-items: center; flex-wrap: wrap; align-self: center; justify-content: center; flex-basis: -13px;">
-            <engine:VisualElement name="BSpot1" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center; transition-property: scale; transition-duration: 0.9s; transition-timing-function: ease-in-elastic; transition-delay: 0.5s;"/>
+            <engine:VisualElement name="BSpot1" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
             <engine:VisualElement name="BSpot2" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
             <engine:VisualElement name="BSpot3" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
             <engine:VisualElement name="BSpot4" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
