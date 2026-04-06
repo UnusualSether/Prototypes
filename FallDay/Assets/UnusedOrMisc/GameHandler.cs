@@ -67,6 +67,11 @@ public partial class GameHandler : MonoBehaviour
 
     int enemyDefeatTarget = 1;
     int zombiesSpawned = 0;
+
+    public VisualElement lineCanvas; // Onde Iremos desenhar //
+    public List<VisualElement> selectedUIButtons = new List<VisualElement>(); // Lista de botões pressionados para demarcar bottoes precionados pelo player //
+    public Color lineColor = Color.white; // A cor da sua linha
+    public float lineWidth = 10f;
     #endregion
 
     #region Delegates
@@ -247,6 +252,11 @@ public partial class GameHandler : MonoBehaviour
         //Print Used weapon
 
         Debug.Log($"You're currently using the {currentWeapon.name}");
+        lineCanvas = ui.Query<VisualElement>("HudDisplayArea").First();
+        if (lineCanvas != null)
+        {
+            lineCanvas.generateVisualContent += OnDrawLines;
+        }
     }
 
     public void Update()
@@ -490,6 +500,8 @@ public partial class GameHandler : MonoBehaviour
             ClearUsedBullets();
 
             readyBullets.Clear();
+            selectedUIButtons.Clear();
+            lineCanvas.MarkDirtyRepaint();  // Apaga a linha da tela
         }
 
         //If selected bullets don't match, no damage goes through
@@ -509,6 +521,8 @@ public partial class GameHandler : MonoBehaviour
 
             //Clear the ready bullets list
             readyBullets.Clear();
+            selectedUIButtons.Clear();
+            lineCanvas.MarkDirtyRepaint();  // Apaga a linha da tela
         }
 
         //Cancel the shot altogether if there arent enough bullets.
@@ -528,6 +542,8 @@ public partial class GameHandler : MonoBehaviour
 
             //Clear the ready bullets list
             readyBullets.Clear();
+            selectedUIButtons.Clear();
+            lineCanvas.MarkDirtyRepaint();  // Apaga a linha da tela
 
             FailedShot?.Invoke();
         }
@@ -557,6 +573,8 @@ public partial class GameHandler : MonoBehaviour
                 Debug.Log("Checked all bullets, backing out.");
             }
         }
+        selectedUIButtons.Clear();
+        lineCanvas.MarkDirtyRepaint();  // Apaga a linha da tela
     }
 
     public void RestockBullet()
@@ -723,6 +741,10 @@ public partial class GameHandler : MonoBehaviour
                 {
                     targButtonIdenity = i;
                     readyBullets.Add(selectableBullets[targButtonIdenity]);
+
+                    // NOVIDADE AQUI:   /////////////////////////////////////////////////////////////////
+                    selectedUIButtons.Add(selectedElement);
+                    lineCanvas?.MarkDirtyRepaint();
                 }
             }
         }
@@ -748,6 +770,48 @@ public partial class GameHandler : MonoBehaviour
             reloadGate = false;
         }
     }
+
+    /// <summary>
+    /// // NewFunction Draw In the UI //////////////////////////////////////////////////////////////////////////////////////////////
+    /// </summary>
+
+    public void OnDrawLines(MeshGenerationContext context)
+    {
+        // Se tivermos menos de 2 botões selecionados, não tem como traçar uma linha
+        if (selectedUIButtons.Count < 2) return;
+        var painter2D = context.painter2D;
+
+        painter2D.lineWidth = lineWidth;
+        painter2D.strokeColor = lineColor;
+        painter2D.lineJoin = LineJoin.Round; // Deixa as quinas da linha arredondadas
+        painter2D.lineCap = LineCap.Round; // Deixa a ponta da linha arredondada
+
+        painter2D.BeginPath();
+
+        for (int i = 0; i < selectedUIButtons.Count; i++)
+        {
+            var button = selectedUIButtons[i];
+
+            // Pega o centro exato do botão e converte para as coordenadas do Canvas de linha
+            Vector2 buttonCenterInWorld = button.worldBound.center;
+            Vector2 localPos = lineCanvas.WorldToLocal(buttonCenterInWorld);
+
+            if(i == 0)
+            {
+                // Move o "pincel" para o primeiro botão
+                painter2D.MoveTo(localPos);
+            }
+            else
+            {
+                // Traça a linha até os próximos botões
+                painter2D.LineTo(localPos);
+            }
+        }
+
+        // Pinta a linha de fato
+        painter2D.Stroke();
+    }
+
     #endregion
 
     #region Debug & Active Inactive Minigame
