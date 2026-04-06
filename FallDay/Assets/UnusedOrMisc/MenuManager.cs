@@ -58,7 +58,7 @@ public class MenuManager : MonoBehaviour
     }
     private void StartGame()
     {
-        SceneManager.LoadScene("Scenes/MainScene");
+        SceneManager.LoadScene("PresentableText/PresentableTex");
     }
     private void LevelSelect()
     {

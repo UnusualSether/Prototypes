@@ -32,5 +32,5 @@ public partial class ThreeDGameHandlerMinigameManaging : MonoBehaviour
                 }
             }
         }
-    }
+    } 
 } 
