@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "EncounterData", menuName = "Scriptable Objects/EncounterData")]
+[CreateAssetMenu(fileName = "EncounterData", menuName = "Encounter/EncounterData")]
 public class EncounterData : ScriptableObject
 {
     [Header("DEV ONLY ENCOUNTER DESCRIPTION")]
