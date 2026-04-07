@@ -11,7 +11,6 @@ using System;
 using System.Xml;
 using System.Diagnostics.Contracts;
 using Unity.Jobs;
-using UnityEditor.AssetImporters;
 
 public partial class GameDisplay : MonoBehaviour
 {
