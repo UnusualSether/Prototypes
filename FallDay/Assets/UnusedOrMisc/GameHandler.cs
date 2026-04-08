@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -838,7 +839,7 @@ public partial class GameHandler : MonoBehaviour
     public void ActivateMinigame()
     {
         ui.visible = true;
-        InitializeEncounter();
+        CreateNewEncounter();
         Debug.Log("I should activate now!");
     }
     public void DeactivateMinigame()
@@ -850,12 +851,43 @@ public partial class GameHandler : MonoBehaviour
 
 
     #endregion
-    
-    public void InitializeEncounter()
-    {
-        enemyDefeatTarget = UnityEngine.Random.Range(4, 8);
-        zombiesSpawned = 0;
-    }
 
+
+    #region Encounter Initialization and Application
+
+    [SerializeField]
+    private List<EncounterData> possibleEncounters;
+
+    private void CreateNewEncounter()
+    {
+
+        Debug.Log("Creating a new encounter...");
+        EncounterData newEncounterData;
+        
+        if (possibleEncounters.Count == 0)
+        {
+            Debug.Log("Error, possible encounters list is empty so the creation of a new encounter is impossible.");
+            return;
+        }
+
+        int randomIndex = UnityEngine.Random.Range(0, possibleEncounters.Count);
+
+        newEncounterData = possibleEncounters[randomIndex];
+
+        Debug.Log($"I picked the encounter:{newEncounterData.name}");
+
+        InitializeEncounter(newEncounterData);
+    }
+    public void InitializeEncounter(EncounterData data)
+    {
+        var thisEncounter = new Encounter(data);
+
+        enemyDefeatTarget = thisEncounter.numberOfZombies;
+        zombieSpawnTimer = thisEncounter.zombieTimer;
+
+        zombiesSpawned = 0;
+
+    }
+    #endregion
 
 }

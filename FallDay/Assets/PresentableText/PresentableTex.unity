@@ -1347,6 +1347,22 @@ PrefabInstance:
       propertyPath: railMachine
       value: 
       objectReference: {fileID: 835946466}
+    - target: {fileID: 1769905274112778612, guid: eaaffc07808ebaf4fae8b342b82799c9, type: 3}
+      propertyPath: possibleEncounters.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769905274112778612, guid: eaaffc07808ebaf4fae8b342b82799c9, type: 3}
+      propertyPath: 'possibleEncounters.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 812dff73daab14741b8d2229224f1f2e, type: 2}
+    - target: {fileID: 1769905274112778612, guid: eaaffc07808ebaf4fae8b342b82799c9, type: 3}
+      propertyPath: 'possibleEncounters.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: a1afbc954567643419ced57c7466028c, type: 2}
+    - target: {fileID: 1769905274112778612, guid: eaaffc07808ebaf4fae8b342b82799c9, type: 3}
+      propertyPath: 'possibleEncounters.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 82a8b6307c4393842b87dd6d00cd8766, type: 2}
     - target: {fileID: 2319490960122711069, guid: eaaffc07808ebaf4fae8b342b82799c9, type: 3}
       propertyPath: m_Enabled
       value: 1
