@@ -120,6 +120,7 @@ public partial class GameHandler : MonoBehaviour
     /// <summary>
     /// The Zombie class which contains HP, its id which is used by the gamehandler to find out which zombie to damage & an enum for checking how close the zombie is to the player.
     /// </summary>
+    /*
     public class Zombie
     {
         public int id = 0;
@@ -183,6 +184,7 @@ public partial class GameHandler : MonoBehaviour
             }
         }
     }
+    */
     #endregion
 
     #region Player Damage Handling

@@ -33,9 +33,9 @@ public partial class GameDisplay : MonoBehaviour
 
     public List<string> cachedBullets = new List<string>();
 
-    public List<GameHandler.Zombie>cachedZombies = new List<GameHandler.Zombie>();
+    public List<Zombie>cachedZombies = new List<Zombie>();
 
-    public List<GameHandler.Zombie> displayedZombies = new List<GameHandler.Zombie>();
+    public List<Zombie> displayedZombies = new List<Zombie>();
 
 
     private bool zombieDisplayUpdateGate;
@@ -47,7 +47,7 @@ public partial class GameDisplay : MonoBehaviour
     {
         public int displayId;
 
-        public GameHandler.Zombie displayedZombie;
+        public Zombie displayedZombie;
 
         public VisualElement displayElement;
 
@@ -356,7 +356,7 @@ public partial class GameDisplay : MonoBehaviour
             
  
 
-            GameHandler.Zombie newZombie =
+            Zombie newZombie =
                 handler.ZombieList.Except(cachedZombies).First();
 
             if (newZombie == null)
@@ -394,7 +394,7 @@ public partial class GameDisplay : MonoBehaviour
 
             occupiedZombieDisplay.Add ( assignedDisplay );
 
-            cachedZombies = new List<GameHandler.Zombie>(handler.ZombieList);
+            cachedZombies = new List<Zombie>(handler.ZombieList);
 
             //if (!occupiedZombieDisplay.Any(x => x.displayElement.ClassListContains("aimed")))
             //{
@@ -446,7 +446,7 @@ public partial class GameDisplay : MonoBehaviour
             occupiedZombieDisplay.Remove(assignedDisplay);
 
 
-            cachedZombies = new List<GameHandler.Zombie>(handler.ZombieList);
+            cachedZombies = new List<Zombie>(handler.ZombieList);
 
         }
 

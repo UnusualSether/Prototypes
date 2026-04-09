@@ -10,7 +10,7 @@ using UnityEngine;
     {
         public virtual string name { get; set; }
 
-        public virtual int WeaponEffect(int numberOfBulletsUsed, int Damage, GameHandler.Zombie targetZombie)
+        public virtual int WeaponEffect(int numberOfBulletsUsed, int Damage, Zombie targetZombie)
         {
             Debug.Log("This weapon has no effect!");
             return Damage;
@@ -27,7 +27,7 @@ using UnityEngine;
 
         int tempo;
 
-        public override int WeaponEffect(int numberOfBulletsUsed, int Damage, GameHandler.Zombie targetZombie)
+        public override int WeaponEffect(int numberOfBulletsUsed, int Damage, Zombie targetZombie)
         {
             int NewDamage;
             if (numberOfBulletsUsed > 3)
@@ -61,7 +61,7 @@ using UnityEngine;
 
         int storedDamage;
 
-        public override int WeaponEffect(int numberOfBulletsUsed, int Damage, GameHandler.Zombie targetZombie)
+        public override int WeaponEffect(int numberOfBulletsUsed, int Damage, Zombie targetZombie)
         {
 
             int prevStored = storedDamage;
