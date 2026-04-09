@@ -1,4 +1,6 @@
+using NUnit.Framework;
 using UnityEngine;
+using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "EncounterData", menuName = "Encounter/EncounterData")]
 public class EncounterData : ScriptableObject
@@ -19,6 +21,18 @@ public class EncounterData : ScriptableObject
     public int numberOfZombies;
 
     public float zombieTimer;
+
+    public List<EnemyData> enemies;
+
+    public virtual void SetParameters()
+    {
+
+    }
+
+    public virtual EnemyData ReturnTheEnemyType()
+    {
+        return enemies[0];
+    }
 
 
 

@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb7e8c2ed0b9d444a8fd92f557814d8b, type: 3}
   m_Name: ShambleRunnerTankTrioWaves
   m_EditorClassIdentifier: Assembly-CSharp::QueuedEncounterData
-  enemiesToQueue:
+  devToDevDescription: Trio all of all 3 basic zombie types in a queued fashion.
+  difficulty: 1
+  numberOfZombies: 0
+  zombieTimer: 2.5
+  enemies:
   - {fileID: 11400000, guid: 6d868533ed6be15418b2497b0379e738, type: 2}
   - {fileID: 11400000, guid: 0c2c753bef9017d48963034c70c68cc3, type: 2}
   - {fileID: 11400000, guid: caba8a8e3092c2f44b9b3fc88535e90c, type: 2}

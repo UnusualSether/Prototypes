@@ -4,8 +4,11 @@ using static GameHandler;
 public class Zombie
 {
     public int id = 0;
+
+    //HP and phase timer are not set by the gamehandler, but by the EnemyData which dictates the enemy's type.
     public int hp;
-    public float PhaseTimer = 5;
+    public float PhaseTimer;
+
     private float PhT1 = 0;
     private bool IsFirstUpdate = true;
 
@@ -63,4 +66,11 @@ public class Zombie
             Debug.Log($"Zombie with id {id} has changed phase to {phase}");
         }
     }
+
+    public Zombie(EnemyData data)
+    {
+        hp = data.HP;
+        PhaseTimer = data.phaseTimer;
+    }
+
 }

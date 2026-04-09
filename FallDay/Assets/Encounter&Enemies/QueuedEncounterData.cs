@@ -1,19 +1,36 @@
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "QueuedEncounterData", menuName = "Encounter/QueuedEncounterData")]
-public class QueuedEncounterData : ScriptableObject
+public class QueuedEncounterData : EncounterData
 {
 
 
-    [Description("Add the enemies you want to show up in this list, remembering that their position in the list will be their position in the queue.")]
-    [SerializeField]
-    List<EnemyData> enemiesToQueue;
 
+    public Queue<EnemyData> spawnQueue = new Queue<EnemyData>();
 
-    public Queue<EnemyData> spawnQueue;
+    public override void SetParameters()
+    {
+        numberOfZombies = enemies.Count;
 
+         if(enemies.Count == 0)
+        {
+            return;
+        }
+
+        foreach(var enemy in enemies)
+        {
+            spawnQueue.Enqueue(enemy);
+        }
+    }
+
+    public override EnemyData ReturnTheEnemyType()
+    {
+        return spawnQueue.Dequeue();
+
+    }
 
 
 }

@@ -16,3 +16,5 @@ MonoBehaviour:
   difficulty: 0
   numberOfZombies: 1
   zombieTimer: 2.5
+  enemies:
+  - {fileID: 11400000, guid: 6d868533ed6be15418b2497b0379e738, type: 2}

@@ -62,11 +62,11 @@ public class TechDemoCamera : MonoBehaviour
             if (_isTouching)
             {
                 _touchTime += Time.deltaTime;
-                Debug.Log("Tempo pressionado:" + _touchTime.ToString("F2") + "s");
+                //Debug.Log("Tempo pressionado:" + _touchTime.ToString("F2") + "s");
             }
             if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
             {
-                Debug.Log("Toque finalizado. Tempo total:" + _touchTime.ToString("F2") + "s");
+                //Debug.Log("Toque finalizado. Tempo total:" + _touchTime.ToString("F2") + "s");
                 _isTouching = false;
             }
 

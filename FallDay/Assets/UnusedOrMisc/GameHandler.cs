@@ -267,6 +267,8 @@ public partial class GameHandler : MonoBehaviour
         {
             lineCanvas.generateVisualContent += OnDrawLines;
         }
+        currentEncounter = tutorial;
+        
     }
 
     public void Update()
@@ -325,15 +327,19 @@ public partial class GameHandler : MonoBehaviour
             stachedZombieID = nextZombieID;
         }
 
-        ZombieList.Add(new Zombie()
+
+       
+
+
+
+
+        ZombieList.Add(new Zombie(currentEncounter.ReturnTheEnemyType())
         {
             id = stachedZombieID,
 
-            hp = zombieHP,
+            phase = Zombie.ZombiePhase.Far
 
-            phase = Zombie.ZombiePhase.Far,
-
-            PhaseTimer = 6f
+            
         }
         );
 
@@ -860,6 +866,11 @@ public partial class GameHandler : MonoBehaviour
     [SerializeField]
     private List<EncounterData> possibleEncounters;
 
+
+    private EncounterData currentEncounter;
+
+    [SerializeField]
+    private EncounterData tutorial;
     private void CreateNewEncounter()
     {
 
@@ -882,12 +893,17 @@ public partial class GameHandler : MonoBehaviour
     }
     public void InitializeEncounter(EncounterData data)
     {
+        data.SetParameters();
+       
         var thisEncounter = new Encounter(data);
+
 
         enemyDefeatTarget = thisEncounter.numberOfZombies;
         zombieSpawnTimer = thisEncounter.zombieTimer;
 
         zombiesSpawned = 0;
+
+        currentEncounter = data;
 
     }
     #endregion

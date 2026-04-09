@@ -9,12 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7dc288e5b1ab9849b20c79da111b004, type: 3}
-  m_Name: SimpleEasy
-  m_EditorClassIdentifier: Assembly-CSharp::EncounterData
-  devToDevDescription: A simple easy encounter with base enemies.
+  m_Script: {fileID: 11500000, guid: 7d3c599f85522fc4e998812470b1db5d, type: 3}
+  m_Name: RandomAllEasy
+  m_EditorClassIdentifier: Assembly-CSharp::RandomEncounterData
+  devToDevDescription: 
   difficulty: 0
   numberOfZombies: 4
-  zombieTimer: 2.5
+  zombieTimer: 2
   enemies:
   - {fileID: 11400000, guid: 6d868533ed6be15418b2497b0379e738, type: 2}
+  - {fileID: 11400000, guid: 0c2c753bef9017d48963034c70c68cc3, type: 2}
+  - {fileID: 11400000, guid: caba8a8e3092c2f44b9b3fc88535e90c, type: 2}
