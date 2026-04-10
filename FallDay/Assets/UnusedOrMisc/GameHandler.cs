@@ -304,8 +304,6 @@ public partial class GameHandler : MonoBehaviour
     IEnumerator ZombieSpawner()
     {
 
-       
-
         ZombieSpawnGate = true;
         yield return new WaitForSeconds(zombieSpawnTimer);
         
