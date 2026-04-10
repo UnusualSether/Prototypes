@@ -10,7 +10,9 @@ public partial class ThreeDGameHandler : MonoBehaviour
     [Header("ROOM TRACKING")]
     [Space(10)]
     public GameObject roomPrefab;
-    public List<GameObject> spawnedRooms = new List<GameObject>();
+    public List<Room> spawnedRooms = new List<Room>();
+
+    public List<RoomData> possibleRooms = new List<RoomData>();
 
     public Queue<GameObject> roomsQueue = new Queue<GameObject>();
 
@@ -58,16 +60,27 @@ public partial class ThreeDGameHandler : MonoBehaviour
     {
         var roomToSpawnNextTo = roomsQueue.Last();
 
+        var newRoomData = NewRoomData();
+
+        var newRoom = new Room(newRoomData);
+
         Vector3 spawnpoint = new Vector3(roomToSpawnNextTo.transform.position.x, roomToSpawnNextTo.transform.position.y, roomToSpawnNextTo.transform.position.z + 5);
 
-        var newlyCreatedRoom = Instantiate(roomPrefab, spawnpoint, new Quaternion(roomToSpawnNextTo.transform.rotation.x,roomToSpawnNextTo.transform.rotation.y,roomToSpawnNextTo.transform.rotation.z,roomToSpawnNextTo.transform.rotation.w));
+        var newlyCreatedRoomPrefab = Instantiate(roomPrefab, spawnpoint, new Quaternion(roomToSpawnNextTo.transform.rotation.x,roomToSpawnNextTo.transform.rotation.y,roomToSpawnNextTo.transform.rotation.z,roomToSpawnNextTo.transform.rotation.w));
 
-        spawnedRooms.Add(newlyCreatedRoom);
+        spawnedRooms.Add(newRoom);
 
-        roomsQueue.Enqueue(newlyCreatedRoom);
+        roomsQueue.Enqueue(newlyCreatedRoomPrefab);
     }
 
 
-   
+   private RoomData NewRoomData()
+    {
+
+       var random =  Random.Range(0,possibleRooms.Count);
+
+       return possibleRooms[random];
+
+    }
 
 }

@@ -20,12 +20,12 @@ public partial class ThreeDGameHandler
     {
         Destroy(room);
 
-        spawnedRooms.Remove(room);
+        
 
     }
     partial void OnStartExtendRoomCulling()
     {
-        roomsQueue.Enqueue(spawnedRooms.First());
+        roomsQueue.Enqueue(spawnedRooms.First().roomPrefab);
 
         RoomSetup();
 
@@ -69,6 +69,8 @@ public partial class ThreeDGameHandler
         var farthestRoom = roomsQueue.Dequeue();
 
         DestroyRoom(farthestRoom);
+
+
 
         if (spawnedRooms.Count < 0)
         {
