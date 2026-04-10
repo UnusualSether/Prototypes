@@ -50,3 +50,6 @@
     scale: 0.9 0.9;
     -unity-background-image-tint-color: rgb(255, 252, 184);
 }
+
+.warning {
+}
