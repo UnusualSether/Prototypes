@@ -2,11 +2,11 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using System.Collections.Generic;
 
-public partial class ZombieVisualPosition : MonoBehaviour
+/* public partial class ZombieVisualPosition : MonoBehaviour
 {
     private List<Label> warning = new List<Label>();
     private GameHandler handler;
-    private Zombie zombie;
+    private Zombie zombie; 
 
     private void OnEnable()
     {
@@ -48,4 +48,4 @@ public partial class ZombieVisualPosition : MonoBehaviour
 
     }
 
-}
+} */
