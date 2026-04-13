@@ -80,4 +80,13 @@ public partial class ThreeDGameHandler
 
 
     }
+
+    public void CullRoomList()
+    {
+        var roomsToCull = spawnedRooms.Take(3);
+
+        spawnedRooms = spawnedRooms.Except(roomsToCull).ToList();
+    }
+
+    
 }

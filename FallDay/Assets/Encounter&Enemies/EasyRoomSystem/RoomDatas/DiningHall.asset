@@ -10,10 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d3aa8ae37b6b7a740b1a7f2d97b0f554, type: 3}
-  m_Name: DiningHallData
-  m_EditorClassIdentifier: 
-  RoomName: DiningHall
-  prefab: {fileID: 8883009178807343592, guid: 4d7b378d664032d4fbb2cb5c4ac0e3c9, type: 3}
-  possibleRewards:
-  - {fileID: 11400000, guid: 289611560babe584f82bada217b1fb48, type: 2}
-  - {fileID: 11400000, guid: 86eeda60448666c41b7511f3bc699298, type: 2}
+  m_Name: DiningHall
+  m_EditorClassIdentifier: Assembly-CSharp::RoomData
+  RoomName: Dining Hall
+  devToDevDescription: A dining hall.
+  prefab: {fileID: 5562670811625834113, guid: 56e778d87c0c06044a57bbfe80d790a2, type: 3}

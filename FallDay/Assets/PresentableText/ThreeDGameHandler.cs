@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Linq.Expressions;
 
 
 public partial class ThreeDGameHandler : MonoBehaviour
@@ -40,7 +41,7 @@ public partial class ThreeDGameHandler : MonoBehaviour
     void OnEnable() 
     { 
         //Room Culling Events
-        CharacterMove.PlayerMoved += CullOldRooms; CharacterMove.PlayerMoved += CreateNewRoom;
+        CharacterMove.PlayerMoved += CullOldRooms; CharacterMove.PlayerMoved += CreateNewRoom;CharacterMove.PlayerMoved += CullRoomList;
         //On Rails Events
         handler.PlayerKilledAllZombies += EncounterEnd;
         
@@ -64,15 +65,44 @@ public partial class ThreeDGameHandler : MonoBehaviour
 
         var newRoom = new Room(newRoomData);
 
-        Vector3 spawnpoint = new Vector3(roomToSpawnNextTo.transform.position.x, roomToSpawnNextTo.transform.position.y, roomToSpawnNextTo.transform.position.z + 5);
+        Vector3 spawnpoint = GetRoomsSpawnDiff(roomToSpawnNextTo,newRoom.roomPrefab);
 
-        var newlyCreatedRoomPrefab = Instantiate(roomPrefab, spawnpoint, new Quaternion(roomToSpawnNextTo.transform.rotation.x,roomToSpawnNextTo.transform.rotation.y,roomToSpawnNextTo.transform.rotation.z,roomToSpawnNextTo.transform.rotation.w));
+        var newlyCreatedRoomPrefab = Instantiate(newRoom.roomPrefab, spawnpoint, new Quaternion(roomToSpawnNextTo.transform.rotation.x,roomToSpawnNextTo.transform.rotation.y,roomToSpawnNextTo.transform.rotation.z,roomToSpawnNextTo.transform.rotation.w));
 
         spawnedRooms.Add(newRoom);
 
         roomsQueue.Enqueue(newlyCreatedRoomPrefab);
     }
 
+    Vector3 GetRoomsSpawnDiff(GameObject previousRoom, GameObject newRoom)
+    {
+
+        var previousRoomSize = RoomBounds(previousRoom).size;
+
+        var newRoomSize = RoomBounds(newRoom).size;
+
+        var sizeOffset = previousRoomSize.z / 2 + newRoomSize.z / 2;
+
+
+        var vectorToReturn = new Vector3(previousRoom.transform.position.x,previousRoom.transform.position.y,previousRoom.transform.position.z + sizeOffset);
+
+
+        return vectorToReturn;
+    }
+
+    Bounds RoomBounds(GameObject room)
+    {
+        var childRenderers = room.GetComponentsInChildren<Renderer>();
+
+        Bounds combined = childRenderers[0].bounds;
+
+        for (int i = 1; i < childRenderers.Length; i++)
+        {
+            combined.Encapsulate(childRenderers[i].bounds);
+        }
+
+        return combined;
+    }
 
    private RoomData NewRoomData()
     {
@@ -83,4 +113,12 @@ public partial class ThreeDGameHandler : MonoBehaviour
 
     }
 
+
+
+    [ContextMenu("Debug Get Size of the room")]
+    private void DebugGetSize()
+    {
+        Debug.LogError(roomsQueue.Last().GetComponentInChildren<BoxCollider>().bounds.size);
+
+    }
 }
