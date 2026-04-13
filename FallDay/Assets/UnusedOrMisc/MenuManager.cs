@@ -4,15 +4,22 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
+    //Set Child Not Parent
+    public GameObject Menu;
+    public GameObject Config;
+
+    private void Start()
+    {
+        Config.SetActive(false);
+    }
+
     private void OnEnable()
     {
-        var uiDocument = GetComponent<UIDocument>();
 
-        //Button startButton = uiDocument.rootVisualElement.Q<Button>("Play");
+        var uiDocument = GetComponent<UIDocument>();
 
         if (uiDocument != null)
         {
-            //startButton.clicked += SceneLoader;
 
             Button startbutton = uiDocument.rootVisualElement.Q<Button>("Play");
             Button configbutton = uiDocument.rootVisualElement.Q<Button>("Config");
@@ -45,16 +52,11 @@ public class MenuManager : MonoBehaviour
             }
         }
     }
-        
-
-    private void SceneLoader()
-    {
-        SceneManager.LoadScene("Scenes/MainScene");
-    }
 
     private void configmenu()
     {
-        SceneManager.LoadScene("Scenes/Configs");
+        Menu.SetActive(false);
+        Config.SetActive(true);
     }
     private void StartGame()
     {
@@ -66,7 +68,8 @@ public class MenuManager : MonoBehaviour
     }
     private void returnmenu()
     {
-        SceneManager.LoadScene("Scenes/MainMenu");
+        Menu.SetActive(true);
+        Config.SetActive(false);
     }
     private void Level1()
     {
