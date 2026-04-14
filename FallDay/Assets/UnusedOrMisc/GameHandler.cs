@@ -15,7 +15,8 @@ public partial class GameHandler : MonoBehaviour
 {
     //Names are extremely important due to the way unity's UI toolkit builder works, for that reason be very
     // careful when changing names of anything in the bullet arrays or in the UI itself.
-    
+    [Header("Seleção de codigo")]
+    public bool oldNew = true;
     #region Lists and Arrays
     //Bullet types that can show up in the grid.
     public string[] bulletList;
@@ -219,7 +220,13 @@ public partial class GameHandler : MonoBehaviour
 
         foreach(var bullet in bulletButton)
         {
-            bullet.RegisterCallback<PointerEnterEvent>(SelectedBullet);
+            if (oldNew)
+                //Seleção entre o codigo novo e o codigo antigo
+                bullet.RegisterCallback<PointerEnterEvent>(SelectedBullet);
+            else 
+            {
+                bullet.RegisterCallback<PointerEnterEvent>(SelectedBulletB);
+            }
         }
 
         //Add the bullets
@@ -797,7 +804,34 @@ public partial class GameHandler : MonoBehaviour
         lineCanvas?.MarkDirtyRepaint();
     }
 
-        
+    public void SelectedBulletB(PointerEnterEvent ev)
+    {
+        var selectedElement = (VisualElement)ev.currentTarget;
+
+        if (selectedElement.ClassListContains("used") == false)
+        {
+            selectedElement.AddToClassList("used");
+            BulletSelected(selectedElement);
+            int targButtonIdenity;
+
+            for (int i = 0; i < bulletButton.Length; i++)
+            {
+                if (selectedElement.name == bulletButton[i].name)
+                {
+                    targButtonIdenity = i;
+                    readyBullets.Add(selectableBullets[targButtonIdenity]);
+
+                    // NOVIDADE AQUI:   /////////////////////////////////////////////////////////////////
+                    selectedUIButtons.Add(selectedElement);
+                    lineCanvas?.MarkDirtyRepaint();
+                }
+            }
+        }
+        else
+        {
+            Debug.Log("This bullet has already been selected!");
+        }
+    }
 
     public void Reload()
     {
