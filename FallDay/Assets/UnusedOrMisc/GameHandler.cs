@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using NUnit.Framework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -712,16 +713,19 @@ public partial class GameHandler : MonoBehaviour
         int row = index / cols;
         int col = index % cols;
 
-        int[] dr = { 0, 0, 1, -1 };
-        int[] dc = { 1, -1, 0, 0 };
+        int[] dr = { -1, -1, -1, 0, 0, 1, 1, 1 };
+        int[] dc = { -1, 0, 1, -1, 1, -1, 0, 1 };
 
-        for (int d = 0; d < 4; d++)
+        for (int d = 0; d < 8; d++)
         {
             int newRow = row + dr[d];
             int newCol = col + dc[d];
 
-            if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols)
+            if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols) 
+            {
                 neighbours.Add(newRow * cols + newCol);
+            }
+                
         }
 
         return neighbours.ToArray();
@@ -748,30 +752,52 @@ public partial class GameHandler : MonoBehaviour
     {
         var selectedElement = (VisualElement)ev.currentTarget;
 
-        if (selectedElement.ClassListContains("used") == false)
+        if (selectedElement.ClassListContains("used"))
         {
-            selectedElement.AddToClassList("used");
-            BulletSelected(selectedElement);
-            int targButtonIdenity;
+            return;
+        }
+        int targButtonIdenity = -1;
 
-            for (int i = 0; i < bulletButton.Length; i++)
+        for (int i = 0; i < bulletButton.Length; i++)
+        {
+            if (selectedElement.name == bulletButton[i].name)
             {
-                if (selectedElement.name == bulletButton[i].name)
-                {
-                    targButtonIdenity = i;
-                    readyBullets.Add(selectableBullets[targButtonIdenity]);
-
-                    // NOVIDADE AQUI:   /////////////////////////////////////////////////////////////////
-                    selectedUIButtons.Add(selectedElement);
-                    lineCanvas?.MarkDirtyRepaint();
-                }
+                targButtonIdenity = i;
+                break;
             }
         }
-        else
+
+        if (selectedUIButtons.Count > 0)
         {
-            Debug.Log("This bullet has already been selected!");
+            var lastSelectedElement = selectedUIButtons.Last();
+
+            int lastButtonIdentify = -1;
+            for (int i = 0; i < bulletButton.Length; i++)
+            {
+                if (lastSelectedElement.name == bulletButton[i].name)
+                {
+                    lastButtonIdentify = i;
+                    break;
+                }
+
+            }
+            int[] vizinhosPermitidos = FetchNeighbours(lastButtonIdentify);
+
+            if (!vizinhosPermitidos.Contains(targButtonIdenity))
+            {
+                return;
+            }
         }
+        selectedElement.AddToClassList("used");
+        BulletSelected(selectedElement);
+
+        readyBullets.Add(selectableBullets[targButtonIdenity]);
+        selectedUIButtons.Add(selectedElement);
+
+        lineCanvas?.MarkDirtyRepaint();
     }
+
+        
 
     public void Reload()
     {
