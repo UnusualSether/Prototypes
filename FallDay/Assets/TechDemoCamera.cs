@@ -73,7 +73,7 @@ public class TechDemoCamera : MonoBehaviour
         }
 
         //definição de ativação de camera, controlle o time para aticar a camera.
-        if (_touchTime > 1f)
+        if (_touchTime > 100f)
         {
             HandleInput();
         }

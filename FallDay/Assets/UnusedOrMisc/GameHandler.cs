@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using NUnit.Framework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,7 +15,8 @@ public partial class GameHandler : MonoBehaviour
 {
     //Names are extremely important due to the way unity's UI toolkit builder works, for that reason be very
     // careful when changing names of anything in the bullet arrays or in the UI itself.
-    
+    [Header("Seleção de codigo")]
+    public bool oldNew = true;
     #region Lists and Arrays
     //Bullet types that can show up in the grid.
     public string[] bulletList;
@@ -218,7 +220,13 @@ public partial class GameHandler : MonoBehaviour
 
         foreach(var bullet in bulletButton)
         {
-            bullet.RegisterCallback<PointerEnterEvent>(SelectedBullet);
+            if (oldNew)
+                //Seleção entre o codigo novo e o codigo antigo
+                bullet.RegisterCallback<PointerEnterEvent>(SelectedBullet);
+            else 
+            {
+                bullet.RegisterCallback<PointerEnterEvent>(SelectedBulletB);
+            }
         }
 
         //Add the bullets
@@ -710,16 +718,19 @@ public partial class GameHandler : MonoBehaviour
         int row = index / cols;
         int col = index % cols;
 
-        int[] dr = { 0, 0, 1, -1 };
-        int[] dc = { 1, -1, 0, 0 };
+        int[] dr = { -1, -1, -1, 0, 0, 1, 1, 1 };
+        int[] dc = { -1, 0, 1, -1, 1, -1, 0, 1 };
 
-        for (int d = 0; d < 4; d++)
+        for (int d = 0; d < 8; d++)
         {
             int newRow = row + dr[d];
             int newCol = col + dc[d];
 
-            if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols)
+            if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols) 
+            {
                 neighbours.Add(newRow * cols + newCol);
+            }
+                
         }
 
         return neighbours.ToArray();
@@ -743,6 +754,55 @@ public partial class GameHandler : MonoBehaviour
     }
 
     public void SelectedBullet(PointerEnterEvent ev)
+    {
+        var selectedElement = (VisualElement)ev.currentTarget;
+
+        if (selectedElement.ClassListContains("used"))
+        {
+            return;
+        }
+        int targButtonIdenity = -1;
+
+        for (int i = 0; i < bulletButton.Length; i++)
+        {
+            if (selectedElement.name == bulletButton[i].name)
+            {
+                targButtonIdenity = i;
+                break;
+            }
+        }
+
+        if (selectedUIButtons.Count > 0)
+        {
+            var lastSelectedElement = selectedUIButtons.Last();
+
+            int lastButtonIdentify = -1;
+            for (int i = 0; i < bulletButton.Length; i++)
+            {
+                if (lastSelectedElement.name == bulletButton[i].name)
+                {
+                    lastButtonIdentify = i;
+                    break;
+                }
+
+            }
+            int[] vizinhosPermitidos = FetchNeighbours(lastButtonIdentify);
+
+            if (!vizinhosPermitidos.Contains(targButtonIdenity))
+            {
+                return;
+            }
+        }
+        selectedElement.AddToClassList("used");
+        BulletSelected(selectedElement);
+
+        readyBullets.Add(selectableBullets[targButtonIdenity]);
+        selectedUIButtons.Add(selectedElement);
+
+        lineCanvas?.MarkDirtyRepaint();
+    }
+
+    public void SelectedBulletB(PointerEnterEvent ev)
     {
         var selectedElement = (VisualElement)ev.currentTarget;
 
