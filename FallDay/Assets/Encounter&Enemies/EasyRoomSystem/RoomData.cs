@@ -9,11 +9,10 @@ public class RoomData : ScriptableObject
 {
     public string RoomName;
 
-
+    [Multiline]
+    public string devToDevDescription;
 
     [Header("Visual Prefab")]
     public GameObject prefab;
 
-    [Header("Rewards")]
-    public List<RewardData> possibleRewards = new List<RewardData>();    
 }
