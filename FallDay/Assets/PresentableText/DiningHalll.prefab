@@ -897,8 +897,8 @@ GameObject:
   - component: {fileID: 1962226230935571050}
   m_Layer: 0
   m_Name: Floor (35)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_TagString: DoorTile
+  m_Icon: {fileID: 2800000, guid: 276586e5fa8986e43907ba6d787a18a0, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1653,8 +1653,8 @@ GameObject:
   - component: {fileID: 571160791352657333}
   m_Layer: 0
   m_Name: Floor (41)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_TagString: DoorTile
+  m_Icon: {fileID: 2800000, guid: 276586e5fa8986e43907ba6d787a18a0, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2536,6 +2536,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DiningHalll
       objectReference: {fileID: 0}
+    - target: {fileID: 38049718111097171, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 186127827702297290, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -2656,6 +2660,18 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 6b8e646b54e536c49b93f118d38056fe, type: 2}
+    - target: {fileID: 6326366640920535337, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672005967606011397, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+      propertyPath: 'doors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 6403713844072060286}
+    - target: {fileID: 6672005967606011397, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+      propertyPath: 'doors.Array.data[2]'
+      value: 
+      objectReference: {fileID: 4455807471794283448}
     - target: {fileID: 7619857674392264106, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -2664,6 +2680,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 6b8e646b54e536c49b93f118d38056fe, type: 2}
+    - target: {fileID: 8258993778013047561, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8789465803792925953, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
