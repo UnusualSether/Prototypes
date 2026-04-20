@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.UIElements;
+using System.Collections.Generic;
 using static GameHandler;
 
 public class Zombie
@@ -72,5 +74,11 @@ public class Zombie
         hp = data.HP;
         PhaseTimer = data.phaseTimer;
     }
+
+    public void ZombieDead()
+    {
+
+    }
+
 
 }

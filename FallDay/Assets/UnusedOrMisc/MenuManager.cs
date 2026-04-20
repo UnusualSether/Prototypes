@@ -13,7 +13,7 @@ public class MenuManager : MonoBehaviour
         Config.SetActive(false);
     }
 
-    private void OnEnable()
+    public void OnEnable()
     {
 
         var uiDocument = GetComponent<UIDocument>();
