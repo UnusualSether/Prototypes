@@ -66,22 +66,27 @@ public partial class ThreeDGameHandler : MonoBehaviour
 
         var newRoom = new Room(newRoomData);
 
-        int randomDoor = UnityEngine.Random.Range(1, Enum.GetNames(typeof(DoorHandler.DoorDirection)).Length);
+        int randomDoor = UnityEngine.Random.Range((int)DoorHandler.DoorDirection.North, Enum.GetNames(typeof(DoorHandler.DoorDirection)).Length);
 
-        Debug.LogWarning((DoorHandler.DoorDirection)randomDoor);
+        DoorHandler.DoorDirection randomDoorDirection = (DoorHandler.DoorDirection)randomDoor;
 
         //Failsafe so rooms don't spawn into eachother
-        if ((DoorHandler.DoorDirection)randomDoor != DoorHandler.DoorDirection.North)
+        if (randomDoorDirection != DoorHandler.DoorDirection.North)
         {
-            if ((DoorHandler.DoorDirection)randomDoor == previousDirection)
-            {
+
+            if (randomDoorDirection == DoorHandler.DoorDirection.West && previousDirection == DoorHandler.DoorDirection.East || randomDoorDirection == DoorHandler.DoorDirection.East && previousDirection == DoorHandler.DoorDirection.West)
+            { 
                 Debug.LogWarning("Avoiding Crossing rooms, re-rolling direction");
                 List<DoorHandler.DoorDirection> otherTwoPossibilites = new List<DoorHandler.DoorDirection> { DoorHandler.DoorDirection.North, DoorHandler.DoorDirection.West, DoorHandler.DoorDirection.East };
                 otherTwoPossibilites.Remove(previousDirection);
 
-                randomDoor = (int)otherTwoPossibilites[UnityEngine.Random.Range(0, otherTwoPossibilites.Count)];
+                randomDoorDirection = otherTwoPossibilites[UnityEngine.Random.Range(0, otherTwoPossibilites.Count)];
             }
         }
+
+
+        Debug.LogWarning((DoorHandler.DoorDirection)randomDoor);
+
 
         previousDirection = (DoorHandler.DoorDirection)randomDoor;
 
