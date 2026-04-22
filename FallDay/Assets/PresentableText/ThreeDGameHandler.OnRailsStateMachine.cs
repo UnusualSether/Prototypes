@@ -19,7 +19,11 @@ public partial class ThreeDGameHandler
         Cleanup
     }
 
+    public GameObject player;
     
+
+
+
 
     [Header("RAILS STATE MACHINE")]
     [Space(10)]
@@ -69,7 +73,7 @@ public partial class ThreeDGameHandler
 
 
     
-    
+
 
     #region Test Purposes
     public void CheckCurrentState(States stateToCheck)
@@ -119,13 +123,16 @@ public partial class ThreeDGameHandler
         RailStarted?.Invoke();
         currentState = States.OnRail;
 
-        EndRails();
-
     }
 
     public void EndRails()
     {
         RailEnded?.Invoke();
+
+        if (handler.ui.visible == true)
+        {
+            return;
+        }
 
         StartEncounter();
     }
@@ -139,11 +146,9 @@ public partial class ThreeDGameHandler
 
     public void EncounterEnd()
     {
-        if (currentState == States.Encounter)
-        {
+        
             EncounterEnded?.Invoke();
             StartCleanup();
-        }
         
     }
 
@@ -167,5 +172,6 @@ public partial class ThreeDGameHandler
     }
 
 
+   
 
 }

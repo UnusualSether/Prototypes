@@ -19,6 +19,8 @@ public class CharacterMove : MonoBehaviour
     #region Events
     public static event Action PlayerMoved;
 
+    public static event Action PlayerHasReachedNextPoint;
+
     #endregion
 
 
@@ -29,6 +31,7 @@ public class CharacterMove : MonoBehaviour
     public NavMeshAgent navMesh;
 
     public NavMeshSurface surface;
+
     public void Start()
     {
         charTransform = this.gameObject.GetComponent<Transform>();
@@ -192,16 +195,13 @@ public class CharacterMove : MonoBehaviour
             return;
         }
 
-        Vector3 inertStatus = new Vector3(0, 0, 0);
 
-        if (GetComponent<Rigidbody>().linearVelocity != inertStatus )
+        if (navMesh.remainingDistance < 0.1)
         {
-            encounterGate = false;
-            Debug.Log("I'm walking and on rails!");
-
+            PlayerHasReachedNextPoint?.Invoke();
         }
 
-        if (transform.position == wayPointList[0].wayPointPosition) 
+            if (transform.position == wayPointList[0].wayPointPosition) 
         {
 
             InitializeWaypoints();

@@ -45,7 +45,8 @@ public partial class ThreeDGameHandler : MonoBehaviour
         CharacterMove.PlayerMoved += CullOldRooms; CharacterMove.PlayerMoved += CreateNewRoom;CharacterMove.PlayerMoved += CullRoomList;
         //On Rails Events
         handler.PlayerKilledAllZombies += EncounterEnd;
-        
+        //Player Events
+        CharacterMove.PlayerHasReachedNextPoint += EndRails;
     }
 
     void OnDisable() 
@@ -54,7 +55,8 @@ public partial class ThreeDGameHandler : MonoBehaviour
         CharacterMove.PlayerMoved -= CullOldRooms; CharacterMove.PlayerMoved -= CreateNewRoom;
         //On Rails Events
         handler.PlayerKilledAllZombies -= EncounterEnd;
-
+        //Player Events
+        CharacterMove.PlayerHasReachedNextPoint -= EndRails;
     }
 
     [ContextMenu("SpawnNewRoom")]
