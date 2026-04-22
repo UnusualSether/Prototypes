@@ -725,6 +725,7 @@ MonoBehaviour:
   roomPrefab: {fileID: 38049718111097171, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
   spawnedRooms:
   - roomPrefab: {fileID: 1447974799}
+    doorTiles: []
   possibleRooms:
   - {fileID: 11400000, guid: 5751550d68a36924381eaf9b1035a096, type: 2}
   - {fileID: 11400000, guid: 73d7b142dd8073548aeeee4b631c73b5, type: 2}
@@ -732,7 +733,7 @@ MonoBehaviour:
   handler: {fileID: 2043720488}
   currentState: 1
   stateFlow: 000000000100000002000000
-  maxNumberOfRooms: 3
+  maxNumberOfRooms: 6
 --- !u!4 &1326751366
 Transform:
   m_ObjectHideFlags: 0

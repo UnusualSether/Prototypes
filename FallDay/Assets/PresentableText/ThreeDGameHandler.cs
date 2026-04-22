@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Linq.Expressions;
+using System;
 
 
 public partial class ThreeDGameHandler : MonoBehaviour
@@ -65,7 +66,31 @@ public partial class ThreeDGameHandler : MonoBehaviour
 
         var newRoom = new Room(newRoomData);
 
-        Vector3 spawnpoint = GetRoomsSpawnDiff(roomToSpawnNextTo,newRoom.roomPrefab);
+        int randomDoor = UnityEngine.Random.Range((int)DoorHandler.DoorDirection.North, Enum.GetNames(typeof(DoorHandler.DoorDirection)).Length);
+
+        DoorHandler.DoorDirection randomDoorDirection = (DoorHandler.DoorDirection)randomDoor;
+
+        //Failsafe so rooms don't spawn into eachother
+        if (randomDoorDirection != DoorHandler.DoorDirection.North)
+        {
+
+            if (randomDoorDirection == DoorHandler.DoorDirection.West && previousDirection == DoorHandler.DoorDirection.East || randomDoorDirection == DoorHandler.DoorDirection.East && previousDirection == DoorHandler.DoorDirection.West)
+            { 
+                Debug.LogWarning("Avoiding Crossing rooms, re-rolling direction");
+                List<DoorHandler.DoorDirection> otherTwoPossibilites = new List<DoorHandler.DoorDirection> { DoorHandler.DoorDirection.North, DoorHandler.DoorDirection.West, DoorHandler.DoorDirection.East };
+                otherTwoPossibilites.Remove(previousDirection);
+
+                randomDoorDirection = otherTwoPossibilites[UnityEngine.Random.Range(0, otherTwoPossibilites.Count)];
+            }
+        }
+
+
+        Debug.LogWarning((DoorHandler.DoorDirection)randomDoor);
+
+
+        previousDirection = (DoorHandler.DoorDirection)randomDoor;
+
+        Vector3 spawnpoint = GetRoomsSpawnDiff(roomToSpawnNextTo, newRoom.roomPrefab, (DoorHandler.DoorDirection)randomDoor);
 
         var newlyCreatedRoomPrefab = Instantiate(newRoom.roomPrefab, spawnpoint, new Quaternion(roomToSpawnNextTo.transform.rotation.x,roomToSpawnNextTo.transform.rotation.y,roomToSpawnNextTo.transform.rotation.z,roomToSpawnNextTo.transform.rotation.w));
 
@@ -74,18 +99,57 @@ public partial class ThreeDGameHandler : MonoBehaviour
         roomsQueue.Enqueue(newlyCreatedRoomPrefab);
     }
 
-    Vector3 GetRoomsSpawnDiff(GameObject previousRoom, GameObject newRoom)
+
+    DoorHandler.DoorDirection previousDirection;
+    Vector3 GetRoomsSpawnDiff(GameObject previousRoom, GameObject newRoom, DoorHandler.DoorDirection direction)
     {
 
         var previousRoomSize = RoomBounds(previousRoom).size;
 
         var newRoomSize = RoomBounds(newRoom).size;
 
-        var sizeOffset = previousRoomSize.z / 2 + newRoomSize.z / 2;
+        Vector3 vectorToReturn = new Vector3();
+
+        float sizeOffset;
 
 
-        var vectorToReturn = new Vector3(previousRoom.transform.position.x,previousRoom.transform.position.y,previousRoom.transform.position.z + sizeOffset);
+       
 
+        //Check for which door
+        switch (direction)
+        {
+
+            case (DoorHandler.DoorDirection.North):
+
+
+                sizeOffset = previousRoomSize.z / 2 + newRoomSize.z / 2;
+                vectorToReturn = new Vector3(previousRoom.transform.position.x, previousRoom.transform.position.y, previousRoom.transform.position.z + sizeOffset);
+
+                break;
+            case (DoorHandler.DoorDirection.East):
+
+                sizeOffset = previousRoomSize.x / 2 + newRoomSize.x / 2;
+                vectorToReturn = new Vector3(previousRoom.transform.position.x + sizeOffset, previousRoom.transform.position.y, previousRoom.transform.position.z);
+
+                break;
+            case (DoorHandler.DoorDirection.West):
+
+
+                sizeOffset = previousRoomSize.x / 2 + newRoomSize.x / 2;
+                vectorToReturn = new Vector3(previousRoom.transform.position.x - sizeOffset, previousRoom.transform.position.y, previousRoom.transform.position.z);
+
+                break;
+
+            case (DoorHandler.DoorDirection.South):
+
+                Debug.LogError("Recieved South door! This makes no sense.");
+
+                break;
+        }
+
+
+       
+        previousDirection = (DoorHandler.DoorDirection)direction;
 
         return vectorToReturn;
     }
@@ -93,6 +157,11 @@ public partial class ThreeDGameHandler : MonoBehaviour
     Bounds RoomBounds(GameObject room)
     {
         var childRenderers = room.GetComponentsInChildren<Renderer>();
+
+        if (childRenderers.Length == 0)
+        {
+            return room.GetComponent<Renderer>().bounds;
+        }
 
         Bounds combined = childRenderers[0].bounds;
 
@@ -104,10 +173,12 @@ public partial class ThreeDGameHandler : MonoBehaviour
         return combined;
     }
 
+   
+
    private RoomData NewRoomData()
     {
 
-       var random =  Random.Range(0,possibleRooms.Count);
+       var random =  UnityEngine.Random.Range(0,possibleRooms.Count);
 
        return possibleRooms[random];
 
