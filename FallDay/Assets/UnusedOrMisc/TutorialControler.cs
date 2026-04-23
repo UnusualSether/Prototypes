@@ -17,7 +17,6 @@ public partial class TutorialControler : MonoBehaviour
     private void Start()
     {
         ZombieTutorial();
-        Debug.Log("Funcionou");
     }
 
     public void ZombieTutorial()
