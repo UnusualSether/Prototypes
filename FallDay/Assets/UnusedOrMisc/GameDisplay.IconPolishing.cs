@@ -11,17 +11,24 @@ public partial class GameDisplay
 
 
 
-    [Header("Icon Animations")]
+    [Header("BulletIcon Animations")]
     [SerializeField]
-    float bulletShakeDuration = 0.5f;
+    float bulletElementShakeDuration = 0.5f;
     [SerializeField]
-    float bulletShakeMagnitude = 0.5f;
+    float bulletElementShakeMagnitude = 0.5f;
 
     [Header("Camera Animations")]
     [SerializeField]
     float screenShakeDuration = 0.5f;
     [SerializeField]
     float screenShakeMagnitude = 0.5f;
+
+    [SerializeField]
+    float zombieShakeDuration = 0.5f;
+    [SerializeField]
+    float zombieShakeMagnitude = 0.5f;
+
+    
     
 
     void ShakeBullet(VisualElement elementToShake)
@@ -34,14 +41,24 @@ public partial class GameDisplay
        //Check if readyBullets has any elements just so the multiplication doesn't return a zero.
         if (handler.readyBullets.Count > 0)
         {
-            StartCoroutine(ShakeElement(elementToShake, bulletShakeDuration, bulletShakeMagnitude * handler.readyBullets.Count));
+            StartCoroutine(ShakeElement(elementToShake, bulletElementShakeDuration, bulletElementShakeMagnitude * handler.readyBullets.Count));
         }
 
         //If it is zero then just use the base multiplier.
         else
-            StartCoroutine(ShakeElement(elementToShake, bulletShakeDuration, bulletShakeMagnitude));
+            StartCoroutine(ShakeElement(elementToShake, bulletElementShakeDuration, bulletElementShakeMagnitude));
 
 
+    }
+
+    void ShakeZombie(VisualElement elementToShake)
+    {
+        if (elementToShake == null)
+        {
+            return;
+        }
+
+        StartCoroutine(ShakeElement(elementToShake, zombieShakeDuration, zombieShakeMagnitude * 4));
     }
 
     void ShakeScreen(int damageDealt)

@@ -148,7 +148,6 @@ public class CharacterMove : MonoBehaviour
             return;
         }
 
-        wayPointList.Clear();
 
         InitializeWaypoints();
         
@@ -176,6 +175,8 @@ public class CharacterMove : MonoBehaviour
         wayPointList.RemoveAt(0);
 
         GoToNextWaypoint(nextWayPoint);
+
+        WayPointMaintenance();
 
     }
         public void GoToNextWaypoint(Waypoint nextWaypoint)

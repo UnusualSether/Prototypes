@@ -74,7 +74,7 @@ public partial class GameDisplay : MonoBehaviour
 
         handler.BulletSelected += PlayerClickSound;
 
-        handler.SucessfulShot += ShakeScreen;
+        handler.ZombieDamaged += ShakeZombieVisual;
 
 
         //Find the Bullet Displays using a for loop
@@ -469,10 +469,26 @@ public partial class GameDisplay : MonoBehaviour
             {
                 zombieDisplayToUpdate = display;
                 zombieDisplayToUpdate.displayElement.AddToClassList("warning");
+
             }
         }
 
         
+    }
+
+    void ShakeZombieVisual(Zombie zombie)
+    {
+        ZombieDisplay zombieDisplayToShake;
+
+        foreach (var display in occupiedZombieDisplay)
+        {
+            if (display.displayedZombie == zombie)
+            {
+                zombieDisplayToShake = display;
+                ShakeZombie(zombieDisplayToShake.displayElement);
+
+            }
+        }
     }
 
     #endregion

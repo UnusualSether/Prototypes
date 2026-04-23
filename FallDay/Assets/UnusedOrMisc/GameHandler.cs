@@ -45,7 +45,9 @@ public partial class GameHandler : MonoBehaviour
 
     //Zombie related events
     public event Action ZombieSpawned;
+    public event Action<Zombie> ZombieDamaged;
     public event Action ZombieKilled;
+
 
     //Objective related events
     public event Action PlayerKilledAllZombies;
@@ -413,12 +415,13 @@ public partial class GameHandler : MonoBehaviour
         {
             zombieToDamage.hp -= damage;
             Debug.Log($"Zombie with id {zombieToDamage.id} took {damage} damage and now has {zombieToDamage.hp} hp.");
+            ZombieDamaged.Invoke(zombieToDamage);
         }
     }
     public void _KillZombie(int id)
     {
         _KillZombie(zombieLookup[id]);
-    }
+    } 
     public void _KillZombie(Zombie zombieToKill) //<= same as zombie damege ,just skipping a step
     {
         Debug.Log($"killed zombie ID {zombieToKill.id} removing them from selectable zombies.");
