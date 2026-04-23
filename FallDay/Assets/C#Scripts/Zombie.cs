@@ -1,5 +1,8 @@
 using UnityEngine;
+using UnityEngine.UIElements;
+using System.Collections.Generic;
 using static GameHandler;
+using System;
 
 public class Zombie
 {
@@ -23,6 +26,8 @@ public class Zombie
     public ZombiePhase phase;
 
     public int currentDisplay;
+
+    public event Action<Zombie> ZombieIsClose;
 
     public void UpdatePhase(float deltaTime)
     {
@@ -64,6 +69,7 @@ public class Zombie
         {
             phase = ZombiePhase.Close;
             Debug.Log($"Zombie with id {id} has changed phase to {phase}");
+            ZombieIsClose?.Invoke(this);
         }
     }
 
@@ -72,5 +78,11 @@ public class Zombie
         hp = data.HP;
         PhaseTimer = data.phaseTimer;
     }
+
+    public void ZombieDead()
+    {
+
+    }
+
 
 }
