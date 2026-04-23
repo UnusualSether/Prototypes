@@ -150,6 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09f6f513e27c0ac4fbef0f46ec8f7088, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  oldNew: 1
   bulletList:
   - goodBullet
   - shitBullet
@@ -169,8 +170,15 @@ MonoBehaviour:
   numberOfZombiesInLookup: 0
   numberOfZombiesinList: 0
   zombieHP: 50
+  preferenceZombie: 0
+  nulledPreference: -1
   SelectedZombie: 0
   zombieSpawnTimer: 2.5
+  lineColor: {r: 1, g: 1, b: 1, a: 1}
+  lineWidth: 10
+  possibleEncounters:
+  - {fileID: 11400000, guid: 5f01e602bbf13774a998fe9d6e7a2cac, type: 2}
+  tutorial: {fileID: 11400000, guid: da695e5580bbabc48b518bb800a1523e, type: 2}
 --- !u!4 &307697821
 Transform:
   m_ObjectHideFlags: 0
@@ -205,6 +213,12 @@ MonoBehaviour:
   zombieCountWatcher: 0
   bulletIndexer: 1
   cachedBullets: []
+  bulletShakeDuration: 0.5
+  bulletShakeMagnitude: 0.5
+  screenShakeDuration: 0.5
+  screenShakeMagnitude: 0.5
+  clickSound: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!114 &307697823
 MonoBehaviour:
   m_ObjectHideFlags: 0

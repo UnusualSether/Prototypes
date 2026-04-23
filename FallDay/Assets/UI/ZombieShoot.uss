@@ -52,5 +52,5 @@
 }
 
 .warning {
-    opacity: 1;
+    background-color: rgb(255, 88, 88);
 }
