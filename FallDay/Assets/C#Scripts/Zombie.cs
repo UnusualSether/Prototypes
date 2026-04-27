@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using static GameHandler;
 using System;
 
+[Serializable]
 public class Zombie
 {
     public int id = 0;
