@@ -392,6 +392,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &335037227 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8401835703245098119, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+  m_PrefabInstance: {fileID: 6639379496333506865}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &335037233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 335037227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &438882077
 GameObject:
   m_ObjectHideFlags: 0
@@ -935,10 +952,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8ba1aacfae321ab42bf8288f1c500769, type: 2}
   - {fileID: 11400000, guid: 843c0d2555d3d7547828cd295e09e380, type: 2}
   handler: {fileID: 2043720488}
+  playerChooseSystem: 1
   player: {fileID: 0}
   currentState: 1
   stateFlow: 000000000100000002000000
   maxNumberOfRooms: 6
+  receivedDirection: 3
+  swipe_threshold: 100
 --- !u!4 &1326751366
 Transform:
   m_ObjectHideFlags: 0
@@ -1688,6 +1708,18 @@ PrefabInstance:
       propertyPath: textureToMeshUnits
       value: 0.38
       objectReference: {fileID: 0}
+    - target: {fileID: 8258993778013047561, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+      propertyPath: m_TagString
+      value: DoorTile
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401835703245098119, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+      propertyPath: m_TagString
+      value: DoorTile
+      objectReference: {fileID: 0}
+    - target: {fileID: 9155276205816318866, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+      propertyPath: m_TagString
+      value: DoorTile
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 5546793239023741096, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
@@ -1695,7 +1727,10 @@ PrefabInstance:
     - {fileID: 6016938012085282064, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
     - {fileID: 5233734683875748881, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8401835703245098119, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 335037233}
   m_SourcePrefab: {fileID: 100100000, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

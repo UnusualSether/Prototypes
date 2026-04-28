@@ -39,18 +39,14 @@ public class CharacterMove : MonoBehaviour
     }
     
     //Subscribe the player move to next waypoint function to whenevr the gamehandler deetcts that we're suppose to be on rails/
-    void OnEnable() { ThreeDGameHandler.RailStarted += FindNextWaypoint; ThreeDGameHandler.RoomSetupComplete += InitializeWaypoints; }
+    void OnEnable() { ThreeDGameHandler.RailStarted += FindNextWaypoint; ThreeDGameHandler.RoomSetupComplete += InitializeWaypoints;  }
     void OnDisable() { ThreeDGameHandler.RailStarted -= FindNextWaypoint; ThreeDGameHandler.RoomSetupComplete -= InitializeWaypoints; }
     
 
     public void Update()
     {
-        WalkForward();
-        LookLeft();
-        LookRight();
-        ClickControls();
-        CheckStatus();
 
+        
         
 
 }
@@ -61,51 +57,10 @@ public class CharacterMove : MonoBehaviour
     {
         public Vector3 wayPointPosition;
 
-        public int numberOfEnemies;
-
-        public bool hasEncounter;
     }
 
     public List<Waypoint> wayPointList = new List<Waypoint>();
 
-
-    [ContextMenu("Look Left")]
-    public void LookLeft()
-    {
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            charTransform.Rotate(0, -90, 0);
-        }
-    }
-
-    [ContextMenu("Move Right")]
-    public void LookRight()
-    {
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            charTransform.Rotate(0, charTransform.rotation.y + 90, 0);
-        }
-        
-    }
-
-    private void ClickControls()
-    {
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            Vector3 clickPoint = Input.mousePosition;
-
-            Vector3 worldPostion = Camera.main.ScreenToWorldPoint(clickPoint);
-
-            NavMeshPath newPath = new NavMeshPath();
-
-            
-
-            
-        }
-
-        
-    }
 
     [ContextMenu("InitializeWayPoints")]    
     
@@ -123,11 +78,7 @@ public class CharacterMove : MonoBehaviour
 
             var newWaypoint = new Waypoint()
             {
-                wayPointPosition = item.transform.position,
-                numberOfEnemies = UnityEngine.Random.Range(0, 5),
-                hasEncounter = UnityEngine.Random.Range(0, 1) == 0,
-
-
+                wayPointPosition = item.transform.position
             };
 
             wayPointList.Add(newWaypoint);
@@ -202,47 +153,17 @@ public class CharacterMove : MonoBehaviour
             PlayerHasReachedNextPoint?.Invoke();
         }
 
-            if (transform.position == wayPointList[0].wayPointPosition) 
+        if (transform.position == wayPointList[0].wayPointPosition)
         {
 
             InitializeWaypoints();
 
-            if (encounterHere(wayPointList[0]) && !encounterGate)
-            {
-                Debug.Log("I'm in an encounter!");
-            }
-        }
 
-
-    }
-
-
-    public bool encounterHere(Waypoint waypoint)
-    {
-        if (waypoint.hasEncounter == true)
-        {
-            return true;
-        }
-
-        return false;
-    }
-    public void WalkForward()
-    {
-
-       
-
-        if (Input.GetKey(KeyCode.Space))
-        {
-
-            if (PathBlocked())
-            {
-                return;
-            }
-
-
-            charTransform.transform.position += transform.forward * speed * Time.deltaTime;
         }
     }
+
+
+   
 
     public bool PathBlocked()
     {

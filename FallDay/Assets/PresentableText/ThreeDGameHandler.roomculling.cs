@@ -40,12 +40,20 @@ public partial class ThreeDGameHandler
     {
 
 
-        while (roomsQueue.Count != maxNumberOfRooms)
+        if (!playerChooseSystem)
         {
-            CreateNewRoom();
+            while (roomsQueue.Count != maxNumberOfRooms)
+            {
+                CreateNewRoom();
+            }
         }
 
-        RoomSetupComplete?.Invoke();
+        else
+        {
+            CreateThreeWay();
+        }
+
+            RoomSetupComplete?.Invoke();
     }
     public bool RoomsNeedCulling()
     {

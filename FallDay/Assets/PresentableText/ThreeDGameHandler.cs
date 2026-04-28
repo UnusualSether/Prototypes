@@ -20,6 +20,8 @@ public partial class ThreeDGameHandler : MonoBehaviour
 
     public GameHandler handler;
 
+    public bool playerChooseSystem;
+
 
     /// <summary>
     /// This is a function which you can call on any other partial ThreeDGameHandler script, it is basically a 
@@ -29,6 +31,8 @@ public partial class ThreeDGameHandler : MonoBehaviour
 
     partial void OnStartExtendRailMethod();
 
+    partial void OnStartExtendPlayerChoiceMethod();
+
 
 
     private void Start()
@@ -36,6 +40,8 @@ public partial class ThreeDGameHandler : MonoBehaviour
         OnStartExtendRailMethod();
 
         OnStartExtendRoomCulling();
+
+        OnStartExtendPlayerChoiceMethod();
     }
 
 
@@ -46,7 +52,9 @@ public partial class ThreeDGameHandler : MonoBehaviour
         //On Rails Events
         handler.PlayerKilledAllZombies += EncounterEnd;
         //Player Events
-        CharacterMove.PlayerHasReachedNextPoint += EndRails;
+        CharacterMove.PlayerHasReachedNextPoint += PlayerToEncounterGate;
+        //Player Choice Events
+
     }
 
     void OnDisable() 
@@ -64,9 +72,12 @@ public partial class ThreeDGameHandler : MonoBehaviour
     {
         var roomToSpawnNextTo = roomsQueue.Last();
 
+
         var newRoomData = NewRoomData();
 
         var newRoom = new Room(newRoomData);
+
+       
 
         int randomDoor = UnityEngine.Random.Range((int)DoorHandler.DoorDirection.North, Enum.GetNames(typeof(DoorHandler.DoorDirection)).Length);
 
@@ -77,7 +88,7 @@ public partial class ThreeDGameHandler : MonoBehaviour
         {
 
             if (randomDoorDirection == DoorHandler.DoorDirection.West && previousDirection == DoorHandler.DoorDirection.East || randomDoorDirection == DoorHandler.DoorDirection.East && previousDirection == DoorHandler.DoorDirection.West)
-            { 
+            {
                 Debug.LogWarning("Avoiding Crossing rooms, re-rolling direction");
                 List<DoorHandler.DoorDirection> otherTwoPossibilites = new List<DoorHandler.DoorDirection> { DoorHandler.DoorDirection.North, DoorHandler.DoorDirection.West, DoorHandler.DoorDirection.East };
                 otherTwoPossibilites.Remove(previousDirection);
@@ -94,7 +105,7 @@ public partial class ThreeDGameHandler : MonoBehaviour
 
         Vector3 spawnpoint = GetRoomsSpawnDiff(roomToSpawnNextTo, newRoom.roomPrefab, (DoorHandler.DoorDirection)randomDoor);
 
-        var newlyCreatedRoomPrefab = Instantiate(newRoom.roomPrefab, spawnpoint, new Quaternion(roomToSpawnNextTo.transform.rotation.x,roomToSpawnNextTo.transform.rotation.y,roomToSpawnNextTo.transform.rotation.z,roomToSpawnNextTo.transform.rotation.w));
+        var newlyCreatedRoomPrefab = Instantiate(newRoom.roomPrefab, spawnpoint, new Quaternion(roomToSpawnNextTo.transform.rotation.x, roomToSpawnNextTo.transform.rotation.y, roomToSpawnNextTo.transform.rotation.z, roomToSpawnNextTo.transform.rotation.w));
 
         spawnedRooms.Add(newRoom);
 
@@ -192,6 +203,39 @@ public partial class ThreeDGameHandler : MonoBehaviour
     private void DebugGetSize()
     {
         Debug.LogError(roomsQueue.Last().GetComponentInChildren<BoxCollider>().bounds.size);
+
+    }
+
+    private void CreateThreeWay()
+    {
+
+        var rootRoom = roomsQueue.Last();
+
+
+        var numberOfRootRoomDoors = GameObject.FindGameObjectsWithTag("DoorTile").Where(x => x.transform.parent.name == rootRoom.transform.name).Count();
+
+        int doorDirectionIndex = 1;
+
+        Room[] rooms = new Room[numberOfRootRoomDoors];
+
+        List<GameObject> roomsToQueue = new List<GameObject>();
+
+        for (int i = 0; i < rooms.Length; i++)
+        {
+            rooms[i] = new Room(NewRoomData());
+
+            var newlyCreatedRoomPrefab = Instantiate(rooms[i].roomPrefab, GetRoomsSpawnDiff(rootRoom, rooms[i].roomPrefab, (DoorHandler.DoorDirection)doorDirectionIndex), new Quaternion(rootRoom.transform.rotation.x, rootRoom.transform.rotation.y, rootRoom.transform.rotation.z, rootRoom.transform.rotation.w));
+
+            roomsToQueue.Add(newlyCreatedRoomPrefab);
+
+            doorDirectionIndex++;
+        }
+
+      
+      
+
+
+
 
     }
 }

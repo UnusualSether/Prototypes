@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8531515407255403493}
   - component: {fileID: 6699022032625943183}
   - component: {fileID: 8308862404735805962}
+  - component: {fileID: 3518123326078578706}
   m_Layer: 0
   m_Name: Floor (40)
   m_TagString: Untagged
@@ -126,6 +127,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.0000002, z: 6.123235e-17}
   m_Center: {x: 0, y: -0.00000047683716, z: 0}
+--- !u!114 &3518123326078578706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 594587187334302955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
 --- !u!1 &900024234148120046
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,6 +152,7 @@ GameObject:
   - component: {fileID: 7126447188748518829}
   - component: {fileID: 4462593757050582686}
   - component: {fileID: 151597118133238661}
+  - component: {fileID: 5648293079027797379}
   m_Layer: 0
   m_Name: Floor (26)
   m_TagString: Untagged
@@ -252,6 +266,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.0000002, z: 6.123235e-17}
   m_Center: {x: 0, y: 0.00000047683716, z: 0}
+--- !u!114 &5648293079027797379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900024234148120046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
 --- !u!1 &1768461682504036474
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,6 +291,7 @@ GameObject:
   - component: {fileID: 7063311790986726315}
   - component: {fileID: 3029006145170484835}
   - component: {fileID: 2661943156628001492}
+  - component: {fileID: 8349304848061854706}
   m_Layer: 0
   m_Name: Floor (36)
   m_TagString: Untagged
@@ -378,6 +405,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.0000002, z: 6.123235e-17}
   m_Center: {x: 0, y: 0.00000047683716, z: 0}
+--- !u!114 &8349304848061854706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1768461682504036474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
 --- !u!1 &2401684335689449002
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,6 +430,7 @@ GameObject:
   - component: {fileID: 1109634669427020852}
   - component: {fileID: 8108388005360900809}
   - component: {fileID: 8574050941891266936}
+  - component: {fileID: 7273988385227573768}
   m_Layer: 0
   m_Name: Floor (32)
   m_TagString: Untagged
@@ -504,6 +544,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.0000002, z: 6.123235e-17}
   m_Center: {x: 0, y: -0.00000047683716, z: 0}
+--- !u!114 &7273988385227573768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2401684335689449002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
 --- !u!1 &2506641465671858326
 GameObject:
   m_ObjectHideFlags: 0
@@ -517,6 +569,7 @@ GameObject:
   - component: {fileID: 7405268527319640188}
   - component: {fileID: 4806449320980435855}
   - component: {fileID: 6310477835988551470}
+  - component: {fileID: 2692860877809311863}
   m_Layer: 0
   m_Name: Floor (25)
   m_TagString: Untagged
@@ -630,6 +683,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.0000002, z: 6.123235e-17}
   m_Center: {x: 0, y: 0.00000047683716, z: 0}
+--- !u!114 &2692860877809311863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2506641465671858326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
 --- !u!1 &2530928806044911468
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,6 +708,7 @@ GameObject:
   - component: {fileID: 3689446480229179573}
   - component: {fileID: 8588159319510532455}
   - component: {fileID: 440838059706897951}
+  - component: {fileID: 1576154729331417802}
   m_Layer: 0
   m_Name: Floor (38)
   m_TagString: Untagged
@@ -756,6 +822,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.0000002, z: 6.123235e-17}
   m_Center: {x: 0, y: 0.00000047683716, z: 0}
+--- !u!114 &1576154729331417802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2530928806044911468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
 --- !u!1 &4414689840131618355
 GameObject:
   m_ObjectHideFlags: 0
@@ -769,6 +847,7 @@ GameObject:
   - component: {fileID: 8625971423842464295}
   - component: {fileID: 7601208028577414101}
   - component: {fileID: 864873192856626171}
+  - component: {fileID: 4588918397724823704}
   m_Layer: 0
   m_Name: Floor (39)
   m_TagString: Untagged
@@ -882,6 +961,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.0000002, z: 6.123235e-17}
   m_Center: {x: 0, y: 0.00000047683716, z: 0}
+--- !u!114 &4588918397724823704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4414689840131618355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
 --- !u!1 &4455807471794283448
 GameObject:
   m_ObjectHideFlags: 0
@@ -895,6 +986,7 @@ GameObject:
   - component: {fileID: 6729831225876910619}
   - component: {fileID: 5851254654702515601}
   - component: {fileID: 1962226230935571050}
+  - component: {fileID: 1657247233616563684}
   m_Layer: 0
   m_Name: Floor (35)
   m_TagString: DoorTile
@@ -1008,6 +1100,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.0000002, z: 6.123235e-17}
   m_Center: {x: 0, y: 0.00000047683716, z: 0}
+--- !u!114 &1657247233616563684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4455807471794283448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
 --- !u!1 &4875915974524915567
 GameObject:
   m_ObjectHideFlags: 0
@@ -1021,6 +1125,7 @@ GameObject:
   - component: {fileID: 5006788407773187900}
   - component: {fileID: 6491323063189872022}
   - component: {fileID: 8044576213050852630}
+  - component: {fileID: 2484015990853840876}
   m_Layer: 0
   m_Name: Floor (34)
   m_TagString: Untagged
@@ -1134,6 +1239,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.0000002, z: 6.123235e-17}
   m_Center: {x: 0, y: -0.00000047683716, z: 0}
+--- !u!114 &2484015990853840876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4875915974524915567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
 --- !u!1 &4897479398248302709
 GameObject:
   m_ObjectHideFlags: 0
@@ -1147,6 +1264,7 @@ GameObject:
   - component: {fileID: 4848414698007377506}
   - component: {fileID: 3332412985424101572}
   - component: {fileID: 6549341384587666002}
+  - component: {fileID: 7369362857090246003}
   m_Layer: 0
   m_Name: Floor (33)
   m_TagString: Untagged
@@ -1260,6 +1378,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.0000002, z: 6.123235e-17}
   m_Center: {x: 0, y: -0.00000047683716, z: 0}
+--- !u!114 &7369362857090246003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4897479398248302709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
 --- !u!1 &5110337180399893382
 GameObject:
   m_ObjectHideFlags: 0
@@ -1273,6 +1403,7 @@ GameObject:
   - component: {fileID: 1776496493812469086}
   - component: {fileID: 2893885891444218928}
   - component: {fileID: 7429216197697622213}
+  - component: {fileID: 8048820059590795922}
   m_Layer: 0
   m_Name: Floor (44)
   m_TagString: Untagged
@@ -1386,6 +1517,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.0000002, z: 6.123235e-17}
   m_Center: {x: 0, y: -0.00000047683716, z: 0}
+--- !u!114 &8048820059590795922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5110337180399893382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
 --- !u!1 &5377475628378289861
 GameObject:
   m_ObjectHideFlags: 0
@@ -1399,6 +1542,7 @@ GameObject:
   - component: {fileID: 2627001908282397339}
   - component: {fileID: 8567282477684251302}
   - component: {fileID: 2871515467653088432}
+  - component: {fileID: 4642793562893890152}
   m_Layer: 0
   m_Name: Floor (43)
   m_TagString: Untagged
@@ -1512,6 +1656,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.0000002, z: 6.123235e-17}
   m_Center: {x: 0, y: -0.00000047683716, z: 0}
+--- !u!114 &4642793562893890152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5377475628378289861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
 --- !u!1 &6370303589589668873
 GameObject:
   m_ObjectHideFlags: 0
@@ -1525,6 +1681,7 @@ GameObject:
   - component: {fileID: 5092694427031124264}
   - component: {fileID: 9050393560317961441}
   - component: {fileID: 6459755426570882864}
+  - component: {fileID: 8108251782617978678}
   m_Layer: 0
   m_Name: Floor (27)
   m_TagString: Untagged
@@ -1638,6 +1795,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.0000002, z: 6.123235e-17}
   m_Center: {x: 0, y: 0.00000023841858, z: 0}
+--- !u!114 &8108251782617978678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6370303589589668873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
 --- !u!1 &6403713844072060286
 GameObject:
   m_ObjectHideFlags: 0
@@ -1651,6 +1820,7 @@ GameObject:
   - component: {fileID: 3763392515512966752}
   - component: {fileID: 9053682590052853813}
   - component: {fileID: 571160791352657333}
+  - component: {fileID: 1408371426325238539}
   m_Layer: 0
   m_Name: Floor (41)
   m_TagString: DoorTile
@@ -1764,6 +1934,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.0000002, z: 6.123235e-17}
   m_Center: {x: 0, y: -0.00000047683716, z: 0}
+--- !u!114 &1408371426325238539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6403713844072060286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
 --- !u!1 &6686492169879288982
 GameObject:
   m_ObjectHideFlags: 0
@@ -1777,6 +1959,7 @@ GameObject:
   - component: {fileID: 4030631284039712791}
   - component: {fileID: 995702024503513301}
   - component: {fileID: 747620357968424610}
+  - component: {fileID: 268421228265302323}
   m_Layer: 0
   m_Name: Floor (31)
   m_TagString: Untagged
@@ -1890,6 +2073,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.0000002, z: 6.123235e-17}
   m_Center: {x: 0, y: -0.00000047683716, z: 0}
+--- !u!114 &268421228265302323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6686492169879288982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
 --- !u!1 &7240348239622928134
 GameObject:
   m_ObjectHideFlags: 0
@@ -1903,6 +2098,7 @@ GameObject:
   - component: {fileID: 4041677222322213983}
   - component: {fileID: 5797355567127141732}
   - component: {fileID: 2361762258559188329}
+  - component: {fileID: 4428238800074006557}
   m_Layer: 0
   m_Name: Floor (37)
   m_TagString: Untagged
@@ -2016,6 +2212,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.0000002, z: 6.123235e-17}
   m_Center: {x: 0, y: 0.00000023841858, z: 0}
+--- !u!114 &4428238800074006557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7240348239622928134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
 --- !u!1 &7395041726372666461
 GameObject:
   m_ObjectHideFlags: 0
@@ -2029,6 +2237,7 @@ GameObject:
   - component: {fileID: 6033722602843402149}
   - component: {fileID: 5523998849788092573}
   - component: {fileID: 1077416357479826123}
+  - component: {fileID: 3188780331005104398}
   m_Layer: 0
   m_Name: Floor (28)
   m_TagString: Untagged
@@ -2142,6 +2351,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.0000002, z: 6.123235e-17}
   m_Center: {x: 0, y: 0.00000047683716, z: 0}
+--- !u!114 &3188780331005104398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7395041726372666461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
 --- !u!1 &7735750750606046457
 GameObject:
   m_ObjectHideFlags: 0
@@ -2155,6 +2376,7 @@ GameObject:
   - component: {fileID: 814540564597057752}
   - component: {fileID: 1499200779990314955}
   - component: {fileID: 8594309124533602885}
+  - component: {fileID: 4197597224108428017}
   m_Layer: 0
   m_Name: Floor (30)
   m_TagString: Untagged
@@ -2268,6 +2490,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.0000002, z: 6.123235e-17}
   m_Center: {x: 0, y: -0.00000047683716, z: 0}
+--- !u!114 &4197597224108428017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7735750750606046457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
 --- !u!1 &8856244897956712486
 GameObject:
   m_ObjectHideFlags: 0
@@ -2281,6 +2515,7 @@ GameObject:
   - component: {fileID: 5478654487661904113}
   - component: {fileID: 9115421890803932085}
   - component: {fileID: 1084643132672492470}
+  - component: {fileID: 1588663883566419665}
   m_Layer: 0
   m_Name: Floor (42)
   m_TagString: Untagged
@@ -2394,6 +2629,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.0000002, z: 6.123235e-17}
   m_Center: {x: 0, y: -0.00000047683716, z: 0}
+--- !u!114 &1588663883566419665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8856244897956712486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
 --- !u!1 &8869380879826273500
 GameObject:
   m_ObjectHideFlags: 0
@@ -2407,6 +2654,7 @@ GameObject:
   - component: {fileID: 201959413237450422}
   - component: {fileID: 867788133157375164}
   - component: {fileID: 8578929845843682908}
+  - component: {fileID: 3633047048531683990}
   m_Layer: 0
   m_Name: Floor (29)
   m_TagString: Untagged
@@ -2520,6 +2768,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.0000002, z: 6.123235e-17}
   m_Center: {x: 0, y: 0.00000047683716, z: 0}
+--- !u!114 &3633047048531683990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8869380879826273500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
 --- !u!1001 &5599590231741601746
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2764,19 +3024,128 @@ PrefabInstance:
       insertIndex: 40
       addedObject: {fileID: 7667166050170864158}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8401835703245098119, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2001909491248912466}
+    - targetCorrespondingSourceObject: {fileID: 8258993778013047561, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8483644803745139151}
+    - targetCorrespondingSourceObject: {fileID: 5480365653485372919, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8499306834609455404}
+    - targetCorrespondingSourceObject: {fileID: 7491183532834074808, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4887428022978287456}
+    - targetCorrespondingSourceObject: {fileID: 2733762645174792298, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1092095352936803590}
     - targetCorrespondingSourceObject: {fileID: 1809923057793371586, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3349779439481318541}
+    - targetCorrespondingSourceObject: {fileID: 1809923057793371586, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3036955533087686340}
+    - targetCorrespondingSourceObject: {fileID: 5840463394266570801, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3817258351515628730}
+    - targetCorrespondingSourceObject: {fileID: 9155276205816318866, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8658433772175905147}
+    - targetCorrespondingSourceObject: {fileID: 934945611393049213, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5533797685359221803}
+    - targetCorrespondingSourceObject: {fileID: 663178979140313299, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5899042158542539103}
+    - targetCorrespondingSourceObject: {fileID: 2841770875711288993, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6850233060641774646}
     - targetCorrespondingSourceObject: {fileID: 6326366640920535337, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3453282878580937615}
+    - targetCorrespondingSourceObject: {fileID: 6326366640920535337, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8592619689120395323}
+    - targetCorrespondingSourceObject: {fileID: 289939093657590565, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4364449404450789652}
+    - targetCorrespondingSourceObject: {fileID: 7613121667737560314, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 555114492124335317}
+    - targetCorrespondingSourceObject: {fileID: 6249450625111060817, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3567644879436943808}
+    - targetCorrespondingSourceObject: {fileID: 4965836527198897739, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4452884289765484899}
     - targetCorrespondingSourceObject: {fileID: 6666438720108761779, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2438393531346961597}
+    - targetCorrespondingSourceObject: {fileID: 6666438720108761779, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7662462347464871667}
+    - targetCorrespondingSourceObject: {fileID: 1785084769011464096, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3913294358940897127}
+    - targetCorrespondingSourceObject: {fileID: 285457640977813885, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4105482416132464635}
+    - targetCorrespondingSourceObject: {fileID: 2210416915708526685, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3872510816144380086}
+    - targetCorrespondingSourceObject: {fileID: 3736711994658050070, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1548520846388586770}
+    - targetCorrespondingSourceObject: {fileID: 5897652536041648222, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1479789842900771854}
+    - targetCorrespondingSourceObject: {fileID: 655733423643483630, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7937808236294118381}
     - targetCorrespondingSourceObject: {fileID: 6140170350200936554, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6339488439456339736}
+    - targetCorrespondingSourceObject: {fileID: 6140170350200936554, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 397667975644003520}
+    - targetCorrespondingSourceObject: {fileID: 8244219136539002800, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1358844173615910998}
   m_SourcePrefab: {fileID: 100100000, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+--- !u!1 &124858493186069029 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5480365653485372919, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+  m_PrefabInstance: {fileID: 5599590231741601746}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8499306834609455404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124858493186069029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
+--- !u!1 &675416417405571481 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4965836527198897739, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+  m_PrefabInstance: {fileID: 5599590231741601746}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4452884289765484899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 675416417405571481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
 --- !u!1 &1240265711050982753 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6666438720108761779, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
@@ -2802,6 +3171,18 @@ MonoBehaviour:
   m_IgnoreFromBuild: 0
   m_ApplyToChildren: 1
   m_AffectedAgents: ffffffff
+--- !u!114 &7662462347464871667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1240265711050982753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
 --- !u!1 &1766530095086325688 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6140170350200936554, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
@@ -2827,6 +3208,18 @@ MonoBehaviour:
   m_IgnoreFromBuild: 0
   m_ApplyToChildren: 1
   m_AffectedAgents: ffffffff
+--- !u!114 &397667975644003520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766530095086325688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
 --- !u!1 &1909096698639529723 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6326366640920535337, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
@@ -2852,6 +3245,273 @@ MonoBehaviour:
   m_IgnoreFromBuild: 0
   m_ApplyToChildren: 1
   m_AffectedAgents: ffffffff
+--- !u!114 &8592619689120395323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1909096698639529723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
+--- !u!1 &1949847113083053699 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6249450625111060817, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+  m_PrefabInstance: {fileID: 5599590231741601746}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3567644879436943808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1949847113083053699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
+--- !u!1 &2048317705807013772 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5897652536041648222, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+  m_PrefabInstance: {fileID: 5599590231741601746}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1479789842900771854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2048317705807013772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
+--- !u!1 &2069618599040579555 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5840463394266570801, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+  m_PrefabInstance: {fileID: 5599590231741601746}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3817258351515628730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2069618599040579555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
+--- !u!1 &2599281186889478952 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7613121667737560314, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+  m_PrefabInstance: {fileID: 5599590231741601746}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &555114492124335317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2599281186889478952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
+--- !u!1 &3045482413047162730 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7491183532834074808, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+  m_PrefabInstance: {fileID: 5599590231741601746}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4887428022978287456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3045482413047162730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
+--- !u!1 &3655707482060233792 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9155276205816318866, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+  m_PrefabInstance: {fileID: 5599590231741601746}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8658433772175905147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3655707482060233792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
+--- !u!1 &4119927980261301077 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8401835703245098119, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+  m_PrefabInstance: {fileID: 5599590231741601746}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2001909491248912466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4119927980261301077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
+--- !u!1 &4551004730256891099 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8258993778013047561, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+  m_PrefabInstance: {fileID: 5599590231741601746}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8483644803745139151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4551004730256891099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
+--- !u!1 &4601803857584328802 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8244219136539002800, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+  m_PrefabInstance: {fileID: 5599590231741601746}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1358844173615910998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4601803857584328802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
+--- !u!1 &4705177155549541807 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 934945611393049213, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+  m_PrefabInstance: {fileID: 5599590231741601746}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5533797685359221803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4705177155549541807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
+--- !u!1 &4936411802358429441 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 663178979140313299, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+  m_PrefabInstance: {fileID: 5599590231741601746}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5899042158542539103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4936411802358429441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
+--- !u!1 &4948364960559942204 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 655733423643483630, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+  m_PrefabInstance: {fileID: 5599590231741601746}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7937808236294118381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4948364960559942204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
+--- !u!1 &5310781573518396663 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 289939093657590565, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+  m_PrefabInstance: {fileID: 5599590231741601746}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4364449404450789652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5310781573518396663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
+--- !u!1 &5639522216515454639 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 285457640977813885, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+  m_PrefabInstance: {fileID: 5599590231741601746}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4105482416132464635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5639522216515454639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
+--- !u!1 &5987896193557387151 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2210416915708526685, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+  m_PrefabInstance: {fileID: 5599590231741601746}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3872510816144380086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5987896193557387151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
 --- !u!4 &6055054433415538284 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1851650461633327550, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
@@ -2882,3 +3542,83 @@ MonoBehaviour:
   m_IgnoreFromBuild: 0
   m_ApplyToChildren: 1
   m_AffectedAgents: ffffffff
+--- !u!114 &3036955533087686340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6101144716397812240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
+--- !u!1 &6156518024847810674 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1785084769011464096, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+  m_PrefabInstance: {fileID: 5599590231741601746}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3913294358940897127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6156518024847810674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
+--- !u!1 &7513687537724204984 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2733762645174792298, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+  m_PrefabInstance: {fileID: 5599590231741601746}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1092095352936803590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7513687537724204984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
+--- !u!1 &7699539268639056243 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2841770875711288993, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+  m_PrefabInstance: {fileID: 5599590231741601746}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6850233060641774646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7699539268639056243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
+--- !u!1 &9110441640068925380 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3736711994658050070, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+  m_PrefabInstance: {fileID: 5599590231741601746}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1548520846388586770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9110441640068925380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
