@@ -5,8 +5,11 @@
             <ui:Label text="Game" name="GameName" style="align-self: center; font-size: 32px;"/>
         </ui:VisualElement>
         <ui:VisualElement style="flex-grow: 1;">
-            <ui:Button text="Iniciar" name="Play" class="menu-button" style="opacity: 1; margin-left: 4px; margin-bottom: 30px; top: auto; align-self: center; width: 200px;"/>
-            <ui:Button text="Configurações&#10;" name="Config" class="menu-button" style="margin-top: 24px; align-self: center; width: 200px;"/>
+            <ui:Image source="project://database/Assets/UI/SignImage.png?fileID=-1158824582&amp;guid=986ae00660a00e6498b9556fabc506f8&amp;type=3#SignImage_0" name="Image" style="height: 402px; min-width: 13px; top: -111px; width: 213px; position: absolute; left: 29px;">
+                <ui:Button text="Iniciar" name="Play" class="menu-button" style="opacity: 1; margin-left: 4px; margin-bottom: 30px; top: 19px; align-self: center; width: 119px; position: absolute; left: 43px; transform-origin: center; rotate: -20deg; display: flex; visibility: visible; overflow: visible; -unity-background-image-tint-color: rgba(255, 255, 255, 0); background-color: rgba(188, 188, 188, 0); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0);"/>
+                <ui:Button text="Config&#10;" name="Config" class="menu-button" style="margin-top: 0; align-self: center; width: 75px; position: absolute; top: 92px; left: 63px; height: 71px; background-color: rgba(188, 188, 188, 0); -unity-background-image-tint-color: rgba(255, 255, 255, 0); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0);"/>
+                <ui:Button text="Credits" name="Credits" class="menu-button" style="position: absolute; top: 195px; left: 64px; -unity-background-image-tint-color: rgba(255, 255, 255, 0); background-color: rgba(188, 188, 188, 0); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); width: 74px; rotate: 27deg;"/>
+            </ui:Image>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
