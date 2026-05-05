@@ -1,10 +1,11 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/menu-button.uss?fileID=7433441132597879392&amp;guid=5ff4fe793556fb647bf035ecb21b8114&amp;type=3#menu-button"/>
-    <ui:VisualElement style="flex-grow: 1; height: auto;">
-        <ui:VisualElement style="flex-grow: 1; width: auto; align-self: auto; height: auto; justify-content: center;">
-            <ui:Label text="Game" name="GameName" style="align-self: center; font-size: 32px;"/>
+    <ui:VisualElement name="VisualElement" style="flex-grow: 1; height: auto;">
+        <ui:VisualElement name="GameName" style="flex-grow: 1; width: auto; align-self: auto; height: auto; justify-content: center;">
+            <ui:Image source="project://database/Assets/UI/NameSign.png?fileID=2069126329&amp;guid=01a1474f7c3ad1e4f9dceb0d77d027ac&amp;type=3#NameSign_0" style="position: absolute; top: 60px; left: -50px; height: 114px; width: 381px;"/>
+            <ui:Label text="Game" name="GameName" style="align-self: center; font-size: 32px; top: -45px;"/>
         </ui:VisualElement>
-        <ui:VisualElement style="flex-grow: 1;">
+        <ui:VisualElement name="Menu" style="flex-grow: 1;">
             <ui:Image source="project://database/Assets/UI/SignImage.png?fileID=-1158824582&amp;guid=986ae00660a00e6498b9556fabc506f8&amp;type=3#SignImage_0" name="Image" style="height: 402px; min-width: 13px; top: -111px; width: 213px; position: absolute; left: 29px;">
                 <ui:Button text="Iniciar" name="Play" class="menu-button" style="opacity: 1; margin-left: 4px; margin-bottom: 30px; top: 19px; align-self: center; width: 119px; position: absolute; left: 43px; transform-origin: center; rotate: -20deg; display: flex; visibility: visible; overflow: visible; -unity-background-image-tint-color: rgba(255, 255, 255, 0); background-color: rgba(188, 188, 188, 0); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0);"/>
                 <ui:Button text="Config&#10;" name="Config" class="menu-button" style="margin-top: 0; align-self: center; width: 75px; position: absolute; top: 92px; left: 63px; height: 71px; background-color: rgba(188, 188, 188, 0); -unity-background-image-tint-color: rgba(255, 255, 255, 0); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0);"/>

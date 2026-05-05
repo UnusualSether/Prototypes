@@ -1,0 +1,5 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1;"/>
+    <ui:RadioButtonGroup label="Radio Button Group" choices="Easy,Medium,Hard" value="-1" name="DiffSelection" style="flex-direction: column; position: absolute; top: 137px; left: 16px; font-size: 25px;"/>
+    <ui:Button text="Button" name="StartGame" style="position: absolute; top: 357px; left: 21px; width: 221px;"/>
+</ui:UXML>

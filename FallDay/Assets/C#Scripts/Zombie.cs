@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using System.Collections.Generic;
 using static GameHandler;
+using static GameHandler.Encounter;
 using System;
 
 public class Zombie
@@ -11,9 +12,12 @@ public class Zombie
     //HP and phase timer are not set by the gamehandler, but by the EnemyData which dictates the enemy's type.
     public int hp;
     public float PhaseTimer;
+    public static int DifficultyValue = 0;
+    public double Diff = 0;
 
     private float PhT1 = 0;
     private bool IsFirstUpdate = true;
+    public Difficulty difficulty;
 
     public enum ZombiePhase
     {
@@ -73,16 +77,37 @@ public class Zombie
         }
     }
 
+    public void Difficulty()
+    {
+        if (DifficultyValue == 1)
+        {
+            Diff = 0.5f;
+            Debug.Log("Dificuldade virou Facil");
+        }
+
+        if (DifficultyValue == 2)
+        {
+            Diff = 1.0f;
+            Debug.Log("Dificuldade virou Medio");
+        }
+
+        if (DifficultyValue == 3)
+        {
+            Diff = 2.0f;
+            Debug.Log("Dificuldade virou Dificil");
+        }
+    }
+
     public Zombie(EnemyData data)
     {
-        hp = data.HP;
+        hp = (int)(data.HP * Diff);
         PhaseTimer = data.phaseTimer;
     }
 
-    public void ZombieDead()
+    /*public void ZombieDead()
     {
 
-    }
+    }*/
 
 
 }
