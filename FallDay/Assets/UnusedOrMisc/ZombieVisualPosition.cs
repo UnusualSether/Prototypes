@@ -17,10 +17,10 @@ public partial class ZombieVisualPosition : MonoBehaviour
         var root = uiDocument.rootVisualElement;
         //warning = root.Q<Label>("Warning");
 
-        warning[1] = root.Q<Label>("Warning1");
-        warning[2] = root.Q<Label>("Warning2");
-        warning[3] = root.Q<Label>("Warning3");
-        warning[4] = root.Q<Label>("Warning4");
+        warning[0] = root.Q<Label>("Warning1");  // Não deveria ser [0],[1],[2],[3] envez de [1],[2],[3],[4]?
+        warning[1] = root.Q<Label>("Warning2");
+        warning[2] = root.Q<Label>("Warning3");
+        warning[3] = root.Q<Label>("Warning4");
 
     }
 
