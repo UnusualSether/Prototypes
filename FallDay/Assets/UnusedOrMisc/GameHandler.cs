@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UIElements;
 using static GameHandler;
 
@@ -39,7 +40,7 @@ public partial class GameHandler : MonoBehaviour
 
     #region Events
     //Player related events
-    public event Action<int> SucessfulShot;
+    //public event Action<int> SucessfulShot;
     public event Action FailedShot;
     public event Action<VisualElement> BulletSelected;
 
@@ -51,6 +52,12 @@ public partial class GameHandler : MonoBehaviour
 
     //Objective related events
     public event Action PlayerKilledAllZombies;
+
+    //Sound detect events
+    public event Action PieceConnected;
+
+    //Animação UI
+    public event Action<int, Zombie> SucessfulShot;
 
     #endregion
 
@@ -500,78 +507,54 @@ public partial class GameHandler : MonoBehaviour
     {
         Debug.Log("Shoot!");
 
-        if (readyBullets.Distinct().Count() <= 1 && readyBullets.Count > 2)
+        
+        int quantidadeDeBalas = readyBullets.Count;
+        int tiposDiferentes = readyBullets.Distinct().Count();
+
+        
+        if (quantidadeDeBalas >= 3 && tiposDiferentes == 1)
         {
-            //Debug.Log("Shot Went through!");
-
-            string bulletTypeUsed;
-            int numberUsed;
-
-            //Find the number of bullets used
-            numberUsed = readyBullets.Count();
-
-            //Debug.Log($"Used {numberUsed} number of bullets");
-
-            //Grab the name of bullet used in the successful shot
-            bulletTypeUsed = readyBullets.First();
-
-            //Declare it's actual type as stored in BulletTypes.
+            string bulletTypeUsed = readyBullets.First();
             BulletType realBulletType = bulletLookup[bulletTypeUsed];
 
-            //Debug.Log($"I shot{realBulletType.name}");
-
-            
-            HandleDamage(realBulletType,numberUsed);
+            HandleDamage(realBulletType, quantidadeDeBalas);
             ClearUsedBullets();
 
             readyBullets.Clear();
             selectedUIButtons.Clear();
-            lineCanvas.MarkDirtyRepaint();  // Apaga a linha da tela
+            lineCanvas.MarkDirtyRepaint();
         }
-
-        //If selected bullets don't match, no damage goes through
-        if (readyBullets.Distinct().Count() != 0 && readyBullets.Count > 2)
+        
+        else if (quantidadeDeBalas >= 3 && tiposDiferentes > 1)
         {
-            Debug.Log("Shot Failed!");
-
-            //Find all bullets previously tagged with used and remove them from the class list.
-            foreach (var bullet in bulletButton)
-            {
-                if (bullet.ClassListContains("used"))
-                { 
-                    bullet.RemoveFromClassList("used");
-                }
-
-            }
-
-            //Clear the ready bullets list
-            readyBullets.Clear();
-            selectedUIButtons.Clear();
-            lineCanvas.MarkDirtyRepaint();  // Apaga a linha da tela
+            Debug.Log("Shot Failed! Peças misturadas.");
+            LimparSelecaoComErro();
         }
-
-        //Cancel the shot altogether if there arent enough bullets.
-        if (readyBullets.Count() < 3)
+        
+        else if (quantidadeDeBalas > 0 && quantidadeDeBalas < 3)
         {
             Debug.Log("Not Enough bullets selected!");
-
-            //Find all bullets previously tagged with used and remove them from the class list.
-
-            foreach (var bullet in bulletButton)
-            {
-                if (bullet.ClassListContains("used"))
-                {
-                    bullet.RemoveFromClassList("used");
-                }
-            }
-
-            //Clear the ready bullets list
-            readyBullets.Clear();
-            selectedUIButtons.Clear();
-            lineCanvas.MarkDirtyRepaint();  // Apaga a linha da tela
-
-            FailedShot?.Invoke();
+            LimparSelecaoComErro();
         }
+    }
+
+    
+    private void LimparSelecaoComErro()
+    {
+        foreach (var bullet in bulletButton)
+        {
+            if (bullet.ClassListContains("used"))
+            {
+                bullet.RemoveFromClassList("used");
+            }
+        }
+
+        readyBullets.Clear();
+        selectedUIButtons.Clear();
+        lineCanvas.MarkDirtyRepaint();
+
+        
+        FailedShot?.Invoke();
     }
 
     public void ClearUsedBullets()
@@ -747,11 +730,17 @@ public partial class GameHandler : MonoBehaviour
     {
         int rawDamage= bulletType.Damage * numberUsed;
 
+        //mudança Luiz
+        Zombie alvo = zombieToAimAt();
+        //linha nova
+
         var totalDamage = currentWeapon.WeaponEffect(numberUsed, rawDamage, zombieToAimAt());
 
         Debug.Log($"Did {totalDamage} damage with {numberUsed} {bulletType.name}s!");
 
-        SucessfulShot?.Invoke(totalDamage);
+        //SucessfulShot?.Invoke(totalDamage);
+        //Mudança Luiz
+        SucessfulShot?.Invoke(totalDamage, alvo);
 
         ApplyDamage(totalDamage, zombieToAimAt());
     }
@@ -803,6 +792,8 @@ public partial class GameHandler : MonoBehaviour
         selectedUIButtons.Add(selectedElement);
 
         lineCanvas?.MarkDirtyRepaint();
+        //detecção de som
+        PieceConnected?.Invoke();
     }
 
     public void SelectedBulletB(PointerEnterEvent ev)
@@ -825,6 +816,9 @@ public partial class GameHandler : MonoBehaviour
                     // NOVIDADE AQUI:   /////////////////////////////////////////////////////////////////
                     selectedUIButtons.Add(selectedElement);
                     lineCanvas?.MarkDirtyRepaint();
+                    //detecção de som
+                    PieceConnected?.Invoke();
+
                 }
             }
         }
