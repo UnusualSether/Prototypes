@@ -13,7 +13,8 @@ public class ZombieAnimatorProxy : MonoBehaviour
 
     public void SetPhase(Zombie.ZombiePhase phase)
     {
-        Debug.Log($"Setting animation phase to {(int)phase}");
+        animator.SetInteger(PhaseParam, (int)phase);
+        Debug.Log($"Setting animation phase to {(int)phase} T%HISIS ADDAS");
     }
 
     public void TriggerDamaged()
