@@ -186,7 +186,7 @@ public partial class ThreeDGameHandler
 
     public void EndPlayerChoice()
     {
-
+        StartRails();
     }
 
     void PlayerToEncounterGate()

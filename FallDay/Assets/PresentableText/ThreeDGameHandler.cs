@@ -48,12 +48,13 @@ public partial class ThreeDGameHandler : MonoBehaviour
     void OnEnable() 
     { 
         //Room Culling Events
-        CharacterMove.PlayerMoved += CullOldRooms; CharacterMove.PlayerMoved += CreateNewRoom;CharacterMove.PlayerMoved += CullRoomList;
+        CharacterMove.PlayerMoved += CullOldRooms; CharacterMove.PlayerMoved += CullRoomList;
         //On Rails Events
         handler.PlayerKilledAllZombies += EncounterEnd;
         //Player Events
-        CharacterMove.PlayerHasReachedNextPoint += PlayerToEncounterGate;
+        CharacterMove.PlayerHasReachedNextPoint += PlayerToEncounterGate; CharacterMove.PlayerHasReachedNextPoint += EndRails;
         //Player Choice Events
+        PlayerMadeDecision += EndPlayerChoice;
 
     }
 
@@ -212,7 +213,7 @@ public partial class ThreeDGameHandler : MonoBehaviour
         var rootRoom = roomsQueue.Last();
 
 
-        var numberOfRootRoomDoors = GameObject.FindGameObjectsWithTag("DoorTile").Where(x => x.transform.parent.name == rootRoom.transform.name).Count();
+        var numberOfRootRoomDoors = GameObject.FindGameObjectsWithTag("DoorTile").Where(x => x.transform.parent == rootRoom.transform).Count();
 
         int doorDirectionIndex = 1;
 
@@ -230,7 +231,7 @@ public partial class ThreeDGameHandler : MonoBehaviour
 
             doorDirectionIndex++;
         }
-
+ 
       
       
 

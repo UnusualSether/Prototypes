@@ -11,6 +11,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Net;
+using UnityEditor.Search;
 
 public class CharacterMove : MonoBehaviour
 {
@@ -37,19 +38,19 @@ public class CharacterMove : MonoBehaviour
         charTransform = this.gameObject.GetComponent<Transform>();
         navMesh = gameObject.GetComponent<NavMeshAgent>();
     }
-    
+
     //Subscribe the player move to next waypoint function to whenevr the gamehandler deetcts that we're suppose to be on rails/
-    void OnEnable() { ThreeDGameHandler.RailStarted += FindNextWaypoint; ThreeDGameHandler.RoomSetupComplete += InitializeWaypoints;  }
-    void OnDisable() { ThreeDGameHandler.RailStarted -= FindNextWaypoint; ThreeDGameHandler.RoomSetupComplete -= InitializeWaypoints; }
-    
+    void OnEnable() { ThreeDGameHandler.RailStarted += FindNextWaypoint; ThreeDGameHandler.RoomSetupComplete += InitializeWaypoints; ThreeDGameHandler.PlayerSwipedOnChoice += PlayerSwipe; }
+    void OnDisable() { ThreeDGameHandler.RailStarted -= FindNextWaypoint; ThreeDGameHandler.RoomSetupComplete -= InitializeWaypoints; ThreeDGameHandler.PlayerSwipedOnChoice -= PlayerSwipe; }
+
 
     public void Update()
     {
 
-        
-        
 
-}
+
+
+    }
 
 
     [Serializable]
@@ -62,15 +63,15 @@ public class CharacterMove : MonoBehaviour
     public List<Waypoint> wayPointList = new List<Waypoint>();
 
 
-    [ContextMenu("InitializeWayPoints")]    
-    
+    [ContextMenu("InitializeWayPoints")]
+
     public void InitializeWaypoints()
     {
 
         var foundObjects = GameObject.FindGameObjectsWithTag("Waypoint");
 
-       
-            
+
+
 
         foreach (var item in foundObjects)
         {
@@ -101,16 +102,16 @@ public class CharacterMove : MonoBehaviour
 
 
         InitializeWaypoints();
-        
-        
-        
+
+
+
     }
 
 
     [ContextMenu("GoToNextWaypoint")]
-        public void FindNextWaypoint()
+    public void FindNextWaypoint()
     {
-        if(wayPointList.Count <= 0)
+        if (wayPointList.Count <= 0)
         {
             InitializeWaypoints();
         }
@@ -130,10 +131,10 @@ public class CharacterMove : MonoBehaviour
         WayPointMaintenance();
 
     }
-        public void GoToNextWaypoint(Waypoint nextWaypoint)
+    public void GoToNextWaypoint(Waypoint nextWaypoint)
     {
 
-         navMesh.SetDestination(nextWaypoint.wayPointPosition);
+        navMesh.SetDestination(nextWaypoint.wayPointPosition);
 
         PlayerMoved?.Invoke();
     }
@@ -163,7 +164,7 @@ public class CharacterMove : MonoBehaviour
     }
 
 
-   
+
 
     public bool PathBlocked()
     {
@@ -171,7 +172,7 @@ public class CharacterMove : MonoBehaviour
         RaycastHit hit;
         float maxDistanceToObstacle = 0.5f;
 
-        if(Physics.Raycast(transform.position,transform.forward, out hit, maxDistanceToObstacle))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, maxDistanceToObstacle))
         {
             return true;
         }
@@ -192,8 +193,53 @@ public class CharacterMove : MonoBehaviour
         }
 
         return false;
-        
 
+
+
+    }
+
+
+    public void PlayerSwipe(ThreeDGameHandler.SwipeDirection dir)
+    {
+
+        Debug.Log($"[Player] It seems I'm suppose to go {(ThreeDGameHandler.SwipeDirection)dir}");
+        var posToGo = FetchWayPoint(dir);
+        GoToNextWaypoint(posToGo);
+
+    }
+
+
+    public Waypoint FetchWayPoint(ThreeDGameHandler.SwipeDirection dir)
+    {
+           //If dir is up = Needs to return waypoint with the highest z
+           //If dir is right = Needs to return the waypoint with the lowest x
+           //If dir is left = Needs to return the waypoint with the highest x
+
+
+        if (dir == ThreeDGameHandler.SwipeDirection.Left)
+        {
+           Waypoint wayPoint = wayPointList.OrderByDescending(x => x.wayPointPosition.x).FirstOrDefault();
+            return wayPoint;
+        }
+
+        if (dir == ThreeDGameHandler.SwipeDirection.Right)
+        {
+            Waypoint wayPoint = wayPointList.OrderByDescending(x => x.wayPointPosition.x).LastOrDefault();
+            return wayPoint;
+        }
+
+        if (dir == ThreeDGameHandler.SwipeDirection.Up)
+        {
+            Waypoint wayPoint = wayPointList.OrderByDescending(x => x.wayPointPosition.z).FirstOrDefault();
+            return wayPoint;
+        }
+
+        else
+        {
+            Debug.Log("Function FetchWayPoint didnt recieve a valid riection and is returning a null waypoint!");
+            return null;
+
+        }
 
     }
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public partial class ThreeDGameHandler
 {
@@ -13,6 +14,8 @@ public partial class ThreeDGameHandler
 
     public SwipeDirection receivedDirection = SwipeDirection.None;
 
+    public static event Action<SwipeDirection> PlayerSwipedOnChoice;
+    public static event Action PlayerMadeDecision;
 
 
 
@@ -89,43 +92,42 @@ public partial class ThreeDGameHandler
         switch (detected_swipe)
         {
             case SwipeDirection.Up:
-                Debug.Log("Swiped UP");
                 OnSwipeUp();
                 break;
 
             case SwipeDirection.Left:
-                Debug.Log("Swiped LEFT");
                 OnSwipeLeft();
                 break;
 
             case SwipeDirection.Right:
-                Debug.Log("Swiped RIGHT");
                 OnSwipeRight();
                 break;
 
             case SwipeDirection.None:
-                Debug.Log("Not a valid swipe");
+                
                 break;
         }
 
         // Reset for next swipe
         detected_swipe = SwipeDirection.None;
+
+        PlayerMadeDecision.Invoke();
     }
 
     // Your game logic for each swipe direction
     void OnSwipeUp()
     {
-        Debug.Log("Go Right");
+        PlayerSwipedOnChoice.Invoke(SwipeDirection.Up);
     }
 
     void OnSwipeLeft()
     {
-        Debug.Log("Go Right");
+        PlayerSwipedOnChoice.Invoke(SwipeDirection.Left);
     }
 
     void OnSwipeRight()
     {
-        Debug.Log("Go Right");
+        PlayerSwipedOnChoice.Invoke(SwipeDirection.Right);
     }
 
     // Public getter if you need it elsewhere
