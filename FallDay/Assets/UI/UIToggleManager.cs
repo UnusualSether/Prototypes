@@ -71,7 +71,7 @@ public class UIToggleManager : MonoBehaviour
         if (root.style.display == DisplayStyle.None)
         {
             root.style.display = DisplayStyle.Flex;
-            Time.timeScale = 0f; 
+            Time.timeScale = 0.00000000000000000001f; 
         }
         
         /*else
