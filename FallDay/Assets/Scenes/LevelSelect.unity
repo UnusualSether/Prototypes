@@ -430,7 +430,7 @@ MonoBehaviour:
   Devs: {fileID: 3223712667893724699, guid: 3b22b77efabf553468e8a1c5d10d0ed5, type: 3}
   LevelMenu: {fileID: 1802546155}
   Weapons: {fileID: 623438616}
-  Difficulty: {fileID: 0}
+  Difficulty: {fileID: 948107345}
 --- !u!1 &1807505139
 GameObject:
   m_ObjectHideFlags: 0

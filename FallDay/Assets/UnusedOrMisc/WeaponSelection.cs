@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
+using static GameHandler;
+using static Weapon;
 
 
 public partial class WeaponSelection : MonoBehaviour
@@ -20,7 +22,7 @@ public partial class WeaponSelection : MonoBehaviour
         shotgun = root.Q<Toggle>("Shotgun");
         pistol = root.Q<Toggle>("Pistol");
         choose = root.Q<Label>("ChooseWeapon");
-        start = root.Q<Button>("StartGame");
+        start = root.Q<Button>("ToDifficulty");
 
 
         shotgun.RegisterValueChangedCallback(evt =>
@@ -31,6 +33,11 @@ public partial class WeaponSelection : MonoBehaviour
                 choose.text = "Você escolheu a Shotgun";
                 shotgun.value = true;
                 start.SetEnabled(true);
+            }
+            else if(evt.newValue == false && pistol.value == false)
+            {
+                choose.text = "Escolha uma arma";
+                start.SetEnabled(false);
             }
         });
 
@@ -43,9 +50,28 @@ public partial class WeaponSelection : MonoBehaviour
                 choose.text = "Você escolheu a Pistola";
                 pistol.value = true;
                 start.SetEnabled(true);
+                Weapon.GameHandler.currentWeapon == new Pistol();
+            }
+            else if (evt.newValue == false && pistol.value == false)
+            {
+                choose.text = "Escolha uma arma";
+                start.SetEnabled(false);
             }
         });
 
+    }
+
+    private void AllowStart()
+    {
+        if(shotgun.value == true || pistol.value == true)
+        {
+            start.SetEnabled(true);
+        }
+        else
+        {
+            start.SetEnabled(false);
+        }
+            
     }
 
 }

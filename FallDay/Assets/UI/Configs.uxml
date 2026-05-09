@@ -1,14 +1,14 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/menu-button.uss?fileID=7433441132597879392&amp;guid=5ff4fe793556fb647bf035ecb21b8114&amp;type=3#menu-button"/>
     <ui:VisualElement style="flex-grow: 1;">
-        <ui:Image name="Image" source="project://database/Assets/UI/PhoneMenuDone.png?fileID=2800000&amp;guid=2e010e13452336643999258595e9dc6f&amp;type=3#PhoneMenuDone" style="position: absolute; top: -44px; left: -38px; height: 663px; width: 334px;"/>
+        <ui:Image name="Image" source="project://database/Assets/UI/PhoneMenuDone.png?fileID=2800000&amp;guid=2e010e13452336643999258595e9dc6f&amp;type=3#PhoneMenuDone" style="position: absolute; top: -634px; left: -190px; height: 3306px; width: 1244px;"/>
         <ui:VisualElement style="flex-grow: 1;">
-            <ui:Label text="Options" style="align-self: center; font-size: 32px; margin-top: 25px; top: 112px;"/>
+            <ui:Label text="Options" style="align-self: center; font-size: 60px; margin-top: 25px; top: 445px;"/>
         </ui:VisualElement>
         <ui:VisualElement name="VisualElement" style="flex-grow: 1; width: 167px; height: 164px; position: absolute; top: 210px; left: 51px; align-self: auto;">
-            <ui:Slider label="Master Volume" value="1" high-value="2" enabled="true" name="MasterVolume" low-value="0.0001" fill="true" focusable="true" style="display: flex; overflow: hidden; visibility: visible; -unity-font-style: bold; flex-direction: column; height: 94px; top: -26px; margin-right: -2px;"/>
-            <ui:Slider label="Music" value="1" high-value="2" name="MusicVolume" fill="true" low-value="0.0001" style="margin-top: 2px; visibility: visible; overflow: hidden; flex-direction: column; height: 105px; top: -33px;"/>
-            <ui:Button text="Return" name="Return" class="menu-button" style="width: 92px; height: 53px; left: 33px; top: -11px; border-top-left-radius: 22px; border-top-right-radius: 22px; border-bottom-right-radius: 22px; border-bottom-left-radius: 22px; background-color: rgb(105, 106, 106); -unity-background-image-tint-color: rgb(50, 60, 57); border-left-color: rgb(50, 60, 57); border-right-color: rgb(50, 60, 57); border-top-color: rgb(50, 60, 57); border-bottom-color: rgb(50, 60, 57);"/>
+            <ui:Slider label="Master Volume" value="1" high-value="2" enabled="true" name="MasterVolume" low-value="0.0001" fill="true" focusable="true" direction="Horizontal" style="display: flex; overflow: hidden; visibility: visible; -unity-font-style: bold; flex-direction: column; height: 100%; top: 487px; margin-right: -2px; width: 187%; left: 239px; font-size: 30px; scale: 2 2; rotate: 0;"/>
+            <ui:Slider label="Music" value="1" high-value="2" name="MusicVolume" fill="true" low-value="0.0001" style="margin-top: 2px; visibility: visible; overflow: hidden; flex-direction: column; height: 105%; top: 677px; width: 188%; font-size: 30px; left: 239px; scale: 2 2; -unity-font-style: bold;"/>
+            <ui:Button text="Return" name="Return" class="menu-button" style="width: 150%; height: 81%; left: 266px; top: 973px; border-top-left-radius: 22px; border-top-right-radius: 22px; border-bottom-right-radius: 22px; border-bottom-left-radius: 22px; background-color: rgb(105, 106, 106); -unity-background-image-tint-color: rgb(50, 60, 57); border-left-color: rgb(50, 60, 57); border-right-color: rgb(50, 60, 57); border-top-color: rgb(50, 60, 57); border-bottom-color: rgb(50, 60, 57); font-size: 60px;"/>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

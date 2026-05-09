@@ -1,8 +1,8 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:VisualElement style="flex-grow: 1;">
-        <ui:Button text="Start" name="ToDifficulty" style="bottom: -405px;"/>
-        <ui:Label text="Escolha uma arma" name="ChooseWeapon" style="width: 123px; position: absolute; top: 117px; left: 65px; flex-direction: row;"/>
-        <ui:Toggle label="Shotgun" name="Shotgun" value="false" style="flex-direction: column; width: 67px; position: absolute; top: 221px; left: 196px;"/>
-        <ui:Toggle label="Pistol" name="Pistol" style="flex-direction: column; width: 54px; position: absolute; top: 221px; left: 17px;"/>
+        <ui:Button text="Start" name="ToDifficulty" style="bottom: -1426px; font-size: 60px; width: 100%; height: 8%;"/>
+        <ui:Label text="Escolha uma arma" name="ChooseWeapon" style="width: 551px; position: absolute; top: 545px; left: 157px; flex-direction: row; font-size: 60px;"/>
+        <ui:Toggle label="Shotgun" name="Shotgun" value="false" style="flex-direction: column; width: 8%; position: absolute; top: 817px; left: 595px; scale: 4 4; transform-origin: left; font-size: 15px;"/>
+        <ui:Toggle label="Pistol" name="Pistol" style="flex-direction: column; width: 8%; position: absolute; top: 817px; left: 207px; scale: 4 4;"/>
     </ui:VisualElement>
 </ui:UXML>
