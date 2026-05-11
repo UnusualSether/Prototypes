@@ -1,14 +1,9 @@
-using JetBrains.Annotations;
-using NUnit.Framework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
-using static GameHandler;
 
 
 public partial class GameHandler : MonoBehaviour
@@ -46,7 +41,9 @@ public partial class GameHandler : MonoBehaviour
     //Zombie related events
     public event Action ZombieSpawned;
     public event Action<Zombie> ZombieDamaged;
+    public event Action<Zombie> zPhaseChange;
     public event Action ZombieKilled;
+    public event Action<Zombie> ZombieIsClose;
 
 
     //Objective related events
@@ -90,7 +87,7 @@ public partial class GameHandler : MonoBehaviour
     public delegate void PlayerIsDemeged(float damage);
     public static PlayerIsDemeged PlayerTookDamage;
 
-    public delegate void DestroyZombie(int id);
+    public delegate void DestroyZombie(Zombie z);
     public static DestroyZombie destroyZombie;
 
     #endregion
@@ -348,9 +345,9 @@ public partial class GameHandler : MonoBehaviour
         {
             id = stachedZombieID,
 
-            phase = Zombie.ZombiePhase.Far
+            phase = Zombie.ZombiePhase.Far,
 
-            
+            handler = this,
         }
         );
 
@@ -367,7 +364,14 @@ public partial class GameHandler : MonoBehaviour
         zombiesSpawned++;
     }
     
-
+    public void InvokeZombieIsClose(Zombie zombie)
+    {
+                ZombieIsClose?.Invoke(zombie);
+    }
+    public void InvokePhaseChange(Zombie zombie)
+    {
+        zPhaseChange?.Invoke(zombie);
+    }
     private bool CanISpawnEnemies()
     {
         if (!uiDoc.gameObject.activeSelf)

@@ -15,7 +15,8 @@ public class Zombie
 
     private float PhT1 = 0;
     private bool IsFirstUpdate = true;
-
+    public GameHandler handler;
+    //
     public enum ZombiePhase
     {
         Stop,
@@ -28,7 +29,7 @@ public class Zombie
 
     public int currentDisplay;
 
-    public event Action<Zombie> ZombieIsClose;
+    //public static event Action<Zombie> ZombieIsClose;
 
     public void UpdatePhase(float deltaTime)
     {
@@ -42,7 +43,7 @@ public class Zombie
             PlayerTookDamage?.Invoke(1f);
             // <= Place a Destroy Zombie Call
 
-            destroyZombie?.Invoke(id);
+            destroyZombie?.Invoke(this);
         }
         else if (IsFirstUpdate)
         {
@@ -65,12 +66,14 @@ public class Zombie
         {
             phase = ZombiePhase.Approach;
             Debug.Log($"Zombie with id {id} has changed phase to {phase}");
+            handler.InvokePhaseChange(this);
         }
         else if (phase == ZombiePhase.Approach)
         {
             phase = ZombiePhase.Close;
             Debug.Log($"Zombie with id {id} has changed phase to {phase}");
-            ZombieIsClose?.Invoke(this);
+            handler.InvokePhaseChange(this);
+            handler.InvokeZombieIsClose(this);
         }
     }
 
@@ -79,11 +82,4 @@ public class Zombie
         hp = data.HP;
         PhaseTimer = data.phaseTimer;
     }
-
-    public void ZombieDead()
-    {
-
-    }
-
-
 }

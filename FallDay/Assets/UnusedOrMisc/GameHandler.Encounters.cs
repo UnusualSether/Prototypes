@@ -3,11 +3,8 @@ using UnityEngine;
 
 public partial class GameHandler
 {
-
     public class Encounter
     {
-
-
         /// <summary>
         /// Even when creating encounters from scratch, still use the most applicable difficult for easier managing and organization.
         /// </summary>
@@ -34,9 +31,6 @@ public partial class GameHandler
             zombieTimer = data.zombieTimer;
         }
 
-
-
-       
     }
 
 }
