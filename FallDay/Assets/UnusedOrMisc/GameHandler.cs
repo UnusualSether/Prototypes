@@ -78,6 +78,9 @@ public partial class GameHandler : MonoBehaviour
     public List<VisualElement> selectedUIButtons = new List<VisualElement>(); // Lista de botões pressionados para demarcar bottoes precionados pelo player //
     public Color lineColor = Color.white; // A cor da sua linha
     public float lineWidth = 10f;
+
+    //referencia para teste
+    private Coroutine _failedShotRoutine;
     #endregion
 
     #region Delegates
@@ -464,6 +467,11 @@ public partial class GameHandler : MonoBehaviour
     }
     public Zombie zombieToAimAt()
     {
+        if (ZombieList.Count == 0)
+        {
+            Debug.LogWarning("Tried to find a zombie to aim at but there are no zombies! Returning null.");
+            return null;
+        }
         if (preferenceZombie != nulledPreference)
         {
             var foundZombie = zombieLookup[preferenceZombie];
@@ -495,7 +503,8 @@ public partial class GameHandler : MonoBehaviour
               }
         }
     }
-
+    #region HandleShotCode
+    /* 
     public void HandleShot()
     {
         Debug.Log("Shoot!");
@@ -573,6 +582,57 @@ public partial class GameHandler : MonoBehaviour
             FailedShot?.Invoke();
         }
     }
+    */
+    #endregion
+    #region New HandleShotCode
+    public void HandleShot()
+    {
+        Debug.Log("Shoot!");
+
+        if (readyBullets.Distinct().Count() <= 1 && readyBullets.Count > 2)
+        {
+            string bulletTypeUsed = readyBullets.First();
+            int numberUsed = readyBullets.Count();
+            BulletType realBulletType = bulletLookup[bulletTypeUsed];
+
+            HandleDamage(realBulletType, numberUsed);
+            ClearUsedBullets();
+
+            readyBullets.Clear();
+            selectedUIButtons.Clear();
+            lineCanvas.MarkDirtyRepaint();
+            return;
+        }
+
+        // Qualquer falha (tipos diferentes ou balas insuficientes)
+        if (readyBullets.Count > 0)
+        {
+            Debug.Log("Shot Failed!");
+            if (_failedShotRoutine != null) StopCoroutine(_failedShotRoutine);
+            _failedShotRoutine = StartCoroutine(FailedShotFeedback());
+            FailedShot?.Invoke();
+            return;
+        }
+
+        Debug.Log("Not enough bullets selected!");
+        FailedShot?.Invoke();
+    }
+    public void CancelFailFeedback()
+    {
+        if (_failedShotRoutine != null)
+        {
+            StopCoroutine(_failedShotRoutine);
+            _failedShotRoutine = null;
+            lineColor = Color.white;
+            readyBullets.Clear();
+            selectedUIButtons.Clear();
+            foreach (var bullet in bulletButton)
+            {
+                bullet.RemoveFromClassList("used");
+            }
+        }
+    }
+    #endregion
 
     public void ClearUsedBullets()
     {
@@ -745,19 +805,25 @@ public partial class GameHandler : MonoBehaviour
 
     public void HandleDamage(BulletType bulletType, int numberUsed)
     {
+        var targetZombie = zombieToAimAt();
+        if (targetZombie == null)
+        {
+            Debug.Log("Tried to handle damage but there are no zombies! Cancelling damage.");
+            return;
+        }
         int rawDamage= bulletType.Damage * numberUsed;
 
-        var totalDamage = currentWeapon.WeaponEffect(numberUsed, rawDamage, zombieToAimAt());
+        var totalDamage = currentWeapon.WeaponEffect(numberUsed, rawDamage, targetZombie);
 
         Debug.Log($"Did {totalDamage} damage with {numberUsed} {bulletType.name}s!");
 
         SucessfulShot?.Invoke(totalDamage);
-
         ApplyDamage(totalDamage, zombieToAimAt());
     }
 
     public void SelectedBullet(PointerEnterEvent ev)
     {
+        CancelFailFeedback();
         var selectedElement = (VisualElement)ev.currentTarget;
 
         if (selectedElement.ClassListContains("used"))
@@ -807,6 +873,7 @@ public partial class GameHandler : MonoBehaviour
 
     public void SelectedBulletB(PointerEnterEvent ev)
     {
+        CancelFailFeedback();
         var selectedElement = (VisualElement)ev.currentTarget;
 
         if (selectedElement.ClassListContains("used") == false)
@@ -891,7 +958,20 @@ public partial class GameHandler : MonoBehaviour
         // Pinta a linha de fato
         painter2D.Stroke();
     }
+    private IEnumerator FailedShotFeedback()
+    {
+        lineColor = Color.red;
+        lineCanvas.MarkDirtyRepaint();
 
+        yield return new WaitForSeconds(0.8f); // ajuste o tempo como quiser
+
+        lineColor = Color.white;
+        readyBullets.Clear();
+        selectedUIButtons.Clear();
+        foreach (var bullet in bulletButton)
+            bullet.RemoveFromClassList("used");
+        lineCanvas.MarkDirtyRepaint();
+    }
     #endregion
 
     #region Debug & Active Inactive Minigame

@@ -137,6 +137,12 @@ public partial class GameDisplay : MonoBehaviour
     private void OnDisable()
     {
         handler.ZombieKilled -= RemoveCrosshair;
+        
+        handler.BulletSelected -= ShakeBullet;
+
+        handler.BulletSelected -= PlayerClickSound;
+
+        handler.ZombieDamaged -= ShakeZombieVisual;
     }
 
     IEnumerator WaitForBullets()
