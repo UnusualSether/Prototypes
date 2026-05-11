@@ -177,8 +177,8 @@ Transform:
   m_GameObject: {fileID: 127173195}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.08, z: 0}
+  m_LocalScale: {x: 0.56867, y: 0.56867, z: 0.56867}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1088469944}
@@ -196,10 +196,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EightWaySpriteView
   directionalSprites:
-  - {fileID: 4849390801851796245, guid: 161cbc1b880c62c40b73156ce4187903, type: 3}
+  - {fileID: 21300000, guid: d24c469e5701bab47980706c3325d2e9, type: 3}
   - {fileID: 5499008801976378315, guid: 161cbc1b880c62c40b73156ce4187903, type: 3}
-  - {fileID: -8888315120999843312, guid: 161cbc1b880c62c40b73156ce4187903, type: 3}
-  - {fileID: 2663522705909173037, guid: 161cbc1b880c62c40b73156ce4187903, type: 3}
+  - {fileID: 21300000, guid: 2e8373c2af8e2d1439ff22ee28aa6f5b, type: 3}
+  - {fileID: 21300000, guid: 5b4da4938361ac749ae99f388e71ee35, type: 3}
   - {fileID: -6243599443043986353, guid: 161cbc1b880c62c40b73156ce4187903, type: 3}
   - {fileID: -2648383985293446056, guid: 161cbc1b880c62c40b73156ce4187903, type: 3}
   - {fileID: 1469193187319807656, guid: 161cbc1b880c62c40b73156ce4187903, type: 3}
@@ -256,7 +256,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 4763202352769144593, guid: 161cbc1b880c62c40b73156ce4187903, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d24c469e5701bab47980706c3325d2e9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1578,6 +1578,46 @@ PrefabInstance:
       propertyPath: railMachine
       value: 
       objectReference: {fileID: 835946466}
+    - target: {fileID: 1769905274112778612, guid: eaaffc07808ebaf4fae8b342b82799c9, type: 3}
+      propertyPath: bulletList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769905274112778612, guid: eaaffc07808ebaf4fae8b342b82799c9, type: 3}
+      propertyPath: 'bulletList.Array.data[0]'
+      value: goodBullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769905274112778612, guid: eaaffc07808ebaf4fae8b342b82799c9, type: 3}
+      propertyPath: 'bulletList.Array.data[1]'
+      value: badBullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769905274112778612, guid: eaaffc07808ebaf4fae8b342b82799c9, type: 3}
+      propertyPath: 'bulletList.Array.data[2]'
+      value: epicBullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769905274112778612, guid: eaaffc07808ebaf4fae8b342b82799c9, type: 3}
+      propertyPath: 'bulletList.Array.data[3]'
+      value: testBullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769905274112778612, guid: eaaffc07808ebaf4fae8b342b82799c9, type: 3}
+      propertyPath: possibleBullets.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769905274112778612, guid: eaaffc07808ebaf4fae8b342b82799c9, type: 3}
+      propertyPath: 'possibleBullets.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 98974c8d6ec3808439df00a43139eb64, type: 2}
+    - target: {fileID: 1769905274112778612, guid: eaaffc07808ebaf4fae8b342b82799c9, type: 3}
+      propertyPath: 'possibleBullets.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: b0904143dd2f0534f905382f4b694aca, type: 2}
+    - target: {fileID: 1769905274112778612, guid: eaaffc07808ebaf4fae8b342b82799c9, type: 3}
+      propertyPath: 'possibleBullets.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: abe9c4a31132a8c48b9d69e9bd328b24, type: 2}
+    - target: {fileID: 1769905274112778612, guid: eaaffc07808ebaf4fae8b342b82799c9, type: 3}
+      propertyPath: 'possibleBullets.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: a0325b840e0edc344a65ad387b084a50, type: 2}
     - target: {fileID: 1769905274112778612, guid: eaaffc07808ebaf4fae8b342b82799c9, type: 3}
       propertyPath: possibleEncounters.Array.size
       value: 5

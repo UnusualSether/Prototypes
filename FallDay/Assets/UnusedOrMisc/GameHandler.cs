@@ -4,7 +4,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -25,6 +27,7 @@ public partial class GameHandler : MonoBehaviour
     //Bullets player has selected.
     public List<string> readyBullets = new List<string>();
     public Dictionary<string, BulletType> bulletLookup;
+    public List<BulletData> possibleBullets;
     #endregion
 
     #region OtherClassesInUse
@@ -112,6 +115,14 @@ public partial class GameHandler : MonoBehaviour
         public string name;
         public string description;
         public int Damage;
+
+
+        public BulletType(BulletData data)
+        {
+            name = data.bulletName;
+            description = data.bulletDescription;
+            Damage = data.bulletDamage;
+        }
     }
 
     public class BulletTable
@@ -232,30 +243,9 @@ public partial class GameHandler : MonoBehaviour
         }
 
         //Add the bullets
-        bulletTypes = new List<BulletType>()
-        {
+        bulletTypes = FetchAllPossibleBullets();
 
-            new BulletType()
-            {
-                name = "goodBullet",
-                description = "A good bullet.",
-                Damage = 10
-            },
         
-            new BulletType()
-            {
-               name = "shitBullet",
-               description = "A bad bullet.",
-               Damage = 5
-            },
-
-            new BulletType()
-            {
-                name = "epicBullet",
-                description = "An epic bullet!",
-                Damage = 20
-            }
-        };
 
         bulletLookup = new Dictionary<string, BulletType>();
 
@@ -281,6 +271,22 @@ public partial class GameHandler : MonoBehaviour
         
     }
 
+
+    private List<BulletType> FetchAllPossibleBullets()
+    {
+
+        List<BulletType> listToReturn  = new List<BulletType>();
+
+        foreach (var bullet in possibleBullets)
+        {
+            listToReturn.Add(new BulletType(bullet));
+        }
+
+        return listToReturn;
+
+
+
+    }
     public void Update()
     {
         HandleBulletSelect();

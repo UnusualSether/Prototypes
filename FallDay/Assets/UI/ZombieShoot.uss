@@ -17,7 +17,7 @@
     scale: 0.9 0.9;
 }
 
-.shitBullet {
+.badBullet {
     background-color: rgba(245, 245, 245, 0);
     background-image: url("project://database/Assets/Sprites/BulletButtons/SmallBulletRenderedCrushedShadowed.png?fileID=2800000&guid=751514017931a5246986e94b189d3aaf&type=3#SmallBulletRenderedCrushedShadowed");
 }
@@ -62,4 +62,9 @@
 
 .warning {
     background-color: rgb(255, 88, 88);
+}
+
+.testBullet {
+    background-color: rgba(255, 255, 255, 0);
+    background-image: url("project://database/Assets/Scenes/Icons/RoomIconCrushed.png?fileID=2800000&guid=3f994328fd0311548a7e6bd923d8ed06&type=3#RoomIconCrushed");
 }
