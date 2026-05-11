@@ -1,9 +1,6 @@
-using NUnit.Framework;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Linq.Expressions;
 using System;
 
 
@@ -64,6 +61,7 @@ public partial class ThreeDGameHandler : MonoBehaviour
         CharacterMove.PlayerMoved -= CullOldRooms; CharacterMove.PlayerMoved -= CreateNewRoom;
         //On Rails Events
         handler.PlayerKilledAllZombies -= EncounterEnd;
+        CharacterMove.PlayerHasReachedNextPoint -= PlayerToEncounterGate;
         //Player Events
         CharacterMove.PlayerHasReachedNextPoint -= EndRails;
     }

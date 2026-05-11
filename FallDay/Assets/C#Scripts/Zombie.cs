@@ -63,12 +63,12 @@ public class Zombie
         if (phase == ZombiePhase.Far)
         {
             phase = ZombiePhase.Approach;
-            Debug.Log($"Zombie with id {id} has changed phase to {phase}");
+            //Debug.Log($"Zombie with id {id} has changed phase to {phase}");
         }
         else if (phase == ZombiePhase.Approach)
         {
             phase = ZombiePhase.Close;
-            Debug.Log($"Zombie with id {id} has changed phase to {phase}");
+            //Debug.Log($"Zombie with id {id} has changed phase to {phase}");
             ZombieIsClose?.Invoke(this);
         }
     }

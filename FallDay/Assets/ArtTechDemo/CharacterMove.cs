@@ -1,22 +1,12 @@
-using NUnit.Framework;
 using UnityEngine;
 using System.Collections.Generic;
 using System;
 using UnityEngine.AI;
-using UnityEngine.InputSystem;
-using JetBrains.Annotations;
-using System.Security.Cryptography;
 using Unity.AI.Navigation;
 using System.Linq;
-using Unity.VisualScripting;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Net;
-using UnityEditor.Search;
 
 public class CharacterMove : MonoBehaviour
 {
-
-
     #region Events
     public static event Action PlayerMoved;
 
@@ -48,7 +38,7 @@ public class CharacterMove : MonoBehaviour
     {
 
 
-
+        CheckStatus();
 
     }
 
@@ -142,24 +132,24 @@ public class CharacterMove : MonoBehaviour
     bool encounterGate = false;
     private void CheckStatus()
     {
+        if (wayPointList.Count <= 0) return;
 
-        if (wayPointList.Count <= 0)
+        //Debug.Log($"[Player] Checking status, has path: {navMesh.hasPath}, path pending: {navMesh.pathPending}, remaining distance: {navMesh.remainingDistance}");
+        bool hasPath = navMesh.hasPath || navMesh.pathPending;
+        bool reachedDestination = !navMesh.pathPending
+                               && navMesh.hasPath
+                               && navMesh.remainingDistance < 0.1f;
+
+        if (reachedDestination)
         {
-            return;
-        }
-
-
-        if (navMesh.remainingDistance < 0.1)
-        {
+            Debug.Log($"[Player] Reached destination at {transform.position}");
             PlayerHasReachedNextPoint?.Invoke();
         }
 
         if (transform.position == wayPointList[0].wayPointPosition)
         {
-
+            Debug.Log($"[Player] Reached waypoint at {transform.position}");
             InitializeWaypoints();
-
-
         }
     }
 

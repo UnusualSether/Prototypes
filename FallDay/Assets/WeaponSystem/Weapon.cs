@@ -76,7 +76,7 @@ using UnityEngine;
 
             if (prevStored == 0)
             {
-                Debug.Log($"Stored {debugStore} Damage!");
+                //Debug.Log($"Stored {debugStore} Damage!");
                 return Damage;
             }
 
@@ -84,7 +84,7 @@ using UnityEngine;
             {
                 int Applystored = storedDamage;
                 storedDamage = 0;
-                Debug.Log($"Applied {Applystored} stored damage to total!");
+                //Debug.Log($"Applied {Applystored} stored damage to total!");
                 return Damage + Applystored;
             }
            
