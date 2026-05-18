@@ -2,9 +2,9 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using System.Collections.Generic;
 using static GameHandler;
+using static GameHandler.Encounter;
 using System;
 
-[Serializable]
 public class Zombie
 {
     public int id = 0;
@@ -12,11 +12,13 @@ public class Zombie
     //HP and phase timer are not set by the gamehandler, but by the EnemyData which dictates the enemy's type.
     public int hp;
     public float PhaseTimer;
+    public static int DifficultyValue = 0;
+    public double Diff = 0;
 
     private float PhT1 = 0;
     private bool IsFirstUpdate = true;
-    public GameHandler handler;
-    //
+    public Difficulty difficulty;
+
     public enum ZombiePhase
     {
         Stop,
@@ -29,7 +31,7 @@ public class Zombie
 
     public int currentDisplay;
 
-    //public static event Action<Zombie> ZombieIsClose;
+    public event Action<Zombie> ZombieIsClose;
 
     public void UpdatePhase(float deltaTime)
     {
@@ -43,7 +45,7 @@ public class Zombie
             PlayerTookDamage?.Invoke(1f);
             // <= Place a Destroy Zombie Call
 
-            destroyZombie?.Invoke(this);
+            destroyZombie?.Invoke(id);
         }
         else if (IsFirstUpdate)
         {
@@ -66,20 +68,46 @@ public class Zombie
         {
             phase = ZombiePhase.Approach;
             Debug.Log($"Zombie with id {id} has changed phase to {phase}");
-            handler.InvokePhaseChange(this);
         }
         else if (phase == ZombiePhase.Approach)
         {
             phase = ZombiePhase.Close;
             Debug.Log($"Zombie with id {id} has changed phase to {phase}");
-            handler.InvokePhaseChange(this);
-            handler.InvokeZombieIsClose(this);
+            ZombieIsClose?.Invoke(this);
+        }
+    }
+
+    public void Difficulty()
+    {
+        if (DifficultyValue == 1)
+        {
+            Diff = 0.5f;
+            Debug.Log("Dificuldade virou Facil");
+        }
+
+        if (DifficultyValue == 2)
+        {
+            Diff = 1.0f;
+            Debug.Log("Dificuldade virou Medio");
+        }
+
+        if (DifficultyValue == 3)
+        {
+            Diff = 2.0f;
+            Debug.Log("Dificuldade virou Dificil");
         }
     }
 
     public Zombie(EnemyData data)
     {
-        hp = data.HP;
+        hp = (int)(data.HP * Diff);
         PhaseTimer = data.phaseTimer;
     }
+
+    /*public void ZombieDead()
+    {
+
+    }*/
+
+
 }

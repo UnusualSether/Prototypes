@@ -1,3 +1,19 @@
 .menu-button:hover {
     scale: 1.1 1.1;
 }
+
+.unity-base-field {
+}
+
+.unity-base-slider {
+}
+
+.unity-base-slider--horizontal {
+}
+
+.unity-slider {
+}
+
+.unity-slider__tracker {
+    width: 569%;
+}

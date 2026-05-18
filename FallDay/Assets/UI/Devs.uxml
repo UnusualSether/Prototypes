@@ -1,0 +1,9 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1;">
+        <ui:Button text="Return" name="Return" style="position: absolute; top: 365px; left: 166px; width: 50%; height: 6%; font-size: 49px;"/>
+        <ui:Label text="Lucas Scott" name="Dev1" style="position: absolute; top: 693px; left: 1px; font-size: 50px;"/>
+        <ui:Label text="Luiz Gustavo" name="Dev3" style="position: absolute; top: 1185px; left: 1px; font-size: 50px;"/>
+        <ui:Label text="Lucas Feitosa" name="Dev4" style="position: absolute; top: 1185px; left: 533px; font-size: 50px;"/>
+        <ui:Label text="Pedro Marcondes" name="Dev2" style="position: absolute; top: 701px; left: 456px; font-size: 50px;"/>
+    </ui:VisualElement>
+</ui:UXML>

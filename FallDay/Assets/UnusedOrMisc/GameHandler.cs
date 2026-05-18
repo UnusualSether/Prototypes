@@ -29,7 +29,7 @@ public partial class GameHandler : MonoBehaviour
 
     public VisualElement[] bulletButton;
 
-    public Weapon currentWeapon = new Shotgun();
+    public Weapon currentWeapon;
     #endregion
 
     #region Events

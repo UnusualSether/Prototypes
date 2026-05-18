@@ -7,11 +7,10 @@ public class MenuManager : MonoBehaviour
     //Set Child Not Parent
     public GameObject Menu;
     public GameObject Config;
-
-    private void Start()
-    {
-        Config.SetActive(false);
-    }
+    public GameObject Devs;
+    public GameObject LevelMenu;
+    public GameObject Weapons;
+    public GameObject Difficulty;
 
     public void OnEnable()
     {
@@ -23,13 +22,40 @@ public class MenuManager : MonoBehaviour
 
             Button startbutton = uiDocument.rootVisualElement.Q<Button>("Play");
             Button configbutton = uiDocument.rootVisualElement.Q<Button>("Config");
+            Button Devbutton = uiDocument.rootVisualElement.Q<Button>("Credits");
             Button returnbutton = uiDocument.rootVisualElement.Q<Button>("Return");
             Button level1button = uiDocument.rootVisualElement.Q<Button>("level1");
             Button level2button = uiDocument.rootVisualElement.Q<Button>("level2");
+            ////////////////////////////////////////////////////////////////////////
+            Button begin = uiDocument.rootVisualElement.Q<Button>("StartGame");
+            Button returntomenu = uiDocument.rootVisualElement.Q<Button>("ReturnMenu");
+            ////////////////////////////////////////////////////////////////////////
+            Button diffchoice = uiDocument.rootVisualElement.Q<Button>("ToDifficulty");
+
 
             if (startbutton != null)
             {
                 startbutton.clicked += LevelSelect;
+            }
+
+            if (diffchoice != null)
+            {
+                diffchoice.clicked += DiffSelection;
+            }
+
+            if (returntomenu != null)
+            {
+                returntomenu.clicked += ReturnMainMenu;
+            }
+
+            if (begin != null)
+            {
+                begin.clicked += StartGame;
+            }
+
+            if (Devbutton != null)
+            {
+                Devbutton.clicked += DevMenu;
             }
 
             if (configbutton != null)
@@ -55,9 +81,28 @@ public class MenuManager : MonoBehaviour
 
     private void configmenu()
     {
-        Menu.SetActive(false);
         Config.SetActive(true);
+        Menu.SetActive(false);
     }
+
+    private void returnmenu()
+    {
+        Menu.SetActive(true);
+        Config.SetActive(false);
+        Devs.SetActive(false);
+    }
+
+    private void DevMenu()
+    {
+        Devs.SetActive(true);
+        Menu.SetActive(false);
+    }
+
+    private void ReturnMainMenu()
+    {
+        SceneManager.LoadScene("Scenes/MainMenu");
+    }
+
     private void StartGame()
     {
         SceneManager.LoadScene("PresentableText/PresentableTex");
@@ -66,19 +111,27 @@ public class MenuManager : MonoBehaviour
     {
         SceneManager.LoadScene("Scenes/LevelSelect");
     }
-    private void returnmenu()
-    {
-        Menu.SetActive(true);
-        Config.SetActive(false);
-    }
+
     private void Level1()
     {
         //Debug.Log("Level 1");
-        StartGame();
+        //StartGame();
+        LevelMenu.SetActive(false);
+        Weapons.SetActive(true);
     }
     private void Level2()
     {
         //Debug.Log("Level 2");
-        StartGame();
+        //StartGame();
+        LevelMenu.SetActive(false);
+        Weapons.SetActive(true);
+
+    }
+
+    private void DiffSelection()
+    {
+        Weapons.SetActive(false);
+        Difficulty.SetActive(true);
+
     }
 }
