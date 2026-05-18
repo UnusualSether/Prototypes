@@ -50,7 +50,7 @@ public partial class WeaponSelection : MonoBehaviour
                 choose.text = "Você escolheu a Pistola";
                 pistol.value = true;
                 start.SetEnabled(true);
-                Weapon.GameHandler.currentWeapon == new Pistol();
+                //Weapon.GameHandler.currentWeapon == new Pistol();
             }
             else if (evt.newValue == false && pistol.value == false)
             {
