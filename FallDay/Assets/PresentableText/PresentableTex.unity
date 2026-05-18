@@ -1607,7 +1607,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6046166540849062292, guid: 1f4767065a50de444b85b0dc9774004e, type: 3}
       propertyPath: HP
-      value: 805
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 6046166540849062292, guid: 1f4767065a50de444b85b0dc9774004e, type: 3}
       propertyPath: SizeX
