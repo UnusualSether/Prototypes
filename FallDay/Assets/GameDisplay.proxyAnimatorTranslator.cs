@@ -15,12 +15,12 @@ public partial class GameDisplay
     {
         if (zombieProxies == null || zombieProxies.Length == 0)
         {
-            //Debug.LogError("zombieProxies não foi preenchido no Inspector!");
+            Debug.LogError("zombieProxies não foi preenchido no Inspector!");
             return null;
         }
         if (display.displayId >= zombieProxies.Length)
         {
-            //Debug.LogError($"displayId {display.displayId} não tem proxy correspondente. Total de proxies: {zombieProxies.Length}");
+            Debug.LogError($"displayId {display.displayId} não tem proxy correspondente. Total de proxies: {zombieProxies.Length}");
             return null;
         }
         int index = Mathf.Clamp(display.displayId, 0, zombieProxies.Length - 1);
