@@ -19,6 +19,8 @@ public class Zombie
     private bool IsFirstUpdate = true;
     public Difficulty difficulty;
 
+    public GameHandler handler; //Isso é para a outra parte do codigo que foi movido para o game handler
+
     public enum ZombiePhase
     {
         Stop,
@@ -45,7 +47,7 @@ public class Zombie
             PlayerTookDamage?.Invoke(1f);
             // <= Place a Destroy Zombie Call
 
-            destroyZombie?.Invoke(id);
+            destroyZombie?.Invoke(this);
         }
         else if (IsFirstUpdate)
         {
@@ -68,12 +70,15 @@ public class Zombie
         {
             phase = ZombiePhase.Approach;
             Debug.Log($"Zombie with id {id} has changed phase to {phase}");
+            handler.InvokePhaseChange(this);
         }
         else if (phase == ZombiePhase.Approach)
         {
             phase = ZombiePhase.Close;
             Debug.Log($"Zombie with id {id} has changed phase to {phase}");
-            ZombieIsClose?.Invoke(this);
+            handler.InvokePhaseChange(this);
+            //ZombieIsClose?.Invoke(this);
+
         }
     }
 
