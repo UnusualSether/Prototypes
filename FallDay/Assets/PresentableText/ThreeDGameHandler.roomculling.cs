@@ -1,8 +1,5 @@
-using NUnit.Framework;
 using UnityEngine;
-using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System;
 
 public partial class ThreeDGameHandler
@@ -40,12 +37,20 @@ public partial class ThreeDGameHandler
     {
 
 
-        while (roomsQueue.Count != maxNumberOfRooms)
+        if (!playerChooseSystem)
         {
-            CreateNewRoom();
+            while (roomsQueue.Count != maxNumberOfRooms)
+            {
+                CreateNewRoom();
+            }
         }
 
-        RoomSetupComplete?.Invoke();
+        else
+        {
+            CreateThreeWay();
+        }
+
+            RoomSetupComplete?.Invoke();
     }
     public bool RoomsNeedCulling()
     {

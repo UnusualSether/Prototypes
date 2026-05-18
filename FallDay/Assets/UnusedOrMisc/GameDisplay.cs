@@ -73,7 +73,7 @@ public partial class GameDisplay : MonoBehaviour
         //Find the Bullet Displays using a for loop
         var bulletDisplaysFound = ui.Query<VisualElement>().Where(e => e.name.StartsWith("BSpot")).ToList();
 
-        Debug.Log($"{bulletDisplaysFound.Count} bullet displays found");
+        //Debug.Log($"{bulletDisplaysFound.Count} bullet displays found");
 
         bulletDisplay = bulletDisplaysFound.ToArray();
 
@@ -86,7 +86,7 @@ public partial class GameDisplay : MonoBehaviour
 
         var zombieDisplaysFound = ui.Query<VisualElement>().Where(e => e.name.StartsWith("ZombieSpot")).ToList();
 
-        Debug.Log(zombieDisplaysFound.Count + "Zombie Displays");
+        //Debug.Log(zombieDisplaysFound.Count + "Zombie Displays");
 
 
         foreach (var display in zombieDisplaysFound)
@@ -94,7 +94,7 @@ public partial class GameDisplay : MonoBehaviour
 
             int nextDisplayNumber = zombieDisplayList.Count;
 
-            Debug.Log(zombieDisplayList.Count);
+            //Debug.Log(zombieDisplayList.Count);
 
             display.RegisterCallback<PointerEnterEvent>(SelectZombie);
 
@@ -113,7 +113,7 @@ public partial class GameDisplay : MonoBehaviour
           );
         }
 
-        Debug.Log($"Populated zombie class list with {zombieDisplayList.Count}");
+        //Debug.Log($"Populated zombie class list with {zombieDisplayList.Count}");
 
         zombieDisplayLookup = new Dictionary<int, ZombieDisplay>();
 
@@ -380,7 +380,7 @@ public partial class GameDisplay : MonoBehaviour
 
             assignedDisplay.displayedZombie = newZombie;
 
-            Debug.Log($"Zombie Display {assignedDisplay.displayId} now contains zombie with ID {assignedDisplay.displayedZombie.id}");
+            //Debug.Log($"Zombie Display {assignedDisplay.displayId} now contains zombie with ID {assignedDisplay.displayedZombie.id}");
 
             VisualElement zombieDisplayElement = ui.Query<VisualElement>().Where(e => e.name == $"ZombieSpot{assignedDisplay.displayId + 1}");
 
@@ -432,7 +432,7 @@ public partial class GameDisplay : MonoBehaviour
 
            ;
 
-            Debug.Log($"Assigned display ID {assignedDisplay.displayId} which contained {assignedDisplay.displayedZombie.id} will now be nulled.");
+            //Debug.Log($"Assigned display ID {assignedDisplay.displayId} which contained {assignedDisplay.displayedZombie.id} will now be nulled.");
 
             assignedDisplay.displayedZombie = null;
 

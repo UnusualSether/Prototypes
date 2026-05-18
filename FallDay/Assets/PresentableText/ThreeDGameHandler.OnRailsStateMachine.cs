@@ -1,10 +1,8 @@
-using NUnit.Framework;
 using UnityEngine;
 using System.Collections.Generic;
 using System;
-using System.Threading.Tasks;
 using System.Collections;
-using Unity.VisualScripting;
+
 
 
 public partial class ThreeDGameHandler
@@ -16,7 +14,9 @@ public partial class ThreeDGameHandler
     {
         OnRail,
         Encounter,
-        Cleanup
+        Cleanup,
+        PlayerChoice
+
     }
 
     public GameObject player;
@@ -33,7 +33,8 @@ public partial class ThreeDGameHandler
         {
         States.OnRail,
         States.Encounter,
-        States.Cleanup
+        States.Cleanup,
+        States.PlayerChoice
         };
 
 
@@ -41,11 +42,13 @@ public partial class ThreeDGameHandler
     public static event Action RailStarted;
     public static event Action EncounterStarted;
     public static event Action CleanupStarted;
+    public static event Action PlayerChoiceStarted;
 
     //State End Events
     public static event Action RailEnded;
     public static event Action EncounterEnded;
     public static event Action CleanupEnded;
+    public static event Action PlayerChoiceEnded;
 
     public Dictionary<States, Action> stateToFunction;
     public Dictionary<States, Action> stateToFunctionEnds;
@@ -56,7 +59,8 @@ public partial class ThreeDGameHandler
         {
             {States.OnRail, StartRails },
             {States.Encounter, StartEncounter },
-            {States.Cleanup, StartCleanup }
+            {States.Cleanup, StartCleanup },
+            {States.PlayerChoice, StartPlayerChoice },
 
         };
 
@@ -65,8 +69,9 @@ public partial class ThreeDGameHandler
         {
             {States.OnRail, EndRails },
             {States.Encounter, EncounterEnd },
-            {States.Cleanup, CleanupEnd }
-
+            {States.Cleanup, CleanupEnd },
+            {States.PlayerChoice, EndPlayerChoice }
+             
 
         };
     }
@@ -166,12 +171,34 @@ public partial class ThreeDGameHandler
     {
         CleanupEnded?.Invoke();
 
-       
-        StartRails();
+
+        StartPlayerChoice();
         
     }
 
+    public void StartPlayerChoice()
+    {
+        currentState = States.PlayerChoice;
+        Debug.Log("Player choice started");
+    }
 
+    public void EndPlayerChoice()
+    {
+        StartRails();
+    }
+
+    void PlayerToEncounterGate()
+    {
+        if (currentState != States.OnRail)
+        {
+            return ;
+        }
+
+        else
+        {
+            EndRails();
+        }
+    }
    
 
 }
