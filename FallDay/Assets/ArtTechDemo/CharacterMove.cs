@@ -5,12 +5,28 @@ using UnityEngine.AI;
 using Unity.AI.Navigation;
 using System.Linq;
 
+
+[Serializable]
+public class Waypoint
+{
+    public Vector3 wayPointPosition;
+
+
+    public GameObject belongingRoom;
+
+}
+
+
 public class CharacterMove : MonoBehaviour
 {
     #region Events
     public static event Action PlayerMoved;
 
     public static event Action PlayerHasReachedNextPoint;
+
+    public static event Action<List<Waypoint>> PlayerWillClearList;
+
+    public static event Action<Waypoint> PlayerMovingTowardsUnLoadedRoom;
 
     #endregion
 
@@ -43,12 +59,7 @@ public class CharacterMove : MonoBehaviour
     }
 
 
-    [Serializable]
-    public class Waypoint
-    {
-        public Vector3 wayPointPosition;
-
-    }
+    
 
     public List<Waypoint> wayPointList = new List<Waypoint>();
 
@@ -69,7 +80,9 @@ public class CharacterMove : MonoBehaviour
 
             var newWaypoint = new Waypoint()
             {
-                wayPointPosition = item.transform.position
+                wayPointPosition = item.transform.position,
+
+                belongingRoom = item.transform.parent.gameObject
             };
 
             wayPointList.Add(newWaypoint);
@@ -121,10 +134,15 @@ public class CharacterMove : MonoBehaviour
         WayPointMaintenance();
 
     }
+
+
+    GameObject cachedPlayerRoom;
     public void GoToNextWaypoint(Waypoint nextWaypoint)
     {
 
         navMesh.SetDestination(nextWaypoint.wayPointPosition);
+
+        cachedPlayerRoom = nextWaypoint.belongingRoom;
 
         PlayerMoved?.Invoke();
     }
@@ -144,6 +162,10 @@ public class CharacterMove : MonoBehaviour
         {
             Debug.Log($"[Player] Reached destination at {transform.position}");
             PlayerHasReachedNextPoint?.Invoke();
+            PlayerWillClearList?.Invoke(wayPointList);
+            wayPointList.Clear();
+            InitializeWaypoints();
+
         }
 
         if (transform.position == wayPointList[0].wayPointPosition)
@@ -189,12 +211,16 @@ public class CharacterMove : MonoBehaviour
     }
 
 
+
+
+    
     public void PlayerSwipe(ThreeDGameHandler.SwipeDirection dir)
     {
 
         Debug.Log($"[Player] It seems I'm suppose to go {(ThreeDGameHandler.SwipeDirection)dir}");
         var posToGo = FetchWayPoint(dir);
         GoToNextWaypoint(posToGo);
+        PlayerMovingTowardsUnLoadedRoom?.Invoke(posToGo);
 
     }
 
@@ -208,13 +234,13 @@ public class CharacterMove : MonoBehaviour
 
         if (dir == ThreeDGameHandler.SwipeDirection.Left)
         {
-           Waypoint wayPoint = wayPointList.OrderByDescending(x => x.wayPointPosition.x).FirstOrDefault();
+           Waypoint wayPoint = wayPointList.OrderByDescending(x => x.wayPointPosition.x).LastOrDefault();
             return wayPoint;
         }
 
         if (dir == ThreeDGameHandler.SwipeDirection.Right)
         {
-            Waypoint wayPoint = wayPointList.OrderByDescending(x => x.wayPointPosition.x).LastOrDefault();
+            Waypoint wayPoint = wayPointList.OrderByDescending(x => x.wayPointPosition.x).FirstOrDefault();
             return wayPoint;
         }
 

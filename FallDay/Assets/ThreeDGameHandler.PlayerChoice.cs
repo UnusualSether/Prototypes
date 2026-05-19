@@ -16,6 +16,7 @@ public partial class ThreeDGameHandler
     public static event Action<SwipeDirection> PlayerSwipedOnChoice;
     public static event Action PlayerMadeDecision;
 
+    bool PlayerChoiceGate;
 
 
     [SerializeField] private float swipe_threshold = 100f;  // Minimum distance to count as swipe
@@ -23,6 +24,9 @@ public partial class ThreeDGameHandler
     private Vector2 touch_start_pos;
     private Vector2 touch_end_pos;
     private SwipeDirection detected_swipe = SwipeDirection.None;
+
+
+
 
     void Update()
     {
@@ -86,19 +90,42 @@ public partial class ThreeDGameHandler
         }
     }
 
+    SwipeDirection leftandrightnulling;
+
     void ProcessSwipe()
     {
+        if (PlayerChoiceGate)
+        {
+            return;
+        }
+
         switch (detected_swipe)
         {
             case SwipeDirection.Up:
+                leftandrightnulling = SwipeDirection.Up;
                 OnSwipeUp();
                 break;
 
             case SwipeDirection.Left:
+                if (leftandrightnulling == SwipeDirection.Right)
+                {
+                    DeGatePlayerChoice();
+                    return;
+                }
+                
+                leftandrightnulling = SwipeDirection.Left;
                 OnSwipeLeft();
                 break;
 
             case SwipeDirection.Right:
+
+                if (leftandrightnulling == SwipeDirection.Left)
+                {
+                    DeGatePlayerChoice();
+                    return;
+                }
+
+                leftandrightnulling = SwipeDirection.Right;
                 OnSwipeRight();
                 break;
 
@@ -110,29 +137,35 @@ public partial class ThreeDGameHandler
         // Reset for next swipe
         detected_swipe = SwipeDirection.None;
 
-        PlayerMadeDecision.Invoke();
+        PlayerChoiceGate = true;
+
     }
 
     // Your game logic for each swipe direction
     void OnSwipeUp()
     {
-        PlayerSwipedOnChoice.Invoke(SwipeDirection.Up);
+        PlayerSwipedOnChoice?.Invoke(SwipeDirection.Up);
     }
 
     void OnSwipeLeft()
     {
-        PlayerSwipedOnChoice.Invoke(SwipeDirection.Left);
+        PlayerSwipedOnChoice?.Invoke(SwipeDirection.Left);
     }
 
     void OnSwipeRight()
     {
-        PlayerSwipedOnChoice.Invoke(SwipeDirection.Right);
+        PlayerSwipedOnChoice?.Invoke(SwipeDirection.Right);
     }
 
     // Public getter if you need it elsewhere
     public SwipeDirection GetLastSwipe()
     {
         return detected_swipe;
+    }
+
+    public void DeGatePlayerChoice()
+    {
+        PlayerChoiceGate = false;
     }
 }
 
