@@ -49,6 +49,12 @@ public partial class GameHandler : MonoBehaviour
     //Objective related events
     public event Action PlayerKilledAllZombies;
 
+    //Sound detect events
+    public event Action PieceConnected;
+
+    //Animação UI
+    public event Action<int> SucessfulHit;
+
     #endregion
 
     #region Variables
@@ -591,16 +597,26 @@ public partial class GameHandler : MonoBehaviour
     #region New HandleShotCode
     public void HandleShot()
     {
+
+        if (readyBullets.Count == 0)
+        {
+            return;
+        }
+
         Debug.Log("Shoot!");
 
+        
         if (readyBullets.Distinct().Count() <= 1 && readyBullets.Count > 2)
         {
             string bulletTypeUsed = readyBullets.First();
             int numberUsed = readyBullets.Count();
             BulletType realBulletType = bulletLookup[bulletTypeUsed];
 
+            
             HandleDamage(realBulletType, numberUsed);
+
             ClearUsedBullets();
+            
 
             readyBullets.Clear();
             selectedUIButtons.Clear();
@@ -608,19 +624,24 @@ public partial class GameHandler : MonoBehaviour
             return;
         }
 
-        // Qualquer falha (tipos diferentes ou balas insuficientes)
+        
         if (readyBullets.Count > 0)
         {
-            Debug.Log("Shot Failed!");
+            Debug.Log("Falha no tiro!");
+
             if (_failedShotRoutine != null) StopCoroutine(_failedShotRoutine);
             _failedShotRoutine = StartCoroutine(FailedShotFeedback());
+
+            
             FailedShot?.Invoke();
             return;
         }
 
-        Debug.Log("Not enough bullets selected!");
+        
+        Debug.Log("Nenhuma bala selecionada!");
         FailedShot?.Invoke();
     }
+
     public void CancelFailFeedback()
     {
         if (_failedShotRoutine != null)
@@ -628,42 +649,50 @@ public partial class GameHandler : MonoBehaviour
             StopCoroutine(_failedShotRoutine);
             _failedShotRoutine = null;
             lineColor = Color.white;
+
             readyBullets.Clear();
             selectedUIButtons.Clear();
+
             foreach (var bullet in bulletButton)
             {
-                bullet.RemoveFromClassList("used");
+                if (bullet.ClassListContains("used"))
+                {
+                    bullet.RemoveFromClassList("used");
+                }
             }
+
+            
+            lineCanvas?.MarkDirtyRepaint();
         }
     }
+
     #endregion
 
     public void ClearUsedBullets()
     {
-        //Debug.Log("Clearing Used Bullets...");
         int currentBulletIndex = 0;
 
         foreach (var bullet in bulletButton)
         {
-            
-
             if (bullet.ClassListContains("used"))
             {
                 selectableBullets[currentBulletIndex] = null;
-                //Debug.Log($"Nulled {currentBulletIndex} ");                
                 bullet.RemoveFromClassList("used");
             }
 
             currentBulletIndex++;
 
-            if (currentBulletIndex > selectableBullets.Length)
+            
+            if (currentBulletIndex >= selectableBullets.Length)
             {
                 currentBulletIndex = 0;
-                Debug.Log("Checked all bullets, backing out.");
+                Debug.Log("Checar todas as balas.");
+                break; 
             }
         }
+
         selectedUIButtons.Clear();
-        lineCanvas.MarkDirtyRepaint();  // Apaga a linha da tela
+        lineCanvas?.MarkDirtyRepaint();  
     }
 
     public void RestockBullet()
@@ -701,7 +730,7 @@ public partial class GameHandler : MonoBehaviour
                     attempts++;
                     if (attempts >= maxAttempts)
                     {
-                        //Debug.LogWarning("Could not find a valid board after 100 attempts!");
+                        
                         break;
                     }
                 }
@@ -822,6 +851,7 @@ public partial class GameHandler : MonoBehaviour
         //Debug.Log($"Did {totalDamage} damage with {numberUsed} {bulletType.name}s!");
 
         SucessfulShot?.Invoke(totalDamage);
+        SucessfulHit?.Invoke(totalDamage);
         ApplyDamage(totalDamage, zombieToAimAt());
     }
 
@@ -873,6 +903,8 @@ public partial class GameHandler : MonoBehaviour
         selectedUIButtons.Add(selectedElement);
 
         lineCanvas?.MarkDirtyRepaint();
+
+        PieceConnected?.Invoke();
     }
 
     public void SelectedBulletB(PointerEnterEvent ev)
@@ -896,6 +928,8 @@ public partial class GameHandler : MonoBehaviour
                     // NOVIDADE AQUI:   /////////////////////////////////////////////////////////////////
                     selectedUIButtons.Add(selectedElement);
                     lineCanvas?.MarkDirtyRepaint();
+
+                    PieceConnected?.Invoke();
                 }
             }
         }
