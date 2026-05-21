@@ -17,3 +17,6 @@
 .unity-slider__tracker {
     width: 569%;
 }
+
+#VisualElement > #GameName > .unity-image > #GameName {
+}
