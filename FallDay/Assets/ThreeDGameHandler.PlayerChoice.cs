@@ -90,7 +90,7 @@ public partial class ThreeDGameHandler
         }
     }
 
-    SwipeDirection leftandrightnulling;
+    SwipeDirection leftandrightnulling = SwipeDirection.None;
 
     void ProcessSwipe()
     {

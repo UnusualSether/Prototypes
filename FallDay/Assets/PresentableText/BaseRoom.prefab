@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1851650461633327550}
   - component: {fileID: 6672005967606011397}
+  - component: {fileID: 8480385079831560420}
+  - component: {fileID: 4843042637732838402}
   m_Layer: 0
   m_Name: BaseRoom
   m_TagString: Untagged
@@ -75,6 +77,32 @@ MonoBehaviour:
   - {fileID: 8401835703245098119}
   - {fileID: 8258993778013047561}
   - {fileID: 9155276205816318866}
+--- !u!114 &8480385079831560420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 38049718111097171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc8a7055af0f66649b70cce9d3ce2063, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  shrinkMagnitude: 0.01
+  shrinkDuration: 5
+--- !u!114 &4843042637732838402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 38049718111097171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbbd1fbc444c3f04cb9dfdbbb99afc68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &285457640977813885
 GameObject:
   m_ObjectHideFlags: 0

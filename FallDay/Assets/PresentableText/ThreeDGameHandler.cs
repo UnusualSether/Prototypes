@@ -17,6 +17,8 @@ public partial class ThreeDGameHandler : MonoBehaviour
 
     public GameHandler handler;
 
+    public Vector3 offsetToPlayer;
+
     public bool playerChooseSystem;
 
 
@@ -111,6 +113,8 @@ public partial class ThreeDGameHandler : MonoBehaviour
         spawnedRooms.Add(newRoom);
 
         roomsQueue.Enqueue(newlyCreatedRoomPrefab);
+
+        Debug.Log("Create a room");
     }
 
 
@@ -221,16 +225,22 @@ public partial class ThreeDGameHandler : MonoBehaviour
         {
             rooms[i] = new Room(NewRoomData());
 
-            if ( ((DoorHandler.DoorDirection)doorDirectionIndex == DoorHandler.DoorDirection.East && detected_swipe == SwipeDirection.Right))
+            if ( ((DoorHandler.DoorDirection)doorDirectionIndex == DoorHandler.DoorDirection.West && detected_swipe == SwipeDirection.Right))
             {
                 doorDirectionIndex++;
                 continue;
             }
 
-            if (((DoorHandler.DoorDirection)doorDirectionIndex == DoorHandler.DoorDirection.West && detected_swipe == SwipeDirection.Left))
+            if (((DoorHandler.DoorDirection)doorDirectionIndex == DoorHandler.DoorDirection.East && detected_swipe == SwipeDirection.Left))
             {
                 doorDirectionIndex++;
                 continue;
+            }
+
+            if ( ((DoorHandler.DoorDirection)doorDirectionIndex == DoorHandler.DoorDirection.South))
+            {
+                doorDirectionIndex++
+                 ; continue;
             }
 
             var newlyCreatedRoomPrefab = Instantiate(rooms[i].roomPrefab, GetRoomsSpawnDiff(rootRoom, rooms[i].roomPrefab, (DoorHandler.DoorDirection)doorDirectionIndex), new Quaternion(rootRoom.transform.rotation.x, rootRoom.transform.rotation.y, rootRoom.transform.rotation.z, rootRoom.transform.rotation.w));
@@ -239,12 +249,14 @@ public partial class ThreeDGameHandler : MonoBehaviour
 
             doorDirectionIndex++;
         }
- 
-      
-      
+
+
+        Debug.Log($"Create three way with {rootRoom.name} as the base!");
 
 
 
 
     }
+
+    
 }

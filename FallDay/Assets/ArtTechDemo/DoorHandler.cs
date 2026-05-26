@@ -18,4 +18,6 @@ public class DoorHandler : MonoBehaviour
 
 
     public GameObject[] doors;
+
+
 }

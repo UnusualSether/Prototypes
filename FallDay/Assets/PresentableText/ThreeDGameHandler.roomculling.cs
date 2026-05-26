@@ -16,9 +16,8 @@ public partial class ThreeDGameHandler
 
     public void DestroyRoom(GameObject room)
     {
-        Destroy(room);
+        room.GetComponent<RoomDissipate>().StartRoomDestroyCoroutine();
 
-        
 
     }
     partial void OnStartExtendRoomCulling()
@@ -71,7 +70,7 @@ public partial class ThreeDGameHandler
 
         var farthestRoom = roomsQueue.Dequeue();
 
-        DestroyRoom(farthestRoom);
+        farthestRoom.GetComponent<RoomDissipate>().StartRoomDestroyCoroutine();
 
 
 
@@ -114,7 +113,7 @@ public partial class ThreeDGameHandler
         {
             if (waypoint.belongingRoom != playerChosenRoom)
             {
-                Destroy(waypoint.belongingRoom);
+                waypoint.belongingRoom.GetComponent<RoomDissipate>().StartRoomDestroyCoroutine();
             }
         }
 
