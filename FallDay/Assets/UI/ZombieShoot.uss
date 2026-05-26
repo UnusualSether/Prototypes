@@ -88,6 +88,7 @@
 
 .BtnBullet {
     width: 25%;
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .ZombieStyle {
@@ -111,7 +112,7 @@
 
 .BtnBulletBG {
     opacity: 1;
-    background-color: rgba(97, 97, 97, 0.4);
+    background-color: rgba(97, 97, 97, 0);
     border-top-width: 0;
     border-right-width: 0;
     border-bottom-width: 0;

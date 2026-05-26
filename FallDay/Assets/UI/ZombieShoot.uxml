@@ -16,8 +16,8 @@
             <engine:VisualElement name="BSpot5" class="bulletDisplay BtnBulletA BtnBullet BtnBulletBG" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
             <engine:VisualElement name="BSpot6" class="bulletDisplay BtnBulletA BtnBullet BtnBulletBG" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
             <engine:VisualElement name="BSpot7" class="bulletDisplay BtnBulletA BtnBullet BtnBulletBG" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
-            <engine:VisualElement name="BSpot8" class="bulletDisplay BtnBulletA BtnBullet BtnBulletBG" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
             <engine:VisualElement name="BSpot9" class="bulletDisplay BtnBulletA BtnBullet BtnBulletBG" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot8" class="bulletDisplay BtnBulletA BtnBullet BtnBulletBG" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
         </engine:VisualElement>
     </engine:VisualElement>
     <engine:VisualElement name="Space" style="flex-grow: 1; width: 100%; height: 20%;"/>
