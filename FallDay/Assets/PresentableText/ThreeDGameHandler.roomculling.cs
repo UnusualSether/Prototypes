@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Linq;
 using System;
+using System.Collections.Generic;
 
 public partial class ThreeDGameHandler
 {
@@ -15,9 +16,8 @@ public partial class ThreeDGameHandler
 
     public void DestroyRoom(GameObject room)
     {
-        Destroy(room);
+        room.GetComponent<RoomDissipate>().StartRoomDestroyCoroutine();
 
-        
 
     }
     partial void OnStartExtendRoomCulling()
@@ -27,9 +27,6 @@ public partial class ThreeDGameHandler
         RoomSetup();
 
     }
-
-   
-
 
 
 
@@ -47,7 +44,7 @@ public partial class ThreeDGameHandler
 
         else
         {
-            CreateThreeWay();
+            CreateThreeWay(roomsQueue.Dequeue());
         }
 
             RoomSetupComplete?.Invoke();
@@ -73,7 +70,7 @@ public partial class ThreeDGameHandler
 
         var farthestRoom = roomsQueue.Dequeue();
 
-        DestroyRoom(farthestRoom);
+        farthestRoom.GetComponent<RoomDissipate>().StartRoomDestroyCoroutine();
 
 
 
@@ -93,5 +90,35 @@ public partial class ThreeDGameHandler
         spawnedRooms = spawnedRooms.Except(roomsToCull).ToList();
     }
 
+    GameObject playerChosenRoom;
+
+    public void PlayerArrivedToNewRoom(Waypoint waypointPlayerHasArrivedAt)
+    {
+
+        var rootRoom = waypointPlayerHasArrivedAt.belongingRoom;
+
+        playerChosenRoom = rootRoom;
+        
+
+        CreateThreeWay(rootRoom);
+
+        
+
+
+    }
+    public void DestroyUnusedRooms(List<Waypoint> waypoints)
+    {
+        
+        foreach (var waypoint in waypoints)
+        {
+            if (waypoint.belongingRoom != playerChosenRoom)
+            {
+                waypoint.belongingRoom.GetComponent<RoomDissipate>().StartRoomDestroyCoroutine();
+            }
+        }
+
+    }
+
+    
     
 }

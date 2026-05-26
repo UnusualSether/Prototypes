@@ -17,6 +17,8 @@ public partial class ThreeDGameHandler : MonoBehaviour
 
     public GameHandler handler;
 
+    public Vector3 offsetToPlayer;
+
     public bool playerChooseSystem;
 
 
@@ -45,25 +47,27 @@ public partial class ThreeDGameHandler : MonoBehaviour
     void OnEnable() 
     { 
         //Room Culling Events
-        CharacterMove.PlayerMoved += CullOldRooms; CharacterMove.PlayerMoved += CullRoomList;
+        CharacterMove.PlayerMoved += CullOldRooms; CharacterMove.PlayerMoved += CullRoomList; CharacterMove.PlayerMovingTowardsUnLoadedRoom += PlayerArrivedToNewRoom; CharacterMove.PlayerWillClearList += DestroyUnusedRooms;
         //On Rails Events
         handler.PlayerKilledAllZombies += EncounterEnd;
         //Player Events
         CharacterMove.PlayerHasReachedNextPoint += PlayerToEncounterGate; CharacterMove.PlayerHasReachedNextPoint += EndRails;
         //Player Choice Events
-        PlayerMadeDecision += EndPlayerChoice;
+        PlayerMadeDecision += EndPlayerChoice; CharacterMove.PlayerHasReachedNextPoint += DeGatePlayerChoice;
 
     }
 
     void OnDisable() 
     {
         //Room Culling Events
-        CharacterMove.PlayerMoved -= CullOldRooms; CharacterMove.PlayerMoved -= CreateNewRoom;
+        CharacterMove.PlayerMoved -= CullOldRooms; CharacterMove.PlayerMovingTowardsUnLoadedRoom -= PlayerArrivedToNewRoom; CharacterMove.PlayerWillClearList -= DestroyUnusedRooms;
         //On Rails Events
         handler.PlayerKilledAllZombies -= EncounterEnd;
         CharacterMove.PlayerHasReachedNextPoint -= PlayerToEncounterGate;
         //Player Events
         CharacterMove.PlayerHasReachedNextPoint -= EndRails;
+        //Player Choice Events
+        PlayerMadeDecision -= EndPlayerChoice; CharacterMove.PlayerHasReachedNextPoint -= DeGatePlayerChoice;
     }
 
     [ContextMenu("SpawnNewRoom")]
@@ -109,6 +113,8 @@ public partial class ThreeDGameHandler : MonoBehaviour
         spawnedRooms.Add(newRoom);
 
         roomsQueue.Enqueue(newlyCreatedRoomPrefab);
+
+        Debug.Log("Create a room");
     }
 
 
@@ -205,12 +211,8 @@ public partial class ThreeDGameHandler : MonoBehaviour
 
     }
 
-    private void CreateThreeWay()
+    private void CreateThreeWay(GameObject rootRoom)
     {
-
-        var rootRoom = roomsQueue.Last();
-
-
         var numberOfRootRoomDoors = GameObject.FindGameObjectsWithTag("DoorTile").Where(x => x.transform.parent == rootRoom.transform).Count();
 
         int doorDirectionIndex = 1;
@@ -223,18 +225,38 @@ public partial class ThreeDGameHandler : MonoBehaviour
         {
             rooms[i] = new Room(NewRoomData());
 
+            if ( ((DoorHandler.DoorDirection)doorDirectionIndex == DoorHandler.DoorDirection.West && detected_swipe == SwipeDirection.Right))
+            {
+                doorDirectionIndex++;
+                continue;
+            }
+
+            if (((DoorHandler.DoorDirection)doorDirectionIndex == DoorHandler.DoorDirection.East && detected_swipe == SwipeDirection.Left))
+            {
+                doorDirectionIndex++;
+                continue;
+            }
+
+            if ( ((DoorHandler.DoorDirection)doorDirectionIndex == DoorHandler.DoorDirection.South))
+            {
+                doorDirectionIndex++
+                 ; continue;
+            }
+
             var newlyCreatedRoomPrefab = Instantiate(rooms[i].roomPrefab, GetRoomsSpawnDiff(rootRoom, rooms[i].roomPrefab, (DoorHandler.DoorDirection)doorDirectionIndex), new Quaternion(rootRoom.transform.rotation.x, rootRoom.transform.rotation.y, rootRoom.transform.rotation.z, rootRoom.transform.rotation.w));
 
             roomsToQueue.Add(newlyCreatedRoomPrefab);
 
             doorDirectionIndex++;
         }
- 
-      
-      
+
+
+        Debug.Log($"Create three way with {rootRoom.name} as the base!");
 
 
 
 
     }
+
+    
 }
