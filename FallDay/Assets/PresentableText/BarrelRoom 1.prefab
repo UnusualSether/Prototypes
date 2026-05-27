@@ -2156,7 +2156,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: c44ead3d7f474c94fa0add0f4cf1591d, type: 2}
     - target: {fileID: 38049718111097171, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
       propertyPath: m_Name
-      value: Basement1
+      value: BarrelRoom 1
       objectReference: {fileID: 0}
     - target: {fileID: 186127827702297290, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -2474,7 +2474,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 68d78520b2b6ac149917f3f921b09e93, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.9257027
+      value: 2.69
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 68d78520b2b6ac149917f3f921b09e93, type: 3}
       propertyPath: m_LocalPosition.y
