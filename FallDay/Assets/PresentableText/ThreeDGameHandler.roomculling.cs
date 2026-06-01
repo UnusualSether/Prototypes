@@ -14,6 +14,7 @@ public partial class ThreeDGameHandler
 
 
 
+
     public void DestroyRoom(GameObject room)
     {
         room.GetComponent<RoomDissipate>().StartRoomDestroyCoroutine();
@@ -85,9 +86,13 @@ public partial class ThreeDGameHandler
 
     public void CullRoomList()
     {
-        var roomsToCull = spawnedRooms.Take(3);
+        toDestroyThreeWay = previousThreeWay;
 
-        spawnedRooms = spawnedRooms.Except(roomsToCull).ToList();
+        for (int i = 0; i < toDestroyThreeWay.Count(); i++)
+        {
+            Destroy(toDestroyThreeWay[i]);
+        }
+
     }
 
     GameObject playerChosenRoom;
@@ -116,6 +121,8 @@ public partial class ThreeDGameHandler
                 waypoint.belongingRoom.GetComponent<RoomDissipate>().StartRoomDestroyCoroutine();
             }
         }
+
+        
 
     }
 
