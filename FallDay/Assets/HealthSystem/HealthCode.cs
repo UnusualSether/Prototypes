@@ -5,24 +5,31 @@ using UnityEngine.UIElements;
 
 public class HealthCode : MonoBehaviour
 {
-    public float HP, MaxHP, SizeX, SizeY, Damage, Heal;
-
+    private float HP;
+    public float MaxHP, SizeX, SizeY, Heal;
     [SerializeField]
     private RectTransform healthBar;
     [SerializeField]
     private RectTransform nohealthBar;
 
     [SerializeField]private UIToggleManager UIToggleManager;
-    
 
-
-
+    private void OnEnable()
+    {
+        GameHandler.PlayerTookDamage += OnDemegedTest;
+        GameHandler.PlayerTookDamage += TakeDamage;
+    }
+    private void OnDisable()
+    {
+        GameHandler.PlayerTookDamage -= OnDemegedTest;
+        GameHandler.PlayerTookDamage -= TakeDamage;
+    }
     void Start()
     {
-   
         //Debug.Log("Helth start");
-        GameHandler.PlayerTookDamage += OnDemegedTest;
-        GameHandler.PlayerTookDamage += TestLessHP;
+
+        Debug.Log("HP, MaxHP, SizeX, SizeY, Damage, Heal: " + HP + ", " + MaxHP + ", " + SizeX + ", " + SizeY + ", " + Heal);
+        HP = MaxHP;
     }
 
     void Update()
@@ -31,16 +38,7 @@ public class HealthCode : MonoBehaviour
         {
             UIToggleManager.ToggleUI();
         }
-        CurrentHealth(MaxHP);
-
-        if (Input.GetKeyDown("a"))
-        {
-            ManualHP(-Damage);
-        }
-        if (Input.GetKeyDown("d"))
-        {
-            ManualHP(Heal);
-        }
+        //CurrentHealth(MaxHP);
     }
 
     #region Events
@@ -58,7 +56,7 @@ public class HealthCode : MonoBehaviour
         nohealthBar.sizeDelta = new Vector2(SizeX, SizeY);
     }
 
-
+    /*
     //Calculo do HP
     public void ManualHP(float newlyRecievedValue)
     {
@@ -73,7 +71,7 @@ public class HealthCode : MonoBehaviour
 
         CurrentHealth(MaxHP);
     }
-
+    */
     private bool DeathCheck(float currentHP)
     {
         if (currentHP <= 0)
@@ -91,9 +89,18 @@ public class HealthCode : MonoBehaviour
     {
         Debug.Log("HealthCode dameged Called");
     }
-    public void TestLessHP(float Demage)
+    public void TakeDamage(float Demage)
     {
-        ManualHP(-Damage);
+        if(HP - Demage <= 0)
+        {
+            HP = 0;
+            HealthDroppedToZero?.Invoke();
+        }
+        else
+        {
+            HP -= Demage;
+        }
+        CurrentHealth(MaxHP);
     }
 
 

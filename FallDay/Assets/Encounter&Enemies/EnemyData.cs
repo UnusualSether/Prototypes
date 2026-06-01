@@ -10,6 +10,8 @@ public class EnemyData : ScriptableObject
 
     public int HP;
 
+    public int Damage;
+
     public float phaseTimer;
 
 }

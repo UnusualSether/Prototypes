@@ -12,6 +12,8 @@ public partial class GameHandler : MonoBehaviour
     // careful when changing names of anything in the bullet arrays or in the UI itself.
     [Header("Seleção de codigo")]
     public bool oldNew = true;
+
+
     #region Lists and Arrays
     //Bullet types that can show up in the grid.
     public string[] bulletList;
@@ -103,12 +105,15 @@ public partial class GameHandler : MonoBehaviour
     {
         ThreeDGameHandler.EncounterStarted += ActivateMinigame;
         ThreeDGameHandler.EncounterEnded += DeactivateMinigame;
+        destroyZombie += _KillZombie;
     }
 
     void OnDisable()
     {
         ThreeDGameHandler.EncounterStarted -= ActivateMinigame;
         ThreeDGameHandler.EncounterEnded -= DeactivateMinigame;
+        destroyZombie -= _KillZombie;
+        ResetLists();
     }   
     #endregion
 
@@ -220,7 +225,7 @@ public partial class GameHandler : MonoBehaviour
     {
 
         ui = uiDoc.rootVisualElement;
-        destroyZombie += _KillZombie;
+        
         //Fetch all bullet buttons
         var bulletDisplaysFound = ui.Query<VisualElement>().Where(e => e.name.StartsWith("BSpot"));
 
@@ -438,7 +443,7 @@ public partial class GameHandler : MonoBehaviour
     public void _KillZombie(Zombie zombieToKill) //<= same as zombie damege ,just skipping a step
     {
         //Debug.Log($"killed zombie ID {zombieToKill.id} removing them from selectable zombies.");
-        if (zombieLookup[zombieToKill.id] != null)
+        if (zombieToKill != null)
         {
             ZombieList.Remove(zombieToKill);
             zombieLookup.Remove(zombieToKill.id);
@@ -1087,4 +1092,18 @@ public partial class GameHandler : MonoBehaviour
     }
     #endregion
 
+
+    private void ResetLists()
+    {
+        foreach (var zombie in ZombieList)
+        {
+            OnZombieUpdate -= zombie.UpdatePhase;
+        }
+
+
+        zombieLookup.Clear();
+        ZombieList.Clear();
+
+        
+    }
 }
