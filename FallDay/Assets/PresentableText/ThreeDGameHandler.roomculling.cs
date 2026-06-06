@@ -95,36 +95,49 @@ public partial class ThreeDGameHandler
 
     }
 
-    GameObject playerChosenRoom;
+    GameObject previousPlayerChosenRoom;
+    GameObject rootRoomNext;
 
-    public void PlayerArrivedToNewRoom(Waypoint waypointPlayerHasArrivedAt)
+    public void PlayerMovingTowardsNewRoom(Waypoint waypointPlayerHasArrivedAt)
     {
 
         var rootRoom = waypointPlayerHasArrivedAt.belongingRoom;
 
-        playerChosenRoom = rootRoom;
-        
+
+
+        rootRoomNext = rootRoom;
 
         CreateThreeWay(rootRoom);
 
-        
-
-
+       
     }
     public void DestroyUnusedRooms(List<Waypoint> waypoints)
     {
         
         foreach (var waypoint in waypoints)
         {
-            if (waypoint.belongingRoom != playerChosenRoom)
+            if (waypoint.belongingRoom != rootRoomNext)
             {
-                waypoint.belongingRoom.GetComponent<RoomDissipate>().StartRoomDestroyCoroutine();
+                DestroyRoom(waypoint.belongingRoom);
             }
         }
 
         
 
     }
+
+    public void PlayerHasReachedNewRoom()
+    {
+        if (previousPlayerChosenRoom != null)
+        {
+            Destroy(previousPlayerChosenRoom);
+
+        }
+
+        previousPlayerChosenRoom = rootRoomNext;
+    }
+    
+ 
 
     
     

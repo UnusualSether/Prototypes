@@ -60,7 +60,7 @@ public partial class ThreeDGameHandler : MonoBehaviour
     void OnEnable() 
     { 
         //Room Culling Events
-        CharacterMove.PlayerMoved += CullOldRooms; CharacterMove.PlayerMoved += CullRoomList; CharacterMove.PlayerMovingTowardsUnLoadedRoom += PlayerArrivedToNewRoom; CharacterMove.PlayerWillClearList += DestroyUnusedRooms;
+        CharacterMove.PlayerMoved += CullOldRooms; CharacterMove.PlayerMoved += CullRoomList; CharacterMove.PlayerMovingTowardsUnLoadedRoom += PlayerMovingTowardsNewRoom; CharacterMove.PlayerWillClearList += DestroyUnusedRooms; CharacterMove.PlayerHasReachedNextPoint += ClearPreviousRoomCache; CharacterMove.PlayerHasReachedNextPoint += PlayerHasReachedNewRoom;
         //On Rails Events
         handler.PlayerKilledAllZombies += EncounterEnd;
         //Player Events
@@ -73,7 +73,7 @@ public partial class ThreeDGameHandler : MonoBehaviour
     void OnDisable() 
     {
         //Room Culling Events
-        CharacterMove.PlayerMoved -= CullOldRooms; CharacterMove.PlayerMovingTowardsUnLoadedRoom -= PlayerArrivedToNewRoom; CharacterMove.PlayerWillClearList -= DestroyUnusedRooms;
+        CharacterMove.PlayerMoved -= CullOldRooms; CharacterMove.PlayerMovingTowardsUnLoadedRoom -= PlayerMovingTowardsNewRoom; CharacterMove.PlayerWillClearList -= DestroyUnusedRooms; CharacterMove.PlayerHasReachedNextPoint -= ClearPreviousRoomCache; CharacterMove.PlayerHasReachedNextPoint -= PlayerHasReachedNewRoom;
         //On Rails Events
         handler.PlayerKilledAllZombies -= EncounterEnd;
         CharacterMove.PlayerHasReachedNextPoint -= PlayerToEncounterGate;
@@ -217,6 +217,7 @@ public partial class ThreeDGameHandler : MonoBehaviour
 
 
 
+
     [ContextMenu("Debug Get Size of the room")]
     private void DebugGetSize()
     {
@@ -224,21 +225,18 @@ public partial class ThreeDGameHandler : MonoBehaviour
 
     }
 
+    GameObject currentRootRoom;
+
     private void CreateThreeWay(GameObject rootRoom)
     {
-        if (currentThreeWay[1] != null)
-        {
-            previousThreeWay = currentThreeWay;
-            Array.Clear(currentThreeWay,0,currentThreeWay.Length);
-        }
 
-        var numberOfRootRoomDoors = GameObject.FindGameObjectsWithTag("DoorTile").Where(x => x.transform.parent == rootRoom.transform).Count();
+        var numberOfRootRoomDoors = rootRoom.GetComponent<DoorHandler>().doors.Length;
 
         int doorDirectionIndex = 0;
 
         int roomIndexer = 0;
 
-        Room[] rooms = new Room[numberOfRootRoomDoors ];
+        Room[] rooms = new Room[numberOfRootRoomDoors];
 
         List<GameObject> roomsToQueue = new List<GameObject>();
 
@@ -250,21 +248,21 @@ public partial class ThreeDGameHandler : MonoBehaviour
             if ( ((DoorHandler.DoorDirection)doorDirectionIndex == DoorHandler.DoorDirection.West && detected_swipe == SwipeDirection.Right))
             {
                 doorDirectionIndex++;
-                roomIndexer++;
+                //roomIndexer++;
                 continue;
             }
 
             if (((DoorHandler.DoorDirection)doorDirectionIndex == DoorHandler.DoorDirection.East && detected_swipe == SwipeDirection.Left))
             {
                 doorDirectionIndex++;
-                roomIndexer++;
+                //roomIndexer++;
                 continue;
             }
 
             if ( ((DoorHandler.DoorDirection)doorDirectionIndex == DoorHandler.DoorDirection.South))
             {
                 doorDirectionIndex++;
-                 roomIndexer++;
+                 //roomIndexer++;
                  continue;
             }
 
@@ -272,9 +270,11 @@ public partial class ThreeDGameHandler : MonoBehaviour
 
             roomsToQueue.Add(newlyCreatedRoomPrefab);
 
-            currentThreeWay[roomIndexer] = newlyCreatedRoomPrefab;
-
             roomIndexer++;
+
+            currentThreeWay[roomIndexer - 1] = newlyCreatedRoomPrefab;
+
+       
 
             doorDirectionIndex++;
         }
@@ -287,5 +287,33 @@ public partial class ThreeDGameHandler : MonoBehaviour
 
     }
 
-    
+    /// <summary>
+    /// Triggered by CharacterMove.PlayerHasReachedNextPoint
+    /// Copies old three way rooms to the previous threeWay array and destroys them as soon
+    /// as the player reaches a new room.
+    /// </summary>
+    void ClearPreviousRoomCache()
+    {
+
+
+        if (currentThreeWay[1] != null) 
+        {
+            previousThreeWay = currentThreeWay;
+
+
+            Array.Clear(currentThreeWay, 0, currentThreeWay.Length);
+
+
+            foreach (var previousRoom in previousThreeWay)
+            {
+                if (previousRoom != null)
+                {
+                    DestroyRoom(previousRoom);
+                }
+            }
+            Array.Clear(previousThreeWay, 0, currentThreeWay.Length);
+        }
+    }
+
+
 }
