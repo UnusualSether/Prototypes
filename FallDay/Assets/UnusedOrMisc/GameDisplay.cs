@@ -1,16 +1,9 @@
-using System.Globalization;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 using System.Collections.Generic;
 using System.Collections;
-using System.Net.Http.Headers;
-using UnityEngine.Rendering.Universal;
 using System;
-using System.Xml;
-using System.Diagnostics.Contracts;
-using Unity.Jobs;
 
 public partial class GameDisplay : MonoBehaviour
 {
@@ -51,7 +44,7 @@ public partial class GameDisplay : MonoBehaviour
 
         public VisualElement displayElement;
 
-
+        public Coroutine activeAnimation;
     }
 
     private void Awake()
@@ -75,12 +68,12 @@ public partial class GameDisplay : MonoBehaviour
         handler.BulletSelected += PlayerClickSound;
 
         handler.ZombieDamaged += ShakeZombieVisual;
-
+        RegisterAnimationEvents();
 
         //Find the Bullet Displays using a for loop
         var bulletDisplaysFound = ui.Query<VisualElement>().Where(e => e.name.StartsWith("BSpot")).ToList();
 
-        Debug.Log($"{bulletDisplaysFound.Count} bullet displays found");
+        //Debug.Log($"{bulletDisplaysFound.Count} bullet displays found");
 
         bulletDisplay = bulletDisplaysFound.ToArray();
 
@@ -93,7 +86,7 @@ public partial class GameDisplay : MonoBehaviour
 
         var zombieDisplaysFound = ui.Query<VisualElement>().Where(e => e.name.StartsWith("ZombieSpot")).ToList();
 
-        Debug.Log(zombieDisplaysFound.Count + "Zombie Displays");
+        //Debug.Log(zombieDisplaysFound.Count + "Zombie Displays");
 
 
         foreach (var display in zombieDisplaysFound)
@@ -101,7 +94,7 @@ public partial class GameDisplay : MonoBehaviour
 
             int nextDisplayNumber = zombieDisplayList.Count;
 
-            Debug.Log(zombieDisplayList.Count);
+            //Debug.Log(zombieDisplayList.Count);
 
             display.RegisterCallback<PointerEnterEvent>(SelectZombie);
 
@@ -120,7 +113,7 @@ public partial class GameDisplay : MonoBehaviour
           );
         }
 
-        Debug.Log($"Populated zombie class list with {zombieDisplayList.Count}");
+        //Debug.Log($"Populated zombie class list with {zombieDisplayList.Count}");
 
         zombieDisplayLookup = new Dictionary<int, ZombieDisplay>();
 
@@ -137,6 +130,13 @@ public partial class GameDisplay : MonoBehaviour
     private void OnDisable()
     {
         handler.ZombieKilled -= RemoveCrosshair;
+        
+        handler.BulletSelected -= ShakeBullet;
+
+        handler.BulletSelected -= PlayerClickSound;
+
+        handler.ZombieDamaged -= ShakeZombieVisual;
+        UnregisterAnimationEvents();
     }
 
     IEnumerator WaitForBullets()
@@ -252,7 +252,7 @@ public partial class GameDisplay : MonoBehaviour
     private bool NumberOfZombiesHasChanged()
     {
 
-
+        /*
         var zombiesToCompare = handler.ZombieList.ToList();
 
         if (cachedZombies != zombiesToCompare)
@@ -263,7 +263,8 @@ public partial class GameDisplay : MonoBehaviour
         }
 
         return false;
-
+        */
+        return cachedZombies.Count != handler.ZombieList.Count;
     }
 
     private void SelectZombie(PointerEnterEvent ev)
@@ -359,7 +360,7 @@ public partial class GameDisplay : MonoBehaviour
             Zombie newZombie =
                 handler.ZombieList.Except(cachedZombies).First();
 
-            newZombie.ZombieIsClose += UpdateZombieVisual;
+            handler.ZombieIsClose += UpdateZombieVisual;
 
             if (newZombie == null)
             {
@@ -379,7 +380,7 @@ public partial class GameDisplay : MonoBehaviour
 
             assignedDisplay.displayedZombie = newZombie;
 
-            Debug.Log($"Zombie Display {assignedDisplay.displayId} now contains zombie with ID {assignedDisplay.displayedZombie.id}");
+            //Debug.Log($"Zombie Display {assignedDisplay.displayId} now contains zombie with ID {assignedDisplay.displayedZombie.id}");
 
             VisualElement zombieDisplayElement = ui.Query<VisualElement>().Where(e => e.name == $"ZombieSpot{assignedDisplay.displayId + 1}");
 
@@ -393,7 +394,7 @@ public partial class GameDisplay : MonoBehaviour
 
 
             zombieDisplayList.Remove(assignedDisplay);
-
+            StartZombieAnimation(assignedDisplay);
             occupiedZombieDisplay.Add(assignedDisplay);
 
             cachedZombies = new List<Zombie>(handler.ZombieList);
@@ -412,7 +413,7 @@ public partial class GameDisplay : MonoBehaviour
             var leavingZombie =
                 cachedZombies.Except(handler.ZombieList).First();
 
-            leavingZombie.ZombieIsClose -= UpdateZombieVisual;
+            handler.ZombieIsClose -= UpdateZombieVisual;
 
             if (leavingZombie == null)
             {
@@ -431,7 +432,7 @@ public partial class GameDisplay : MonoBehaviour
 
            ;
 
-            Debug.Log($"Assigned display ID {assignedDisplay.displayId} which contained {assignedDisplay.displayedZombie.id} will now be nulled.");
+            //Debug.Log($"Assigned display ID {assignedDisplay.displayId} which contained {assignedDisplay.displayedZombie.id} will now be nulled.");
 
             assignedDisplay.displayedZombie = null;
 
@@ -447,7 +448,7 @@ public partial class GameDisplay : MonoBehaviour
             zombieDisplayElement.RemoveFromClassList("warning");
 
             zombieDisplayList.Add(assignedDisplay);
-
+            StopZombieAnimation(assignedDisplay);
             occupiedZombieDisplay.Remove(assignedDisplay);
 
 

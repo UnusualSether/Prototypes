@@ -63,3 +63,58 @@
 .warning {
     background-color: rgb(255, 88, 88);
 }
+
+.BtnBulletA {
+    flex-grow: 1;
+    justify-content: space-around;
+    align-items: center;
+    width: 30%;
+    height: 25%;
+    border-top-left-radius: 60%;
+    border-top-right-radius: 60%;
+    border-bottom-right-radius: 60%;
+    border-bottom-left-radius: 60%;
+    opacity: 1;
+    background-color: rgb(0, 0, 0);
+    border-top-width: 3px;
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+    border-left-width: 3px;
+    border-left-color: rgb(255, 255, 255);
+    border-right-color: rgb(255, 255, 255);
+    border-top-color: rgb(255, 255, 255);
+    border-bottom-color: rgb(255, 255, 255);
+}
+
+.BtnBullet {
+    width: 25%;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.ZombieStyle {
+    background-size: 188% 100%;
+    width: 20%;
+    height: 20%;
+    opacity: 1;
+    border-top-left-radius: 1px;
+    border-top-right-radius: 1px;
+    border-bottom-right-radius: 1px;
+    border-bottom-left-radius: 1px;
+    border-top-width: 10px;
+    border-right-width: 10px;
+    border-bottom-width: 10px;
+    border-left-width: 10px;
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+}
+
+.BtnBulletBG {
+    opacity: 1;
+    background-color: rgba(97, 97, 97, 0);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+}

@@ -21,6 +21,8 @@ public class TechDemoCamera : MonoBehaviour
     private float _yam = 21f;
     private float _pitch = 0f;
 
+    public Vector3 offsetToTarget;
+
     [Header("Ajustes de Touch cont")]
     private float _touchTime = 0f;
     private bool _isTouching = false;
@@ -196,6 +198,10 @@ public class TechDemoCamera : MonoBehaviour
 
 
 
+    private void LateUpdate()
+    {
+        this.gameObject.transform.position =  _target.transform.position + offsetToTarget;
+    }
 
 
 

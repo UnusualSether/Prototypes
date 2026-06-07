@@ -1,27 +1,24 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/ZombieShoot.uss?fileID=7433441132597879392&amp;guid=7bdd305a16666ca42885e8dadd49b420&amp;type=3#ZombieShoot"/>
-    <engine:VisualElement style="flex-grow: 1; flex-basis: -13%; align-self: center;">
-        <engine:VisualElement name="SceneDisplayArea" style="flex-grow: 1; flex-direction: row; align-items: center; justify-content: space-between; align-self: center; width: 266px; scale: 3 3;">
-            <engine:VisualElement enabled="false" name="ZombieSpot1" class="zombieSpot" style="background-size: 188% 100%;"/>
-            <engine:Label text="!!" enable-rich-text="true" name="Warning1" class="warning" style="position: absolute; top: 150px; left: 25px; color: rgb(255, 255, 255); opacity: 0;"/>
-            <engine:VisualElement enabled="false" name="ZombieSpot2" class="zombieSpot" style="background-size: 188% 100%;"/>
-            <engine:Label text="!!" enable-rich-text="true" name="Warning2" class="warning" style="position: absolute; top: 150px; left: 95px; color: rgb(255, 255, 255); opacity: 0;"/>
-            <engine:VisualElement enabled="false" name="ZombieSpot3" class="zombieSpot" style="background-size: 188% 100%;"/>
-            <engine:Label text="!!" enable-rich-text="true" name="Warning3" class="warning" style="position: absolute; top: 150px; left: 165px; color: rgb(255, 255, 255); opacity: 0;"/>
-            <engine:VisualElement enabled="false" name="ZombieSpot4" class="zombieSpot" style="background-size: 188% 100%;"/>
-            <engine:Label text="!!" enable-rich-text="true" name="Warning4" class="warning" style="position: absolute; top: 150px; left: 235px; color: rgb(255, 255, 255); opacity: 0;"/>
+    <engine:VisualElement style="flex-grow: 1; flex-basis: auto; align-self: center; flex-direction: column; flex-wrap: nowrap; width: 100%; height: 100%;">
+        <engine:VisualElement name="SceneDisplayArea" style="flex-grow: 1; height: 50%; width: 100%; justify-content: space-around; flex-direction: row; align-items: center; align-self: center; align-content: stretch;">
+            <engine:VisualElement enabled="false" name="ZombieSpot1" class="zombieSpot ZombieStyle"/>
+            <engine:VisualElement enabled="false" name="ZombieSpot2" class="zombieSpot ZombieStyle" style="background-size: 188% 100%;"/>
+            <engine:VisualElement enabled="false" name="ZombieSpot3" class="zombieSpot ZombieStyle" style="background-size: 188% 100%;"/>
+            <engine:VisualElement enabled="false" name="ZombieSpot4" class="zombieSpot ZombieStyle" style="background-size: 188% 100%;"/>
         </engine:VisualElement>
-        <engine:VisualElement name="lineCanvas" picking-mode="Ignore" style="flex-grow: 1; position: absolute; top: 0%; left: 0%; right: 0%; bottom: 0%;"/>
-        <engine:VisualElement name="HudDisplayArea" style="flex-grow: 1; flex-direction: row; align-items: center; flex-wrap: wrap; align-self: center; justify-content: center; flex-basis: -13px; width: 60%; height: 60%; scale: 3 3; bottom: -1073px;">
-            <engine:VisualElement name="BSpot1" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
-            <engine:VisualElement name="BSpot2" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
-            <engine:VisualElement name="BSpot3" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
-            <engine:VisualElement name="BSpot4" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
-            <engine:VisualElement name="BSpot5" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
-            <engine:VisualElement name="BSpot6" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
-            <engine:VisualElement name="BSpot7" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
-            <engine:VisualElement name="BSpot8" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
-            <engine:VisualElement name="BSpot9" class="bulletDisplay" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+        <engine:VisualElement name="lineCanvas" picking-mode="Ignore" style="flex-grow: 1; position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 1;"/>
+        <engine:VisualElement name="HudDisplayArea" style="flex-grow: 1; width: 100%; height: 30%; flex-wrap: wrap; justify-content: space-around; align-self: stretch; align-content: stretch; align-items: center; flex-direction: column;">
+            <engine:VisualElement name="BSpot1" class="bulletDisplay BtnBulletA BtnBullet BtnBulletBG"/>
+            <engine:VisualElement name="BSpot2" class="bulletDisplay BtnBullet BtnBulletA BtnBulletBG" style="flex-grow: 1;"/>
+            <engine:VisualElement name="BSpot3" class="bulletDisplay BtnBulletA BtnBullet BtnBulletBG" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot4" class="bulletDisplay BtnBulletA BtnBullet BtnBulletBG" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot5" class="bulletDisplay BtnBulletA BtnBullet BtnBulletBG" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot6" class="bulletDisplay BtnBulletA BtnBullet BtnBulletBG" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot7" class="bulletDisplay BtnBulletA BtnBullet BtnBulletBG" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot9" class="bulletDisplay BtnBulletA BtnBullet BtnBulletBG" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
+            <engine:VisualElement name="BSpot8" class="bulletDisplay BtnBulletA BtnBullet BtnBulletBG" style="flex-grow: 1; justify-content: space-around; align-items: center;"/>
         </engine:VisualElement>
     </engine:VisualElement>
+    <engine:VisualElement name="Space" style="flex-grow: 1; width: 100%; height: 20%;"/>
 </engine:UXML>

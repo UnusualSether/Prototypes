@@ -20,7 +20,7 @@ public class HealthCode : MonoBehaviour
     void Start()
     {
    
-        Debug.Log("Helth start");
+        //Debug.Log("Helth start");
         GameHandler.PlayerTookDamage += OnDemegedTest;
         GameHandler.PlayerTookDamage += TestLessHP;
     }

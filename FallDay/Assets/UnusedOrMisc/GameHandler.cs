@@ -1,14 +1,9 @@
-using JetBrains.Annotations;
-using NUnit.Framework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
-using static GameHandler;
 
 
 public partial class GameHandler : MonoBehaviour
@@ -46,11 +41,19 @@ public partial class GameHandler : MonoBehaviour
     //Zombie related events
     public event Action ZombieSpawned;
     public event Action<Zombie> ZombieDamaged;
+    public event Action<Zombie> zPhaseChange;
     public event Action ZombieKilled;
+    public event Action<Zombie> ZombieIsClose;
 
 
     //Objective related events
     public event Action PlayerKilledAllZombies;
+
+    //Sound detect events
+    public event Action PieceConnected;
+
+    //Animação UI
+    public event Action<int> SucessfulHit;
 
     #endregion
 
@@ -78,6 +81,9 @@ public partial class GameHandler : MonoBehaviour
     public List<VisualElement> selectedUIButtons = new List<VisualElement>(); // Lista de botões pressionados para demarcar bottoes precionados pelo player //
     public Color lineColor = Color.white; // A cor da sua linha
     public float lineWidth = 10f;
+
+    //referencia para teste
+    private Coroutine _failedShotRoutine;
     #endregion
 
     #region Delegates
@@ -87,7 +93,7 @@ public partial class GameHandler : MonoBehaviour
     public delegate void PlayerIsDemeged(float damage);
     public static PlayerIsDemeged PlayerTookDamage;
 
-    public delegate void DestroyZombie(int id);
+    public delegate void DestroyZombie(Zombie z);
     public static DestroyZombie destroyZombie;
 
     #endregion
@@ -271,7 +277,7 @@ public partial class GameHandler : MonoBehaviour
 
         //Print Used weapon
 
-        Debug.Log($"You're currently using the {currentWeapon.name}");
+        //Debug.Log($"You're currently using the {currentWeapon.name}");
         lineCanvas = ui.Query<VisualElement>("HudDisplayArea").First();
         if (lineCanvas != null)
         {
@@ -317,7 +323,7 @@ public partial class GameHandler : MonoBehaviour
         ZombieSpawnGate = true;
         yield return new WaitForSeconds(zombieSpawnTimer);
         
-        Debug.Log("Grahh....");
+        //Debug.Log("Grahh....");
         ZombieSpawned?.Invoke();
 
         int nextZombieID;
@@ -345,9 +351,9 @@ public partial class GameHandler : MonoBehaviour
         {
             id = stachedZombieID,
 
-            phase = Zombie.ZombiePhase.Far
+            phase = Zombie.ZombiePhase.Far,
 
-            
+            handler = this,
         }
         );
 
@@ -359,12 +365,19 @@ public partial class GameHandler : MonoBehaviour
         numberOfZombiesInLookup = zombieLookup.Count;
         numberOfZombiesinList = ZombieList.Count;
 
-        Debug.Log($"Spawned zombie with id {newZombie.id} and {newZombie.hp} hp! There are now {ZombieList.Count} zombies in the list and {zombieLookup.Count} zombies in the lookup!");
+        //Debug.Log($"Spawned zombie with id {newZombie.id} and {newZombie.hp} hp! There are now {ZombieList.Count} zombies in the list and {zombieLookup.Count} zombies in the lookup!");
         ZombieSpawnGate = false;
         zombiesSpawned++;
     }
     
-
+    public void InvokeZombieIsClose(Zombie zombie)
+    {
+                ZombieIsClose?.Invoke(zombie);
+    }
+    public void InvokePhaseChange(Zombie zombie)
+    {
+        zPhaseChange?.Invoke(zombie);
+    }
     private bool CanISpawnEnemies()
     {
         if (!uiDoc.gameObject.activeSelf)
@@ -424,7 +437,7 @@ public partial class GameHandler : MonoBehaviour
     } 
     public void _KillZombie(Zombie zombieToKill) //<= same as zombie damege ,just skipping a step
     {
-        Debug.Log($"killed zombie ID {zombieToKill.id} removing them from selectable zombies.");
+        //Debug.Log($"killed zombie ID {zombieToKill.id} removing them from selectable zombies.");
         if (zombieLookup[zombieToKill.id] != null)
         {
             ZombieList.Remove(zombieToKill);
@@ -464,6 +477,11 @@ public partial class GameHandler : MonoBehaviour
     }
     public Zombie zombieToAimAt()
     {
+        if (ZombieList.Count == 0)
+        {
+            Debug.LogWarning("Tried to find a zombie to aim at but there are no zombies! Returning null.");
+            return null;
+        }
         if (preferenceZombie != nulledPreference)
         {
             var foundZombie = zombieLookup[preferenceZombie];
@@ -495,10 +513,11 @@ public partial class GameHandler : MonoBehaviour
               }
         }
     }
-
+    #region HandleShotCode
+    /* 
     public void HandleShot()
     {
-        Debug.Log("Shoot!");
+        //Debug.Log("Shoot!");
 
         if (readyBullets.Distinct().Count() <= 1 && readyBullets.Count > 2)
         {
@@ -532,7 +551,7 @@ public partial class GameHandler : MonoBehaviour
         //If selected bullets don't match, no damage goes through
         if (readyBullets.Distinct().Count() != 0 && readyBullets.Count > 2)
         {
-            Debug.Log("Shot Failed!");
+            //Debug.Log("Shot Failed!");
 
             //Find all bullets previously tagged with used and remove them from the class list.
             foreach (var bullet in bulletButton)
@@ -553,7 +572,7 @@ public partial class GameHandler : MonoBehaviour
         //Cancel the shot altogether if there arent enough bullets.
         if (readyBullets.Count() < 3)
         {
-            Debug.Log("Not Enough bullets selected!");
+            //Debug.Log("Not Enough bullets selected!");
 
             //Find all bullets previously tagged with used and remove them from the class list.
 
@@ -573,33 +592,107 @@ public partial class GameHandler : MonoBehaviour
             FailedShot?.Invoke();
         }
     }
+    */
+    #endregion
+    #region New HandleShotCode
+    public void HandleShot()
+    {
+
+        if (readyBullets.Count == 0)
+        {
+            return;
+        }
+
+        Debug.Log("Shoot!");
+
+        
+        if (readyBullets.Distinct().Count() <= 1 && readyBullets.Count > 2)
+        {
+            string bulletTypeUsed = readyBullets.First();
+            int numberUsed = readyBullets.Count();
+            BulletType realBulletType = bulletLookup[bulletTypeUsed];
+
+            
+            HandleDamage(realBulletType, numberUsed);
+
+            ClearUsedBullets();
+            
+
+            readyBullets.Clear();
+            selectedUIButtons.Clear();
+            lineCanvas.MarkDirtyRepaint();
+            return;
+        }
+
+        
+        if (readyBullets.Count > 0)
+        {
+            Debug.Log("Falha no tiro!");
+
+            if (_failedShotRoutine != null) StopCoroutine(_failedShotRoutine);
+            _failedShotRoutine = StartCoroutine(FailedShotFeedback());
+
+            
+            FailedShot?.Invoke();
+            return;
+        }
+
+        
+        Debug.Log("Nenhuma bala selecionada!");
+        FailedShot?.Invoke();
+    }
+
+    public void CancelFailFeedback()
+    {
+        if (_failedShotRoutine != null)
+        {
+            StopCoroutine(_failedShotRoutine);
+            _failedShotRoutine = null;
+            lineColor = Color.white;
+
+            readyBullets.Clear();
+            selectedUIButtons.Clear();
+
+            foreach (var bullet in bulletButton)
+            {
+                if (bullet.ClassListContains("used"))
+                {
+                    bullet.RemoveFromClassList("used");
+                }
+            }
+
+            
+            lineCanvas?.MarkDirtyRepaint();
+        }
+    }
+
+    #endregion
 
     public void ClearUsedBullets()
     {
-        //Debug.Log("Clearing Used Bullets...");
         int currentBulletIndex = 0;
 
         foreach (var bullet in bulletButton)
         {
-            
-
             if (bullet.ClassListContains("used"))
             {
                 selectableBullets[currentBulletIndex] = null;
-                //Debug.Log($"Nulled {currentBulletIndex} ");                
                 bullet.RemoveFromClassList("used");
             }
 
             currentBulletIndex++;
 
-            if (currentBulletIndex > selectableBullets.Length)
+            
+            if (currentBulletIndex >= selectableBullets.Length)
             {
                 currentBulletIndex = 0;
-                Debug.Log("Checked all bullets, backing out.");
+                Debug.Log("Checar todas as balas.");
+                break; 
             }
         }
+
         selectedUIButtons.Clear();
-        lineCanvas.MarkDirtyRepaint();  // Apaga a linha da tela
+        lineCanvas?.MarkDirtyRepaint();  
     }
 
     public void RestockBullet()
@@ -637,7 +730,7 @@ public partial class GameHandler : MonoBehaviour
                     attempts++;
                     if (attempts >= maxAttempts)
                     {
-                        Debug.LogWarning("Could not find a valid board after 100 attempts!");
+                        
                         break;
                     }
                 }
@@ -745,19 +838,26 @@ public partial class GameHandler : MonoBehaviour
 
     public void HandleDamage(BulletType bulletType, int numberUsed)
     {
+        var targetZombie = zombieToAimAt();
+        if (targetZombie == null)
+        {
+            Debug.Log("Tried to handle damage but there are no zombies! Cancelling damage.");
+            return;
+        }
         int rawDamage= bulletType.Damage * numberUsed;
 
-        var totalDamage = currentWeapon.WeaponEffect(numberUsed, rawDamage, zombieToAimAt());
+        var totalDamage = currentWeapon.WeaponEffect(numberUsed, rawDamage, targetZombie);
 
-        Debug.Log($"Did {totalDamage} damage with {numberUsed} {bulletType.name}s!");
+        //Debug.Log($"Did {totalDamage} damage with {numberUsed} {bulletType.name}s!");
 
         SucessfulShot?.Invoke(totalDamage);
-
+        SucessfulHit?.Invoke(totalDamage);
         ApplyDamage(totalDamage, zombieToAimAt());
     }
 
     public void SelectedBullet(PointerEnterEvent ev)
     {
+        CancelFailFeedback();
         var selectedElement = (VisualElement)ev.currentTarget;
 
         if (selectedElement.ClassListContains("used"))
@@ -803,10 +903,13 @@ public partial class GameHandler : MonoBehaviour
         selectedUIButtons.Add(selectedElement);
 
         lineCanvas?.MarkDirtyRepaint();
+
+        PieceConnected?.Invoke();
     }
 
     public void SelectedBulletB(PointerEnterEvent ev)
     {
+        CancelFailFeedback();
         var selectedElement = (VisualElement)ev.currentTarget;
 
         if (selectedElement.ClassListContains("used") == false)
@@ -825,6 +928,8 @@ public partial class GameHandler : MonoBehaviour
                     // NOVIDADE AQUI:   /////////////////////////////////////////////////////////////////
                     selectedUIButtons.Add(selectedElement);
                     lineCanvas?.MarkDirtyRepaint();
+
+                    PieceConnected?.Invoke();
                 }
             }
         }
@@ -891,7 +996,20 @@ public partial class GameHandler : MonoBehaviour
         // Pinta a linha de fato
         painter2D.Stroke();
     }
+    private IEnumerator FailedShotFeedback()
+    {
+        lineColor = Color.red;
+        lineCanvas.MarkDirtyRepaint();
 
+        yield return new WaitForSeconds(0.8f); // ajuste o tempo como quiser
+
+        lineColor = Color.white;
+        readyBullets.Clear();
+        selectedUIButtons.Clear();
+        foreach (var bullet in bulletButton)
+            bullet.RemoveFromClassList("used");
+        lineCanvas.MarkDirtyRepaint();
+    }
     #endregion
 
     #region Debug & Active Inactive Minigame
@@ -909,12 +1027,12 @@ public partial class GameHandler : MonoBehaviour
     {
         ui.visible = true;
         CreateNewEncounter();
-        Debug.Log("I should activate now!");
+        //Debug.Log("I should activate now!");
     }
     public void DeactivateMinigame()
     {
         ui.visible = false;
-        Debug.Log("I should deactivate now!");
+        //Debug.Log("I should deactivate now!");
     }
 
 
@@ -935,7 +1053,7 @@ public partial class GameHandler : MonoBehaviour
     private void CreateNewEncounter()
     {
 
-        Debug.Log("Creating a new encounter...");
+        //Debug.Log("Creating a new encounter...");
         EncounterData newEncounterData;
         
         if (possibleEncounters.Count == 0)
@@ -948,7 +1066,7 @@ public partial class GameHandler : MonoBehaviour
 
         newEncounterData = possibleEncounters[randomIndex];
 
-        Debug.Log($"I picked the encounter:{newEncounterData.name}");
+        //Debug.Log($"I picked the encounter:{newEncounterData.name}");
 
         InitializeEncounter(newEncounterData);
     }
