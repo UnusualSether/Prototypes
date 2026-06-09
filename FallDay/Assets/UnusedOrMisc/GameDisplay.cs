@@ -20,8 +20,6 @@ public partial class GameDisplay : MonoBehaviour
 
     public List<ZombieDisplay> occupiedZombieDisplay = new List<ZombieDisplay>();
 
-    public int zombieCountWatcher;
-
     public int bulletIndexer = 0;
 
     public List<string> cachedBullets = new List<string>();
@@ -29,9 +27,6 @@ public partial class GameDisplay : MonoBehaviour
     public List<Zombie> cachedZombies = new List<Zombie>();
 
     public List<Zombie> displayedZombies = new List<Zombie>();
-
-
-    private bool zombieDisplayUpdateGate;
 
     public Dictionary<int, ZombieDisplay> zombieDisplayLookup;
 
@@ -137,6 +132,7 @@ public partial class GameDisplay : MonoBehaviour
 
         handler.ZombieDamaged -= ShakeZombieVisual;
         UnregisterAnimationEvents();
+        ResetLists();
     }
 
     IEnumerator WaitForBullets()
@@ -422,7 +418,7 @@ public partial class GameDisplay : MonoBehaviour
             }
 
             ZombieDisplay assignedDisplay =
-                 occupiedZombieDisplay.First(e => e.displayedZombie == leavingZombie);
+                 occupiedZombieDisplay.FirstOrDefault(e => e.displayedZombie == leavingZombie);
 
             if (assignedDisplay == null)
             {
@@ -492,5 +488,17 @@ public partial class GameDisplay : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region EndGameReset
+    private void ResetLists()
+    {
+        zombieDisplayList.Clear();
+        occupiedZombieDisplay.Clear();
+        cachedZombies.Clear();
+        cachedBullets.Clear();
+        displayedZombies.Clear();
+        zombieDisplayLookup.Clear();
+    }
     #endregion
 }

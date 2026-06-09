@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using static GameHandler;
 using static GameHandler.Encounter;
 using System;
+using Unity.VisualScripting;
 
 public class Zombie
 {
@@ -18,6 +19,7 @@ public class Zombie
     private float PhT1 = 0;
     private bool IsFirstUpdate = true;
     public Difficulty difficulty;
+    public int damage;
 
     public GameHandler handler; //Isso é para a outra parte do codigo que foi movido para o game handler
 
@@ -44,7 +46,7 @@ public class Zombie
 
         if (phase == ZombiePhase.Close && PhT1 <= 0)
         {
-            PlayerTookDamage?.Invoke(1f);
+            PlayerTookDamage?.Invoke(damage);
             // <= Place a Destroy Zombie Call
 
             destroyZombie?.Invoke(this);
@@ -107,6 +109,7 @@ public class Zombie
     {
         hp = (int)(data.HP * Diff);
         PhaseTimer = data.phaseTimer;
+        damage = data.Damage;
     }
 
     /*public void ZombieDead()

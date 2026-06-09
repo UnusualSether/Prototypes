@@ -15,4 +15,5 @@ MonoBehaviour:
   enemyName: Runner
   devToDevDescription: "A zombie with a low phase timer but also low \nhealth."
   HP: 30
+  Damage: 2
   phaseTimer: 3
