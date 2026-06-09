@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using Unity.VisualScripting;
 
 
 public partial class ThreeDGameHandler : MonoBehaviour
@@ -19,7 +20,19 @@ public partial class ThreeDGameHandler : MonoBehaviour
 
     public Vector3 offsetToPlayer;
 
+    GameObject[] current3Rooms = new GameObject[3];
+
     public bool playerChooseSystem;
+
+    #region Current, Previous and new Three ways
+
+    GameObject[] previousThreeWay = new GameObject[3];
+    GameObject[] currentThreeWay = new GameObject[3];
+    GameObject[] toDestroyThreeWay = new GameObject[3];
+
+    #endregion
+
+
 
 
     /// <summary>
@@ -47,7 +60,7 @@ public partial class ThreeDGameHandler : MonoBehaviour
     void OnEnable() 
     { 
         //Room Culling Events
-        CharacterMove.PlayerMoved += CullOldRooms; CharacterMove.PlayerMoved += CullRoomList; CharacterMove.PlayerMovingTowardsUnLoadedRoom += PlayerArrivedToNewRoom; CharacterMove.PlayerWillClearList += DestroyUnusedRooms;
+        CharacterMove.PlayerMoved += CullOldRooms; CharacterMove.PlayerMoved += CullRoomList; CharacterMove.PlayerMovingTowardsUnLoadedRoom += PlayerMovingTowardsNewRoom; CharacterMove.PlayerWillClearList += DestroyUnusedRooms; CharacterMove.PlayerHasReachedNextPoint += ClearPreviousRoomCache; CharacterMove.PlayerHasReachedNextPoint += PlayerHasReachedNewRoom;
         //On Rails Events
         handler.PlayerKilledAllZombies += EncounterEnd;
         //Player Events
@@ -60,7 +73,7 @@ public partial class ThreeDGameHandler : MonoBehaviour
     void OnDisable() 
     {
         //Room Culling Events
-        CharacterMove.PlayerMoved -= CullOldRooms; CharacterMove.PlayerMovingTowardsUnLoadedRoom -= PlayerArrivedToNewRoom; CharacterMove.PlayerWillClearList -= DestroyUnusedRooms;
+        CharacterMove.PlayerMoved -= CullOldRooms; CharacterMove.PlayerMovingTowardsUnLoadedRoom -= PlayerMovingTowardsNewRoom; CharacterMove.PlayerWillClearList -= DestroyUnusedRooms; CharacterMove.PlayerHasReachedNextPoint -= ClearPreviousRoomCache; CharacterMove.PlayerHasReachedNextPoint -= PlayerHasReachedNewRoom;
         //On Rails Events
         handler.PlayerKilledAllZombies -= EncounterEnd;
         CharacterMove.PlayerHasReachedNextPoint -= PlayerToEncounterGate;
@@ -204,6 +217,7 @@ public partial class ThreeDGameHandler : MonoBehaviour
 
 
 
+
     [ContextMenu("Debug Get Size of the room")]
     private void DebugGetSize()
     {
@@ -211,41 +225,56 @@ public partial class ThreeDGameHandler : MonoBehaviour
 
     }
 
+    GameObject currentRootRoom;
+
     private void CreateThreeWay(GameObject rootRoom)
     {
-        var numberOfRootRoomDoors = GameObject.FindGameObjectsWithTag("DoorTile").Where(x => x.transform.parent == rootRoom.transform).Count();
 
-        int doorDirectionIndex = 1;
+        var numberOfRootRoomDoors = rootRoom.GetComponent<DoorHandler>().doors.Length;
+
+        int doorDirectionIndex = 0;
+
+        int roomIndexer = 0;
 
         Room[] rooms = new Room[numberOfRootRoomDoors];
 
         List<GameObject> roomsToQueue = new List<GameObject>();
 
-        for (int i = 0; i < rooms.Length; i++)
+        foreach (var room in rooms)
         {
-            rooms[i] = new Room(NewRoomData());
+            rooms[roomIndexer] = new Room(NewRoomData());
+            
 
             if ( ((DoorHandler.DoorDirection)doorDirectionIndex == DoorHandler.DoorDirection.West && detected_swipe == SwipeDirection.Right))
             {
                 doorDirectionIndex++;
+                //roomIndexer++;
                 continue;
             }
 
             if (((DoorHandler.DoorDirection)doorDirectionIndex == DoorHandler.DoorDirection.East && detected_swipe == SwipeDirection.Left))
             {
                 doorDirectionIndex++;
+                //roomIndexer++;
                 continue;
             }
 
             if ( ((DoorHandler.DoorDirection)doorDirectionIndex == DoorHandler.DoorDirection.South))
             {
-                doorDirectionIndex++
-                 ; continue;
+                doorDirectionIndex++;
+                 //roomIndexer++;
+                 continue;
             }
 
-            var newlyCreatedRoomPrefab = Instantiate(rooms[i].roomPrefab, GetRoomsSpawnDiff(rootRoom, rooms[i].roomPrefab, (DoorHandler.DoorDirection)doorDirectionIndex), new Quaternion(rootRoom.transform.rotation.x, rootRoom.transform.rotation.y, rootRoom.transform.rotation.z, rootRoom.transform.rotation.w));
+            var newlyCreatedRoomPrefab = Instantiate(rooms[roomIndexer].roomPrefab, GetRoomsSpawnDiff(rootRoom, rooms[roomIndexer].roomPrefab, (DoorHandler.DoorDirection)doorDirectionIndex), new Quaternion(rootRoom.transform.rotation.x, rootRoom.transform.rotation.y, rootRoom.transform.rotation.z, rootRoom.transform.rotation.w));
 
             roomsToQueue.Add(newlyCreatedRoomPrefab);
+
+            roomIndexer++;
+
+            currentThreeWay[roomIndexer - 1] = newlyCreatedRoomPrefab;
+
+       
 
             doorDirectionIndex++;
         }
@@ -258,5 +287,33 @@ public partial class ThreeDGameHandler : MonoBehaviour
 
     }
 
-    
+    /// <summary>
+    /// Triggered by CharacterMove.PlayerHasReachedNextPoint
+    /// Copies old three way rooms to the previous threeWay array and destroys them as soon
+    /// as the player reaches a new room.
+    /// </summary>
+    void ClearPreviousRoomCache()
+    {
+
+
+        if (currentThreeWay[1] != null) 
+        {
+            previousThreeWay = currentThreeWay;
+
+
+            Array.Clear(currentThreeWay, 0, currentThreeWay.Length);
+
+
+            foreach (var previousRoom in previousThreeWay)
+            {
+                if (previousRoom != null)
+                {
+                    DestroyRoom(previousRoom);
+                }
+            }
+            Array.Clear(previousThreeWay, 0, currentThreeWay.Length);
+        }
+    }
+
+
 }
