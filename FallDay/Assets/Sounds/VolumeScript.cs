@@ -7,8 +7,7 @@ public class VolumeScript : MonoBehaviour
     [SerializeField] private AudioMixer volumeControl;
     [SerializeField] private UIDocument UIDocument;
 
-    private Slider _Masterslider;
-    private Slider _Musicslider;
+    private Slider _Masterslider, _sfxslider, _Musicslider;
 
     private void OnEnable()
     {
@@ -17,6 +16,7 @@ public class VolumeScript : MonoBehaviour
 
         _Masterslider = root.Q<Slider>("MasterVolume");
         _Musicslider = root.Q<Slider>("MusicVolume");
+        _sfxslider = root.Q<Slider>("SFXVolume");
 
         if (_Masterslider != null)
         {
@@ -30,6 +30,13 @@ public class VolumeScript : MonoBehaviour
             _Musicslider.RegisterValueChangedCallback(evt => MusicVolume(evt.newValue));
 
             MusicVolume(_Musicslider.value);
+        }
+
+        if (_sfxslider != null)
+        {
+            _sfxslider.RegisterValueChangedCallback(evt => SFXVolume(evt.newValue));
+
+            SFXVolume(_sfxslider.value);
         }
 
     }
@@ -46,6 +53,12 @@ public class VolumeScript : MonoBehaviour
         volumeControl.SetFloat("MusicVolume", dbValue);
     }
 
+    public void SFXVolume(float volume)
+    {
+        float dbValue = Mathf.Log10(Mathf.Clamp(volume, 0.0001f, 1f)) * 20;
+        volumeControl.SetFloat("SFXVolume", dbValue);
+    }
+
     void OnDisable()
     {
         if (_Masterslider != null)
@@ -56,6 +69,11 @@ public class VolumeScript : MonoBehaviour
         if (_Musicslider != null)
         {
             _Musicslider.UnregisterValueChangedCallback(evt => MusicVolume(evt.newValue));
+        }
+
+        if (_sfxslider != null)
+        {
+            _sfxslider.UnregisterValueChangedCallback(evt => SFXVolume(evt.newValue));
         }
 
     }
