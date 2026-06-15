@@ -6,12 +6,6 @@ public class PauseGame : MonoBehaviour
     [SerializeField]GameObject PauseMenu;
     Button PauseButton;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnEnable()
     {
         var uiDocument = GetComponent<UIDocument>();

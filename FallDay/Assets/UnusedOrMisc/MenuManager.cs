@@ -70,11 +70,11 @@ public class MenuManager : MonoBehaviour
 
             if (level1button != null)
             {
-                level1button.clicked += Level1;
+                level1button.clicked += StartGame;
             }
             if (level2button != null)
             {
-                level2button.clicked += Level2;
+                level2button.clicked += StartGame;
             }
         }
     }

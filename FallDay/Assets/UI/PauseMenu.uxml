@@ -1,3 +1,4 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:Button text="Pause" name="PauseButton" style="position: absolute; top: 91px; left: 871px; height: 200px; width: 221px; font-size: 50px;"/>
+    <Style src="project://database/Assets/PauseButton.uss?fileID=7433441132597879392&amp;guid=3e6b884f9a89b124ca8101333b713ff8&amp;type=3#PauseButton"/>
+    <ui:Button text="" name="PauseButton" style="width: 220px; position: absolute; top: 112px; left: 852px; height: 200px; background-image: url(&quot;project://database/Assets/UI/GearPixel.png?fileID=2800000&amp;guid=dc9d8567e61ed1b40a4a53cdf1d0e9d0&amp;type=3#GearPixel&quot;); background-color: rgba(188, 188, 188, 0); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;"/>
 </ui:UXML>

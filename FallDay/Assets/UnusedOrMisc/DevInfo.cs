@@ -114,7 +114,7 @@ public class DevInfo : MonoBehaviour
         Debug.Log("Apertado");
         if (Info != null)
         {
-            Info.text = "Lucas Gustavo\n\nProgramador";
+            Info.text = "Luiz Gustavo\n\nProgramador";
             PlayPaperSound();
         }
 
@@ -130,7 +130,7 @@ public class DevInfo : MonoBehaviour
         Debug.Log("Apertado");
         if (Info != null)
         {
-            Info.text = "Pedro Marcondes\n\nArtista";
+            Info.text = "Pedro Marcondes\n\nArtista 2D\nModelador 3D";
             PlayPaperSound();
         }
 
