@@ -20,3 +20,30 @@
 
 #VisualElement > #GameName > .unity-image > #GameName {
 }
+
+
+
+Slider VisualElement {
+}
+
+Slider #unity-tracker {
+    height: 29px;
+    top: 20px;
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 0.04);
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+}
+
+Slider #unity-dragger {
+    height: 44px;
+    top: 21px;
+    background-color: rgb(72, 64, 64);
+}
+
+.unity-base-slider__fill {
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    background-color: rgb(132, 126, 135);
+}

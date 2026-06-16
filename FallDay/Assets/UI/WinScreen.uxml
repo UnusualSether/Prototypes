@@ -1,0 +1,8 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1;">
+        <ui:Image source="project://database/Assets/UI/WinScreen.png?fileID=21300000&amp;guid=73a1473de7004c74dae35bd03c67b428&amp;type=3#WinScreen" scale-mode="StretchToFill" style="height: 2348px;">
+            <ui:Label text="Você sobreviveu a mansão&#10;Mas você ainda consegue ouvir aquelas coisas la dentro" parse-escape-sequences="false" style="font-size: 120px; -unity-text-align: lower-center; top: 130px; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/IndieFlower-Regular.ttf?fileID=12800000&amp;guid=2f697eda27e4046449b0b1d22608c683&amp;type=3#IndieFlower-Regular&quot;); color: rgb(221, 191, 191); width: 1128px; flex-wrap: wrap; flex-direction: column; white-space: normal; left: -28px; transition-property: all; transition-duration: 0s; transition-timing-function: ease; transition-delay: 0s;"/>
+            <ui:Button text="Retornar ao menu" style="top: 2058px; width: 396px; height: 173px; position: absolute; left: 325px; font-size: 60px; white-space: pre-wrap;"/>
+        </ui:Image>
+    </ui:VisualElement>
+</ui:UXML>
