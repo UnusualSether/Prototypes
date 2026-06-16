@@ -5,17 +5,14 @@ using System.Collections;
 
 
 
-public partial class ThreeDGameHandler
+public partial class ThreeDGameHandler // OnRailsStateMachine => A State machene that Controls The Game.
 {
-    
-
-    
     public enum States
     {
-        OnRail,
-        Encounter,
-        Cleanup,
-        PlayerChoice
+        OnRail,         // Player Movment and next Room Selaction
+        Encounter,      // Activates Minigame  
+        Cleanup,        // Current Unused State
+        PlayerChoice    // 
 
     }
 
@@ -176,7 +173,7 @@ public partial class ThreeDGameHandler
         
     }
 
-    public void StartPlayerChoice()
+    public void StartPlayerChoice() // Does only call Debug
     {
         currentState = States.PlayerChoice;
         Debug.Log("Player choice started");
