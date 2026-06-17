@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using Unity.VisualScripting;
+using UnityEditor;
+using UnityEditor.Experimental.GraphView;
 
 
 public partial class ThreeDGameHandler : MonoBehaviour
@@ -11,35 +13,31 @@ public partial class ThreeDGameHandler : MonoBehaviour
     [Space(10)]
     public GameObject roomPrefab;
     public List<Room> spawnedRooms = new List<Room>();
-
     public List<RoomData> possibleRooms = new List<RoomData>();
-
     public Queue<GameObject> roomsQueue = new Queue<GameObject>();
-
     public GameHandler handler;
-
     public Vector3 offsetToPlayer;
 
     GameObject[] current3Rooms = new GameObject[3];
-
     public bool playerChooseSystem;
+    public bool debugbool = false; // Place all debug Logs behind this bool, so you can easily turn them on and off. (Consider making it a public variable so you can change it in the inspector)
 
     #region Current, Previous and new Three ways
 
     //GameObject[] previousThreeWay = new GameObject[3];
     //GameObject[] currentThreeWay = new GameObject[3];
     //GameObject[] toDestroyThreeWay = new GameObject[3];
-    
-    
+
+
     GameObject[,] RoomsInternalGrid = new GameObject[5, 3];  //Grid in the 
 
     // The Rooms in The grid are Located and positioned In the following way:
-    //      0.3 | 1.3 | 2.3 | 3.3 | 4.3
+    //      0.2 | 1.2 | 2.2 | 3.2 | 4.2
     //      0.1 | 1.1 | 2.1 | 3.1 | 4.1
     //      0.0 | 1.0 | 2.0 | 3.0 | 4.0
 
     //     The Room at position 2.1 is the room the player is currently in, and the rooms at positions 1.1 and 3.1 are the rooms that the player can choose to go to next, 
-    
+
     //     Any Room that does not corespond to a grid pos is emedietly destroyed.
 
     //     For example, if the player is in room 2.1 and chooses to go to room 3.1, movement to the right,
@@ -77,7 +75,7 @@ public partial class ThreeDGameHandler : MonoBehaviour
     { 
         //Room Culling Events
         CharacterMove.PlayerMoved += CullOldRooms; 
-        CharacterMove.PlayerMoved += CullRoomList; 
+        //CharacterMove.PlayerMoved += CullRoomList; 
         CharacterMove.PlayerMovingTowardsUnLoadedRoom += PlayerMovingTowardsNewRoom; 
         CharacterMove.PlayerWillClearList += DestroyUnusedRooms; 
         //CharacterMove.PlayerHasReachedNextPoint += ClearPreviousRoomCache;
@@ -85,9 +83,11 @@ public partial class ThreeDGameHandler : MonoBehaviour
         //On Rails Events
         handler.PlayerKilledAllZombies += EncounterEnd;
         //Player Events
-        CharacterMove.PlayerHasReachedNextPoint += PlayerToEncounterGate; CharacterMove.PlayerHasReachedNextPoint += EndRails;
+        CharacterMove.PlayerHasReachedNextPoint += PlayerToEncounterGate; 
+        CharacterMove.PlayerHasReachedNextPoint += EndRails;
         //Player Choice Events
         PlayerMadeDecision += EndPlayerChoice;
+        //PlayerSwipedOnChoice += CatchDirection;
         CharacterMove.PlayerHasReachedNextPoint += DeGatePlayerChoice;
 
     }
@@ -107,6 +107,7 @@ public partial class ThreeDGameHandler : MonoBehaviour
         CharacterMove.PlayerHasReachedNextPoint -= EndRails;
         //Player Choice Events
         PlayerMadeDecision -= EndPlayerChoice;
+        //PlayerSwipedOnChoice -= CatchDirection;
         CharacterMove.PlayerHasReachedNextPoint -= DeGatePlayerChoice;
     }
 
@@ -123,7 +124,7 @@ public partial class ThreeDGameHandler : MonoBehaviour
         {
             if (randomDoorDirection == DoorHandler.DoorDirection.West && previousDirection == DoorHandler.DoorDirection.East || randomDoorDirection == DoorHandler.DoorDirection.East && previousDirection == DoorHandler.DoorDirection.West)
             {
-                Debug.LogWarning("Avoiding Crossing rooms, re-rolling direction");
+                if(debugbool) Debug.LogWarning("Avoiding Crossing rooms, re-rolling direction");
                 List<DoorHandler.DoorDirection> otherTwoPossibilites = new List<DoorHandler.DoorDirection> { DoorHandler.DoorDirection.North, DoorHandler.DoorDirection.West, DoorHandler.DoorDirection.East };
                 otherTwoPossibilites.Remove(previousDirection);
                 randomDoorDirection = otherTwoPossibilites[UnityEngine.Random.Range(0, otherTwoPossibilites.Count)];
@@ -136,12 +137,12 @@ public partial class ThreeDGameHandler : MonoBehaviour
         var newlyCreatedRoomPrefab = Instantiate(newRoom.roomPrefab, spawnpoint, new Quaternion(roomToSpawnNextTo.transform.rotation.x, roomToSpawnNextTo.transform.rotation.y, roomToSpawnNextTo.transform.rotation.z, roomToSpawnNextTo.transform.rotation.w));
         spawnedRooms.Add(newRoom);
         roomsQueue.Enqueue(newlyCreatedRoomPrefab);
-        Debug.Log("Create a room");
+        if(debugbool) Debug.Log("Create a room");
     }
 
 
     DoorHandler.DoorDirection previousDirection;
-    Vector3 GetRoomsSpawnDiff(GameObject previousRoom, GameObject newRoom, DoorHandler.DoorDirection direction)
+    Vector3 GetRoomsSpawnDiff(GameObject previousRoom, GameObject newRoom, DoorHandler.DoorDirection direction)     // Mede o tamanho das salas para spawnar sem colidir Uma com a outra.
     {
         var previousRoomSize = RoomBounds(previousRoom).size;
         var newRoomSize = RoomBounds(newRoom).size;
@@ -167,7 +168,7 @@ public partial class ThreeDGameHandler : MonoBehaviour
                 break;
 
             case (DoorHandler.DoorDirection.South):
-                Debug.LogError("Recieved South door! This makes no sense.");
+                if(debugbool) Debug.LogError("Recieved South door! This makes no sense.");
                 break;
         }
 
@@ -175,7 +176,7 @@ public partial class ThreeDGameHandler : MonoBehaviour
         return vectorToReturn;
     }
 
-    Bounds RoomBounds(GameObject room)
+    Bounds RoomBounds(GameObject room) // Mede tamanho da sala
     {
         var childRenderers = room.GetComponentsInChildren<Renderer>();
         if (childRenderers.Length == 0)
@@ -193,51 +194,55 @@ public partial class ThreeDGameHandler : MonoBehaviour
 
    
 
-   private RoomData NewRoomData()
-   {
-       var random =  UnityEngine.Random.Range(0,possibleRooms.Count);
-
-       return possibleRooms[random];
-   }
-
-    [ContextMenu("Debug Get Size of the room")]
-    private void DebugGetSize()
+    private RoomData NewRoomData() //Gerando Data Novo Para Spawn
     {
-        Debug.LogError(roomsQueue.Last().GetComponentInChildren<BoxCollider>().bounds.size);
+        var random =  UnityEngine.Random.Range(0,possibleRooms.Count);
+        return possibleRooms[random];
     }
 
-
-
-
-    SwipeDirection PlayerDirection; // Player direction: 0 for south, 1 for west, 2 for north, 3 for east
-
-
-    // Catches the direction of the player's swipe and stores it in PlayerDirection for use in moving the grid and generating new rooms in the correct positions
-    // is in Event PlayerSwipedOnChoice
-    public void CatchDirection(SwipeDirection direction)    
-    {
-        PlayerDirection = direction;
-    }
-    private void MovedGrid()
+    private void VariateMovedGrid(int x, int y, out int newX, out int newY)     // Variates the movement of MoveGrid
     {
         switch (PlayerDirection)
         {
-            case 0:
-                // Move rooms north or Up
+            default:
+                // Move rooms north or Up // Not Needet, because Player can't moove south. Therefore, No need to move rooms north.
+                newX = x;
+                newY = y - 1;
+                if(debugbool) Debug.LogWarning("Player Direction is None, no movement will occur. This should not happen, consider handling this case.");
                 break;
-            case 1:
-                // Move rooms east or right
+            case SwipeDirection.Left:
+                // Move rooms east or right x+1
+                newX = x + 1;
+                newY = y;
+                if(debugbool) Debug.Log($"Moving room at ({x}, {y}) to ({newX}, {newY}) due to player moving left.");
                 break;
-            case 2:
-                // Move rooms south or Down
+            case SwipeDirection.Up:
+                // Move rooms south or Down y-1
+                newX = x;
+                newY = y - 1;
+                if(debugbool) Debug.Log($"Moving room at ({x}, {y}) to ({newX}, {newY}) due to player moving up.");
                 break;
-            case 3:
-                // Move rooms west or left
+            case SwipeDirection.Right:
+                // Move rooms west or left x-1
+                newX = x - 1;
+                newY = y;
+                if(debugbool) Debug.Log($"Moving room at ({x}, {y}) to ({newX}, {newY}) due to player moving right.");
                 break;
         }
     }
 
-    private GameObject[,] GenerateMovedGrid() // Moves rooms in grid one position in the direction opposite of the player's movement
+
+    SwipeDirection PlayerDirection; // Player direction: 0 for south, 1 for west, 2 for north, 3 for east
+
+    // Catches the direction of the player's swipe and stores it in PlayerDirection
+    // for use in moving the grid and generating new rooms in the correct positions
+    public void CatchDirection(SwipeDirection direction)
+    {
+        PlayerDirection = direction;
+        if(debugbool) Debug.Log($"Player Direction set to {PlayerDirection} _ThreeDGameHandler.main_CatchDirection");
+        RoomsInternalGrid = GenerateMovedGrid();
+    }
+    private GameObject[,] GenerateMovedGrid() // Moves rooms in grid one position, in the direction opposing the player's movement
     {
         GameObject[,] ToReturn = new GameObject[5, 3];
         for (int x = 0; x < RoomsInternalGrid.GetLength(0); x++)
@@ -247,22 +252,93 @@ public partial class ThreeDGameHandler : MonoBehaviour
                 if (RoomsInternalGrid[x, y] != null)
                 {
                     // Move the room to its new position based on the player's movement
-                    
-                    
+                    int newX = 0, newY = 0;
+                    VariateMovedGrid(x, y, out newX, out newY);    // Get the new position for the room based on the player's movement
+                    if(newX >= 0 && newX < RoomsInternalGrid.GetLength(0) && newY >= 0 && newY < RoomsInternalGrid.GetLength(1))
+                    {
+                        ToReturn[newX, newY] = RoomsInternalGrid[x, y];
+                    }
+                    else
+                    {
+                        // If the new position is out of bounds, we destroy the room
+                        // Uncomment the line below to enable debug logs for out of bounds rooms
+                        if(debugbool) Debug.LogWarning($"Room at ({x}, {y}) moved out of bounds to ({newX}, {newY}). Not adding to new Array.");
+                        Destroy(RoomsInternalGrid[x, y]);
+                    }
                 }
             }
         }
         return ToReturn;
     }   // Needs To generate New Grid Array to move Rooms Without risk of overiting rooms before they are moved, also needs to call GenerateNewRooms() after moving rooms.
 
+    // The Rooms in The grid are Located and positioned In the following way:
+    //      0.2 | 1.2 | 2.2 | 3.2 | 4.2
+    //      0.1 | 1.1 | 2.1 | 3.1 | 4.1
+    //      0.0 | 1.0 | 2.0 | 3.0 | 4.0
 
 
+    private void SetNewRoomsInGridSwitch(GameObject Room, DoorHandler.DoorDirection doorDirectionIndex) // Sets the current grid to the new grid generated by GenerateMovedGrid()
+    {
+        switch (PlayerDirection) // Same switch condition as MovedGrid
+        {
+            default: // generate to Move rooms north or Up // if pos is not ocupyed by a room
+                if (debugbool) Debug.LogWarning("Player Direction is None Or Does not Matsh the SetNewRoomsInGridSwitch, no movement will occur.");
+                //3.1; 2.2; 1.1;
+                //asdqa Shange this so that it works without Storein grid.
+                RoomStorePos(Room);
+                break;
 
+            case SwipeDirection.Up:
+                //3.1; 2.2; 1.1;
+                RoomStorePos(Room);
+                break;
+            
+            case SwipeDirection.Left:
+                //3.1; 2.2;
+                RoomStorePos(Room);
+                break;
+            
+            case SwipeDirection.Right:
+                // 2.2; 1.1;
+                StorageShift++;
+                RoomStorePos(Room);
+                break;
 
+        }
+    }
+    // This is used to determine where to generate new rooms in the grid after moving rooms
+    // { It works Like a for but it is spread across many functions, it is set in CreateThreeWay before the foreach,
+    // thogh SetNewRoomsInGridSwitch and used in  }
+    private void RoomStorePos(GameObject Room)
+    {
+        switch (StorageShift)
+        {
+            case 0:
+                if (RoomsInternalGrid[3, 1] == null)
+                {
+                    RoomsInternalGrid[3, 1] = Room;
+                    StorageShift++;
+                }
+                break;
+            case 1:
+                if (RoomsInternalGrid[2, 2] == null)
+                {
+                    RoomsInternalGrid[2, 2] = Room;
+                    StorageShift++;
+                }
+                break;
+            case 2:
+                if (RoomsInternalGrid[1, 1] == null)
+                {
+                    RoomsInternalGrid[1, 1] = Room;
+                    StorageShift++;
+                }
+                break;
+        }
+    }
 
-
-
-
+    private bool FirstThreeWayGenerated = true;
+    private int StorageShift; //Changes StoregePos In RoomStorePos
     private void CreateThreeWay(GameObject rootRoom)
     {
         var numberOfRootRoomDoors = rootRoom.GetComponent<DoorHandler>().doors.Length;
@@ -270,6 +346,7 @@ public partial class ThreeDGameHandler : MonoBehaviour
         int roomIndexer = 0;
         Room[] rooms = new Room[numberOfRootRoomDoors];
         List<GameObject> roomsToQueue = new List<GameObject>();
+        StorageShift = 0;
 
         foreach (var room in rooms)
         {
@@ -292,48 +369,35 @@ public partial class ThreeDGameHandler : MonoBehaviour
                  //roomIndexer++;
                  continue;
             }
-            var newlyCreatedRoomPrefab = Instantiate(rooms[roomIndexer].roomPrefab, GetRoomsSpawnDiff(rootRoom, rooms[roomIndexer].roomPrefab, (DoorHandler.DoorDirection)doorDirectionIndex), new Quaternion(rootRoom.transform.rotation.x, rootRoom.transform.rotation.y, rootRoom.transform.rotation.z, rootRoom.transform.rotation.w));
+            if(debugbool) Debug.Log($"Creating room {roomIndexer} of three way with door direction {(DoorHandler.DoorDirection)doorDirectionIndex} and root room {rootRoom.name}");
 
-            roomsToQueue.Add(newlyCreatedRoomPrefab);
+            if(FirstThreeWayGenerated)
+            {
+                RoomsInternalGrid[2,1] = rootRoom; // Set the root room in the grid before generating new rooms, so we can check for it when generating new rooms and avoid overwriting it.
+                FirstThreeWayGenerated = false;
+            }
+
+            var newlyCreatedRoomPrefab = 
+                Instantiate(rooms[roomIndexer].roomPrefab,
+                    GetRoomsSpawnDiff(      
+                        rootRoom,
+                        rooms[roomIndexer].roomPrefab,
+                        (DoorHandler.DoorDirection)doorDirectionIndex),
+                            new Quaternion(rootRoom.transform.rotation.x,
+                                            rootRoom.transform.rotation.y,
+                                            rootRoom.transform.rotation.z, 
+                                            rootRoom.transform.rotation.w));
+
+            //roomsToQueue.Add(newlyCreatedRoomPrefab);
 
             roomIndexer++;
 
-            currentThreeWay[roomIndexer - 1] = newlyCreatedRoomPrefab;
-            GenerateNewRooms();
+            SetNewRoomsInGridSwitch(newlyCreatedRoomPrefab, (DoorHandler.DoorDirection)doorDirectionIndex);
+            //currentThreeWay[roomIndexer - 1] = newlyCreatedRoomPrefab;
+            //GenerateNewRooms();
 
             doorDirectionIndex++;
         }
         Debug.Log($"Create three way with {rootRoom.name} as the base!");
     }
-
-    /// <summary>
-    /// Triggered by CharacterMove.PlayerHasReachedNextPoint
-    /// Copies old three way rooms to the previous threeWay array and destroys them as soon
-    /// as the player reaches a new room.
-    /// </summary>
-    /*
-    void ClearPreviousRoomCache()
-    {
-
-
-        if (currentThreeWay[1] != null) 
-        {
-            previousThreeWay = currentThreeWay;
-
-
-            Array.Clear(currentThreeWay, 0, currentThreeWay.Length);
-
-
-            foreach (var previousRoom in previousThreeWay)
-            {
-                if (previousRoom != null)
-                {
-                    DestroyRoom(previousRoom);
-                }
-            }
-            Array.Clear(previousThreeWay, 0, currentThreeWay.Length);
-        }
-    }
-    */
-
 }

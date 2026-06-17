@@ -86,11 +86,11 @@ public partial class ThreeDGameHandler
 
     public void CullRoomList()
     {
-        toDestroyThreeWay = previousThreeWay;
+        //toDestroyThreeWay = previousThreeWay;
 
-        for (int i = 0; i < toDestroyThreeWay.Count(); i++)
+        //for (int i = 0; i < toDestroyThreeWay.Count(); i++)
         {
-            Destroy(toDestroyThreeWay[i]);
+            //Destroy(toDestroyThreeWay[i]);
         }
 
     }

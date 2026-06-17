@@ -8,13 +8,16 @@ public partial class ThreeDGameHandler //PlayerChoice Partial Class That Contain
 
     public enum SwipeDirection
     {
-        Left, Right, Up, None
+        None,
+        Left, 
+        Right, 
+        Up 
     }
 
 
     public SwipeDirection receivedDirection = SwipeDirection.None;
 
-    public static event Action<SwipeDirection> PlayerSwipedOnChoice;
+    public static event Action<SwipeDirection> PlayerSwipedOnChoice; //Event Not Working corectly function CatchDirection() within Event not being called. Unknown
     public static event Action PlayerMadeDecision;
 
     bool PlayerChoiceGate;
@@ -74,15 +77,14 @@ public partial class ThreeDGameHandler //PlayerChoice Partial Class That Contain
         // Determine direction based on which component is larger
         float horizontal = Mathf.Abs(swipe_delta.x);
         float vertical = Mathf.Abs(swipe_delta.y);
-        asdasdadad
         if (vertical > horizontal)
         {
             // Vertical swipe - check if up or down
             if (swipe_delta.y > 0)
                 detected_swipe = SwipeDirection.Up;
             else
-                detected_swipe = SwipeDirection.None;  // Down not included
-        }asddadadd
+                detected_swipe = SwipeDirection.None;  // Down not included {Maybe add necessary _RLH107}
+        }
         else
         {
             // Horizontal swipe - check left or right
@@ -132,7 +134,6 @@ public partial class ThreeDGameHandler //PlayerChoice Partial Class That Contain
                 break;
 
             case SwipeDirection.None:
-                
                 break;
         }
 
@@ -144,18 +145,21 @@ public partial class ThreeDGameHandler //PlayerChoice Partial Class That Contain
     }
 
     // Your game logic for each swipe direction
-    void OnSwipeUp()
+    void OnSwipeUp() // How Is this Not Working?
     {
+        CatchDirection(SwipeDirection.Up);
         PlayerSwipedOnChoice?.Invoke(SwipeDirection.Up);
     }
 
     void OnSwipeLeft()
     {
+        CatchDirection(SwipeDirection.Left);
         PlayerSwipedOnChoice?.Invoke(SwipeDirection.Left);
     }
 
     void OnSwipeRight()
     {
+        CatchDirection(SwipeDirection.Right);
         PlayerSwipedOnChoice?.Invoke(SwipeDirection.Right);
     }
 

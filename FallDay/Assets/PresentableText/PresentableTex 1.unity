@@ -957,6 +957,7 @@ MonoBehaviour:
   handler: {fileID: 2043720488}
   offsetToPlayer: {x: 0, y: 0, z: 0}
   playerChooseSystem: 1
+  debugbool: 0
   player: {fileID: 0}
   currentState: 1
   stateFlow: 000000000100000002000000
@@ -990,10 +991,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8de444f986052c24d81adc2872589c6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomHandler
-  StartingRoom: {fileID: 1447974799}
+  StartingRoom: {fileID: 0}
   RoomPool: []
   EndRoom: {fileID: 0}
-  threeDGameHandler: {fileID: 1326751365}
+  threeDGameHandler: {fileID: 0}
 --- !u!224 &1336750512 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 187548070144772686, guid: 1f4767065a50de444b85b0dc9774004e, type: 3}

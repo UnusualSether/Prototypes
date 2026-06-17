@@ -27,7 +27,6 @@ public class RoomHandler : MonoBehaviour
 
     //     
     private bool StartupGate = false;
-
     private void OnEnable()
     {
         // ForEvents

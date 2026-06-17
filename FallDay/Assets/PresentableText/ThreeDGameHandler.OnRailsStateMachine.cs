@@ -113,11 +113,7 @@ public partial class ThreeDGameHandler // OnRailsStateMachine => A State machene
 
         Action whichActioEnd = stateToFunctionEnds[endingState];
         whichActioEnd?.Invoke();
-       
-
     }
-
-
     
     public void StartRails()
     {
