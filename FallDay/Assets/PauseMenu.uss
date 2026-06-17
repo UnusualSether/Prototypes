@@ -7,3 +7,6 @@
     width: 480px;
     font-size: 86px;
 }
+
+.unity-button:hover {
+}
