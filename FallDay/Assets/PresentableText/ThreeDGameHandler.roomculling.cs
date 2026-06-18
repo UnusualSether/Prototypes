@@ -14,13 +14,14 @@ public partial class ThreeDGameHandler
 
 
 
-
+    /*
     public void DestroyRoom(GameObject room)
     {
         room.GetComponent<RoomDissipate>().StartRoomDestroyCoroutine();
 
 
     }
+    */
     partial void OnStartExtendRoomCulling()
     {
         roomsQueue.Enqueue(spawnedRooms.First().roomPrefab);
@@ -61,7 +62,7 @@ public partial class ThreeDGameHandler
 
         return false;
     }
-
+    /*
     public void CullOldRooms()
     {
         if (!RoomsNeedCulling())
@@ -83,7 +84,7 @@ public partial class ThreeDGameHandler
 
 
     }
-
+    */
     public void CullRoomList()
     {
         //toDestroyThreeWay = previousThreeWay;
@@ -111,6 +112,7 @@ public partial class ThreeDGameHandler
 
        
     }
+    /*
     public void DestroyUnusedRooms(List<Waypoint> waypoints)
     {
         
@@ -125,7 +127,7 @@ public partial class ThreeDGameHandler
         
 
     }
-
+    
     public void PlayerHasReachedNewRoom()
     {
         if (previousPlayerChosenRoom != null)
@@ -136,6 +138,7 @@ public partial class ThreeDGameHandler
 
         previousPlayerChosenRoom = rootRoomNext;
     }
+    */
     
  
 

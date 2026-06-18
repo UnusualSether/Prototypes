@@ -74,12 +74,12 @@ public partial class ThreeDGameHandler : MonoBehaviour
     void OnEnable() 
     { 
         //Room Culling Events
-        CharacterMove.PlayerMoved += CullOldRooms; 
+        //CharacterMove.PlayerMoved += CullOldRooms; 
         //CharacterMove.PlayerMoved += CullRoomList; 
         CharacterMove.PlayerMovingTowardsUnLoadedRoom += PlayerMovingTowardsNewRoom; 
-        CharacterMove.PlayerWillClearList += DestroyUnusedRooms; 
+        //CharacterMove.PlayerWillClearList += DestroyUnusedRooms; 
         //CharacterMove.PlayerHasReachedNextPoint += ClearPreviousRoomCache;
-        CharacterMove.PlayerHasReachedNextPoint += PlayerHasReachedNewRoom;
+        //CharacterMove.PlayerHasReachedNextPoint += PlayerHasReachedNewRoom;
         //On Rails Events
         handler.PlayerKilledAllZombies += EncounterEnd;
         //Player Events
@@ -95,11 +95,11 @@ public partial class ThreeDGameHandler : MonoBehaviour
     void OnDisable() 
     {
         //Room Culling Events
-        CharacterMove.PlayerMoved -= CullOldRooms;
+        //CharacterMove.PlayerMoved -= CullOldRooms;
         CharacterMove.PlayerMovingTowardsUnLoadedRoom -= PlayerMovingTowardsNewRoom;
-        CharacterMove.PlayerWillClearList -= DestroyUnusedRooms;
+        //CharacterMove.PlayerWillClearList -= DestroyUnusedRooms;
         //CharacterMove.PlayerHasReachedNextPoint -= ClearPreviousRoomCache;
-        CharacterMove.PlayerHasReachedNextPoint -= PlayerHasReachedNewRoom;
+        //CharacterMove.PlayerHasReachedNextPoint -= PlayerHasReachedNewRoom;
         //On Rails Events
         handler.PlayerKilledAllZombies -= EncounterEnd;
         CharacterMove.PlayerHasReachedNextPoint -= PlayerToEncounterGate;
