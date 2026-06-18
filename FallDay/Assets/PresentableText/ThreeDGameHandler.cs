@@ -18,11 +18,11 @@ public partial class ThreeDGameHandler : MonoBehaviour
     public GameHandler handler;
     public Vector3 offsetToPlayer;
 
-    GameObject[] current3Rooms = new GameObject[3];
+    //GameObject[] current3Rooms = new GameObject[3];
     public bool playerChooseSystem;
     public bool debugbool = false; // Place all debug Logs behind this bool, so you can easily turn them on and off. (Consider making it a public variable so you can change it in the inspector)
 
-    #region Current, Previous and new Three ways
+    #region RoomsInternalGrid[]
 
     //GameObject[] previousThreeWay = new GameObject[3];
     //GameObject[] currentThreeWay = new GameObject[3];
@@ -410,9 +410,9 @@ public partial class ThreeDGameHandler : MonoBehaviour
     //      0.0 | 1.0 | 2.0 | 3.0 | 4.0
     private void DebugGrid()
     {
-        for (int x = 0; x < RoomsInternalGrid.GetLength(0); x++)
+        for (int x = 0; x < RoomsInternalGrid.GetLength(0); x++) //Invert Order Y In Place of X
         {
-            Debug.Log($"RoomsInternalGrid; " + ReturnforDebug(x, 0)+ ", "+ ReturnforDebug(x, 1)+", "+ ReturnforDebug(x, 2)+", "+ReturnforDebug(x, 3)+", "+ReturnforDebug(x, 4));
+            Debug.Log($"RoomsInternalGrid; " + ReturnforDebug(x, 0)+ ", "+ ReturnforDebug(x, 1)+", "+ ReturnforDebug(x, 2));
         }
     }
 
