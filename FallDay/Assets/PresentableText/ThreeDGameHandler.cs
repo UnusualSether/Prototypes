@@ -241,6 +241,7 @@ public partial class ThreeDGameHandler : MonoBehaviour
         PlayerDirection = direction;
         if(debugbool) Debug.Log($"Player Direction set to {PlayerDirection} _ThreeDGameHandler.main_CatchDirection");
         RoomsInternalGrid = GenerateMovedGrid();
+        if(debugbool) DebugGrid();
     }
     private GameObject[,] GenerateMovedGrid() // Moves rooms in grid one position, in the direction opposing the player's movement
     {
@@ -398,6 +399,30 @@ public partial class ThreeDGameHandler : MonoBehaviour
 
             doorDirectionIndex++;
         }
-        if(debugbool) Debug.Log($"Create three way with {rootRoom.name} as the base!");
+        if (debugbool) Debug.Log($"Create three way with {rootRoom.name} as the base!");
+        if (debugbool) DebugGrid();
+    }
+
+
+    // The Rooms in The grid are Located and positioned In the following way:
+    //      0.2 | 1.2 | 2.2 | 3.2 | 4.2
+    //      0.1 | 1.1 | 2.1 | 3.1 | 4.1
+    //      0.0 | 1.0 | 2.0 | 3.0 | 4.0
+    private void DebugGrid()
+    {
+        for (int x = 0; x < RoomsInternalGrid.GetLength(0); x++)
+        {
+            Debug.Log($"RoomsInternalGrid; " + ReturnforDebug(x, 0)+ ", "+ ReturnforDebug(x, 1)+", "+ ReturnforDebug(x, 2)+", "+ReturnforDebug(x, 3)+", "+ReturnforDebug(x, 4));
+        }
+    }
+
+    private string ReturnforDebug(int x, int y)
+    {
+        if (RoomsInternalGrid[x, y] != null)
+        {
+            return $"{x}"+", "+ $"{y}";
+        }
+        else { return "null"; }
+        
     }
 }
