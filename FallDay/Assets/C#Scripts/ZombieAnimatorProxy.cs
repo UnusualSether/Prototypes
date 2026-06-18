@@ -4,6 +4,7 @@ public class ZombieAnimatorProxy : MonoBehaviour
 {
     public SpriteRenderer spriteRenderer;
     public Animator animator;
+    public bool debugisOn = false;
 
     // Hashes dos parâmetros do Animator — mais performático que strings
     private static readonly int PhaseParam = Animator.StringToHash("Phase");
@@ -14,7 +15,7 @@ public class ZombieAnimatorProxy : MonoBehaviour
     public void SetPhase(Zombie.ZombiePhase phase)
     {
         animator.SetInteger(PhaseParam, (int)phase);
-        Debug.Log($"Setting animation phase to {(int)phase} T%HISIS ADDAS");
+        if (debugisOn) Debug.Log($"Setting animation phase to {(int)phase} T%HISIS ADDAS");
     }
 
     public void TriggerDamaged()

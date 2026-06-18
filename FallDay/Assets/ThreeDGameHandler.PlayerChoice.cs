@@ -4,8 +4,6 @@ using UnityEngine.Scripting.APIUpdating;
 
 public partial class ThreeDGameHandler //PlayerChoice Partial Class That Contains Swipe Controls Input and decision of action (Reeds Screen Input and assignes an action to it)
 {
-
-
     public enum SwipeDirection
     {
         None,

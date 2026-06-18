@@ -398,6 +398,6 @@ public partial class ThreeDGameHandler : MonoBehaviour
 
             doorDirectionIndex++;
         }
-        Debug.Log($"Create three way with {rootRoom.name} as the base!");
+        if(debugbool) Debug.Log($"Create three way with {rootRoom.name} as the base!");
     }
 }

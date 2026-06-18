@@ -9,16 +9,18 @@ using UnityEngine;
     public class Weapon
     {
         public virtual string name { get; set; }
+        public bool debugisOn = false;
 
         public virtual int WeaponEffect(int numberOfBulletsUsed, int Damage, Zombie targetZombie)
         {
-            Debug.Log("This weapon has no effect!");
+            if(debugisOn) Debug.Log("This weapon has no effect!");
             return Damage;
         }
     }
 
     public class Pistol : Weapon
     {
+        public bool debugisOn = false;
         public override string name 
         { 
             get { return "Pistol"; }
@@ -34,7 +36,7 @@ using UnityEngine;
             {
                 tempo = 0;
                 NewDamage = Damage % 2;
-                Debug.Log("Ruined tempo!");
+                if(debugisOn) Debug.Log("Ruined tempo!");
                 return NewDamage;
             }
 
@@ -42,7 +44,7 @@ using UnityEngine;
             {
                 tempo += 1;
                 NewDamage = Damage + tempo;
-                Debug.Log($"You now have {tempo} tempo!");
+                if (debugisOn) Debug.Log($"You now have {tempo} tempo!");
                 return NewDamage;
             }
 
@@ -53,6 +55,7 @@ using UnityEngine;
 
     public class Shotgun: Weapon
     {
+        public bool debugisOn = false;
          public override string name 
         { 
             get { return "Shotgun"; }
@@ -76,7 +79,7 @@ using UnityEngine;
 
             if (prevStored == 0)
             {
-                //Debug.Log($"Stored {debugStore} Damage!");
+                if (debugisOn) Debug.Log($"Stored {debugStore} Damage!");
                 return Damage;
             }
 
@@ -84,7 +87,7 @@ using UnityEngine;
             {
                 int Applystored = storedDamage;
                 storedDamage = 0;
-                //Debug.Log($"Applied {Applystored} stored damage to total!");
+                if (debugisOn) Debug.Log($"Applied {Applystored} stored damage to total!");
                 return Damage + Applystored;
             }
            

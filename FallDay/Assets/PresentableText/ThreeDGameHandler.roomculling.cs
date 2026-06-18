@@ -5,15 +5,9 @@ using System.Collections.Generic;
 
 public partial class ThreeDGameHandler
 {
-
-
-   
     public int maxNumberOfRooms;
 
     public static event Action RoomSetupComplete;
-
-
-
     /*
     public void DestroyRoom(GameObject room)
     {

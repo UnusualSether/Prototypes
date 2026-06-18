@@ -11,24 +11,23 @@ public class HealthCode : MonoBehaviour
     private RectTransform healthBar;
     [SerializeField]
     private RectTransform nohealthBar;
+    public bool debugisOn = false;
 
     [SerializeField]private UIToggleManager UIToggleManager;
 
     private void OnEnable()
     {
-        GameHandler.PlayerTookDamage += OnDemegedTest;
         GameHandler.PlayerTookDamage += TakeDamage;
     }
     private void OnDisable()
     {
-        GameHandler.PlayerTookDamage -= OnDemegedTest;
         GameHandler.PlayerTookDamage -= TakeDamage;
     }
     void Start()
     {
         //Debug.Log("Helth start");
 
-        Debug.Log("HP, MaxHP, SizeX, SizeY, Damage, Heal: " + HP + ", " + MaxHP + ", " + SizeX + ", " + SizeY + ", " + Heal);
+        if(debugisOn) Debug.Log("HP, MaxHP, SizeX, SizeY, Damage, Heal: " + HP + ", " + MaxHP + ", " + SizeX + ", " + SizeY + ", " + Heal);
         HP = MaxHP;
     }
 
@@ -83,11 +82,6 @@ public class HealthCode : MonoBehaviour
         {
             return false;
         }
-    }
-
-    public void OnDemegedTest(float d)
-    {
-        Debug.Log("HealthCode dameged Called");
     }
     public void TakeDamage(float Demage)
     {

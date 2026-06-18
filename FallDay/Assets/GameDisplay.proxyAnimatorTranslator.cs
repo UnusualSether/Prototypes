@@ -7,6 +7,7 @@ public partial class GameDisplay
 {
     [Header("Zombie Animator Proxies")]
     public ZombieAnimatorProxy[] zombieProxies;
+    public bool debugisOn = false;
     // ^ Um proxy por ZombieSpot — arraste no Inspector
     // Os GameObjects ficam fora de cena ou com posição absurda (ex: y = -9999)
 
@@ -15,12 +16,12 @@ public partial class GameDisplay
     {
         if (zombieProxies == null || zombieProxies.Length == 0)
         {
-            Debug.LogError("zombieProxies não foi preenchido no Inspector!");
+            if (debugisOn) Debug.LogError("zombieProxies não foi preenchido no Inspector!");
             return null;
         }
         if (display.displayId >= zombieProxies.Length)
         {
-            Debug.LogError($"displayId {display.displayId} não tem proxy correspondente. Total de proxies: {zombieProxies.Length}");
+            if (debugisOn) Debug.LogError($"displayId {display.displayId} não tem proxy correspondente. Total de proxies: {zombieProxies.Length}");
             return null;
         }
         int index = Mathf.Clamp(display.displayId, 0, zombieProxies.Length - 1);
@@ -61,12 +62,12 @@ public partial class GameDisplay
         proxy.ResetProxy();
         display.displayElement.style.backgroundImage = StyleKeyword.Null;
     }
-    public void ActionTest(Zombie zombie) { Debug.LogWarning("ActionTest foi chamado!"); }
+    public void ActionTest(Zombie zombie) { if (debugisOn) Debug.LogWarning("ActionTest foi chamado!"); }
 
     // Responde à mudança de fase do zumbi
     private void OnZombiePhaseChanged(Zombie zombie)
     {
-        Debug.Log($"Fase do zumbi mudou para {zombie.phase}");
+        if (debugisOn) Debug.Log($"Fase do zumbi mudou para {zombie.phase}");
         ZombieDisplay display = occupiedZombieDisplay
             .Find(d => d.displayedZombie == zombie);
 

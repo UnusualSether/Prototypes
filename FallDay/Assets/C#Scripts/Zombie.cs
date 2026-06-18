@@ -20,7 +20,7 @@ public class Zombie
     private bool IsFirstUpdate = true;
     public Difficulty difficulty;
     public int damage;
-
+    public bool debugisOn = false;
     public GameHandler handler; //Isso é para a outra parte do codigo que foi movido para o game handler
 
     public enum ZombiePhase
@@ -71,13 +71,13 @@ public class Zombie
         if (phase == ZombiePhase.Far)
         {
             phase = ZombiePhase.Approach;
-            Debug.Log($"Zombie with id {id} has changed phase to {phase}");
+            if (debugisOn) Debug.Log($"Zombie with id {id} has changed phase to {phase}");
             handler.InvokePhaseChange(this);
         }
         else if (phase == ZombiePhase.Approach)
         {
             phase = ZombiePhase.Close;
-            Debug.Log($"Zombie with id {id} has changed phase to {phase}");
+            if (debugisOn) Debug.Log($"Zombie with id {id} has changed phase to {phase}");
             handler.InvokePhaseChange(this);
             //ZombieIsClose?.Invoke(this);
 
@@ -89,19 +89,19 @@ public class Zombie
         if (DifficultyValue == 1)
         {
             Diff = 0.5f;
-            Debug.Log("Dificuldade virou Facil");
+            if (debugisOn) Debug.Log("Dificuldade virou Facil");
         }
 
         if (DifficultyValue == 2)
         {
             Diff = 1.0f;
-            Debug.Log("Dificuldade virou Medio");
+            if (debugisOn) Debug.Log("Dificuldade virou Medio");
         }
 
         if (DifficultyValue == 3)
         {
             Diff = 2.0f;
-            Debug.Log("Dificuldade virou Dificil");
+            if (debugisOn) Debug.Log("Dificuldade virou Dificil");
         }
     }
 

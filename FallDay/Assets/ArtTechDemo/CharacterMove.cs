@@ -27,7 +27,7 @@ public class CharacterMove : MonoBehaviour
     public static event Action<List<Waypoint>> PlayerWillClearList;
 
     public static event Action<Waypoint> PlayerMovingTowardsUnLoadedRoom;
-
+    public bool debugisOn = false;
     #endregion
 
 
@@ -123,7 +123,7 @@ public class CharacterMove : MonoBehaviour
 
         if (nextWayPoint == null)
         {
-            Debug.Log("Error, could not find first of nextwaypoint list.");
+            if(debugisOn) Debug.Log("Error, could not find first of nextwaypoint list.");
             FindNextWaypoint();
         }
 
@@ -160,7 +160,7 @@ public class CharacterMove : MonoBehaviour
 
         if (reachedDestination)
         {
-            Debug.Log($"[Player] Reached destination at {transform.position}");
+            if (debugisOn) Debug.Log($"[Player] Reached destination at {transform.position}");
             PlayerHasReachedNextPoint?.Invoke();
             PlayerWillClearList?.Invoke(wayPointList);
             wayPointList.Clear();
@@ -170,7 +170,7 @@ public class CharacterMove : MonoBehaviour
 
         if (transform.position == wayPointList[0].wayPointPosition)
         {
-            Debug.Log($"[Player] Reached waypoint at {transform.position}");
+            if (debugisOn) Debug.Log($"[Player] Reached waypoint at {transform.position}");
             InitializeWaypoints();
         }
     }
@@ -217,7 +217,7 @@ public class CharacterMove : MonoBehaviour
     public void PlayerSwipe(ThreeDGameHandler.SwipeDirection dir)
     {
 
-        Debug.Log($"[Player] It seems I'm suppose to go {(ThreeDGameHandler.SwipeDirection)dir}");
+        if (debugisOn) Debug.Log($"[Player] It seems I'm suppose to go {(ThreeDGameHandler.SwipeDirection)dir}");
         var posToGo = FetchWayPoint(dir);
         GoToNextWaypoint(posToGo);
         PlayerMovingTowardsUnLoadedRoom?.Invoke(posToGo);
@@ -252,7 +252,7 @@ public class CharacterMove : MonoBehaviour
 
         else
         {
-            Debug.Log("Function FetchWayPoint didnt recieve a valid riection and is returning a null waypoint!");
+            if (debugisOn) Debug.Log("Function FetchWayPoint didnt recieve a valid riection and is returning a null waypoint!");
             return null;
 
         }

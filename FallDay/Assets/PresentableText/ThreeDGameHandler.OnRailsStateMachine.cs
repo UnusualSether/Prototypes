@@ -7,6 +7,7 @@ using System.Collections;
 
 public partial class ThreeDGameHandler // OnRailsStateMachine => A State machene that Controls The Game.
 {
+    public bool debugisOn = false;
     public enum States
     {
         OnRail,         // Player Movment and next Room Selaction
@@ -80,7 +81,7 @@ public partial class ThreeDGameHandler // OnRailsStateMachine => A State machene
     #region Test Purposes
     public void CheckCurrentState(States stateToCheck)
     {
-        Debug.Log($"Current state is {stateToCheck}");
+        if(debugisOn) Debug.Log($"Current state is {stateToCheck}");
     }
 
     [ContextMenu("StartTheAutoPlay")]
@@ -117,7 +118,7 @@ public partial class ThreeDGameHandler // OnRailsStateMachine => A State machene
     
     public void StartRails()
     {
-        Debug.Log("Now on Rails");
+        if(debugisOn) Debug.Log("Now on Rails");
         RailStarted?.Invoke();
         currentState = States.OnRail;
 
@@ -138,7 +139,7 @@ public partial class ThreeDGameHandler // OnRailsStateMachine => A State machene
     public void StartEncounter()
     {
         currentState = States.Encounter;
-        Debug.Log("Now on Encounter");
+        if(debugisOn) Debug.Log("Now on Encounter");
         EncounterStarted?.Invoke();
     }
 
@@ -172,7 +173,7 @@ public partial class ThreeDGameHandler // OnRailsStateMachine => A State machene
     public void StartPlayerChoice() // Does only call Debug
     {
         currentState = States.PlayerChoice;
-        Debug.Log("Player choice started");
+        if(debugisOn) Debug.Log("Player choice started");
     }
 
     public void EndPlayerChoice()
