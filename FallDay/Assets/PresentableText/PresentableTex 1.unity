@@ -849,6 +849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a95ee97b2b5747747be0faee402b72e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  debugisOn: 0
   charTransform: {fileID: 1088469944}
   speed: 5
   navMesh: {fileID: 1088469940}
@@ -907,6 +908,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieVisualPosition
   UIdocument: {fileID: 1265312831}
+  debugisOn: 0
 --- !u!1 &1326751364
 GameObject:
   m_ObjectHideFlags: 0
@@ -957,7 +959,8 @@ MonoBehaviour:
   handler: {fileID: 2043720488}
   offsetToPlayer: {x: 0, y: 0, z: 0}
   playerChooseSystem: 1
-  debugbool: 0
+  debugbool: 1
+  debugisOn: 0
   player: {fileID: 0}
   currentState: 1
   stateFlow: 000000000100000002000000

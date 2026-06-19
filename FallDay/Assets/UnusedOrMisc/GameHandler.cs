@@ -485,7 +485,7 @@ public partial class GameHandler : MonoBehaviour
     {
         if (ZombieList.Count == 0)
         {
-            Debug.LogWarning("Tried to find a zombie to aim at but there are no zombies! Returning null.");
+            if(debugisOn) Debug.LogWarning("Tried to find a zombie to aim at but there are no zombies! Returning null.");
             return null;
         }
         if (preferenceZombie != nulledPreference)
