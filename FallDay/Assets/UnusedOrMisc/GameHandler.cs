@@ -12,6 +12,7 @@ public partial class GameHandler : MonoBehaviour
     // careful when changing names of anything in the bullet arrays or in the UI itself.
     [Header("Seleção de codigo")]
     public bool oldNew = true;
+    public bool debugisOn = false;
 
 
     #region Lists and Arrays
@@ -484,7 +485,7 @@ public partial class GameHandler : MonoBehaviour
     {
         if (ZombieList.Count == 0)
         {
-            Debug.LogWarning("Tried to find a zombie to aim at but there are no zombies! Returning null.");
+            if(debugisOn) Debug.LogWarning("Tried to find a zombie to aim at but there are no zombies! Returning null.");
             return null;
         }
         if (preferenceZombie != nulledPreference)
@@ -608,7 +609,7 @@ public partial class GameHandler : MonoBehaviour
             return;
         }
 
-        Debug.Log("Shoot!");
+        if(debugisOn) Debug.Log("Shoot!");
 
         
         if (readyBullets.Distinct().Count() <= 1 && readyBullets.Count > 2)
@@ -632,7 +633,7 @@ public partial class GameHandler : MonoBehaviour
         
         if (readyBullets.Count > 0)
         {
-            Debug.Log("Falha no tiro!");
+            if(debugisOn) Debug.Log("Falha no tiro!");
 
             if (_failedShotRoutine != null) StopCoroutine(_failedShotRoutine);
             _failedShotRoutine = StartCoroutine(FailedShotFeedback());
@@ -642,8 +643,8 @@ public partial class GameHandler : MonoBehaviour
             return;
         }
 
-        
-        Debug.Log("Nenhuma bala selecionada!");
+
+        if(debugisOn) Debug.Log("Nenhuma bala selecionada!");
         FailedShot?.Invoke();
     }
 
@@ -691,7 +692,7 @@ public partial class GameHandler : MonoBehaviour
             if (currentBulletIndex >= selectableBullets.Length)
             {
                 currentBulletIndex = 0;
-                Debug.Log("Checar todas as balas.");
+                if(debugisOn) Debug.Log("Checar todas as balas.");
                 break; 
             }
         }
@@ -846,7 +847,7 @@ public partial class GameHandler : MonoBehaviour
         var targetZombie = zombieToAimAt();
         if (targetZombie == null)
         {
-            Debug.Log("Tried to handle damage but there are no zombies! Cancelling damage.");
+            if(debugisOn) Debug.Log("Tried to handle damage but there are no zombies! Cancelling damage.");
             return;
         }
         int rawDamage= bulletType.Damage * numberUsed;
@@ -940,7 +941,7 @@ public partial class GameHandler : MonoBehaviour
         }
         else
         {
-            Debug.Log("This bullet has already been selected!");
+            if(debugisOn) Debug.Log("This bullet has already been selected!");
         }
     }
 
@@ -1021,11 +1022,11 @@ public partial class GameHandler : MonoBehaviour
     [ContextMenu("Debug Buttons")]
     public void DebugFunction()
     {
-        Debug.Log(ZombieList.Count()+ " This is the number of zombies in zombie list");
+        if(debugisOn) Debug.Log(ZombieList.Count()+ " This is the number of zombies in zombie list");
         
         foreach (var zombie in ZombieList)
         {
-            Debug.Log($"This is the indivual zombie id {zombie.id}");
+            if(debugisOn) Debug.Log($"This is the indivual zombie id {zombie.id}");
         }
     }
     public void ActivateMinigame()
@@ -1063,7 +1064,7 @@ public partial class GameHandler : MonoBehaviour
         
         if (possibleEncounters.Count == 0)
         {
-            Debug.Log("Error, possible encounters list is empty so the creation of a new encounter is impossible.");
+            if(debugisOn) Debug.Log("Error, possible encounters list is empty so the creation of a new encounter is impossible.");
             return;
         }
 

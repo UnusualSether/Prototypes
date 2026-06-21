@@ -10,6 +10,7 @@ public partial class ZombieVisualPosition : MonoBehaviour
 
     GameDisplay ZombieDisplay;
     Zombie CallZombie;
+    public bool debugisOn = false;
 
     private void OnEnable()
     {
@@ -40,7 +41,7 @@ public partial class ZombieVisualPosition : MonoBehaviour
         }
         else
         {
-            Debug.Log("Visual Not Working");
+            if (debugisOn) Debug.Log("Visual Not Working");
         }
     }
 
@@ -55,7 +56,7 @@ public partial class ZombieVisualPosition : MonoBehaviour
         {
             currentWarning.text = "!!";
             currentWarning.style.opacity = 1f;
-            Debug.Log($"Warning{CallZombie.id} Worked");
+            if (debugisOn) Debug.Log($"Warning{CallZombie.id} Worked");
         }
         else if (CallZombie.phase == Zombie.ZombiePhase.Close)
         {

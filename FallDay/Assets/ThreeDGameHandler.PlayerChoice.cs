@@ -1,19 +1,21 @@
 using UnityEngine;
 using System;
+using UnityEngine.Scripting.APIUpdating;
 
-public partial class ThreeDGameHandler
+public partial class ThreeDGameHandler //PlayerChoice Partial Class That Contains Swipe Controls Input and decision of action (Reeds Screen Input and assignes an action to it)
 {
-
-
     public enum SwipeDirection
     {
-        Left, Right, Up, None
+        None,
+        Left, 
+        Right, 
+        Up 
     }
 
 
     public SwipeDirection receivedDirection = SwipeDirection.None;
 
-    public static event Action<SwipeDirection> PlayerSwipedOnChoice;
+    public static event Action<SwipeDirection> PlayerSwipedOnChoice; //Event Not Working corectly function CatchDirection() within Event not being called. Unknown
     public static event Action PlayerMadeDecision;
 
     bool PlayerChoiceGate;
@@ -25,15 +27,17 @@ public partial class ThreeDGameHandler
     private Vector2 touch_end_pos;
     private SwipeDirection detected_swipe = SwipeDirection.None;
 
+    private SwipeDirection leftandrightnulling = SwipeDirection.None;  // => Unknown ask Scott? <= 
 
-
-
-    void Update()
+    // Moved Update To ThreeDGameHandler.cs
+    // Makes more sence to keep Start and Update Together.
+    /*
+    void Update() //Update?
     {
         HandleSwipeInput();
     }
-
-    void HandleSwipeInput()
+    */
+    void HandleSwipeInput() // Takes Screen Input and selects if correct state and Generates Start_pos & End_Pos
     {
 
         if (currentState == States.PlayerChoice)
@@ -57,7 +61,7 @@ public partial class ThreeDGameHandler
         }
     }
 
-    void DetectSwipe()
+    void DetectSwipe() // Detect If Swipe is not to smoll and 
     {
         Vector2 swipe_delta = touch_end_pos - touch_start_pos;
 
@@ -71,14 +75,13 @@ public partial class ThreeDGameHandler
         // Determine direction based on which component is larger
         float horizontal = Mathf.Abs(swipe_delta.x);
         float vertical = Mathf.Abs(swipe_delta.y);
-
         if (vertical > horizontal)
         {
             // Vertical swipe - check if up or down
             if (swipe_delta.y > 0)
                 detected_swipe = SwipeDirection.Up;
             else
-                detected_swipe = SwipeDirection.None;  // Down not included
+                detected_swipe = SwipeDirection.None;  // Down not included {Maybe add necessary _RLH107}
         }
         else
         {
@@ -90,7 +93,6 @@ public partial class ThreeDGameHandler
         }
     }
 
-    SwipeDirection leftandrightnulling = SwipeDirection.None;
 
     void ProcessSwipe()
     {
@@ -130,7 +132,6 @@ public partial class ThreeDGameHandler
                 break;
 
             case SwipeDirection.None:
-                
                 break;
         }
 
@@ -142,18 +143,21 @@ public partial class ThreeDGameHandler
     }
 
     // Your game logic for each swipe direction
-    void OnSwipeUp()
+    void OnSwipeUp() // How Is this Not Working?
     {
+        CatchDirection(SwipeDirection.Up);
         PlayerSwipedOnChoice?.Invoke(SwipeDirection.Up);
     }
 
     void OnSwipeLeft()
     {
+        CatchDirection(SwipeDirection.Left);
         PlayerSwipedOnChoice?.Invoke(SwipeDirection.Left);
     }
 
     void OnSwipeRight()
     {
+        CatchDirection(SwipeDirection.Right);
         PlayerSwipedOnChoice?.Invoke(SwipeDirection.Right);
     }
 
