@@ -81,6 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c1aecb6f3f7d17468a7f8dae37d3334, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorHandler
+  debugisOn: 0
   doors:
   - {fileID: 6326366640920535337}
   - {fileID: 2255811635392958402}
@@ -3028,7 +3029,6 @@ GameObject:
   - component: {fileID: 3457498529257870562}
   - component: {fileID: 5147381257831207194}
   - component: {fileID: 1694648842005983986}
-  - component: {fileID: 3248154262989233683}
   m_Layer: 0
   m_Name: Floor (2)
   m_TagString: Untagged
@@ -3142,26 +3142,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.0000002, z: 6.123235e-17}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3248154262989233683
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6666438720108761779}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.AI.Navigation::Unity.AI.Navigation.NavMeshModifier
-  m_SerializedVersion: 0
-  m_OverrideArea: 1
-  m_Area: 1
-  m_OverrideGenerateLinks: 0
-  m_GenerateLinks: 0
-  m_IgnoreFromBuild: 0
-  m_ApplyToChildren: 1
-  m_AffectedAgents: ffffffff
 --- !u!1 &7491183532834074808
 GameObject:
   m_ObjectHideFlags: 0
@@ -4558,11 +4538,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 91c996dbf7eeb6a47b3e98b5dbf439fc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.0050757
+      value: 4.13
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 91c996dbf7eeb6a47b3e98b5dbf439fc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.131
+      value: 1.56
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 91c996dbf7eeb6a47b3e98b5dbf439fc, type: 3}
       propertyPath: m_LocalPosition.z
