@@ -1173,7 +1173,6 @@ MonoBehaviour:
   possibleRooms:
   - {fileID: 11400000, guid: 5751550d68a36924381eaf9b1035a096, type: 2}
   - {fileID: 11400000, guid: 73d7b142dd8073548aeeee4b631c73b5, type: 2}
-  - {fileID: 11400000, guid: 8ba1aacfae321ab42bf8288f1c500769, type: 2}
   - {fileID: 11400000, guid: 843c0d2555d3d7547828cd295e09e380, type: 2}
   - {fileID: 11400000, guid: ffd16ded9ad23314c8bf9608acd048ad, type: 2}
   - {fileID: 11400000, guid: 7041d572ce788764d8695f911d46fe49, type: 2}
