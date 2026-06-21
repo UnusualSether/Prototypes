@@ -177,7 +177,7 @@ Transform:
   m_GameObject: {fileID: 127173195}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.221, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -196,14 +196,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EightWaySpriteView
   directionalSprites:
-  - {fileID: 4849390801851796245, guid: 161cbc1b880c62c40b73156ce4187903, type: 3}
-  - {fileID: 5499008801976378315, guid: 161cbc1b880c62c40b73156ce4187903, type: 3}
-  - {fileID: -8888315120999843312, guid: 161cbc1b880c62c40b73156ce4187903, type: 3}
-  - {fileID: 2663522705909173037, guid: 161cbc1b880c62c40b73156ce4187903, type: 3}
-  - {fileID: -6243599443043986353, guid: 161cbc1b880c62c40b73156ce4187903, type: 3}
-  - {fileID: -2648383985293446056, guid: 161cbc1b880c62c40b73156ce4187903, type: 3}
-  - {fileID: 1469193187319807656, guid: 161cbc1b880c62c40b73156ce4187903, type: 3}
-  - {fileID: -5759680799168518519, guid: 161cbc1b880c62c40b73156ce4187903, type: 3}
+  - {fileID: -1268338344, guid: 6dca93b2b2efa664bb5df07a079860e4, type: 3}
+  - {fileID: -1268338344, guid: 6dca93b2b2efa664bb5df07a079860e4, type: 3}
+  - {fileID: -935531765, guid: 22873b447a6316c4ea759710c607dc7c, type: 3}
+  - {fileID: 42891496, guid: 80afd7f486abef84dbedfec943b631c1, type: 3}
+  - {fileID: 2132856581, guid: 5774e04817ae57d408a9a89512c3d262, type: 3}
+  - {fileID: 42891496, guid: 80afd7f486abef84dbedfec943b631c1, type: 3}
+  - {fileID: 1284934108, guid: 4d779f5ddd22e5f4ba2760b71f163d0d, type: 3}
+  - {fileID: 57809865, guid: db5d90f4f95263c4e92960c731ebbb1c, type: 3}
   spriteRenderer: {fileID: 0}
   cameraTransform: {fileID: 1444338430}
   directionSource: {fileID: 27993027}
@@ -1006,6 +1006,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a95ee97b2b5747747be0faee402b72e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  debugisOn: 0
   charTransform: {fileID: 1088469944}
   speed: 5
   navMesh: {fileID: 1088469940}
@@ -1137,6 +1138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieVisualPosition
   UIdocument: {fileID: 1265312831}
+  debugisOn: 0
 --- !u!1 &1326751364
 GameObject:
   m_ObjectHideFlags: 0
@@ -1184,6 +1186,8 @@ MonoBehaviour:
   handler: {fileID: 2043720488}
   offsetToPlayer: {x: 0, y: 0, z: 0}
   playerChooseSystem: 1
+  debugbool: 0
+  debugisOn: 0
   player: {fileID: 0}
   currentState: 1
   stateFlow: 000000000100000002000000

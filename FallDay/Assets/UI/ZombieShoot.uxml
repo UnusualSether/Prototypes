@@ -1,6 +1,6 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/ZombieShoot.uss?fileID=7433441132597879392&amp;guid=7bdd305a16666ca42885e8dadd49b420&amp;type=3#ZombieShoot"/>
-    <engine:VisualElement style="flex-grow: 1; flex-basis: auto; align-self: center; flex-direction: column; flex-wrap: nowrap; width: 100%; height: 100%;">
+    <engine:VisualElement style="flex-grow: 1; flex-basis: auto; align-self: auto; flex-direction: column; flex-wrap: nowrap; width: 100%; height: 2177%; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; justify-content: space-between; align-items: flex-start;">
         <engine:VisualElement name="SceneDisplayArea" style="flex-grow: 1; height: 50%; width: 100%; justify-content: space-around; flex-direction: row; align-items: center; align-self: center; align-content: stretch;">
             <engine:VisualElement enabled="false" name="ZombieSpot1" class="zombieSpot ZombieStyle"/>
             <engine:VisualElement enabled="false" name="ZombieSpot2" class="zombieSpot ZombieStyle" style="background-size: 188% 100%;"/>
