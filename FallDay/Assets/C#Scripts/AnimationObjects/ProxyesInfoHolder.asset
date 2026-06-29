@@ -12,3 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c05be8163a5dfb43b55964719d65a80, type: 3}
   m_Name: ProxyesInfoHolder
   m_EditorClassIdentifier: Assembly-CSharp::ProxyesInfoHolder
+  characterAnimationGroups:
+  - {fileID: 11400000, guid: 9de970382c6a7e94193933a6fd98b495, type: 2}
+  - {fileID: 11400000, guid: b6df1df55ec46494c820150e2eee1dae, type: 2}
+  - {fileID: 11400000, guid: bdc0af9a80cda734797e87bbfee3dd4a, type: 2}

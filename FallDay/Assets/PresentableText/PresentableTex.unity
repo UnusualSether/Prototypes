@@ -403,6 +403,10 @@ PrefabInstance:
       propertyPath: InfoStorege
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 15069021308457810, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
+      propertyPath: proxyesInfoHolder
+      value: 
+      objectReference: {fileID: 11400000, guid: b430758d16a041142a8e8282f87b8341, type: 2}
     - target: {fileID: 3009441118544998834, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.41356
@@ -1250,6 +1254,10 @@ PrefabInstance:
       propertyPath: InfoStorege
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 15069021308457810, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
+      propertyPath: proxyesInfoHolder
+      value: 
+      objectReference: {fileID: 11400000, guid: b430758d16a041142a8e8282f87b8341, type: 2}
     - target: {fileID: 3009441118544998834, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.41356
@@ -1647,12 +1655,20 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 15069021308457810, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
       propertyPath: debugisOn
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 15069021308457810, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
       propertyPath: InfoStorege
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 15069021308457810, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
+      propertyPath: proxyesInfoHolder
+      value: 
+      objectReference: {fileID: 11400000, guid: b430758d16a041142a8e8282f87b8341, type: 2}
+    - target: {fileID: 15069021308457810, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
+      propertyPath: activeProfileObject
+      value: 
+      objectReference: {fileID: 11400000, guid: 9de970382c6a7e94193933a6fd98b495, type: 2}
     - target: {fileID: 3009441118544998834, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.41356
@@ -2033,6 +2049,10 @@ PrefabInstance:
       propertyPath: InfoStorege
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 15069021308457810, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
+      propertyPath: proxyesInfoHolder
+      value: 
+      objectReference: {fileID: 11400000, guid: b430758d16a041142a8e8282f87b8341, type: 2}
     - target: {fileID: 3009441118544998834, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.41356

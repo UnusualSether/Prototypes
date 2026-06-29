@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static ZombieAnimatorProxy;
 
 public partial class GameDisplay
 {
@@ -43,6 +44,7 @@ public partial class GameDisplay
     {
         ZombieAnimatorProxy proxy = GetProxyForDisplay(display);
         // Add The proxy character Change
+        proxy.setUpNewEnemy(display.displayedZombie.EnemyType);
         handler.zPhaseChange += OnZombiePhaseChanged;
         proxy.SetPhase(display.displayedZombie.phase);
         proxy.SetAnimationLock();

@@ -12,4 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f2061c161f44a348b9afce026f30b56, type: 3}
   m_Name: FastEnemy
   m_EditorClassIdentifier: Assembly-CSharp::CharacterAnimationProfile
-  swaps: []
+  EnemyTipe: Runner
+  ClipList:
+  - BaseClip: {fileID: 7400000, guid: a7d51b6093880c946a5868cb9ea93546, type: 2}
+    OverrideClip: {fileID: 7400000, guid: a36a8f5ce8b418849af571c0be0cb143, type: 2}
+  - BaseClip: {fileID: 7400000, guid: 7db485addcd26df479717c6b2a78dde2, type: 2}
+    OverrideClip: {fileID: 7400000, guid: 199bb96e11e724f4c9fe82ad1d856890, type: 2}
+  - BaseClip: {fileID: 7400000, guid: 9b1c792ff8f230e4d94876d8c04594bc, type: 2}
+    OverrideClip: {fileID: 7400000, guid: febc447954f556a4b987178643f6eeb8, type: 2}
+  - BaseClip: {fileID: 7400000, guid: ac127a9ff6ab1f747b5a04bfb7979df7, type: 2}
+    OverrideClip: {fileID: 7400000, guid: 9696f37a313614145bb67de5e8a238f7, type: 2}
+  - BaseClip: {fileID: 7400000, guid: ab53d7b8bdfe9974fb6268c2b71b3e9a, type: 2}
+    OverrideClip: {fileID: 7400000, guid: 28436cf3f720049408c82104ce51e344, type: 2}
+  - BaseClip: {fileID: 7400000, guid: 89dfc650e3fbc4e4587ac85a36e40dec, type: 2}
+    OverrideClip: {fileID: 7400000, guid: d12fa9b2c09c729448dee455b7748616, type: 2}

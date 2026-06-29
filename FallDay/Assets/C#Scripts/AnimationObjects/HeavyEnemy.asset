@@ -12,4 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f2061c161f44a348b9afce026f30b56, type: 3}
   m_Name: HeavyEnemy
   m_EditorClassIdentifier: Assembly-CSharp::CharacterAnimationProfile
-  swaps: []
+  EnemyTipe: Tank
+  ClipList:
+  - BaseClip: {fileID: 7400000, guid: a7d51b6093880c946a5868cb9ea93546, type: 2}
+    OverrideClip: {fileID: 7400000, guid: 25dfdc9939fbd794c9a5c65e35f7dbe5, type: 2}
+  - BaseClip: {fileID: 7400000, guid: 7db485addcd26df479717c6b2a78dde2, type: 2}
+    OverrideClip: {fileID: 7400000, guid: 4b2a7a4970dbfc042b29a3197aae3987, type: 2}
+  - BaseClip: {fileID: 7400000, guid: 9b1c792ff8f230e4d94876d8c04594bc, type: 2}
+    OverrideClip: {fileID: 7400000, guid: ea5b7f680759e3f47aa6bee306fcde3d, type: 2}
+  - BaseClip: {fileID: 7400000, guid: ac127a9ff6ab1f747b5a04bfb7979df7, type: 2}
+    OverrideClip: {fileID: 7400000, guid: 8fcd074f17fa3674a8ad3b01bc2fdddb, type: 2}
+  - BaseClip: {fileID: 7400000, guid: ab53d7b8bdfe9974fb6268c2b71b3e9a, type: 2}
+    OverrideClip: {fileID: 7400000, guid: 1fdb74fdfde23de46a3cc5b1988ea4c3, type: 2}
+  - BaseClip: {fileID: 7400000, guid: 89dfc650e3fbc4e4587ac85a36e40dec, type: 2}
+    OverrideClip: {fileID: 7400000, guid: 57c8de88937b8a240bf0d0e289ad24d6, type: 2}

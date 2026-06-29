@@ -1,102 +1,85 @@
 using System.Collections.Generic;
 using UnityEngine;
-
 public partial class ZombieAnimatorProxy
 {
-    //private Animator currentAnimator;       (Already In base Script) Enemy animator Component
+    /*
     public enum EnemyTipe
     {
         basic = 0,
         fast = 1,
         heavy = 2
     }
+    */
+    [Header("Scriptable Object References")]
+    public ProxyesInfoHolder proxyesInfoHolder;
+    private CharacterAnimationProfile activeProfileObject;
 
-    [Header("WARNING:")]
-    [Header("Each scriptableObject CharacterAnimationProfile")]
-    [Header("needs the folowing ID in int format,")]
-    [Header("to specify the tipe of Enemy these animations belong to.")]
-    [Header("basic = 0, fast = 1, heavy = 2.")]
-    [Header("anithing else is deffault = 0")]
-    [Header("                   ")]
-    public ProxyesInfoHolder proxyesInfoHolder; // The ScriptableObject Storing BaseAnimationGroup (default animations) and CharacterAnimationProfile List<> (Override animations)
-    public CharacterAnimationProfile activeProfileObject; // The ScriptableObject Storing the AnimationClips variations (Override animations)
+    private AnimatorOverrideController overrideController;
+    private List<KeyValuePair<AnimationClip, AnimationClip>> clipOverrides;
 
-    private AnimatorOverrideController overrideController; // The runtime "overlay sheet controller" sitting over the base controller
-    private List<KeyValuePair<AnimationClip, AnimationClip>> clipOverrides; // Our pre-allocated memory table of [BaseClip, CurrentlyPlayingClip]
-
-
-    private void Awake() // Runs the exact millisecond the character spawns into the scene
+    void Awake()
     {
-        // Create a runtime-editable wrapper around the character's base Animator Controller (works like a clone of the controller, maintaining it's structure)
+        if (debugisOn) Debug.Log("Awake");
+        // Get reference from partial MonoBehaviour class
+        if (currentAnimator == null) 
+        {
+            if (debugisOn) Debug.Log("GettingCurrentAnimator");
+            currentAnimator = GetComponent<Animator>(); 
+        }
+        if (debugisOn) Debug.Log("Generate OverrideController(currentAnimator.runtimeAnimatorController)");
         overrideController = new AnimatorOverrideController(currentAnimator.runtimeAnimatorController);
-        // Plugs that new wrapper back into the Animator so it actually drives the 3D model (or sprites)
         currentAnimator.runtimeAnimatorController = overrideController;
 
-        // Reserve the exact amount of RAM needed for the controller's total clips (prevents mid-game Garbage Collection lag)
         clipOverrides = new List<KeyValuePair<AnimationClip, AnimationClip>>(overrideController.overridesCount);
-        // Ask Unity to look at the controller and write its starting default state into our reserved memory list; elements are stored like [KeyValuePair<"SlowWalkClip", "SlowWalkClip">])
         overrideController.GetOverrides(clipOverrides);
-
-        // If the designer dragged a profile into the Inspector box in the Unity Editor...      (For Test Remove after)
-        if (activeProfileObject != null)
-        {
-            // ...immediately swap all the animations over to match that profile
-            SelectProfile(0);
-        }
     }
 
-    // Call this public function from any other script to instantly transform the character's entire moveset
-    public void SelectProfile(EnemyTipe selectEnemy)
+    public void setUpNewEnemy(string selectEnemy)
     {
-        if (selectEnemy == 0)
-        {
-            ApplyProfile(proxyesInfoHolder.BaseAnimationGroup);
-        }
-        else if (selectEnemy > 0)
-        {
-            ApplyProfile(FindClipList(selectEnemy));
-        }
+        overrideController.GetOverrides(clipOverrides);
+        CharacterAnimationProfile profileToApply = FindClipList(selectEnemy);
+        ApplyProfile(profileToApply);
     }
-    // shitty way to veryfy information ID and get correct ProfileObject from list
-    public CharacterAnimationProfile FindClipList(EnemyTipe enemyTipe)
+
+    public CharacterAnimationProfile FindClipList(string enemyTipe)
     {
-        foreach (CharacterAnimationProfile AnimationListObject in proxyesInfoHolder.characterAnimationGroups) // sershes the list for correct clipList
+        // Uses the ultra-fast lookup we added to ProxyesInfoHolder
+        if (proxyesInfoHolder != null)
         {
-            if (AnimationListObject != null) // safty
-            {
-                if (AnimationListObject.EnemyTipe == (int)enemyTipe) // reeds int enemyTipe ID each character has a diffrent ID (finds first ID)
-                {
-                    return AnimationListObject;
-                }
-            }
+            return proxyesInfoHolder.GetProfile(enemyTipe);
         }
         return null;
     }
 
-    // transforms Enemy Animations
     private void ApplyProfile(CharacterAnimationProfile newProfileObject)
     {
-        if (newProfileObject != null)
+        activeProfileObject = newProfileObject;
+        if (newProfileObject == null || newProfileObject.ClipList == null) return;
+
+        // 1. Map [BaseClip -> OverrideClip] from your ScriptableObject
+        Dictionary<AnimationClip, AnimationClip> lookup = new Dictionary<AnimationClip, AnimationClip>(newProfileObject.ClipList.Count);
+
+        for (int i = 0; i < newProfileObject.ClipList.Count; i++)
         {
-
-            // Create a temporary, hyper-fast lookup table in memory (Key = Base Clip, Value = New Clip)
-            Dictionary<AnimationClip, AnimationClip> lookup = new Dictionary<AnimationClip, AnimationClip>();
-
-            // Loop through the AnimationSwap List in the CharacterAnimationProfile profile item by item
-            for (int i = 0; i < newProfileObject.ClipList.Count; i++)
+            AnimationSwap swap = newProfileObject.ClipList[i];
+            if (swap.BaseClip != null && swap.OverrideClip != null)
             {
-                if(activeProfileObject != null)
-                {
-                    AnimationSwap defaultClipHolder = proxyesInfoHolder.BaseAnimationGroup.ClipList[i];
-                    AnimationSwap overrideClipHolder = newProfileObject.ClipList[i];
-                }
-                else if (activeProfileObject == null)
-                {
-
-                }
+                lookup[swap.BaseClip] = swap.OverrideClip;
             }
-            // Remember which profile we are currently wearing
-            activeProfileObject = newProfileObject;
         }
+
+        // 2. Safely swap Unity's internal override pairs by matching BaseClip keys
+        for (int i = 0; i < clipOverrides.Count; i++)
+        {
+            KeyValuePair<AnimationClip, AnimationClip> currentPair = clipOverrides[i];
+
+            if (lookup.TryGetValue(currentPair.Key, out AnimationClip replacementClip))
+            {
+                clipOverrides[i] = new KeyValuePair<AnimationClip, AnimationClip>(currentPair.Key, replacementClip);
+            }
+        }
+
+        // 3. Apply all swaps to the native C++ engine in one frame
+        overrideController.ApplyOverrides(clipOverrides);
     }
 }
