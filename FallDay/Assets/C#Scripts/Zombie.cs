@@ -3,9 +3,6 @@ using UnityEngine.UIElements;
 using System.Collections.Generic;
 using static GameHandler;
 using static GameHandler.Encounter;
-using System;
-using Unity.VisualScripting;
-
 public class Zombie
 {
     public int id = 0;
@@ -15,6 +12,7 @@ public class Zombie
     public float PhaseTimer;
     public static int DifficultyValue = 0;
     public double Diff = 0;
+    public string EnemyType;
 
     private float PhT1 = 0;
     private bool IsFirstUpdate = true;
@@ -23,6 +21,9 @@ public class Zombie
     public bool debugisOn = false;
     public GameHandler handler; //Isso é para a outra parte do codigo que foi movido para o game handler
 
+    private EnemyData enemyData;
+
+    //public EnemyData enemyData; // BackUp em caso de falta de Informação.
     public enum ZombiePhase
     {
         Stop,
@@ -34,8 +35,6 @@ public class Zombie
     public ZombiePhase phase;
 
     public int currentDisplay;
-
-    public event Action<Zombie> ZombieIsClose;
 
     public void UpdatePhase(float deltaTime)
     {
@@ -79,8 +78,6 @@ public class Zombie
             phase = ZombiePhase.Close;
             if (debugisOn) Debug.Log($"Zombie with id {id} has changed phase to {phase}");
             handler.InvokePhaseChange(this);
-            //ZombieIsClose?.Invoke(this);
-
         }
     }
 
@@ -107,15 +104,11 @@ public class Zombie
 
     public Zombie(EnemyData data)
     {
+        enemyData = data;
+
         hp = (int)(data.HP * Diff);
         PhaseTimer = data.phaseTimer;
         damage = data.Damage;
+        EnemyType = data.enemyName;
     }
-
-    /*public void ZombieDead()
-    {
-
-    }*/
-
-
 }

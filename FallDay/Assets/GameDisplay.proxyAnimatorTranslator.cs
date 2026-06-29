@@ -41,14 +41,12 @@ public partial class GameDisplay
     // Chamado quando o zumbi entra no display
     public void StartZombieAnimation(ZombieDisplay display)
     {
-
         ZombieAnimatorProxy proxy = GetProxyForDisplay(display);
+        // Add The proxy character Change
         handler.zPhaseChange += OnZombiePhaseChanged;
-        handler.zPhaseChange += ActionTest;
         proxy.SetPhase(display.displayedZombie.phase);
-        display.activeAnimation = StartCoroutine(
-            SyncSpriteToUI(display, proxy)
-        );
+        proxy.SetAnimationLock();
+        display.activeAnimation = StartCoroutine(SyncSpriteToUI(display, proxy));
     }
 
     // Chamado quando o zumbi sai do display
@@ -62,7 +60,6 @@ public partial class GameDisplay
         proxy.ResetProxy();
         display.displayElement.style.backgroundImage = StyleKeyword.Null;
     }
-    public void ActionTest(Zombie zombie) { if (debugisOn) Debug.LogWarning("ActionTest foi chamado!"); }
 
     // Responde à mudança de fase do zumbi
     private void OnZombiePhaseChanged(Zombie zombie)
