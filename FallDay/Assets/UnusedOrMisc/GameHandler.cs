@@ -820,10 +820,10 @@ public partial class GameHandler : MonoBehaviour
         int row = index / cols;
         int col = index % cols;
 
-        int[] dr = { -1, -1, -1, 0, 0, 1, 1, 1 };
-        int[] dc = { -1, 0, 1, -1, 1, -1, 0, 1 };
+        int[] dr = { -1, -1, -1, 0, 0, 1, 1, 1, 0 };
+        int[] dc = { -1, 0, 1, -1, 1, -1, 0, 1, 0 };
 
-        for (int d = 0; d < 8; d++)
+        for (int d = 0; d < 9; d++)
         {
             int newRow = row + dr[d];
             int newCol = col + dc[d];
