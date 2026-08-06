@@ -814,8 +814,8 @@ public partial class GameHandler : MonoBehaviour
         //Need to fix, because these calculations on account for x and y and doesnt detect diagonal neighbours.
 
         List<int> neighbours = new List<int>();
-        int cols = 3;
-        int rows = 3;
+        int cols = 6;
+        int rows = 7;
 
         int row = index / cols;
         int col = index % cols;
