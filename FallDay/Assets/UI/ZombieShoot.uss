@@ -1,0 +1,120 @@
+.bulletDisplay {
+    margin-top: 4px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    margin-left: 4px;
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 80px;
+    height: 80px;
+    border-top-left-radius: 60px;
+    border-top-right-radius: 60px;
+    border-bottom-right-radius: 60px;
+    border-bottom-left-radius: 60px;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    scale: 0.9 0.9;
+}
+
+.shitBullet {
+    background-color: rgba(245, 245, 245, 0);
+    background-image: url("project://database/Assets/Sprites/BulletButtons/SmallBulletRenderedCrushedShadowed.png?fileID=2800000&guid=751514017931a5246986e94b189d3aaf&type=3#SmallBulletRenderedCrushedShadowed");
+}
+
+.goodBullet {
+    background-color: rgba(245, 245, 245, 0);
+    background-image: url("project://database/Assets/Sprites/BulletButtons/BulletRenderedCrushedShadowedAse.png?fileID=2800000&guid=b93b692265ed1d3409ca06cf763e32d4&type=3#BulletRenderedCrushedShadowedAse");
+}
+
+.bulletButton {
+    flex-direction: row;
+    width: 57px;
+    height: 52px;
+}
+
+.epicBullet {
+    background-color: rgba(255, 255, 255, 0);
+    background-image: url("project://database/Assets/Sprites/BulletButtons/EpicBulletBitCrushedShadowed.png?fileID=2800000&guid=0ddf7567a1a6ae14ab387c08bd995835&type=3#EpicBulletBitCrushedShadowed");
+}
+
+.zombieSpot {
+    background-color: rgb(163, 163, 163);
+    -unity-background-scale-mode: stretch-to-fill;
+    border-top-width: 30px;
+    border-right-width: 30px;
+    border-bottom-width: 30px;
+    border-left-width: 30px;
+}
+
+.zombieSpotOccupied {
+    background-color: rgb(13, 101, 0);
+}
+
+.aimed {
+    scale: 0.5 0.5;
+}
+
+.used {
+    scale: 0.9 0.9;
+    -unity-background-image-tint-color: rgb(255, 252, 184);
+}
+
+.warning {
+    background-color: rgb(255, 88, 88);
+}
+
+.BtnBulletA {
+    flex-grow: 1;
+    justify-content: space-around;
+    align-items: center;
+    width: 30%;
+    height: 25%;
+    border-top-left-radius: 60%;
+    border-top-right-radius: 60%;
+    border-bottom-right-radius: 60%;
+    border-bottom-left-radius: 60%;
+    opacity: 1;
+    background-color: rgb(0, 0, 0);
+    border-top-width: 3px;
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+    border-left-width: 3px;
+    border-left-color: rgb(255, 255, 255);
+    border-right-color: rgb(255, 255, 255);
+    border-top-color: rgb(255, 255, 255);
+    border-bottom-color: rgb(255, 255, 255);
+}
+
+.BtnBullet {
+    width: 25%;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.ZombieStyle {
+    background-size: 188% 100%;
+    width: 20%;
+    height: 20%;
+    opacity: 1;
+    border-top-left-radius: 1px;
+    border-top-right-radius: 1px;
+    border-bottom-right-radius: 1px;
+    border-bottom-left-radius: 1px;
+    border-top-width: 10px;
+    border-right-width: 10px;
+    border-bottom-width: 10px;
+    border-left-width: 10px;
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+}
+
+.BtnBulletBG {
+    opacity: 1;
+    background-color: rgba(97, 97, 97, 0);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+}

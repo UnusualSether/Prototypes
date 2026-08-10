@@ -1,0 +1,12 @@
+:root {
+}
+
+.PauseButtons {
+    position: absolute;
+    height: 180px;
+    width: 480px;
+    font-size: 86px;
+}
+
+.unity-button:hover {
+}

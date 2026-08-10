@@ -1,0 +1,19 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/PauseButton.uss?fileID=7433441132597879392&amp;guid=3e6b884f9a89b124ca8101333b713ff8&amp;type=3#PauseButton"/>
+    <ui:VisualElement name="Border" enabled="true" style="flex-grow: 1; opacity: 1;">
+        <ui:VisualElement name="Top" enabled="true" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0.71); height: 0%; opacity: 1; width: 100%;"/>
+        <ui:VisualElement name="Middle" style="flex-grow: 0; flex-direction: row;">
+            <ui:VisualElement name="Left" style="flex-grow: 0; position: relative; background-color: rgba(0, 0, 0, 0.71); width: 0%; height: 32%;"/>
+            <ui:VisualElement name="Hole" style="flex-grow: 0; width: 270%; position: relative; height: 90px;"/>
+            <ui:VisualElement name="Right" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0.71); width: 0%; opacity: 1; height: 0%;"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="Bottom" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0.71); height: 0%; width: 100%;"/>
+    <ui:VisualElement name="Tutorial" style="flex-grow: 1; position: absolute;">
+        <ui:VisualElement name="Information" style="flex-grow: 1; position: absolute; height: 302px; width: 245px; top: 211px; left: 9px; background-color: rgba(0, 0, 0, 0);">
+            <ui:Image name="Arrow" enabled="true" style="background-image: url(&quot;project://database/Assets/UnusedOrMisc/pngimg.com%20-%20red_arrow_PNG1.png?fileID=2800000&amp;guid=6ccca48abcccd594db79ae4aca2294fa&amp;type=3#pngimg.com - red_arrow_PNG1&quot;); height: 100%; background-color: rgba(0, 0, 0, 0); position: relative; width: 100%; rotate: -90deg; opacity: 0; scale: 1 1; top: 500px;"/>
+            <ui:Label text="" name="Text" enabled="true" enable-rich-text="false" style="height: 390px; color: rgb(207, 224, 204); -unity-font-definition: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&amp;guid=90d2d8ed0a1fdfe46a7126bdc0df9cb7&amp;type=3#NotInter-Regular&quot;); font-size: 60px; align-self: auto; justify-content: flex-start; align-items: auto; align-content: flex-start; -unity-text-align: upper-left; white-space: normal; opacity: 1; width: 335%; top: 757px; position: absolute; -unity-font-style: normal;"/>
+            <ui:Button text="Next..." name="Next" style="margin-top: 91px; bottom: -349%; opacity: 0; position: absolute; left: 201px; width: 184%; height: 50%; font-size: 60px; background-image: url(&quot;project://database/Assets/UI/ContinuePixel.png?fileID=253170508&amp;guid=957d2755cbc4fde42a130281084d75a0&amp;type=3#ContinuePixel_0&quot;); background-color: rgba(188, 188, 188, 0); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; color: rgb(226, 231, 243);"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

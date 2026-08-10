@@ -6,11 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/ZombieShoot.unity
-    guid: 4c599c01a40d6fe4aa2dfd0d962ac547
+    path: Assets/Scenes/MainMenu.unity
+    guid: d3c6cb3ebda2f3b44a9d6768d17632f1
   - enabled: 1
-    path: Assets/Scenes/GameOver.unity
-    guid: 0715e14c9e68ac144b0a62e93bb18a06
+    path: Assets/Scenes/Configs.unity
+    guid: 5d34cd8f6e642bf4da5f25dbce49263b
+  - enabled: 1
+    path: Assets/PresentableText/PresentableTex.unity
+    guid: 603a8b9e40e981b4ca5f260cf2ac0e81
+  - enabled: 1
+    path: Assets/Scenes/LevelSelect.unity
+    guid: 5195b32a087a64d4eb0871454a51f292
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
