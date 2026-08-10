@@ -3,10 +3,20 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 
-public class HealthCode : MonoBehaviour
+public class HealthDisplay : MonoBehaviour
 {
-    private float HP;
-    public float MaxHP, SizeX, SizeY, Heal;
+
+    public GameHandler handler;
+
+    public PlayerInstance player_instance => handler.player;
+
+
+    
+    private float HP => player_instance.current_hp;
+    private float MaxHP => player_instance.stats.max_hp;
+
+
+    public float SizeX, SizeY, Heal;
     [SerializeField]
     private RectTransform healthBar;
     [SerializeField]
@@ -15,29 +25,18 @@ public class HealthCode : MonoBehaviour
 
     [SerializeField]private UIToggleManager UIToggleManager;
 
-    private void OnEnable()
-    {
-        GameHandler.PlayerTookDamage += TakeDamage;
-    }
-    private void OnDisable()
-    {
-        GameHandler.PlayerTookDamage -= TakeDamage;
-    }
     void Start()
     {
         //Debug.Log("Helth start");
 
         if(debugisOn) Debug.Log("HP, MaxHP, SizeX, SizeY, Damage, Heal: " + HP + ", " + MaxHP + ", " + SizeX + ", " + SizeY + ", " + Heal);
-        HP = MaxHP;
+
+        GameHandler.PlayerTookDamage += CurrentHealth;
     }
 
     void Update()
     {
-        if (HP <= 0)
-        {
-            UIToggleManager.ToggleUI();
-        }
-        //CurrentHealth(MaxHP);
+        CurrentHealth(0);
     }
 
     #region Events
@@ -47,11 +46,11 @@ public class HealthCode : MonoBehaviour
     #endregion
 
     //Quantidade de Vida e Ttamanho da Barra
-    public void CurrentHealth(float MaxHealth)
+    public void CurrentHealth(float damage_taken)
     {
-        float CurrentHP = (HP / MaxHP) * SizeX;
+        float CurrentHP_to_bar_length = (HP / MaxHP) * SizeX;
 
-        healthBar.sizeDelta = new Vector2(CurrentHP, SizeY);
+        healthBar.sizeDelta = new Vector2(CurrentHP_to_bar_length, SizeY);
         nohealthBar.sizeDelta = new Vector2(SizeX, SizeY);
     }
 
@@ -71,31 +70,7 @@ public class HealthCode : MonoBehaviour
         CurrentHealth(MaxHP);
     }
     */
-    private bool DeathCheck(float currentHP)
-    {
-        if (currentHP <= 0)
-        {
-            return true;
-        }
-
-        else
-        {
-            return false;
-        }
-    }
-    public void TakeDamage(float Demage)
-    {
-        if(HP - Demage <= 0)
-        {
-            HP = 0;
-            HealthDroppedToZero?.Invoke();
-        }
-        else
-        {
-            HP -= Demage;
-        }
-        CurrentHealth(MaxHP);
-    }
+    
 
 
     //Botões para curar e receber dano

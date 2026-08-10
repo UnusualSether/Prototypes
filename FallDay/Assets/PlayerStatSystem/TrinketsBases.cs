@@ -1,18 +1,30 @@
+using NUnit.Framework;
 using UnityEngine;
+using System.Collections.Generic;
 
 
+
+public static class GlobalTrinketHolder
+{
+   public static List<Trinket> player_chosen_trinkets = new List<Trinket>();
+}
+
+#region Trinket Base and Interfaces
 /// <summary>
 /// The base class for trinkets. Contains the trinkets name, description and icon. All `get` only.
 /// </summary>
 [System.Serializable]
-public abstract class Trinket : ScriptableObject
+public class Trinket : ScriptableObject
 {
 
-    public string trinket_name { get; }
+    [SerializeField] protected string _trinket_name;
+    public string trinket_name { get => _trinket_name; set => _trinket_name = value; }
 
-    public string trinket_description { get; }
+    [SerializeField] protected string _trinket_description;
+    public string trinket_description { get => _trinket_description; set => _trinket_description = value; }
 
-    public Sprite trinket_icon { get; }
+    [SerializeField] protected Sprite _trinket_sprite;
+    public Sprite trinket_sprite { get => _trinket_sprite; set => _trinket_sprite = value; }
 
 }
 
@@ -49,7 +61,9 @@ public interface IPassiveTrinket
 }
 
 
+#endregion
 
+#region Trinket Type Bases
 /// <summary>
 /// Passive stat boost adding to the PlayerStats max hp.
 /// </summary>
@@ -81,16 +95,46 @@ public class DamageAddingTrinket : Trinket, IPassiveTrinket
 }
 
 
+public class OnKillTrinket : Trinket, IEventTricket
+{
+
+    public virtual void EventTrigger(TrinketEventType called_event_type, PlayerInstance instance_to_affect)
+    {
+        if (called_event_type == TrinketEventType.OnKill)
+        {
+            
+        }
+    }
+
+}
+
+
+/// <summary>
+/// Trinkets which grant the player some kind of reward upon compeleting a room.
+/// </summary>
+public class RoomClearTrinket : Trinket, IEventTricket
+{
+    public virtual void EventTrigger(TrinketEventType called_event_type, PlayerInstance instance_to_affect)
+    {
+        if (called_event_type == TrinketEventType.OnRoomComplete)
+        {
+
+        }
+    }
+}
+
+#endregion
 
 /// <summary>
 /// Kill effect trinkets which grant the player more current hp.
 /// </summary>
-public class VampiricTrinket : Trinket, IEventTricket
+[CreateAssetMenu(fileName = "NewVampiricTrinket", menuName = "Trinket/Vampiric Trinket")]
+public class VampiricTrinket : OnKillTrinket
 {
 
     public int health_gain;
 
-    public void EventTrigger(TrinketEventType called_event_type, PlayerInstance instance_to_affect)
+    public override void EventTrigger(TrinketEventType called_event_type, PlayerInstance instance_to_affect)
     {
         if (called_event_type == TrinketEventType.OnKill)
         {
@@ -101,18 +145,7 @@ public class VampiricTrinket : Trinket, IEventTricket
 
 }
 
-/// <summary>
-/// Trinkets which grant the player some kind of reward upon compeleting a room.
-/// </summary>
-public class RoomClearTrinket : Trinket, IEventTricket
-{
-    public void EventTrigger(TrinketEventType called_event_type, PlayerInstance instance_to_affect)
-    {
-        if (called_event_type == TrinketEventType.OnRoomComplete)
-        {
-            
-        }
-    }
-}
+
+
 
 
