@@ -46,7 +46,7 @@ public partial class GameHandler : MonoBehaviour
     public event Action<Zombie> ZombieDamaged;
     public event Action<Zombie> zPhaseChange;
     public event Action ZombieKilled;
-    public event Action<Zombie> ZombieIsClose;
+    //public event Action<Zombie> ZombieIsClose;
 
 
     //Objective related events
@@ -130,77 +130,6 @@ public partial class GameHandler : MonoBehaviour
     {
         public List<BulletType> bulletTypes;
     }
-
-
-
-    /// <summary>
-    /// The Zombie class which contains HP, its id which is used by the gamehandler to find out which zombie to damage & an enum for checking how close the zombie is to the player.
-    /// </summary>
-    /*
-    public class Zombie
-    {
-        public int id = 0;
-        public int hp;
-        public float PhaseTimer = 5;
-        private float PhT1 = 0;
-        private bool IsFirstUpdate = true;
-
-        public enum ZombiePhase
-        {
-            Stop,
-            Far,
-            Approach,
-            Close
-        }
-
-        public ZombiePhase phase;
-
-        public int currentDisplay;
-
-        public void UpdatePhase(float deltaTime)
-        {
-            if (TutorialControler.TutorialEnded == false)
-            {
-                phase = ZombiePhase.Stop;
-            }
-
-            if (phase == ZombiePhase.Close && PhT1 <= 0) 
-            {
-                PlayerTookDamage?.Invoke(1f);
-                // <= Place a Destroy Zombie Call
-                
-                destroyZombie?.Invoke(id);
-            }
-            else if (IsFirstUpdate) 
-            { 
-                IsFirstUpdate = false; 
-                PhT1 = PhaseTimer; 
-            }
-            else if (PhT1 <= 0)
-            {
-                PhT1 = PhaseTimer;
-                ChangePhase();
-            }
-            else
-            {
-                PhT1 -= deltaTime;
-            }
-        }
-        private void ChangePhase()
-        {
-            if (phase == ZombiePhase.Far)
-            {
-                phase = ZombiePhase.Approach;
-                Debug.Log($"Zombie with id {id} has changed phase to {phase}");
-            }
-            else if (phase == ZombiePhase.Approach)
-            {
-                phase = ZombiePhase.Close;
-                Debug.Log($"Zombie with id {id} has changed phase to {phase}");
-            }
-        }
-    }
-    */
     #endregion
 
     #region Player Damage Handling
@@ -325,7 +254,6 @@ public partial class GameHandler : MonoBehaviour
     #region Zombie Handling
     IEnumerator ZombieSpawner()
     {
-
         ZombieSpawnGate = true;
         yield return new WaitForSeconds(zombieSpawnTimer);
         
@@ -346,12 +274,6 @@ public partial class GameHandler : MonoBehaviour
             nextZombieID = ZombieList.Last().id + 1;
             stachedZombieID = nextZombieID;
         }
-
-
-       
-
-
-
 
         ZombieList.Add(new Zombie(currentEncounter.ReturnTheEnemyType())
         {
@@ -376,10 +298,6 @@ public partial class GameHandler : MonoBehaviour
         zombiesSpawned++;
     }
     
-    public void InvokeZombieIsClose(Zombie zombie)
-    {
-                ZombieIsClose?.Invoke(zombie);
-    }
     public void InvokePhaseChange(Zombie zombie)
     {
         zPhaseChange?.Invoke(zombie);
@@ -1059,7 +977,7 @@ public partial class GameHandler : MonoBehaviour
     private void CreateNewEncounter()
     {
 
-        //Debug.Log("Creating a new encounter...");
+        if (debugisOn) Debug.Log("Creating a new encounter...");
         EncounterData newEncounterData;
         
         if (possibleEncounters.Count == 0)
@@ -1072,7 +990,7 @@ public partial class GameHandler : MonoBehaviour
 
         newEncounterData = possibleEncounters[randomIndex];
 
-        //Debug.Log($"I picked the encounter:{newEncounterData.name}");
+        if (debugisOn) Debug.Log($"I picked the encounter:{newEncounterData.name}");
 
         InitializeEncounter(newEncounterData);
     }

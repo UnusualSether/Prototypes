@@ -47,9 +47,6 @@ public partial class GameDisplay : MonoBehaviour
         ui = uiDoc.rootVisualElement;
 
         List<VisualElement> numberOfDisplay = new List<VisualElement>();
-
-
-
     }
     private void OnEnable()
     {
@@ -121,7 +118,6 @@ public partial class GameDisplay : MonoBehaviour
         cachedZombies = handler.ZombieList.ToList();
 
     }
-
     private void OnDisable()
     {
         handler.ZombieKilled -= RemoveCrosshair;
@@ -134,18 +130,7 @@ public partial class GameDisplay : MonoBehaviour
         UnregisterAnimationEvents();
         ResetLists();
     }
-
-    IEnumerator WaitForBullets()
-    {
-        if (handler.selectableBullets == null)
-        {
-            yield return new WaitUntil(() => handler.selectableBullets != null);
-
-            Debug.Log("Bullets are available! Caching...");
-
-        }
-    }
-
+    //Is here to detect changes in the other scripts.
     private void Update()
     {
         //Handle Bullet Changes
@@ -161,7 +146,6 @@ public partial class GameDisplay : MonoBehaviour
             HandleZombieDisplay();
 
         }
-
     }
 
 
@@ -247,19 +231,6 @@ public partial class GameDisplay : MonoBehaviour
 
     private bool NumberOfZombiesHasChanged()
     {
-
-        /*
-        var zombiesToCompare = handler.ZombieList.ToList();
-
-        if (cachedZombies != zombiesToCompare)
-        {
-
-            return true;
-
-        }
-
-        return false;
-        */
         return cachedZombies.Count != handler.ZombieList.Count;
     }
 
@@ -272,17 +243,6 @@ public partial class GameDisplay : MonoBehaviour
             Debug.Log("This spot in not occupied. Backing out...");
             return;
         }
-
-
-        //var elementIdChar = selectedElement.name[name.Length - 1];
-
-        //Debug.Log($"Fetched the element with the number {elementIdChar}");
-
-        //var elementId = (int)Char.GetNumericValue(elementIdChar);
-
-        //ZombieDisplay zombieDisplay = zombieDisplayLookup[elementId - 1];
-
-        //handler.preferenceZombie = zombieDisplay.displayedZombie.id;
 
         int preferenceZombieID = occupiedZombieDisplay.Find(e => e.displayElement == selectedElement).displayedZombie.id;
 
@@ -300,9 +260,7 @@ public partial class GameDisplay : MonoBehaviour
         foreach (var display in occupiedZombieDisplay)
         {
             display.displayElement.RemoveFromClassList("aimed");
-
         }
-
         clickedElement.AddToClassList("aimed");
     }
 
@@ -317,46 +275,13 @@ public partial class GameDisplay : MonoBehaviour
         }
     }
 
-    private void FindNewCrossHairPosition()
-    {
-
-
-        foreach (var display in occupiedZombieDisplay)
-        {
-            display.displayElement.RemoveFromClassList("aimed");
-        }
-
-        foreach (var display in zombieDisplayList)
-        {
-            display.displayElement.RemoveFromClassList("aimed");
-        }
-
-        var newSelectedDisplay = occupiedZombieDisplay.Find(e => e.displayedZombie.id == handler.preferenceZombie).displayElement;
-
-        newSelectedDisplay.AddToClassList("aimed");
-
-
-    }
-
-
-
     private void HandleZombieDisplay()
     {
-        //Handle new zombie coming in
-
-
-
-
+        //Handle new zombie coming in          <=======
         if (cachedZombies.Count < handler.ZombieList.Count)
         {
-
-
-
-
             Zombie newZombie =
                 handler.ZombieList.Except(cachedZombies).First();
-
-            handler.ZombieIsClose += UpdateZombieVisual;
 
             if (newZombie == null)
             {
@@ -372,10 +297,8 @@ public partial class GameDisplay : MonoBehaviour
                 Debug.Log("Display not found! Backing out.");
                 return;
             }
-
-
+             // add change animation controler of the 
             assignedDisplay.displayedZombie = newZombie;
-
             //Debug.Log($"Zombie Display {assignedDisplay.displayId} now contains zombie with ID {assignedDisplay.displayedZombie.id}");
 
             VisualElement zombieDisplayElement = ui.Query<VisualElement>().Where(e => e.name == $"ZombieSpot{assignedDisplay.displayId + 1}");
@@ -388,28 +311,18 @@ public partial class GameDisplay : MonoBehaviour
 
             zombieDisplayElement.AddToClassList("zombieSpotOccupied");
 
-
             zombieDisplayList.Remove(assignedDisplay);
             StartZombieAnimation(assignedDisplay);
             occupiedZombieDisplay.Add(assignedDisplay);
 
             cachedZombies = new List<Zombie>(handler.ZombieList);
-
-            //if (!occupiedZombieDisplay.Any(x => x.displayElement.ClassListContains("aimed")))
-            //{
-            // FindNewCrossHairPosition();
-            //}
-
         }
 
         //Handle Zombie Leaving
-
         if (cachedZombies.Count > handler.ZombieList.Count)
         {
             var leavingZombie =
                 cachedZombies.Except(handler.ZombieList).First();
-
-            handler.ZombieIsClose -= UpdateZombieVisual;
 
             if (leavingZombie == null)
             {
@@ -425,10 +338,6 @@ public partial class GameDisplay : MonoBehaviour
                 Debug.Log("Failed to find the assigned display. Backing out.");
                 return;
             }
-
-           ;
-
-            //Debug.Log($"Assigned display ID {assignedDisplay.displayId} which contained {assignedDisplay.displayedZombie.id} will now be nulled.");
 
             assignedDisplay.displayedZombie = null;
 
@@ -449,28 +358,7 @@ public partial class GameDisplay : MonoBehaviour
 
 
             cachedZombies = new List<Zombie>(handler.ZombieList);
-
         }
-
-
-
-    }
-
-    void UpdateZombieVisual(Zombie zombie)
-    {
-        ZombieDisplay zombieDisplayToUpdate;
-
-       foreach (var display in occupiedZombieDisplay)
-        {
-            if (display.displayedZombie == zombie)
-            {
-                zombieDisplayToUpdate = display;
-                zombieDisplayToUpdate.displayElement.AddToClassList("warning");
-
-            }
-        }
-
-        
     }
 
     void ShakeZombieVisual(Zombie zombie)
