@@ -42,6 +42,8 @@ public class PlayerStats
 public class PlayerInstance
 {
 
+    public GameHandler player_handler;
+
     public PlayerStats stats = new PlayerStats();
 
     public float current_hp;
@@ -53,7 +55,23 @@ public class PlayerInstance
     public SoftCurrency gained_currency = new SoftCurrency();
 
 
-    //PlayerInstance's ONLY connection to events.
+ 
+    void PlayerKilledZombie()
+    {
+        DispatchEvent(TrinketEventType.OnKill);
+    }
+
+    void PlayerClearedRoom()
+    {
+        DispatchEvent(TrinketEventType.OnRoomComplete);
+    }
+
+    void PlayerTookDamageRoom()
+    {
+
+    }
+
+
     void DispatchEvent(TrinketEventType event_type)
     {
         trinket_manager.IdentifyEventType(event_type, this);
@@ -64,7 +82,25 @@ public class PlayerInstance
     /// <param name="gained_health"></param>
     public void GainHealth(int gained_health)
     {
+        if (PlayerFullHP())
+        {
+            return;
+        }
+
         current_hp += gained_health;
+    }
+
+    public bool PlayerFullHP()
+    {
+        if (current_hp == stats.max_hp)
+        {
+            return true;
+        }
+
+        else
+        {
+            return false;
+        }
     }
 
 
@@ -122,14 +158,22 @@ public class PlayerInstance
         instance_damage = stats.base_damage; 
     }
 
-    public PlayerInstance()
+    public PlayerInstance(GameHandler initialized_by)
     {
+        player_handler = initialized_by;
 
-        SetOwnStats();
+
+        player_handler.ZombieKilled += PlayerKilledZombie;
+
+        player_handler.PlayerKilledAllZombies += PlayerClearedRoom;
 
         trinket_manager.equipped_trinkets = GlobalTrinketHolder.player_chosen_trinkets;
 
+        SetOwnStats();
+
         trinket_manager.InitializeTrinketStatBoosts(stats);
+
+
 
         GameHandler.PlayerTookDamage += LoseHealth;        
     }
@@ -159,7 +203,7 @@ public abstract class Currency
     }
 }
 
-
+[System.Serializable]
 /// <summary>
 /// Free Currency. Currently only contains a total int var.
 /// </summary>

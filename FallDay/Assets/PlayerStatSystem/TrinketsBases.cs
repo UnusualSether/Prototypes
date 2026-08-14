@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 public static class GlobalTrinketHolder
 {
-   public static List<Trinket> player_chosen_trinkets = new List<Trinket>();
+    public static List<Trinket> player_chosen_trinkets = new List<Trinket>();
 }
 
 #region Trinket Base and Interfaces
@@ -64,20 +64,7 @@ public interface IPassiveTrinket
 #endregion
 
 #region Trinket Type Bases
-/// <summary>
-/// Passive stat boost adding to the PlayerStats max hp.
-/// </summary>
-public class HealthAddingTrinket : Trinket, IPassiveTrinket
-{
 
-    int health_boost;
-
-    void ApplyPassive(PlayerStats stats)
-    {
-        stats.max_hp += health_boost;
-    }
-
-}
 
 /// <summary>
 /// Passive stat boost adding to the PlayerStats base damage.
@@ -125,26 +112,8 @@ public class RoomClearTrinket : Trinket, IEventTricket
 
 #endregion
 
-/// <summary>
-/// Kill effect trinkets which grant the player more current hp.
-/// </summary>
-[CreateAssetMenu(fileName = "NewVampiricTrinket", menuName = "Trinket/Vampiric Trinket")]
-public class VampiricTrinket : OnKillTrinket
-{
 
-    public int health_gain;
-
-    public override void EventTrigger(TrinketEventType called_event_type, PlayerInstance instance_to_affect)
-    {
-        if (called_event_type == TrinketEventType.OnKill)
-        {
-            instance_to_affect.current_hp += health_gain;
-        }
-    }
-
-
-}
-
+ 
 
 
 

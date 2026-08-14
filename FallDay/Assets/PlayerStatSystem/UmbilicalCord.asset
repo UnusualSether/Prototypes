@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: InconspiciousMosquitoBites
-  m_EditorClassIdentifier: Assembly-CSharp::VampiricTrinket
-  _trinket_name: Inconspicous Mosquito Bites
-  _trinket_description: Gives you health upon defeating an enemy.
+  m_Script: {fileID: 11500000, guid: 7f44aadc36082d447bad3ee2e30a6726, type: 3}
+  m_Name: UmbilicalCord
+  m_EditorClassIdentifier: Assembly-CSharp::HealthAddingTrinket
+  _trinket_name: Umbilical Cord
+  _trinket_description: '"It refuses to let go of this world.'
   _trinket_sprite: {fileID: 0}
-  health_gain: 3
+  health_boost: 10

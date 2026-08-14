@@ -21,8 +21,6 @@
 #VisualElement > #GameName > .unity-image > #GameName {
 }
 
-
-
 Slider VisualElement {
 }
 
@@ -46,4 +44,8 @@ Slider #unity-dragger {
 .unity-base-slider__fill {
     -unity-background-image-tint-color: rgb(255, 255, 255);
     background-color: rgb(132, 126, 135);
+}
+
+.white-text {
+    color: rgb(255, 255, 255);
 }

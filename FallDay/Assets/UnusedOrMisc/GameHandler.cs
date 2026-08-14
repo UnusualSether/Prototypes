@@ -162,7 +162,7 @@ public partial class GameHandler : MonoBehaviour
     private void Start()
     {
 
-        player = new PlayerInstance();
+        player = new PlayerInstance(this);
 
         ui = uiDoc.rootVisualElement;
         

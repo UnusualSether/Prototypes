@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7eddc06d6fb3b0d49bad81fb5aa9b342, type: 3}
-  m_Name: StrangeWillow
-  m_EditorClassIdentifier: Assembly-CSharp::ExplorersTrinket
-  _trinket_name: Willow
-  _trinket_description: '"I wish for a million dollars."'
+  m_Script: {fileID: 11500000, guid: a48608030bde62e4899053749c093771, type: 3}
+  m_Name: VampireBites
+  m_EditorClassIdentifier: Assembly-CSharp::VampiricTrinket
+  _trinket_name: Vampire Bites
+  _trinket_description: '"I woke up with a few mosquito bites on my neck this morning."'
   _trinket_sprite: {fileID: 0}
-  soft_currency_gained: 3
+  health_gain: 1

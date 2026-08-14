@@ -2253,10 +2253,6 @@ PrefabInstance:
       propertyPath: 'possibleEncounters.Array.data[4]'
       value: 
       objectReference: {fileID: 11400000, guid: a1afbc954567643419ced57c7466028c, type: 2}
-    - target: {fileID: 1769905274112778612, guid: eaaffc07808ebaf4fae8b342b82799c9, type: 3}
-      propertyPath: player.trinket_manager.equipped_trinkets.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 2319490960122711069, guid: eaaffc07808ebaf4fae8b342b82799c9, type: 3}
       propertyPath: m_Enabled
       value: 1

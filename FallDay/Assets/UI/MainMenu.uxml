@@ -12,5 +12,11 @@
             </ui:Image>
         </ui:VisualElement>
         <ui:Label text="Surviv3" name="GameName" enable-rich-text="true" style="align-self: stretch; font-size: 140%; top: 222px; position: absolute; left: 234px; align-items: stretch; width: auto; -unity-text-outline-width: 3px; color: rgb(0, 0, 0); -unity-text-outline-color: rgb(182, 182, 182); opacity: 1; -unity-font-style: bold; -unity-text-align: middle-center; white-space: nowrap; text-overflow: clip;"/>
+        <ui:VisualElement style="flex-grow: 1; font-size: 68px; position: absolute; width: 1092px; height: 400px; top: 1844px; left: 16px;">
+            <ui:ListView name="ListView" horizontal-scrolling="true" style="height: 386px;"/>
+            <ui:Toggle label="Umbilical Cord" name="Umbilical" class="white-text"/>
+            <ui:Toggle label="Vampiric&#10;" name="Vampiric" class="white-text"/>
+            <ui:Toggle label="Explorers&#10;" name="Explorer" class="white-text"/>
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

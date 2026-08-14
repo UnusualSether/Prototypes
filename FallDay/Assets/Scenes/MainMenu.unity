@@ -124,6 +124,55 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6506213751061247739, guid: 53a90a212d90c324e9ace990e047a2b8, type: 3}
   m_PrefabInstance: {fileID: 1068143690632273190}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &765434353
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 765434355}
+  - component: {fileID: 765434354}
+  m_Layer: 0
+  m_Name: MenuTrinketManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &765434354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765434353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f625ac93e5cf8f74b9ce740cb53e034f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  doc: {fileID: 1802546157}
+  available_trinkets_library:
+  - {fileID: 11400000, guid: 7a6c749db537e3240aab21afdf0c699c, type: 2}
+  - {fileID: 11400000, guid: ea1194a65b109dc41a704a08b7969099, type: 2}
+  - {fileID: 11400000, guid: 9d369d0bfdc6acf4fb92b636cca76f8f, type: 2}
+--- !u!4 &765434355
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765434353}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 327.73288, y: 2129.6758, z: 68.87379}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1014655886 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8686964765638387401, guid: 3b22b77efabf553468e8a1c5d10d0ed5, type: 3}
@@ -588,6 +637,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4004746050545178163, guid: 5b4fa346017188043b9aacad224ca14c, type: 3}
   m_PrefabInstance: {fileID: 8243617084101874134}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1802546157 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6809619032617853123, guid: 5b4fa346017188043b9aacad224ca14c, type: 3}
+  m_PrefabInstance: {fileID: 8243617084101874134}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1802546155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
 --- !u!1 &1807505139
 GameObject:
   m_ObjectHideFlags: 0
@@ -1106,3 +1166,4 @@ SceneRoots:
   - {fileID: 8243617084101874134}
   - {fileID: 5992229257428099474}
   - {fileID: 1684983267}
+  - {fileID: 765434355}
