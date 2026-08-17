@@ -11,6 +11,7 @@ public class MenuManager : MonoBehaviour
     public GameObject LevelMenu;
     public GameObject Weapons;
     public GameObject Difficulty;
+    public GameObject Trinkets;
 
     public void OnEnable()
     {
@@ -35,7 +36,7 @@ public class MenuManager : MonoBehaviour
 
             if (startbutton != null)
             {
-                startbutton.clicked += LevelSelect;
+                startbutton.clicked += trinketsmenu;
             }
 
             if (diffchoice != null)
@@ -91,6 +92,13 @@ public class MenuManager : MonoBehaviour
         Config.SetActive(false);
         Devs.SetActive(false);
     }
+
+    private void trinketsmenu()
+    {
+        Menu.SetActive(false);
+        Trinkets.SetActive(true);
+    }
+
 
     private void DevMenu()
     {

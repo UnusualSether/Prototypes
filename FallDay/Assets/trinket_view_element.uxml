@@ -1,0 +1,10 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="trinket_view_element" style="height: 450px; aspect-ratio: 1.333333; min-width: 500px; min-height: 499px;">
+        <ui:Toggle label="&#10;" name="trinket_toggle" style="justify-content: center; flex-direction: column; align-self: center; align-items: center; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; height: 76px; scale: 8 4;"/>
+        <ui:Image name="trinket_sprite" style="height: 269px;"/>
+        <ui:VisualElement name="TextPanel" style="flex-grow: 1; background-color: rgb(255, 0, 105);">
+            <ui:Label text="Willow&#10;" name="trinket_name" style="-unity-text-align: middle-center; font-size: 33px; scale: 4 3;"/>
+            <ui:Label text="&#10;lol&#10;" name="trinket_desc" style="-unity-text-align: upper-center; font-size: 22px; scale: 4 3;"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

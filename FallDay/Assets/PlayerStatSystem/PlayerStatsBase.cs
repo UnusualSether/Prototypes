@@ -6,10 +6,14 @@ using System.Runtime.CompilerServices;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using Unity.VisualScripting;
 using System.Security.Authentication.ExtendedProtection;
+using System.Runtime.InteropServices.WindowsRuntime;
+using System;
+
 /// <summary>
 /// Contains stats which the PlayerInstance class requires for intialization.
 /// </summary>
 /// 
+
 
 
 
@@ -21,22 +25,30 @@ public class PlayerStats
 
     public int base_damage;
 
-    
+
     public PlayerStats()
     {
         max_hp = 100;
 
         base_damage = 1;
     }
-        
-    
+    public void ChangeMaxHealth(float max_health_change)
+    {
+        max_hp += max_health_change;
+    }
 
 
 }
 
+        
+    
+
+
+
+
 
 /// <summary>
-/// The player instance, contains their current hp and damage output, a TrinketManager, SoftCurrency and PlayerStats.
+/// The player instance, contains their current hp and damage output, a TrinketManager, SoftCurrency gained in this run and PlayerStats.
 /// </summary>
 [System.Serializable]
 public class PlayerInstance
@@ -158,22 +170,20 @@ public class PlayerInstance
         instance_damage = stats.base_damage; 
     }
 
+
     public PlayerInstance(GameHandler initialized_by)
     {
         player_handler = initialized_by;
+
 
 
         player_handler.ZombieKilled += PlayerKilledZombie;
 
         player_handler.PlayerKilledAllZombies += PlayerClearedRoom;
 
-        trinket_manager.equipped_trinkets = GlobalTrinketHolder.player_chosen_trinkets;
-
-        SetOwnStats();
-
         trinket_manager.InitializeTrinketStatBoosts(stats);
 
-
+        SetOwnStats();
 
         GameHandler.PlayerTookDamage += LoseHealth;        
     }
@@ -228,6 +238,11 @@ public class TrinketManager
 {
     public List<Trinket> equipped_trinkets = new List<Trinket>();
 
+    public TrinketManager()
+    {
+        equipped_trinkets = GlobalTrinketHolder.player_chosen_trinkets.ToList();
+    }
+
     /// <summary>
     /// Recieves the PlayerInstance's Dispatch function. Finds out what event to call depending of the received event type.
     /// </summary>
@@ -262,6 +277,7 @@ public class TrinketManager
             }
         }
     }
+
 
 
     /// <summary>

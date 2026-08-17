@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: UmbilicalCord
   m_EditorClassIdentifier: Assembly-CSharp::HealthAddingTrinket
   _trinket_name: Umbilical Cord
-  _trinket_description: '"It refuses to let go of this world.'
+  _trinket_description: '"It refuses to let go of this world."'
   _trinket_sprite: {fileID: 0}
-  health_boost: 10
+  health_boost: 5

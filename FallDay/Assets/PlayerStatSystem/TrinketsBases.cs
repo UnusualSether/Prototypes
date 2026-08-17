@@ -7,6 +7,16 @@ using System.Collections.Generic;
 public static class GlobalTrinketHolder
 {
     public static List<Trinket> player_chosen_trinkets = new List<Trinket>();
+
+    public static void ReceiveTrinketAdd(Trinket recieved_trinket)
+    {
+        player_chosen_trinkets.Add(recieved_trinket);
+    }
+
+    public static void ReceiveTrinketRemove(Trinket remove_request_trinket)
+    {
+        player_chosen_trinkets.Remove(remove_request_trinket);
+    }
 }
 
 #region Trinket Base and Interfaces

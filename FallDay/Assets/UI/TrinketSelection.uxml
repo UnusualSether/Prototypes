@@ -1,0 +1,5 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Image scale-mode="StretchToFill" style="height: 2548px; width: 1194px; background-image: url(&quot;project://database/Assets/UI/MenuPixel2.png?fileID=2800000&amp;guid=fa14306668e6e6042a3845718bca861f&amp;type=3#MenuPixel2&quot;); position: absolute; top: -2px; left: -9px;"/>
+    <ui:Button text="To Levels" name="ToLevelSelectButton" style="height: 195px; font-size: 97px;"/>
+    <ui:VisualElement name="trinket_container" style="flex-grow: 1; flex-direction: column; align-items: center; position: relative; justify-content: center;"/>
+</ui:UXML>

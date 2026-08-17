@@ -3,6 +3,7 @@ using UnityEngine.UIElements;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.InputSystem.Composites;
+using Unity.VisualScripting;
 public class MenuTrinketEquipping : MonoBehaviour
 {
 
@@ -10,37 +11,54 @@ public class MenuTrinketEquipping : MonoBehaviour
 
     public List<Trinket> available_trinkets_library;
 
+    public VisualElement trinket_select_container;
+
+    public VisualTreeAsset trinket_element_template;
+
     public Dictionary<Toggle, Trinket> button_to_trinket = new Dictionary<Toggle, Trinket>();
 
     private void Start()
     {
 
-        Toggle vampiric_toggle = doc.rootVisualElement.Query<Toggle>("Vampiric");
+        var root = doc.rootVisualElement;
 
-        button_to_trinket.Add(vampiric_toggle, available_trinkets_library.First(h=> h is VampiricTrinket));
+        trinket_select_container = root.Q<VisualElement>("trinket_container");
 
-        vampiric_toggle.RegisterValueChangedCallback(evt => PassToEquipAndUnequip(vampiric_toggle));
 
-        Toggle explorer_toggle = doc.rootVisualElement.Query<Toggle>("Explorer");
-
-        button_to_trinket.Add(explorer_toggle, available_trinkets_library.First(h => h is ExplorersTrinket));
-
-        explorer_toggle.RegisterValueChangedCallback(evt => PassToEquipAndUnequip(explorer_toggle));
-
-        Toggle health_bonus_toggle = doc.rootVisualElement.Query<Toggle>("Umbilical");
-
-        button_to_trinket.Add(health_bonus_toggle, available_trinkets_library.First(h => h is HealthAddingTrinket));
-
-       health_bonus_toggle.RegisterValueChangedCallback(evt => PassToEquipAndUnequip(health_bonus_toggle));
+        BuildMenuOffData();
 
     }
 
+    void BuildMenuOffData()
+    {
+        foreach (var trinket in available_trinkets_library)
+        {
+            CreateNewTrinketSelector(trinket);
+        }
+    }
+
+    void CreateNewTrinketSelector(Trinket trinket_to_display)
+    {
+        var trinket_display = trinket_element_template.Instantiate();
+
+        trinket_display.Q<Label>("trinket_name").text = trinket_to_display.trinket_name;
+
+        trinket_display.Q<Label>("trinket_desc").text = trinket_to_display.trinket_description;
+
+        trinket_display.Q<Toggle>("trinket_toggle").RegisterValueChangedCallback(evt => PassToEquipAndUnequip(trinket_to_display));
+
+        InsertInstantiatedIntoMain(trinket_display);
+    }
+
+    void InsertInstantiatedIntoMain(VisualElement element)
+    {
+        trinket_select_container.Add(element);
+    }
 
     
 
-    void PassToEquipAndUnequip(Toggle key)
+    void PassToEquipAndUnequip(Trinket toggled_trinket)
     {
-        var toggled_trinket = button_to_trinket[key];
 
         if (GlobalTrinketHolder.player_chosen_trinkets.Contains(toggled_trinket))
         {
@@ -55,18 +73,18 @@ public class MenuTrinketEquipping : MonoBehaviour
     void EquipTrinket(Trinket trinket_to_send)
     {
         Debug.Log($"Equipped {trinket_to_send.trinket_name}");
-        GlobalTrinketHolder.player_chosen_trinkets.Add(trinket_to_send);
+        GlobalTrinketHolder.ReceiveTrinketAdd(trinket_to_send);
     }
 
     void UnequipTrinket(Trinket trinket_to_remove)
     {
         if (!GlobalTrinketHolder.player_chosen_trinkets.Contains(trinket_to_remove))
         {
-            return;
+            throw new System.Exception("Global trinket holder does not contain this trinket! Whichever way you got to this is a bug.");
         }
 
         Debug.Log($"Unequipped {trinket_to_remove.trinket_name}");
 
-        GlobalTrinketHolder.player_chosen_trinkets.Remove(trinket_to_remove);
+        GlobalTrinketHolder.ReceiveTrinketRemove(trinket_to_remove);
     }
 }
