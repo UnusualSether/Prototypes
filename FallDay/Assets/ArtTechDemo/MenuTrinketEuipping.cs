@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.InputSystem.Composites;
 using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 public class MenuTrinketEquipping : MonoBehaviour
 {
 
@@ -28,6 +29,13 @@ public class MenuTrinketEquipping : MonoBehaviour
         BuildMenuOffData();
 
     }
+
+    void ToLevelSelect()
+    {
+        SceneManager.LoadScene("LevelSelect");
+    }
+
+
 
     void BuildMenuOffData()
     {

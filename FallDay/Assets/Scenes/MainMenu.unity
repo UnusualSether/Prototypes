@@ -1208,7 +1208,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4004746050545178163, guid: 5b4fa346017188043b9aacad224ca14c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4351865879563765256, guid: 5b4fa346017188043b9aacad224ca14c, type: 3}
       propertyPath: Devs
@@ -1222,6 +1222,10 @@ PrefabInstance:
       propertyPath: Trinkets
       value: 
       objectReference: {fileID: 957689634}
+    - target: {fileID: 6809619032617853123, guid: 5b4fa346017188043b9aacad224ca14c, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8759473493732371773, guid: 5b4fa346017188043b9aacad224ca14c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 801.97455
@@ -1274,8 +1278,8 @@ SceneRoots:
   - {fileID: 2115632395}
   - {fileID: 1807505142}
   - {fileID: 1068143690632273190}
+  - {fileID: 745397144}
   - {fileID: 8243617084101874134}
   - {fileID: 5992229257428099474}
-  - {fileID: 745397144}
   - {fileID: 1684983267}
   - {fileID: 765434355}
