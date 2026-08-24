@@ -2234,6 +2234,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1769905274112778612, guid: eaaffc07808ebaf4fae8b342b82799c9, type: 3}
+      propertyPath: bulletList.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769905274112778612, guid: eaaffc07808ebaf4fae8b342b82799c9, type: 3}
+      propertyPath: 'bulletList.Array.data[3]'
+      value: healingBullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769905274112778612, guid: eaaffc07808ebaf4fae8b342b82799c9, type: 3}
+      propertyPath: 'bulletList.Array.data[4]'
+      value: escapeBullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769905274112778612, guid: eaaffc07808ebaf4fae8b342b82799c9, type: 3}
       propertyPath: selectableBullets.Array.size
       value: 43
       objectReference: {fileID: 0}

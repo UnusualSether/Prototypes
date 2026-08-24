@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Networking.PlayerConnection;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -134,6 +136,64 @@ public partial class GameHandler : MonoBehaviour
         public int Damage;
     }
 
+    public class SpecialBullet : BulletType
+    {
+        public enum EffectResolve
+        {
+            OneTimeUse,
+            Stacking
+        }
+
+        public EffectResolve effect_type;
+        public virtual void BulletEffect(PlayerInstance player_instance, List<Zombie> active_zombies)
+        {
+
+        }
+    }
+
+    public class HealingBullet : SpecialBullet
+    {
+
+        public int heal_amount;
+
+        public override void BulletEffect(PlayerInstance player_instance, List<Zombie> active_zombies)
+        {
+            player_instance.GainHealth(heal_amount);
+        }
+
+        public HealingBullet()
+        {
+            effect_type = EffectResolve.Stacking;
+
+            heal_amount = 1;
+
+            Damage = 0;
+        }
+    }
+
+    public class EscapeBullet : SpecialBullet
+    {
+
+        public override void BulletEffect(PlayerInstance player_instance, List<Zombie> active_zombies)
+        {
+            foreach (var zombie in active_zombies)
+            {
+                if (zombie.phase > (Zombie.ZombiePhase)1)
+                {
+                    zombie.phase -= (Zombie.ZombiePhase)1;
+                }
+            }
+        }
+
+        public EscapeBullet()
+        {
+            effect_type = EffectResolve.OneTimeUse;
+
+            Damage = 0;
+        }
+
+    }
+
     public class BulletTable
     {
         public List<BulletType> bulletTypes;
@@ -192,7 +252,7 @@ public partial class GameHandler : MonoBehaviour
                 description = "A good bullet.",
                 Damage = 10
             },
-        
+
             new BulletType()
             {
                name = "shitBullet",
@@ -205,6 +265,21 @@ public partial class GameHandler : MonoBehaviour
                 name = "epicBullet",
                 description = "An epic bullet!",
                 Damage = 20
+            },
+
+            new EscapeBullet()
+            {
+                name = "escapeBullet",
+                description = "A bullet made for running away.",
+
+
+            },
+
+            new HealingBullet()
+            {
+                name = "healingBullet",
+                description = "A bullet made for healing",
+
             }
         };
 
@@ -546,8 +621,17 @@ public partial class GameHandler : MonoBehaviour
             int numberUsed = readyBullets.Count();
             BulletType realBulletType = bulletLookup[bulletTypeUsed];
 
-            
-            HandleDamage(realBulletType, numberUsed);
+            if (realBulletType is SpecialBullet special)
+            {
+                HandleSpecialBullet(special, numberUsed);
+
+            }
+
+            if (realBulletType is not SpecialBullet)
+            {
+                HandleDamage(realBulletType, numberUsed);
+            }
+
 
             ClearUsedBullets();
             
@@ -574,6 +658,33 @@ public partial class GameHandler : MonoBehaviour
 
         if(debugisOn) Debug.Log("Nenhuma bala selecionada!");
         FailedShot?.Invoke();
+    }
+
+    public void HandleSpecialBullet(SpecialBullet bullet_to_resolve,int number_used)
+    {
+        switch (bullet_to_resolve.effect_type)
+        {
+            case SpecialBullet.EffectResolve.OneTimeUse:
+
+                bullet_to_resolve.BulletEffect(player, ZombieList);
+
+                break;
+
+            case SpecialBullet.EffectResolve.Stacking:
+
+                for( int i = 0; i < number_used; i++)
+                {
+                    bullet_to_resolve.BulletEffect(player, ZombieList);
+                }
+
+                break;
+
+
+        }
+        
+
+
+        
     }
 
     public void CancelFailFeedback()

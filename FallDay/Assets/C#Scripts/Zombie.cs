@@ -3,6 +3,10 @@ using UnityEngine.UIElements;
 using System.Collections.Generic;
 using static GameHandler;
 using static GameHandler.Encounter;
+using System;
+
+
+[Serializable]
 public class Zombie
 {
     public int id = 0;

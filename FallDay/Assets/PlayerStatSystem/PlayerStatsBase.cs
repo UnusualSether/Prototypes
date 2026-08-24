@@ -100,6 +100,8 @@ public class PlayerInstance
         }
 
         current_hp += gained_health;
+
+        Debug.Log($"[PlayerInstance] player instance gained {gained_health} health");
     }
 
     public bool PlayerFullHP()
