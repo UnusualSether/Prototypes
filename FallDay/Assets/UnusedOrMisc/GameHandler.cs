@@ -14,6 +14,10 @@ public partial class GameHandler : MonoBehaviour
     public bool oldNew = true;
     public bool debugisOn = false;
 
+    public PlayerInstance player;
+
+
+
 
     #region Lists and Arrays
     //Bullet types that can show up in the grid.
@@ -60,7 +64,11 @@ public partial class GameHandler : MonoBehaviour
 
     #endregion
 
+
     #region Variables
+
+    
+
     [Header("Zombies!")]
     public int numberOfZombiesInLookup;
     public int numberOfZombiesinList;
@@ -153,6 +161,8 @@ public partial class GameHandler : MonoBehaviour
     #region Unity Functions
     private void Start()
     {
+
+        player = new PlayerInstance(this);
 
         ui = uiDoc.rootVisualElement;
         

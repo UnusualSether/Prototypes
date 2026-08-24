@@ -124,6 +124,165 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6506213751061247739, guid: 53a90a212d90c324e9ace990e047a2b8, type: 3}
   m_PrefabInstance: {fileID: 1068143690632273190}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &745397144
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 740849265976129215, guid: 3b22b77efabf553468e8a1c5d10d0ed5, type: 3}
+      propertyPath: Devs
+      value: 
+      objectReference: {fileID: 1014655886}
+    - target: {fileID: 740849265976129215, guid: 3b22b77efabf553468e8a1c5d10d0ed5, type: 3}
+      propertyPath: Menu
+      value: 
+      objectReference: {fileID: 1802546155}
+    - target: {fileID: 740849265976129215, guid: 3b22b77efabf553468e8a1c5d10d0ed5, type: 3}
+      propertyPath: Config
+      value: 
+      objectReference: {fileID: 355697577}
+    - target: {fileID: 740849265976129215, guid: 3b22b77efabf553468e8a1c5d10d0ed5, type: 3}
+      propertyPath: Trinkets
+      value: 
+      objectReference: {fileID: 957689634}
+    - target: {fileID: 3223712667893724699, guid: 3b22b77efabf553468e8a1c5d10d0ed5, type: 3}
+      propertyPath: m_Name
+      value: TrinketSelection
+      objectReference: {fileID: 0}
+    - target: {fileID: 3223712667893724699, guid: 3b22b77efabf553468e8a1c5d10d0ed5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4534662314121163235, guid: 3b22b77efabf553468e8a1c5d10d0ed5, type: 3}
+      propertyPath: sourceAsset
+      value: 
+      objectReference: {fileID: 9197481963319205126, guid: fac4a50fb2c1db8469baeb5205ddfd83, type: 3}
+    - target: {fileID: 8686964765638387401, guid: 3b22b77efabf553468e8a1c5d10d0ed5, type: 3}
+      propertyPath: m_Name
+      value: Trinkets
+      objectReference: {fileID: 0}
+    - target: {fileID: 8686964765638387401, guid: 3b22b77efabf553468e8a1c5d10d0ed5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9071244785713795021, guid: 3b22b77efabf553468e8a1c5d10d0ed5, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 9071244785713795021, guid: 3b22b77efabf553468e8a1c5d10d0ed5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -801.04047
+      objectReference: {fileID: 0}
+    - target: {fileID: 9071244785713795021, guid: 3b22b77efabf553468e8a1c5d10d0ed5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1747.0555
+      objectReference: {fileID: 0}
+    - target: {fileID: 9071244785713795021, guid: 3b22b77efabf553468e8a1c5d10d0ed5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9071244785713795021, guid: 3b22b77efabf553468e8a1c5d10d0ed5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9071244785713795021, guid: 3b22b77efabf553468e8a1c5d10d0ed5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9071244785713795021, guid: 3b22b77efabf553468e8a1c5d10d0ed5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9071244785713795021, guid: 3b22b77efabf553468e8a1c5d10d0ed5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9071244785713795021, guid: 3b22b77efabf553468e8a1c5d10d0ed5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9071244785713795021, guid: 3b22b77efabf553468e8a1c5d10d0ed5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9071244785713795021, guid: 3b22b77efabf553468e8a1c5d10d0ed5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3b22b77efabf553468e8a1c5d10d0ed5, type: 3}
+--- !u!1 &765434353
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 765434355}
+  - component: {fileID: 765434354}
+  m_Layer: 0
+  m_Name: MenuTrinketManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &765434354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765434353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f625ac93e5cf8f74b9ce740cb53e034f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  doc: {fileID: 957689636}
+  available_trinkets_library:
+  - {fileID: 11400000, guid: 7a6c749db537e3240aab21afdf0c699c, type: 2}
+  - {fileID: 11400000, guid: ea1194a65b109dc41a704a08b7969099, type: 2}
+  - {fileID: 11400000, guid: 9d369d0bfdc6acf4fb92b636cca76f8f, type: 2}
+  trinket_element_template: {fileID: 9197481963319205126, guid: 845bdced0ea190d4c8e1787579df4f46, type: 3}
+--- !u!4 &765434355
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765434353}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 327.73288, y: 2129.6758, z: 68.87379}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &957689634 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8686964765638387401, guid: 3b22b77efabf553468e8a1c5d10d0ed5, type: 3}
+  m_PrefabInstance: {fileID: 745397144}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &957689636 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4534662314121163235, guid: 3b22b77efabf553468e8a1c5d10d0ed5, type: 3}
+  m_PrefabInstance: {fileID: 745397144}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 957689634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
 --- !u!1 &1014655886 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8686964765638387401, guid: 3b22b77efabf553468e8a1c5d10d0ed5, type: 3}
@@ -923,6 +1082,10 @@ PrefabInstance:
       propertyPath: Menu
       value: 
       objectReference: {fileID: 1802546155}
+    - target: {fileID: 797446169240036816, guid: 53a90a212d90c324e9ace990e047a2b8, type: 3}
+      propertyPath: Trinkets
+      value: 
+      objectReference: {fileID: 957689634}
     - target: {fileID: 1927057624659207978, guid: 53a90a212d90c324e9ace990e047a2b8, type: 3}
       propertyPath: m_Name
       value: Config
@@ -956,6 +1119,10 @@ PrefabInstance:
       propertyPath: Config
       value: 
       objectReference: {fileID: 355697577}
+    - target: {fileID: 740849265976129215, guid: 3b22b77efabf553468e8a1c5d10d0ed5, type: 3}
+      propertyPath: Trinkets
+      value: 
+      objectReference: {fileID: 957689634}
     - target: {fileID: 3223712667893724699, guid: 3b22b77efabf553468e8a1c5d10d0ed5, type: 3}
       propertyPath: m_Name
       value: DevWall
@@ -1051,6 +1218,14 @@ PrefabInstance:
       propertyPath: Config
       value: 
       objectReference: {fileID: 355697577}
+    - target: {fileID: 4351865879563765256, guid: 5b4fa346017188043b9aacad224ca14c, type: 3}
+      propertyPath: Trinkets
+      value: 
+      objectReference: {fileID: 957689634}
+    - target: {fileID: 6809619032617853123, guid: 5b4fa346017188043b9aacad224ca14c, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8759473493732371773, guid: 5b4fa346017188043b9aacad224ca14c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 801.97455
@@ -1103,6 +1278,8 @@ SceneRoots:
   - {fileID: 2115632395}
   - {fileID: 1807505142}
   - {fileID: 1068143690632273190}
+  - {fileID: 745397144}
   - {fileID: 8243617084101874134}
   - {fileID: 5992229257428099474}
   - {fileID: 1684983267}
+  - {fileID: 765434355}

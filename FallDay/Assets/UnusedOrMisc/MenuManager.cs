@@ -1,6 +1,7 @@
 using UnityEngine;
-using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
+using static UnityEditor.Recorder.OutputPath;
 
 public class MenuManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class MenuManager : MonoBehaviour
     public GameObject LevelMenu;
     public GameObject Weapons;
     public GameObject Difficulty;
+    public GameObject Trinkets;
 
     public void OnEnable()
     {
@@ -31,11 +33,25 @@ public class MenuManager : MonoBehaviour
             Button returntomenu = uiDocument.rootVisualElement.Q<Button>("ReturnMenu");
             ////////////////////////////////////////////////////////////////////////
             Button diffchoice = uiDocument.rootVisualElement.Q<Button>("ToDifficulty");
+            ///////////////////////////////////////////////////////////////////////////////////////
+            var to_level_select = uiDocument.rootVisualElement.Q<Button>("ToLevelSelectButton");
+            var back_to_menu = uiDocument.rootVisualElement.Q<Button>("Menu");
+
+
+            if (to_level_select != null)
+            {
+                to_level_select.clicked += ToLevelSelect;
+            }
+            
+            if (back_to_menu != null)
+            {
+                back_to_menu.clicked += returnmenu;
+            }
 
 
             if (startbutton != null)
             {
-                startbutton.clicked += LevelSelect;
+                startbutton.clicked += trinketsmenu;
             }
 
             if (diffchoice != null)
@@ -92,10 +108,22 @@ public class MenuManager : MonoBehaviour
         Devs.SetActive(false);
     }
 
+    private void trinketsmenu()
+    {
+        Menu.SetActive(false);
+    }
+
+
     private void DevMenu()
     {
         Devs.SetActive(true);
         Menu.SetActive(false);
+    }
+
+
+    private void ToLevelSelect()
+    {
+        SceneManager.LoadScene("LevelSelect");
     }
 
     private void ReturnMainMenu()
@@ -107,11 +135,6 @@ public class MenuManager : MonoBehaviour
     {
         SceneManager.LoadScene("PresentableText/PresentableTex");
     }
-    private void LevelSelect()
-    {
-        SceneManager.LoadScene("Scenes/LevelSelect");
-    }
-
     private void Level1()
     {
         //Debug.Log("Level 1");
