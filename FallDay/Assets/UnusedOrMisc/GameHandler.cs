@@ -1,3 +1,4 @@
+using Mono.Cecil;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -138,6 +139,8 @@ public partial class GameHandler : MonoBehaviour
 
     public class SpecialBullet : BulletType
     {
+        public bool changes_zombie_phase = false;
+
         public enum EffectResolve
         {
             OneTimeUse,
@@ -168,6 +171,8 @@ public partial class GameHandler : MonoBehaviour
             heal_amount = 1;
 
             Damage = 0;
+
+
         }
     }
 
@@ -176,11 +181,16 @@ public partial class GameHandler : MonoBehaviour
 
         public override void BulletEffect(PlayerInstance player_instance, List<Zombie> active_zombies)
         {
+
+
+
             foreach (var zombie in active_zombies)
             {
                 if (zombie.phase > (Zombie.ZombiePhase)1)
                 {
                     zombie.phase -= (Zombie.ZombiePhase)1;
+
+                    
                 }
             }
         }
@@ -190,6 +200,8 @@ public partial class GameHandler : MonoBehaviour
             effect_type = EffectResolve.OneTimeUse;
 
             Damage = 0;
+
+            changes_zombie_phase = true;
         }
 
     }
@@ -382,7 +394,6 @@ public partial class GameHandler : MonoBehaviour
         ZombieSpawnGate = false;
         zombiesSpawned++;
     }
-    
     public void InvokePhaseChange(Zombie zombie)
     {
         zPhaseChange?.Invoke(zombie);
@@ -667,6 +678,14 @@ public partial class GameHandler : MonoBehaviour
             case SpecialBullet.EffectResolve.OneTimeUse:
 
                 bullet_to_resolve.BulletEffect(player, ZombieList);
+
+                if (bullet_to_resolve.changes_zombie_phase == true)
+                {
+                    foreach (var zombie in ZombieList)
+                    {
+                        InvokePhaseChange(zombie);  
+                    }
+                }
 
                 break;
 
