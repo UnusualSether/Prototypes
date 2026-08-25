@@ -81,6 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c1aecb6f3f7d17468a7f8dae37d3334, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorHandler
+  debugisOn: 0
   doors:
   - {fileID: 6326366640920535337}
   - {fileID: 2255811635392958402}
@@ -4537,11 +4538,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 91c996dbf7eeb6a47b3e98b5dbf439fc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.0050757
+      value: 4.13
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 91c996dbf7eeb6a47b3e98b5dbf439fc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.131
+      value: 1.56
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 91c996dbf7eeb6a47b3e98b5dbf439fc, type: 3}
       propertyPath: m_LocalPosition.z

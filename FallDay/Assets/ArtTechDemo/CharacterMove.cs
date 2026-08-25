@@ -1,9 +1,11 @@
-using UnityEngine;
-using System.Collections.Generic;
 using System;
-using UnityEngine.AI;
-using Unity.AI.Navigation;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
+using Unity.AI.Navigation;
+using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.Rendering;
 
 
 [Serializable]
@@ -140,13 +142,59 @@ public class CharacterMove : MonoBehaviour
     public void GoToNextWaypoint(Waypoint nextWaypoint)
     {
 
-        navMesh.SetDestination(nextWaypoint.wayPointPosition);
+        ManualMove(nextWaypoint);
 
         cachedPlayerRoom = nextWaypoint.belongingRoom;
 
         PlayerMoved?.Invoke();
     }
 
+    private void ManualMove(Waypoint wp)
+    {
+
+
+       
+        
+        StartCoroutine(CheckIfArrived(wp.wayPointPosition));
+    }
+
+    IEnumerator CheckIfArrived(Vector3 targetPos)
+    {
+        bool gate = false;
+
+        while (gate == false)
+        {
+
+            float distance3D = Vector3.Distance(transform.position, targetPos);
+
+            if (distance3D < 0.5f)
+            {
+                gate = true;
+            }
+
+            else
+            {
+                float speed = 5;
+
+                float step = speed * Time.deltaTime;
+                transform.position = Vector3.MoveTowards(transform.position, targetPos, step);
+                yield return null;
+            }
+               
+        }
+
+        OnTargetReached();
+
+    }
+
+
+    void OnTargetReached()
+    {
+        PlayerHasReachedNextPoint?.Invoke();
+        PlayerWillClearList?.Invoke(wayPointList);
+        wayPointList.Clear();
+        InitializeWaypoints();
+    }
     bool encounterGate = false;
     private void CheckStatus()
     {
@@ -221,7 +269,26 @@ public class CharacterMove : MonoBehaviour
         var posToGo = FetchWayPoint(dir);
         GoToNextWaypoint(posToGo);
         PlayerMovingTowardsUnLoadedRoom?.Invoke(posToGo);
+        ChangeSprite(dir);
 
+    }
+
+    public void ChangeSprite(ThreeDGameHandler.SwipeDirection dir)
+    {
+        if (dir == ThreeDGameHandler.SwipeDirection.Up)
+        {
+            gameObject.transform.rotation = new Quaternion(0, 0, 0,0);
+        }
+
+        if (dir == ThreeDGameHandler.SwipeDirection.Right)
+        {
+            gameObject.transform.rotation = new Quaternion(0, 0.707106829f, 0, 0.707106829f);
+        }
+
+        if (dir == ThreeDGameHandler.SwipeDirection.Left)
+        {
+            gameObject.transform.rotation = new Quaternion(0, -0.707106829f, 0, 0.707106829f);
+        }
     }
 
 

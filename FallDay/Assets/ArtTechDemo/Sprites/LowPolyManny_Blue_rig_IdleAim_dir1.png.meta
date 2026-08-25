@@ -1,0 +1,684 @@
+fileFormatVersion: 2
+guid: 6dca93b2b2efa664bb5df07a079860e4
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: LowPolyManny_Blue_rig_IdleAim_dir1_0
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 1141
+        width: 58
+        height: 101
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29a7c48877735e74dab95a4b6423ea6d
+      internalID: -701859838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LowPolyManny_Blue_rig_IdleAim_dir1_1
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 1141
+        width: 58
+        height: 101
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a6f4668c6395bc49980d5b7c7b206c3
+      internalID: -460752555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LowPolyManny_Blue_rig_IdleAim_dir1_2
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 1141
+        width: 57
+        height: 101
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9eeecb54501f9e4181176a1f8baf2c4
+      internalID: -1051400921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LowPolyManny_Blue_rig_IdleAim_dir1_3
+      rect:
+        serializedVersion: 2
+        x: 852
+        y: 1141
+        width: 57
+        height: 101
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65b4f83205e537245ad2cdc735445683
+      internalID: -711111900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LowPolyManny_Blue_rig_IdleAim_dir1_4
+      rect:
+        serializedVersion: 2
+        x: 1107
+        y: 1141
+        width: 57
+        height: 101
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81acd4f3805e98e47a63c57567d03a61
+      internalID: -960890339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LowPolyManny_Blue_rig_IdleAim_dir1_5
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 885
+        width: 57
+        height: 101
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77bfadad31ff2124aad196873a38e118
+      internalID: -1192586679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LowPolyManny_Blue_rig_IdleAim_dir1_6
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 885
+        width: 57
+        height: 101
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 074f0cb34f8cbf94d943e1cf31b33c73
+      internalID: -1161150394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LowPolyManny_Blue_rig_IdleAim_dir1_7
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 885
+        width: 57
+        height: 101
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f30866e31fc01a4da0619c0fcc5527c
+      internalID: -1118221279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LowPolyManny_Blue_rig_IdleAim_dir1_8
+      rect:
+        serializedVersion: 2
+        x: 851
+        y: 885
+        width: 57
+        height: 101
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 618047a7fce27f343a9e1cc5e401e0a0
+      internalID: -2122222616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LowPolyManny_Blue_rig_IdleAim_dir1_9
+      rect:
+        serializedVersion: 2
+        x: 1107
+        y: 885
+        width: 57
+        height: 101
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c7251f8e87e3cc4fafc1b09c4ac7519
+      internalID: -999456203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LowPolyManny_Blue_rig_IdleAim_dir1_10
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 629
+        width: 57
+        height: 101
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df845c9c075c8a84dabb7e124948b8ca
+      internalID: 1755799884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LowPolyManny_Blue_rig_IdleAim_dir1_11
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 629
+        width: 58
+        height: 101
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8a78615cb4ac9a4aba821ab07490cb9
+      internalID: -639080225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LowPolyManny_Blue_rig_IdleAim_dir1_12
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 629
+        width: 58
+        height: 101
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 456cba92be13bdc418002e2be24ae355
+      internalID: -1501344172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LowPolyManny_Blue_rig_IdleAim_dir1_13
+      rect:
+        serializedVersion: 2
+        x: 851
+        y: 629
+        width: 57
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 448449c98eb5ca2448fa1fbfdf5a5383
+      internalID: -464803659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LowPolyManny_Blue_rig_IdleAim_dir1_14
+      rect:
+        serializedVersion: 2
+        x: 1106
+        y: 629
+        width: 58
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78331cf8fa681774f94054f956099aaf
+      internalID: 91822426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LowPolyManny_Blue_rig_IdleAim_dir1_15
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 373
+        width: 58
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08a3c880e90f6654e971fdc63a6f7496
+      internalID: -523467621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LowPolyManny_Blue_rig_IdleAim_dir1_16
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 373
+        width: 58
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2915e8a1c0209548835cd6bf3de657b
+      internalID: -470449928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LowPolyManny_Blue_rig_IdleAim_dir1_17
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 373
+        width: 58
+        height: 101
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5153807802f04ad4ba93c2224ef34d62
+      internalID: -1881798854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LowPolyManny_Blue_rig_IdleAim_dir1_18
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 373
+        width: 58
+        height: 101
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2e3f7c922ebb56479053f9e0492ec85
+      internalID: 1951203686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LowPolyManny_Blue_rig_IdleAim_dir1_19
+      rect:
+        serializedVersion: 2
+        x: 1106
+        y: 373
+        width: 58
+        height: 101
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fa8531b029d6a142b52b1b63d24fbe9
+      internalID: 1427139907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LowPolyManny_Blue_rig_IdleAim_dir1_20
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 117
+        width: 58
+        height: 101
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70249bde8d21a7e4b99cc2e36e50550a
+      internalID: 1084631530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LowPolyManny_Blue_rig_IdleAim_dir1_21
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 117
+        width: 57
+        height: 101
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5e251e175bdee842bcd8e2baeb7807c
+      internalID: -1472153091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LowPolyManny_Blue_rig_IdleAim_dir1_22
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 117
+        width: 57
+        height: 101
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75f38ced588a6f34291d51685a9cdb5b
+      internalID: 350268817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LowPolyManny_Blue_rig_IdleAim_dir1_23
+      rect:
+        serializedVersion: 2
+        x: 851
+        y: 117
+        width: 57
+        height: 101
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6861b9a7c0308234e9b68fc5c2f44597
+      internalID: -1268338344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 0161b64df7933d94e8d037792ac03394
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      LowPolyManny_Blue_rig_IdleAim_dir1_0: -701859838
+      LowPolyManny_Blue_rig_IdleAim_dir1_1: -460752555
+      LowPolyManny_Blue_rig_IdleAim_dir1_10: 1755799884
+      LowPolyManny_Blue_rig_IdleAim_dir1_11: -639080225
+      LowPolyManny_Blue_rig_IdleAim_dir1_12: -1501344172
+      LowPolyManny_Blue_rig_IdleAim_dir1_13: -464803659
+      LowPolyManny_Blue_rig_IdleAim_dir1_14: 91822426
+      LowPolyManny_Blue_rig_IdleAim_dir1_15: -523467621
+      LowPolyManny_Blue_rig_IdleAim_dir1_16: -470449928
+      LowPolyManny_Blue_rig_IdleAim_dir1_17: -1881798854
+      LowPolyManny_Blue_rig_IdleAim_dir1_18: 1951203686
+      LowPolyManny_Blue_rig_IdleAim_dir1_19: 1427139907
+      LowPolyManny_Blue_rig_IdleAim_dir1_2: -1051400921
+      LowPolyManny_Blue_rig_IdleAim_dir1_20: 1084631530
+      LowPolyManny_Blue_rig_IdleAim_dir1_21: -1472153091
+      LowPolyManny_Blue_rig_IdleAim_dir1_22: 350268817
+      LowPolyManny_Blue_rig_IdleAim_dir1_23: -1268338344
+      LowPolyManny_Blue_rig_IdleAim_dir1_3: -711111900
+      LowPolyManny_Blue_rig_IdleAim_dir1_4: -960890339
+      LowPolyManny_Blue_rig_IdleAim_dir1_5: -1192586679
+      LowPolyManny_Blue_rig_IdleAim_dir1_6: -1161150394
+      LowPolyManny_Blue_rig_IdleAim_dir1_7: -1118221279
+      LowPolyManny_Blue_rig_IdleAim_dir1_8: -2122222616
+      LowPolyManny_Blue_rig_IdleAim_dir1_9: -999456203
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,9 @@
+:root {
+}
+
+.unity-button:active {
+    -unity-background-image-tint-color: rgb(183, 183, 183);
+}
+
+.unity-button {
+}

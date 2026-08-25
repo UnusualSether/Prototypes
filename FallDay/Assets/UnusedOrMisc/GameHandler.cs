@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Networking.PlayerConnection;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -13,6 +15,10 @@ public partial class GameHandler : MonoBehaviour
     [Header("Seleção de codigo")]
     public bool oldNew = true;
     public bool debugisOn = false;
+
+    public PlayerInstance player;
+
+
 
 
     #region Lists and Arrays
@@ -46,7 +52,7 @@ public partial class GameHandler : MonoBehaviour
     public event Action<Zombie> ZombieDamaged;
     public event Action<Zombie> zPhaseChange;
     public event Action ZombieKilled;
-    public event Action<Zombie> ZombieIsClose;
+    //public event Action<Zombie> ZombieIsClose;
 
 
     //Objective related events
@@ -60,7 +66,11 @@ public partial class GameHandler : MonoBehaviour
 
     #endregion
 
+
     #region Variables
+
+    
+
     [Header("Zombies!")]
     public int numberOfZombiesInLookup;
     public int numberOfZombiesinList;
@@ -126,81 +136,68 @@ public partial class GameHandler : MonoBehaviour
         public int Damage;
     }
 
+    public class SpecialBullet : BulletType
+    {
+        public enum EffectResolve
+        {
+            OneTimeUse,
+            Stacking
+        }
+
+        public EffectResolve effect_type;
+        public virtual void BulletEffect(PlayerInstance player_instance, List<Zombie> active_zombies)
+        {
+
+        }
+    }
+
+    public class HealingBullet : SpecialBullet
+    {
+
+        public int heal_amount;
+
+        public override void BulletEffect(PlayerInstance player_instance, List<Zombie> active_zombies)
+        {
+            player_instance.GainHealth(heal_amount);
+        }
+
+        public HealingBullet()
+        {
+            effect_type = EffectResolve.Stacking;
+
+            heal_amount = 1;
+
+            Damage = 0;
+        }
+    }
+
+    public class EscapeBullet : SpecialBullet
+    {
+
+        public override void BulletEffect(PlayerInstance player_instance, List<Zombie> active_zombies)
+        {
+            foreach (var zombie in active_zombies)
+            {
+                if (zombie.phase > (Zombie.ZombiePhase)1)
+                {
+                    zombie.phase -= (Zombie.ZombiePhase)1;
+                }
+            }
+        }
+
+        public EscapeBullet()
+        {
+            effect_type = EffectResolve.OneTimeUse;
+
+            Damage = 0;
+        }
+
+    }
+
     public class BulletTable
     {
         public List<BulletType> bulletTypes;
     }
-
-
-
-    /// <summary>
-    /// The Zombie class which contains HP, its id which is used by the gamehandler to find out which zombie to damage & an enum for checking how close the zombie is to the player.
-    /// </summary>
-    /*
-    public class Zombie
-    {
-        public int id = 0;
-        public int hp;
-        public float PhaseTimer = 5;
-        private float PhT1 = 0;
-        private bool IsFirstUpdate = true;
-
-        public enum ZombiePhase
-        {
-            Stop,
-            Far,
-            Approach,
-            Close
-        }
-
-        public ZombiePhase phase;
-
-        public int currentDisplay;
-
-        public void UpdatePhase(float deltaTime)
-        {
-            if (TutorialControler.TutorialEnded == false)
-            {
-                phase = ZombiePhase.Stop;
-            }
-
-            if (phase == ZombiePhase.Close && PhT1 <= 0) 
-            {
-                PlayerTookDamage?.Invoke(1f);
-                // <= Place a Destroy Zombie Call
-                
-                destroyZombie?.Invoke(id);
-            }
-            else if (IsFirstUpdate) 
-            { 
-                IsFirstUpdate = false; 
-                PhT1 = PhaseTimer; 
-            }
-            else if (PhT1 <= 0)
-            {
-                PhT1 = PhaseTimer;
-                ChangePhase();
-            }
-            else
-            {
-                PhT1 -= deltaTime;
-            }
-        }
-        private void ChangePhase()
-        {
-            if (phase == ZombiePhase.Far)
-            {
-                phase = ZombiePhase.Approach;
-                Debug.Log($"Zombie with id {id} has changed phase to {phase}");
-            }
-            else if (phase == ZombiePhase.Approach)
-            {
-                phase = ZombiePhase.Close;
-                Debug.Log($"Zombie with id {id} has changed phase to {phase}");
-            }
-        }
-    }
-    */
     #endregion
 
     #region Player Damage Handling
@@ -224,6 +221,8 @@ public partial class GameHandler : MonoBehaviour
     #region Unity Functions
     private void Start()
     {
+
+        player = new PlayerInstance(this);
 
         ui = uiDoc.rootVisualElement;
         
@@ -253,7 +252,7 @@ public partial class GameHandler : MonoBehaviour
                 description = "A good bullet.",
                 Damage = 10
             },
-        
+
             new BulletType()
             {
                name = "shitBullet",
@@ -266,6 +265,21 @@ public partial class GameHandler : MonoBehaviour
                 name = "epicBullet",
                 description = "An epic bullet!",
                 Damage = 20
+            },
+
+            new EscapeBullet()
+            {
+                name = "escapeBullet",
+                description = "A bullet made for running away.",
+
+
+            },
+
+            new HealingBullet()
+            {
+                name = "healingBullet",
+                description = "A bullet made for healing",
+
             }
         };
 
@@ -325,7 +339,6 @@ public partial class GameHandler : MonoBehaviour
     #region Zombie Handling
     IEnumerator ZombieSpawner()
     {
-
         ZombieSpawnGate = true;
         yield return new WaitForSeconds(zombieSpawnTimer);
         
@@ -346,12 +359,6 @@ public partial class GameHandler : MonoBehaviour
             nextZombieID = ZombieList.Last().id + 1;
             stachedZombieID = nextZombieID;
         }
-
-
-       
-
-
-
 
         ZombieList.Add(new Zombie(currentEncounter.ReturnTheEnemyType())
         {
@@ -376,10 +383,6 @@ public partial class GameHandler : MonoBehaviour
         zombiesSpawned++;
     }
     
-    public void InvokeZombieIsClose(Zombie zombie)
-    {
-                ZombieIsClose?.Invoke(zombie);
-    }
     public void InvokePhaseChange(Zombie zombie)
     {
         zPhaseChange?.Invoke(zombie);
@@ -618,8 +621,17 @@ public partial class GameHandler : MonoBehaviour
             int numberUsed = readyBullets.Count();
             BulletType realBulletType = bulletLookup[bulletTypeUsed];
 
-            
-            HandleDamage(realBulletType, numberUsed);
+            if (realBulletType is SpecialBullet special)
+            {
+                HandleSpecialBullet(special, numberUsed);
+
+            }
+
+            if (realBulletType is not SpecialBullet)
+            {
+                HandleDamage(realBulletType, numberUsed);
+            }
+
 
             ClearUsedBullets();
             
@@ -646,6 +658,33 @@ public partial class GameHandler : MonoBehaviour
 
         if(debugisOn) Debug.Log("Nenhuma bala selecionada!");
         FailedShot?.Invoke();
+    }
+
+    public void HandleSpecialBullet(SpecialBullet bullet_to_resolve,int number_used)
+    {
+        switch (bullet_to_resolve.effect_type)
+        {
+            case SpecialBullet.EffectResolve.OneTimeUse:
+
+                bullet_to_resolve.BulletEffect(player, ZombieList);
+
+                break;
+
+            case SpecialBullet.EffectResolve.Stacking:
+
+                for( int i = 0; i < number_used; i++)
+                {
+                    bullet_to_resolve.BulletEffect(player, ZombieList);
+                }
+
+                break;
+
+
+        }
+        
+
+
+        
     }
 
     public void CancelFailFeedback()
@@ -814,16 +853,16 @@ public partial class GameHandler : MonoBehaviour
         //Need to fix, because these calculations on account for x and y and doesnt detect diagonal neighbours.
 
         List<int> neighbours = new List<int>();
-        int cols = 3;
-        int rows = 3;
+        int cols = 6;
+        int rows = 7;
 
         int row = index / cols;
         int col = index % cols;
 
-        int[] dr = { -1, -1, -1, 0, 0, 1, 1, 1 };
-        int[] dc = { -1, 0, 1, -1, 1, -1, 0, 1 };
+        int[] dr = { -1, -1, -1, 0, 0, 1, 1, 1, 0 };
+        int[] dc = { -1, 0, 1, -1, 1, -1, 0, 1, 0 };
 
-        for (int d = 0; d < 8; d++)
+        for (int d = 0; d < 9; d++)
         {
             int newRow = row + dr[d];
             int newCol = col + dc[d];
@@ -1059,7 +1098,7 @@ public partial class GameHandler : MonoBehaviour
     private void CreateNewEncounter()
     {
 
-        //Debug.Log("Creating a new encounter...");
+        if (debugisOn) Debug.Log("Creating a new encounter...");
         EncounterData newEncounterData;
         
         if (possibleEncounters.Count == 0)
@@ -1072,7 +1111,7 @@ public partial class GameHandler : MonoBehaviour
 
         newEncounterData = possibleEncounters[randomIndex];
 
-        //Debug.Log($"I picked the encounter:{newEncounterData.name}");
+        if (debugisOn) Debug.Log($"I picked the encounter:{newEncounterData.name}");
 
         InitializeEncounter(newEncounterData);
     }
