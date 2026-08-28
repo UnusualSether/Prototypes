@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4136fa4b7eebc7c4fa96b82c3eeff934, type: 3}
+  m_Name: SLICEPoster
+  m_EditorClassIdentifier: Assembly-CSharp::SecretAdvantageTrinket
+  _trinket_name: SLICE Poster
+  _trinket_description: Heard the movie was based of true events.
+  _trinket_sprite: {fileID: 0}
+  AdvantageousEnemy: Tank
+  DisadvantegousEnemy: Runner
+  reduced_damage: 3
+  amplified_damage: 3

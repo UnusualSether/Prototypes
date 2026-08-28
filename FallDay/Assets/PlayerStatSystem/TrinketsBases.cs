@@ -45,7 +45,8 @@ public enum TrinketEventType
 {
     OnKill,
     OnRoomComplete,
-    OnTakeDamage
+    OnTakeDamage,
+    NewEncounterPulled
 }
 
 
@@ -59,6 +60,13 @@ public interface IEventTricket
     void EventTrigger(TrinketEventType called_event_type, PlayerInstance instance_to_affect) { }
 }
 
+public interface IDamageFilterTrinket
+{
+
+
+    int ModifiedDamage(int damage, Zombie target);
+}
+
 
 /// <summary>
 /// Interface for all trinkets which apply passive stat boosts to the player's PlayerStats class.
@@ -70,6 +78,13 @@ public interface IPassiveTrinket
     void ApplyPassive(PlayerStats stats) { }
 }
 
+
+public interface IPullInfoFromEncounterTrinket
+{
+
+
+    void PullEncounterInfo(EncounterData encounter_data);
+}
 
 #endregion
 
@@ -104,6 +119,9 @@ public class OnKillTrinket : Trinket, IEventTricket
     }
 
 }
+
+
+
 
 
 /// <summary>

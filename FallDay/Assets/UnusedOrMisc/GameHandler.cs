@@ -65,6 +65,12 @@ public partial class GameHandler : MonoBehaviour
     //Animação UI
     public event Action<int> SucessfulHit;
 
+    //NewEncounterStarted
+    public event Action NewEncounterStarted;
+
+
+    //New EncounterCreated
+
     #endregion
 
 
@@ -262,21 +268,21 @@ public partial class GameHandler : MonoBehaviour
             {
                 name = "goodBullet",
                 description = "A good bullet.",
-                Damage = 10
+                Damage = 2
             },
 
             new BulletType()
             {
                name = "shitBullet",
                description = "A bad bullet.",
-               Damage = 5
+               Damage = 1
             },
 
             new BulletType()
             {
                 name = "epicBullet",
                 description = "An epic bullet!",
-                Damage = 20
+                Damage = 3
             },
 
             new EscapeBullet()
@@ -437,6 +443,11 @@ public partial class GameHandler : MonoBehaviour
             Debug.Log("Tried to damage invalid zombie, try again!");
             ApplyDamage(damage, zombieToAimAt());
             return;
+        }
+
+        if (damage == 0)
+        {
+            Debug.Log("Player dealt zero damage");
         }
 
         var zombieDeathCheck = zombieToDamage.hp -= damage;
@@ -910,7 +921,7 @@ public partial class GameHandler : MonoBehaviour
         }
         int rawDamage= bulletType.Damage * numberUsed;
 
-        var totalDamage = currentWeapon.WeaponEffect(numberUsed, rawDamage, targetZombie);
+        var totalDamage = player.PlayerInstanceDamageCalculation(rawDamage, targetZombie);
 
         //Debug.Log($"Did {totalDamage} damage with {numberUsed} {bulletType.name}s!");
 
@@ -1110,7 +1121,7 @@ public partial class GameHandler : MonoBehaviour
     private List<EncounterData> possibleEncounters;
 
 
-    private EncounterData currentEncounter;
+    public EncounterData currentEncounter;
 
     [SerializeField]
     private EncounterData tutorial;
@@ -1147,6 +1158,8 @@ public partial class GameHandler : MonoBehaviour
         zombiesSpawned = 0;
 
         currentEncounter = data;
+
+        NewEncounterStarted?.Invoke();
 
     }
     #endregion

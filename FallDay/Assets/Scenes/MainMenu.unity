@@ -251,6 +251,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7a6c749db537e3240aab21afdf0c699c, type: 2}
   - {fileID: 11400000, guid: ea1194a65b109dc41a704a08b7969099, type: 2}
   - {fileID: 11400000, guid: 9d369d0bfdc6acf4fb92b636cca76f8f, type: 2}
+  - {fileID: 11400000, guid: c3d4f1e38cded9c499a81c804a888ffd, type: 2}
+  - {fileID: 11400000, guid: 32ca96720c2eac64f8429ee3f82433d4, type: 2}
   trinket_element_template: {fileID: 9197481963319205126, guid: 845bdced0ea190d4c8e1787579df4f46, type: 3}
 --- !u!4 &765434355
 Transform:

@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53ccf59ba8c463d42a9769e6f657e3b8, type: 3}
+  m_Name: DiscoloredOperaMask
+  m_EditorClassIdentifier: Assembly-CSharp::StalkerTrinket
+  _trinket_name: Discolored Mask
+  _trinket_description: For all your stalking needs.
+  _trinket_sprite: {fileID: 0}
+  stalked_list:
+  - id: 0
+    hp: 38
+    PhaseTimer: 5
+    Diff: 0
+    EnemyType: Shambler
+    difficulty: 0
+    damage: 2
+    debugisOn: 0
+    handler: {fileID: 0}
+    phase: 3
+    currentDisplay: 0
+  - id: 0
+    hp: 14
+    PhaseTimer: 5
+    Diff: 0
+    EnemyType: Shambler
+    difficulty: 0
+    damage: 2
+    debugisOn: 0
+    handler: {fileID: 0}
+    phase: 3
+    currentDisplay: 0
+  - id: 0
+    hp: -19
+    PhaseTimer: 5
+    Diff: 0
+    EnemyType: Shambler
+    difficulty: 0
+    damage: 2
+    debugisOn: 0
+    handler: {fileID: 0}
+    phase: 2
+    currentDisplay: 0
+  - id: 0
+    hp: 8
+    PhaseTimer: 5
+    Diff: 0
+    EnemyType: Shambler
+    difficulty: 0
+    damage: 2
+    debugisOn: 0
+    handler: {fileID: 0}
+    phase: 3
+    currentDisplay: 0
+  stalked_damage_bonus: 3
