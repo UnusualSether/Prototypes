@@ -1051,6 +1051,7 @@ Transform:
   m_Children:
   - {fileID: 27993027}
   - {fileID: 127173196}
+  - {fileID: 1258179218}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1098874423
@@ -1144,6 +1145,52 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ThreeDGameHandlerMinigameManaging
   UIDocument: {fileID: 1265312831}
+--- !u!1 &1258179217
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1258179218}
+  - component: {fileID: 1258179219}
+  m_Layer: 0
+  m_Name: GridGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1258179218
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1258179217}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.00000046193594, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.12, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1088469944}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1258179219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1258179217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87706a25d1e09c04dae4d53139d1c661, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Grid_Generator
+  gridSise: {x: 16, y: 1, z: 16}
+  debug: 1
 --- !u!1 &1265312831 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3697116812921849275, guid: eaaffc07808ebaf4fae8b342b82799c9, type: 3}

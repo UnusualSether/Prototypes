@@ -1,8 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Net;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Pathfinding
 {
@@ -13,10 +10,18 @@ public class Pathfinding
     private List<Cell_> openList;
     private List<Cell_> closeList;
 
-    private List<Cell_> NaborList;//List For Debug CanBeRemoved
+    private List<Cell_> NaborList;
 
     private bool debug = false;
 
+    public Pathfinding(Grid_ grid)
+    {
+        grid_ = grid;
+    }
+    public Pathfinding(int width, int lengh, int height)
+    {
+        grid_ = new Grid_(width + 1, lengh + 1, height, 1f, /*new Vector3(-10,-5, 0)*/ Vector3.zero);
+    }
     public Pathfinding(int width, int lengh, int height, GameObject DebugGenObject)
     {
         grid_ = new Grid_(width + 1, lengh + 1, height, 1f, /*new Vector3(-10,-5, 0)*/ DebugGenObject.transform.position, DebugGenObject);
@@ -26,14 +31,9 @@ public class Pathfinding
         return grid_;
     }
 
-
-
     /// <summary>  Main Pathfinding Algorithm - A* _3D (A Star) Implementation (Resets uppon each call to FindPath)
-    /// 
     /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /// </summary>
-    /// <returns></returns>
-    /// 
     private bool EmergencyBreak = false;
     public List<Cell_> FindPath(int startX, int startY, int startZ, int endX, int endY, int endZ) {
         Cell_ startCell = grid_.ReturnCell(startX, startY, startZ);//Get Start Cell
@@ -91,7 +91,7 @@ public class Pathfinding
             openList.Remove(currentCell);
             closeList.Add(currentCell);
 
-            NaborList = GetNeighbourList(currentCell);//List For Debug CanBeRemoved
+            NaborList = GetNeighbourList(currentCell);
 
             foreach (Cell_ neighbourCell in NaborList)
             {
@@ -126,8 +126,6 @@ public class Pathfinding
     /// <summary>
     /// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /// </summary>
-    /// <returns></returns>
-
     // Get the list of valid neighboring cells around the current cell
     private List<Cell_> GetNeighbourList(Cell_ currentCell)
     {
@@ -158,7 +156,6 @@ public class Pathfinding
                 }
             }
         }
-
 
         foreach (Cell_ cell in Nabors) //Barra Membros que Nao sao andaveis
         {
@@ -230,7 +227,6 @@ public class Pathfinding
         return Nabors;
     }
 
-
     // Calculate the path from the end cell to the start cell by following the PreveousCell references
     private List<Cell_> CalculatePath(Cell_ endCell){
         List<Cell_> path = new List<Cell_>();
@@ -271,5 +267,4 @@ public class Pathfinding
             Debug.Log($"Cell_ = {CellList[i]} CellNumber = {i}");
         }
     }
-
 }

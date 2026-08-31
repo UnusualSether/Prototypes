@@ -15,20 +15,37 @@ public class Grid_
     private GameObject GeneratorObject;
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    public Grid_(int width, int lengh, int hight, float cellSize, Vector3 originPosition)//start up grid with no debug object
+    ///Driffrent ways to start up the grid, with or without debug object, with Vector3 or int values for width, hight, and length
+    public Grid_(Vector3 gridSize, float cellSize, Vector3 originPosition)//start up grid with debug object
     {
-        GridSetUp(width, lengh, hight, cellSize, originPosition);
+        GridSetUp((int)gridSize.x, (int)gridSize.y, (int)gridSize.z, cellSize, originPosition);
     }
-    public Grid_(int width, int lengh, int hight, float cellSize, Vector3 originPosition, GameObject DebugGenObject)//start up grid with debug object
+    public Grid_(Vector3 gridSize, float cellSize, Vector3 originPosition, GameObject DebugGenObject)//start up grid with debug object
+    {
+        if (DebugGenObject != null)//if debug object is not null, set the generator object to the debug object
+        {
+            GeneratorObject = DebugGenObject;
+        }
+        GridSetUp((int)gridSize.x, (int)gridSize.y, (int)gridSize.z, cellSize, originPosition);
+    }
+    public Grid_(int width, int hight, int lengh, float cellSize, Vector3 originPosition)//start up grid with no debug object
+    {
+        GridSetUp(width, hight, lengh, cellSize, originPosition);
+    }
+    public Grid_(int width, int hight, int lengh, float cellSize, Vector3 originPosition, GameObject DebugGenObject)//start up grid with debug object
     {
         if(DebugGenObject != null)//if debug object is not null, set the generator object to the debug object
         {
             GeneratorObject = DebugGenObject;
         }
-        GridSetUp(width, lengh, hight, cellSize, originPosition);
+        GridSetUp(width, hight, lengh, cellSize, originPosition);
     }
-    private void GridSetUp(int width, int lengh, int hight, float cellSize, Vector3 originPosition)//sets up the grid with the given parameters
+    /// End of start Up grid variations methods ///////////////////////////////////////////////////////////////////////////////////////
+    /// <summary>
+    /// ////////////////////////////////////////////////////////////////
+    /// </summary>
+
+    private void GridSetUp(int width, int hight, int lengh, float cellSize, Vector3 originPosition)//sets up the grid with the given parameters
     {
         this.width = width; this.lengh = lengh; this.hight = hight; //sets the width, length, and height of the grid
 
@@ -53,7 +70,6 @@ public class Grid_
         }
         if(debug) GenerateDebugObjects();
     }
-
     public void SetWalkableLoop() // Loops For Cells verifying if they are walkable or not, and sets the walkable value accordingly (can be used to update the walkable status of all cells after grid generation)
     {
         for (int y = 0; y < gridArray.GetLength(1); y++)
@@ -74,7 +90,7 @@ public class Grid_
     private void IsCellWalkable(int xpos, int ypos, int zpos) //Upon Cell Position, Check if the Cell is Walkable or not
     {
         Cell_ N = ReturnCell(xpos, ypos, zpos);
-        if(fivePointRaycast(xpos, ypos, zpos)) // RayCast To check the spot
+        if(fivePointRaycast(xpos, ypos, zpos) != true) // RayCast To check the spot
         {
             N.walkable = false;
         }
@@ -83,9 +99,9 @@ public class Grid_
             N.walkable = true;
         }
     }
-    private bool fivePointRaycast(int xpos, int ypos, int zpos) // Cell 5point RayCast Return False if space is walkable
+    private bool fivePointRaycast(int xpos, int ypos, int zpos) // Cell 5point RayCast Return true if space is walkable
     {
-        bool isWalkable = false;
+        bool isWalkable = true;
         Vector3 CellPos = GetWorldPosition(xpos, ypos, zpos);
         Vector3[] DetectorSystem = new Vector3[5];
         // pos Rays in form of cube pointed down (additional ray at center)
@@ -99,13 +115,17 @@ public class Grid_
         {
             if (Physics.Raycast(DetectorSystem[i], Vector3.down, out RaycastHit hitInfo, cellSize))
             {
-                isWalkable = true;
+                if(hitInfo.collider != null)
+                {
+                    if (hitInfo.collider.gameObject.tag != "flor")
+                    {
+                        isWalkable = false;
+                    }
+                }
             }
         }
         return isWalkable;
     }
-
-
     public Vector3 GetWorldPosition(int x, int y, int z) //returns the world position of the given cell coordinates
     {
         return new Vector3(x, y, z) * cellSize + originPosition; 

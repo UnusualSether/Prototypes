@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Unity.VisualScripting;
 
 public class test : MonoBehaviour
 {
@@ -15,15 +13,6 @@ public class test : MonoBehaviour
     private int StartX = 0; private int StartY = 0; private int StartZ = 0;
     private int EndX = 5; private int EndY = 0; private int EndZ = 5;
 
-    private void Awake()
-    {
-        //InputMaps inputActions = new InputMaps(); //Input esta Faltando
-        //inputActions.Enable();
-        //inputActions.PathFindMap.StartNode.performed += SetStartNode;
-        //inputActions.PathFindMap.EndNode.performed += SetEndNode;
-        //inputActions.PathFindMap.Obstacle.performed += SetObstacle;
-        //inputActions.PathFindMap.StartPath.performed += StartPath;
-    }
     void Start()
     {
         pathfinding = new Pathfinding(5,5,1, this.gameObject);
