@@ -1,13 +1,15 @@
+using JetBrains.Annotations;
 using Mono.Cecil;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Hierarchy;
+using Unity.VisualScripting;
 using UnityEditor.Networking.PlayerConnection;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.UIElements;
-
 
 public partial class GameHandler : MonoBehaviour
 {
@@ -19,8 +21,8 @@ public partial class GameHandler : MonoBehaviour
 
     public PlayerInstance player;
 
-
-
+    public int chance_of_normal_bullets_spawning;
+    
 
     #region Lists and Arrays
     //Bullet types that can show up in the grid.
@@ -135,11 +137,19 @@ public partial class GameHandler : MonoBehaviour
         public string name;
         public string description;
         public int Damage;
+
+        public int bullet_chance = 60;
     }
 
     public class SpecialBullet : BulletType
     {
         public bool changes_zombie_phase = false;
+
+      
+        public SpecialBullet()
+        {
+            bullet_chance = 40;
+        }
 
         public enum EffectResolve
         {
@@ -776,11 +786,11 @@ public partial class GameHandler : MonoBehaviour
 
                 do
                 {
-                    int randomBulletIndex = UnityEngine.Random.Range(0, bulletList.Length);
-                    chosenBullet = bulletList[randomBulletIndex];
+
+                    chosenBullet = NewlyGeneratedBullet();
 
 
-                    if (selectableBullets.Length <= 0)
+                    if (string.IsNullOrEmpty(selectableBullets[i]))
                     {
                         selectableBullets[i] = chosenBullet;
                     }
@@ -804,6 +814,41 @@ public partial class GameHandler : MonoBehaviour
             }
         }
     }
+
+    public string NewlyGeneratedBullet()
+    {
+        int random_bullet_chance = UnityEngine.Random.Range(0, 100);
+
+        if (random_bullet_chance <= chance_of_normal_bullets_spawning)
+        {
+            var normal_only_list = bulletTypes.Where(x => x is not SpecialBullet).ToList();
+
+            var to_return = normal_only_list[UnityEngine.Random.Range(0, normal_only_list.Count)].name;
+
+
+            return to_return;
+        }
+
+        if (random_bullet_chance > chance_of_normal_bullets_spawning)
+        {
+            var special_only_list = bulletTypes.Where(x => x is SpecialBullet).ToList();
+
+            var to_return = special_only_list[UnityEngine.Random.Range(0, bulletTypes.Count)].name;
+
+
+            return to_return;
+        }
+
+        return null;
+
+
+
+
+
+    }
+
+
+
 
     public bool BulletsNeedStock()
     {
