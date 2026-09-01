@@ -1189,7 +1189,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87706a25d1e09c04dae4d53139d1c661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Grid_Generator
-  gridSise: {x: 16, y: 1, z: 16}
+  gridSize: {x: 10, y: 1, z: 10}
+  gridCenterOffset: {x: 0, y: 0, z: 0}
+  cellSize: 0.5
+  cellHeightOverrite: 0
   debug: 1
 --- !u!1 &1265312831 stripped
 GameObject:

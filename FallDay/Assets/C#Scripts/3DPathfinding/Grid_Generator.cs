@@ -11,27 +11,35 @@ using UnityEngine;
 //[ExecuteInEditMode]
 public class Grid_Generator : MonoBehaviour
 {
-    public Vector3 gridSise;
+    public Vector3 gridSize;
+    public Vector3 gridCenterOffset;
+    public float cellSize = 1f;
+    public float cellHeightOverrite = 0f;
     public bool debug;
     private Grid_ grid;
     void Awake()
     {
-        if (gridSise == null) 
+        if (gridSize == null) 
         { 
-            gridSise = new Vector3(10, 1, 10); 
-            if(debug) Debug.Log("Grid Size NotSetInpo: " + gridSise);
+            gridSize = new Vector3(10, 1, 10); 
+            if(debug) Debug.Log("Grid Size NotSetInpo: " + gridSize);
         }
     }
 
     void Start()
     {
-        Vector3 gridStartPos = this.gameObject.transform.position - new Vector3(gridSise.x / 2, gridSise.y, gridSise.z / 2); // Set the grid centered around the player position
-        grid = new Grid_(gridSise, 1f, gridStartPos, this.gameObject);
+        Vector3 posCorrection = new Vector3(-(cellSize * gridSize.x) / 2, -(cellSize * gridSize.y) /2, -(cellSize * gridSize.z) / 2);
+        Vector3 gridStartPos = this.gameObject.transform.position + posCorrection; // Set the grid centered around the player position
+        grid = new Grid_(gridSize, cellSize, cellHeightOverrite, gridStartPos, this.gameObject);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        grid.checkWalkableAll();
+    }
+    public void generateEnemy(GameObject prefab) //Maybe this should be in a different script, but for now it is here
+    {
+        Instantiate(prefab, grid.GetWorldPosition((int)gridSize.x, (int)gridSize.y, (int)(gridSize.z /2)), Quaternion.identity);
     }
 }
