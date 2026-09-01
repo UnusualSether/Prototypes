@@ -3,8 +3,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.Networking.PlayerConnection;
-using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -49,7 +47,7 @@ public partial class GameHandler : MonoBehaviour
     public event Action<VisualElement> BulletSelected;
 
     //Zombie related events
-    public event Action ZombieSpawned;
+    public event Action<Zombie> ZombieSpawned;
     public event Action<Zombie> ZombieDamaged;
     public event Action<Zombie> zPhaseChange;
     public event Action ZombieKilled;
@@ -66,7 +64,6 @@ public partial class GameHandler : MonoBehaviour
     public event Action<int> SucessfulHit;
 
     #endregion
-
 
     #region Variables
 
@@ -354,10 +351,9 @@ public partial class GameHandler : MonoBehaviour
         ZombieSpawnGate = true;
         yield return new WaitForSeconds(zombieSpawnTimer);
         
-        //Debug.Log("Grahh....");
-        ZombieSpawned?.Invoke();
 
         int nextZombieID;
+        //Debug.Log("Grahh....");
 
         //Give them a brand new Id which is just the last zombies ID plus 1;
         if (ZombieList.Count == 0)
@@ -383,6 +379,9 @@ public partial class GameHandler : MonoBehaviour
         );
 
         var newZombie = ZombieList.Last();
+
+        ZombieSpawned?.Invoke(newZombie);
+
         OnZombieUpdate += newZombie.UpdatePhase;
         zombieLookup.Add(newZombie.id, newZombie);
 

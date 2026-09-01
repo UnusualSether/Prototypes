@@ -25,7 +25,7 @@ public class Zombie
     public bool debugisOn = false;
     public GameHandler handler; //Isso é para a outra parte do codigo que foi movido para o game handler
 
-    private EnemyData enemyData;
+    public EnemyData enemyData { get; private set; }
 
     //public EnemyData enemyData; // BackUp em caso de falta de Informação.
     public enum ZombiePhase

@@ -15,6 +15,7 @@ public class Grid_Generator : MonoBehaviour
     public Vector3 gridCenterOffset;
     public float cellSize = 1f;
     public float cellHeightOverrite = 0f;
+    public GameHandler gameHandler;
     public bool debug;
     private Grid_ grid;
     void Awake()
@@ -24,6 +25,7 @@ public class Grid_Generator : MonoBehaviour
             gridSize = new Vector3(10, 1, 10); 
             if(debug) Debug.Log("Grid Size NotSetInpo: " + gridSize);
         }
+        gameHandler.ZombieSpawned += generateEnemy;
     }
 
     void Start()
@@ -38,8 +40,10 @@ public class Grid_Generator : MonoBehaviour
     {
         grid.checkWalkableAll();
     }
-    public void generateEnemy(GameObject prefab) //Maybe this should be in a different script, but for now it is here
+
+    // Generate The Zombie In world
+    public void generateEnemy(Zombie zombie) //Maybe this should be in a different script, but for now it is here
     {
-        Instantiate(prefab, grid.GetWorldPosition((int)gridSize.x, (int)gridSize.y, (int)(gridSize.z /2)), Quaternion.identity);
+        Instantiate(zombie.enemyData.Zprefab, grid.GetWorldPosition((int)(gridSize.x /2), (int)gridSize.y, (int)(gridSize.z)), Quaternion.identity);
     }
 }

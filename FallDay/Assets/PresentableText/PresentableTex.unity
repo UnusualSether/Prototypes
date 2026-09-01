@@ -1193,6 +1193,7 @@ MonoBehaviour:
   gridCenterOffset: {x: 0, y: 0, z: 0}
   cellSize: 0.5
   cellHeightOverrite: 0
+  gameHandler: {fileID: 2043720488}
   debug: 1
 --- !u!1 &1265312831 stripped
 GameObject:
