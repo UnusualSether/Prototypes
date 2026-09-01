@@ -161,6 +161,7 @@ GameObject:
   - component: {fileID: 127173196}
   - component: {fileID: 127173198}
   - component: {fileID: 127173197}
+  - component: {fileID: 127173199}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -176,7 +177,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 127173195}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.16078494, y: 0.47017023, z: -0.08755874, w: 0.86337805}
   m_LocalPosition: {x: 0, y: 0.221, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -204,7 +205,7 @@ MonoBehaviour:
   - {fileID: 42891496, guid: 80afd7f486abef84dbedfec943b631c1, type: 3}
   - {fileID: 1284934108, guid: 4d779f5ddd22e5f4ba2760b71f163d0d, type: 3}
   - {fileID: 57809865, guid: db5d90f4f95263c4e92960c731ebbb1c, type: 3}
-  spriteRenderer: {fileID: 0}
+  spriteRenderer: {fileID: 127173198}
   cameraTransform: {fileID: 1444338430}
   directionSource: {fileID: 27993027}
 --- !u!212 &127173198
@@ -256,7 +257,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 4763202352769144593, guid: 161cbc1b880c62c40b73156ce4187903, type: 3}
+  m_Sprite: {fileID: 42891496, guid: 80afd7f486abef84dbedfec943b631c1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -266,6 +267,28 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!95 &127173199
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 127173195}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bb2c0f9a3d18852408a3302a7b889222, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &258183357
 GameObject:
   m_ObjectHideFlags: 0
@@ -2390,11 +2413,11 @@ SceneRoots:
   - {fileID: 735902041}
   - {fileID: 673983618}
   - {fileID: 1444338430}
-  - {fileID: 1088469944}
   - {fileID: 1871156144}
   - {fileID: 6639379496333506865}
   - {fileID: 1326751366}
   - {fileID: 324746867}
+  - {fileID: 1088469944}
   - {fileID: 1587255897}
   - {fileID: 660990395}
   - {fileID: 438882081}
