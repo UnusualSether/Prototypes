@@ -17,9 +17,6 @@ public partial class GameHandler : MonoBehaviour
 
     public PlayerInstance player;
 
-
-
-
     #region Lists and Arrays
     //Bullet types that can show up in the grid.
     public string[] bulletList;
@@ -1158,10 +1155,7 @@ public partial class GameHandler : MonoBehaviour
             OnZombieUpdate -= zombie.UpdatePhase;
         }
 
-
         zombieLookup.Clear();
         ZombieList.Clear();
-
-        
     }
 }

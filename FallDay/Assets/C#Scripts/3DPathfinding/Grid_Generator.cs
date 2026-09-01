@@ -17,6 +17,7 @@ public class Grid_Generator : MonoBehaviour
     public float cellHeightOverrite = 0f;
     public GameHandler gameHandler;
     public bool debug;
+    public bool checkForObstacle = false;
     private Grid_ grid;
     void Awake()
     {
@@ -31,7 +32,7 @@ public class Grid_Generator : MonoBehaviour
     void Start()
     {
         Vector3 posCorrection = new Vector3(-(cellSize * gridSize.x) / 2, -(cellSize * gridSize.y) /2, -(cellSize * gridSize.z) / 2);
-        Vector3 gridStartPos = this.gameObject.transform.position + posCorrection; // Set the grid centered around the player position
+        Vector3 gridStartPos = this.gameObject.transform.position + posCorrection + gridCenterOffset; // Set the grid centered around the player position
         grid = new Grid_(gridSize, cellSize, cellHeightOverrite, gridStartPos, this.gameObject);
     }
 
@@ -39,8 +40,17 @@ public class Grid_Generator : MonoBehaviour
     void Update()
     {
         grid.checkWalkableAll();
+        //listenToBool();
     }
 
+    private void listenToBool()
+    {
+        if (checkForObstacle)
+        {
+            checkForObstacle = false;
+            grid.checkWalkableAll();
+        }
+    }
     // Generate The Zombie In world
     public void generateEnemy(Zombie zombie) //Maybe this should be in a different script, but for now it is here
     {

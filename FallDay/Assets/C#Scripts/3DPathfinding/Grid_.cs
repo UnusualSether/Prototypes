@@ -159,32 +159,37 @@ public class Grid_
     }
     private bool fivePointRaycast(int xpos, int ypos, int zpos) 
     {
+        int rayCount = 4;
         bool isWalkable = true;
         Vector3 CellPos = GetWorldPosition(xpos, ypos, zpos);
-        Vector3[] DetectorSystem = new Vector3[5];
+        List<Vector3> DetectorSystem = new List<Vector3>(rayCount);
 
         float devide = 8f;
         float cellDevide = cellSize / devide;
-        
-        // pos Rays in form of cube pointed down (additional ray at center)
-        DetectorSystem[0] = new Vector3(CellPos.x + (cellSize / 2), CellPos.y + cellSize, CellPos.z + (cellSize / 2)); //RayStartPosCenter
-        DetectorSystem[1] = new Vector3(CellPos.x + cellDevide, CellPos.y + cellSize, CellPos.z + cellDevide);                                   //RayStartPosCloseTo0
-        DetectorSystem[2] = new Vector3(CellPos.x + cellDevide, CellPos.y + cellSize, CellPos.z + cellSize - cellDevide);                        //RayStartPosLowX
-        DetectorSystem[3] = new Vector3(CellPos.x + cellSize - cellDevide, CellPos.y + cellSize, CellPos.z + cellDevide);                        //RayStartPosLowZ
-        DetectorSystem[4] = new Vector3(CellPos.x + cellSize - cellDevide, CellPos.y + cellSize, CellPos.z + cellSize - cellDevide);             //RayStartPosFarFrom0
 
-        for (int i = 0; i < 5; i++)
+        // pos Rays in form of cube pointed down (additional ray at center)
+        //DetectorSystem[0] = new Vector3(CellPos.x + (cellSize / 2), CellPos.y + cellSize, CellPos.z + (cellSize / 2)); //RayStartPosCenter
+        DetectorSystem.Add(new Vector3(CellPos.x + cellDevide, CellPos.y + cellSize, CellPos.z + cellDevide));                                   //RayStartPosCloseTo0
+        DetectorSystem.Add(new Vector3(CellPos.x + cellDevide, CellPos.y + cellSize, CellPos.z + cellSize - cellDevide));                        //RayStartPosLowX
+        DetectorSystem.Add(new Vector3(CellPos.x + cellSize - cellDevide, CellPos.y + cellSize, CellPos.z + cellDevide));                        //RayStartPosLowZ
+        DetectorSystem.Add(new Vector3((CellPos.x + cellSize) - cellDevide, CellPos.y + cellSize, (CellPos.z + cellSize) - cellDevide));             //RayStartPosFarFrom0
+
+        for (int i = 0; i < rayCount; i++)
         {
             //Physics.Raycast(DetectorSystem[i], Vector3.down, out RaycastHit hitInfo, cellSize)
-            RaycastHit[] hits = Physics.RaycastAll(DetectorSystem[i], Vector3.down, cellSize + cellHeightRayOverrite, ~LayerMask.GetMask("Player"), QueryTriggerInteraction.Ignore);
-            foreach (RaycastHit hitInfo in hits)
+            if (DetectorSystem[i] != null)
             {
-                if (hitInfo.collider != null)
+                RaycastHit[] hits = Physics.RaycastAll(DetectorSystem[i], Vector3.down, cellSize + cellHeightRayOverrite, ~LayerMask.GetMask("Player"), QueryTriggerInteraction.Ignore);
+                foreach (RaycastHit hitInfo in hits)
                 {
-                    if(hitInfo.collider.gameObject.tag == "obstacle")
+                    if (hitInfo.collider != null)
                     {
-                        if (debug) { Debug.DrawRay(DetectorSystem[i], Vector3.down * (cellSize + cellHeightRayOverrite), Color.red, 1f); }
-                        isWalkable = false;
+                        if(hitInfo.collider.gameObject.tag == "obstacle")
+                        {
+                            if (debug) { Debug.DrawRay(DetectorSystem[i], Vector3.down * (cellSize + cellHeightRayOverrite), Color.red, 1f); }
+                            if (debug) { Debug.Log($"Cell at {xpos}, {ypos}, {zpos} is not walkable due to obstacle: {hitInfo.collider.gameObject.name} - RayTrigger {i}"); }
+                            isWalkable = false;
+                        }
                     }
                 }
             }
