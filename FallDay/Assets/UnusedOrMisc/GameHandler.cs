@@ -833,7 +833,7 @@ public partial class GameHandler : MonoBehaviour
         {
             var special_only_list = bulletTypes.Where(x => x is SpecialBullet).ToList();
 
-            var to_return = special_only_list[UnityEngine.Random.Range(0, bulletTypes.Count)].name;
+            var to_return = special_only_list[UnityEngine.Random.Range(0, special_only_list.Count)].name;
 
 
             return to_return;
