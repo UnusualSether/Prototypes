@@ -1,10 +1,10 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement name="trinket_view_element" style="height: 450px; aspect-ratio: 1.333333; min-width: 500px; min-height: 499px;">
-        <ui:Toggle label="&#10;" name="trinket_toggle" style="justify-content: center; flex-direction: column; align-self: center; align-items: center; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; height: 76px; scale: 8 4;"/>
-        <ui:Image name="trinket_sprite" style="height: 269px;"/>
-        <ui:VisualElement name="TextPanel" style="flex-grow: 1; background-color: rgb(255, 0, 105);">
-            <ui:Label text="Willow&#10;" name="trinket_name" style="-unity-text-align: middle-center; font-size: 33px; scale: 4 3;"/>
-            <ui:Label text="&#10;lol&#10;" name="trinket_desc" style="-unity-text-align: upper-center; font-size: 22px; scale: 4 3;"/>
+    <ui:VisualElement name="trinket_view_element" style="flex-grow: 1; width: 80%; height: 20%; background-color: rgb(174, 156, 156); align-items: center; justify-content: space-between; align-self: center; align-content: stretch; margin-top: 7%; margin-right: 7%; margin-bottom: 7%; margin-left: 7%;">
+        <ui:Image name="trinket_sprite" style="width: 80%; height: 40%; -unity-text-align: middle-center;"/>
+        <ui:VisualElement name="TextPanel" style="flex-grow: 1; width: 80%; height: 40%; align-self: center; justify-content: space-around; align-items: center; -unity-text-align: middle-center;">
+            <ui:Label text="Label" name="trinket_name" style="width: 80%; height: 50%; font-size: 100%; -unity-font-style: bold; -unity-font-definition: url(&quot;project://database/Assets/TRAFFIC6.TTF?fileID=12800000&amp;guid=f07357d919f588b48b520990911ee828&amp;type=3#TRAFFIC6&quot;); -unity-text-align: middle-center;"/>
+            <ui:Label text="Label" name="trinket_desc" style="width: 80%; height: 50%; -unity-font-definition: url(&quot;project://database/Assets/TRAFFIC6.TTF?fileID=12800000&amp;guid=f07357d919f588b48b520990911ee828&amp;type=3#TRAFFIC6&quot;); font-size: 50%; -unity-text-align: middle-center;"/>
         </ui:VisualElement>
+        <ui:Toggle label="" name="trinket_toggle" style="height: 20%; width: 100%; flex-direction: column; align-items: center; align-self: center; justify-content: space-around; align-content: stretch; padding-top: 10%; padding-right: 10%; padding-bottom: 10%; padding-left: 10%; -unity-text-align: upper-center; background-color: rgba(43, 43, 43, 0.72);"/>
     </ui:VisualElement>
 </ui:UXML>
