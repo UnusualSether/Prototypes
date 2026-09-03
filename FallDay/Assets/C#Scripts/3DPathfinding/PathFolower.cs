@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Zombie;
 
 public class PathFolower : MonoBehaviour
 {
+    public Zombie zombie;
     private List<Vector3> path;
     // Most Simple movement along the path
     // No Control over the speed nor how long it takes to reach the next point 
@@ -40,5 +42,19 @@ public class PathFolower : MonoBehaviour
                 //Call a new pathfinding
             }
         }
+    }
+    public void TimeRamaning() 
+    {
+        float PhaseTimer = zombie.PhaseTimer;
+        ZombiePhase phase = zombie.phase;
+    }
+    public void calculatePathDistance()
+    {
+        float distance = 0;
+        for (int i = 0; i < path.Count - 1; i++)
+        {
+            distance += Vector3.Distance(path[i], path[i + 1]);
+        }
+        Debug.Log("Total Path Distance: " + distance);
     }
 }
