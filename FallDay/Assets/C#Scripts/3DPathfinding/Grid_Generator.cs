@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -11,14 +12,22 @@ using UnityEngine;
 //[ExecuteInEditMode]
 public class Grid_Generator : MonoBehaviour
 {
-    public Vector3 gridSize;
-    public Vector3 gridCenterOffset;
-    public float cellSize = 1f;
+    //grid information
+    public Vector3 gridSize;  // The size of the grid in terms of number of cells in each dimension (x, y, z)
+    public Vector3 gridCenterOffset; // The offset to apply to the grid's center position relative to the GameObject's position
+    public float cellSize = 1f; // The size of each cell in the grid
     public float cellHeightOverrite = 0f;
-    public GameHandler gameHandler;
-    public bool debug;
-    public bool checkForObstacle = false;
     private Grid_ grid;
+
+    // References for other components and objects
+    public GameHandler gameHandler;
+    public GameObject player;
+
+    /// Enemys Refrence
+    private List<GameObject> Zombies3D; //Stores the 3D zombie game objects for later reference and manipulation
+
+    public bool debug; // Debugging flag to enable or disable debug logs
+
     void Awake()
     {
         if (gridSize == null) 
@@ -28,32 +37,25 @@ public class Grid_Generator : MonoBehaviour
         }
         gameHandler.ZombieSpawned += generateEnemy;
     }
-
     void Start()
     {
         Vector3 posCorrection = new Vector3(-(cellSize * gridSize.x) / 2, -(cellSize * gridSize.y) /2, -(cellSize * gridSize.z) / 2);
         Vector3 gridStartPos = this.gameObject.transform.position + posCorrection + gridCenterOffset; // Set the grid centered around the player position
         grid = new Grid_(gridSize, cellSize, cellHeightOverrite, gridStartPos, this.gameObject);
+        Zombies3D = new List<GameObject>();
+        grid.checkWalkableAll();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         grid.checkWalkableAll();
-        //listenToBool();
     }
 
-    private void listenToBool()
-    {
-        if (checkForObstacle)
-        {
-            checkForObstacle = false;
-            grid.checkWalkableAll();
-        }
-    }
     // Generate The Zombie In world
     public void generateEnemy(Zombie zombie) //Maybe this should be in a different script, but for now it is here
     {
-        Instantiate(zombie.enemyData.Zprefab, grid.GetWorldPosition((int)(gridSize.x /2), (int)gridSize.y, (int)(gridSize.z)), Quaternion.identity);
+        Zombies3D.Add(Instantiate(zombie.enemyData.Zprefab, grid.GetWorldPosition((int)(gridSize.x / 2), (int)gridSize.y, (int)(gridSize.z)), Quaternion.identity));
+        Zombies3D[Zombies3D.Count - 1].GetComponent<PathFolower>().Zombie3dInfoReceve(zombie, grid, player);
+        Zombies3D[Zombies3D.Count - 1].GetComponent<PathFolower>().canWalk();
     }
 }

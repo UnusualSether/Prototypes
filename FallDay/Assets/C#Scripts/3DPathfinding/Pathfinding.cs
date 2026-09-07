@@ -35,6 +35,22 @@ public class Pathfinding
     /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /// </summary>
     private bool EmergencyBreak = false;
+
+    public List<Vector3> FindPath(Vector3 startPos, Vector3 endPos) // Returns a list of Vector3 positions representing the path from startPos to endPos
+    {
+        grid_.GetXYZ(startPos, out int startX, out int startY, out int startZ);
+        grid_.GetXYZ(endPos, out int endX, out int endY, out int endZ);
+        List<Cell_> pathCells = FindPath(startX, startY, startZ, endX, endY, endZ);
+        // Convert the list of cells to a list of Vector3 positions
+        List<Vector3> pathPositions = new List<Vector3>();
+        foreach (Cell_ cell in pathCells)
+        {
+            pathPositions.Add(grid_.GetWorldPosition(cell.x, cell.y, cell.z));
+        }
+        // Return the first position in the path as the next target position
+        return pathPositions;
+    }
+
     public List<Cell_> FindPath(int startX, int startY, int startZ, int endX, int endY, int endZ) {
         Cell_ startCell = grid_.ReturnCell(startX, startY, startZ);//Get Start Cell
         Cell_ endCell = grid_.ReturnCell(endX, endY, endZ);//Get End Cell

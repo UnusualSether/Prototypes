@@ -1,28 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static Zombie;
 
 public class PathFolower : MonoBehaviour
 {
-    public Zombie zombie;
+    public float speed = 1.0f; //Speed of the object along the path
+
+    private Zombie zombie; // Zombie reference to subscride to the damege && death Event and ID refrence
     private List<Vector3> path;
+    private Grid_ grid;
+    private GameObject player; // Reference to the player object
     // Most Simple movement along the path
     // No Control over the speed nor how long it takes to reach the next point 
+    private bool debug = false;
+    public void Zombie3dInfoReceve(Zombie zombie, Grid_ grid, GameObject player)
+    {
+        this.zombie = zombie;
+        this.grid = grid;
+        this.player = player;
+        SerchNewPath();
+    }
+    public void SerchNewPath()
+    {
+        path = grid.pathfinding.FindPath(transform.position, player.transform.position);
+    }
+
     private IEnumerator WalkPathCoroutine()
     {
         foreach (Vector3 point in path)
         {
             do
             {
-                transform.position = Vector3.MoveTowards(transform.position, point, 0.1f);
+                float step = speed * Time.deltaTime;
+                transform.position = Vector3.MoveTowards(transform.position, point, step);
                 yield return new WaitForFixedUpdate();
             } while ((gameObject.transform.position - point).magnitude > 0.2f);
         }
-    }
-    public void SetNewPath(List<Vector3> newPath)
-    {
-        path = newPath;
     }
     public void canWalk()
     {
@@ -33,22 +46,27 @@ public class PathFolower : MonoBehaviour
         {
             if ((gameObject.transform.position - path[0]).magnitude < 0.2f)
             {
-                //is close enoth
+                //is close enough to stert pos
                 //start walk
-                StartCoroutine(WalkPathCoroutine());
+                //StartCoroutine(WalkPathCoroutine());
+                if(debug) Debug.Log("Starting Walk Coroutine");
             }
             else
             {
+                if(debug) Debug.Log("Not close enough to start pos, need to find new path");
                 //Call a new pathfinding
             }
         }
     }
-    public void TimeRamaning() 
+
+
+    /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void TimeRamaning() // Used to get the time remaining for the zombie to reach the player (will be used for later)
     {
         float PhaseTimer = zombie.PhaseTimer;
-        ZombiePhase phase = zombie.phase;
+        //ZombiePhase phase = zombie.phase;
     }
-    public void calculatePathDistance()
+    public void calculatePathDistance() //Can be used to calculate the distance of the path for the zombie to walk (will be used in a later update)
     {
         float distance = 0;
         for (int i = 0; i < path.Count - 1; i++)

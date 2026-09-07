@@ -11,6 +11,8 @@ public class Grid_
     private Cell_[,,] gridArray;
     private Cell_Debug[,,] debugArray;
 
+    public Pathfinding pathfinding; // intrnal pathfinding reference, to be used for pathfinding calculations and operations
+
     //Debug Options ///////////////////////////////////////////////////////////////////////////////////////
     private bool debug = true;
     private GameObject GeneratorObject;
@@ -49,7 +51,7 @@ public class Grid_
     /// <Vector3SiseWithHeightOverrite>
     public Grid_(Vector3 gridSize, float cellSize, float cellHeightRayOverrite, Vector3 originPosition)//start up grid with debug object
     {
-        GridSetUp((int)gridSize.x, (int)gridSize.y, (int)gridSize.z, cellSize, cellHeightRayOverrite, originPosition);
+        GridSetUpRayOverriteCall((int)gridSize.x, (int)gridSize.y, (int)gridSize.z, cellSize, cellHeightRayOverrite, originPosition);
     }
     public Grid_(Vector3 gridSize, float cellSize, float cellHeightRayOverrite, Vector3 originPosition, GameObject DebugGenObject)//start up grid with debug object
     {
@@ -57,12 +59,12 @@ public class Grid_
         {
             GeneratorObject = DebugGenObject;
         }
-        GridSetUp((int)gridSize.x, (int)gridSize.y, (int)gridSize.z, cellSize, cellHeightRayOverrite, originPosition);
+        GridSetUpRayOverriteCall((int)gridSize.x, (int)gridSize.y, (int)gridSize.z, cellSize, cellHeightRayOverrite, originPosition);
     }
     /// </IntSiseWithHeightOverrite>
     public Grid_(int width, int hight, int lengh, float cellSize, float cellHeightRayOverrite, Vector3 originPosition)//start up grid with no debug object
     {
-        GridSetUp(width, hight, lengh, cellSize, cellHeightRayOverrite, originPosition);
+        GridSetUpRayOverriteCall(width, hight, lengh, cellSize, cellHeightRayOverrite, originPosition);
     }
     public Grid_(int width, int hight, int lengh, float cellSize, float cellHeightRayOverrite, Vector3 originPosition, GameObject DebugGenObject)//start up grid with debug object
     {
@@ -70,10 +72,19 @@ public class Grid_
         {
             GeneratorObject = DebugGenObject;
         }
-        GridSetUp(width, hight, lengh, cellSize, cellHeightRayOverrite, originPosition);
+        GridSetUpRayOverriteCall(width, hight, lengh, cellSize, cellHeightRayOverrite, originPosition);
+    }
+    /// End of public grid call variations methods ///////////////////////////////////////////////////////////////////////////////////////
+    /// <section>
+    /// start of private grid call variations methods ///////////////////////////////////////////////////////////////////////////////////////
+    private void GridSetUpRayOverriteCall(int width, int hight, int lengh, float cellSize, float cellHeightRayOverrite, Vector3 originPosition)//sets up the grid with the given parameters
+    {
+        this.cellHeightRayOverrite = cellHeightRayOverrite; //sets the height override of each cell in the grid
+        GridSetUp(width, hight, lengh, cellSize, originPosition);
     }
 
-    /// End of start Up grid variations methods ///////////////////////////////////////////////////////////////////////////////////////
+
+    /// </Main grid Set Up logic>
     private void GridSetUp(int width, int hight, int lengh, float cellSize, Vector3 originPosition)//sets up the grid with the given parameters
     {
         this.width = width; this.lengh = lengh; this.hight = hight; //sets the width, length, and height of the grid
@@ -98,32 +109,12 @@ public class Grid_
             }
         }
         if(debug) GenerateDebugObjects();
+        SetUpPathfinding();
     }
-    private void GridSetUp(int width, int hight, int lengh, float cellSize, float cellHeightRayOverrite, Vector3 originPosition)//sets up the grid with the given parameters
+
+    private void SetUpPathfinding() //Sets up the pathfinding system for the grid
     {
-        this.width = width; this.lengh = lengh; this.hight = hight; //sets the width, length, and height of the grid
-
-        this.cellSize = cellSize; //sets the size of each cell in the grid
-        this.cellHeightRayOverrite = cellHeightRayOverrite; //sets the height override of each cell in the grid
-        this.originPosition = originPosition; //sets the origin position of the grid
-
-        gridArray = new Cell_[width, hight, lengh]; //creates a new 3D array of cells with the given width (x), height (y), and length (z)
-
-        // cicles through the grid and creates a new cell for each position in the grid
-        for (int y = 0; y < gridArray.GetLength(1); y++) //
-        {
-            for (int z = 0; z < gridArray.GetLength(2); z++)
-            {
-                for (int x = 0; x < gridArray.GetLength(0); x++)
-                {
-                    //Nodes Generation
-                    gridArray[x, y, z] = new Cell_(x, y, z, cellSize, 0, 0, null);
-                    IsCellWalkable(x, y, z);
-                    //GridClassDebug
-                }
-            }
-        }
-        if (debug) GenerateDebugObjects();
+        pathfinding = new Pathfinding(this);
     }
     // set Up Methods End ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -205,6 +196,11 @@ public class Grid_
         x = Mathf.FloorToInt((worldPosition - originPosition).x / cellSize);
         y = Mathf.FloorToInt((worldPosition - originPosition).y / cellSize);
         z = Mathf.FloorToInt((worldPosition - originPosition).z / cellSize);
+
+        // corrects error
+        if(x == 10) { x = 9; } 
+        if(y == 10) { y = 9; } 
+        if(z == 10) { z = 9; }
     }
 
     public Cell_ ReturnCell(int x, int y, int z)
@@ -272,4 +268,5 @@ public class Grid_
             }
         }
     }
+
 }
