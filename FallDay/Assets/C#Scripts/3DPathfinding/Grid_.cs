@@ -152,14 +152,14 @@ public class Grid_
     {
         int rayCount = 4;
         bool isWalkable = true;
-        Vector3 CellPos = GetWorldPosition(xpos, ypos, zpos);
+        Vector3 CellPos = CellWorldPosition(xpos, ypos, zpos);
         List<Vector3> DetectorSystem = new List<Vector3>(rayCount);
 
         float devide = 8f;
         float cellDevide = cellSize / devide;
 
         // pos Rays in form of cube pointed down (additional ray at center)
-        //DetectorSystem[0] = new Vector3(CellPos.x + (cellSize / 2), CellPos.y + cellSize, CellPos.z + (cellSize / 2)); //RayStartPosCenter
+        DetectorSystem.Add(new Vector3(CellPos.x + (cellSize / 2), CellPos.y + cellSize, CellPos.z + (cellSize / 2))); //RayStartPosCenter
         DetectorSystem.Add(new Vector3(CellPos.x + cellDevide, CellPos.y + cellSize, CellPos.z + cellDevide));                                   //RayStartPosCloseTo0
         DetectorSystem.Add(new Vector3(CellPos.x + cellDevide, CellPos.y + cellSize, CellPos.z + cellSize - cellDevide));                        //RayStartPosLowX
         DetectorSystem.Add(new Vector3(CellPos.x + cellSize - cellDevide, CellPos.y + cellSize, CellPos.z + cellDevide));                        //RayStartPosLowZ
@@ -187,7 +187,7 @@ public class Grid_
         }
         return isWalkable;
     }
-    public Vector3 GetWorldPosition(int x, int y, int z) //returns the world position of the given cell coordinates
+    public Vector3 CellWorldPosition(int x, int y, int z) //returns the world position of the given cell coordinates
     {
         return new Vector3(x, y, z) * cellSize + originPosition;
     }
@@ -196,11 +196,6 @@ public class Grid_
         x = Mathf.FloorToInt((worldPosition - originPosition).x / cellSize);
         y = Mathf.FloorToInt((worldPosition - originPosition).y / cellSize);
         z = Mathf.FloorToInt((worldPosition - originPosition).z / cellSize);
-
-        // corrects error
-        if(x == 10) { x = 9; } 
-        if(y == 10) { y = 9; } 
-        if(z == 10) { z = 9; }
     }
 
     public Cell_ ReturnCell(int x, int y, int z)
@@ -260,7 +255,7 @@ public class Grid_
                 for (int z = 0; z < gridArray.GetLength(2); z++)
                 {
                     GameObject debugObj = new GameObject($"DebugCell_ {x}, {y}, {z}");
-                    debugObj.transform.position = GetWorldPosition(x, y, z) + new Vector3(cellSize / 2, cellSize / 2, cellSize / 2);
+                    debugObj.transform.position = CellWorldPosition(x, y, z) + new Vector3(cellSize / 2, cellSize / 2, cellSize / 2);
                     debugObj.transform.parent = GeneratorObject.transform;
                     debugArray[x, y, z] = debugObj.AddComponent<Cell_Debug>();
                     debugArray[x, y, z].UpdateDebugInfo(gridArray[x, y, z]);

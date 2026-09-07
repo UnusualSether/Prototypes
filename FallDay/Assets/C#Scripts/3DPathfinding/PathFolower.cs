@@ -22,7 +22,7 @@ public class PathFolower : MonoBehaviour
     }
     public void SerchNewPath()
     {
-        path = grid.pathfinding.FindPath(transform.position, player.transform.position);
+        path = grid.pathfinding.FindPath(transform.position, new Vector3(player.transform.position.x, grid.CellWorldPosition(0, 0, 0).y, player.transform.position.z)); // 
     }
 
     private IEnumerator WalkPathCoroutine()
@@ -42,19 +42,22 @@ public class PathFolower : MonoBehaviour
         //is pos of curerent Object near start pos?
         //true - start path
         //false - serch new path
-        if (path != null && path.Count > 0)
+        if (path != null)
         {
-            if ((gameObject.transform.position - path[0]).magnitude < 0.2f)
+            if (path != null && path.Count > 0)
             {
-                //is close enough to stert pos
-                //start walk
-                //StartCoroutine(WalkPathCoroutine());
-                if(debug) Debug.Log("Starting Walk Coroutine");
-            }
-            else
-            {
-                if(debug) Debug.Log("Not close enough to start pos, need to find new path");
-                //Call a new pathfinding
+                if ((gameObject.transform.position - path[0]).magnitude < 0.2f)
+                {
+                    //is close enough to stert pos
+                    //start walk
+                    StartCoroutine(WalkPathCoroutine());
+                    if (debug) Debug.Log("Starting Walk Coroutine");
+                }
+                else
+                {
+                    if (debug) Debug.Log("Not close enough to start pos, need to find new path");
+                    //Call a new pathfinding
+                }
             }
         }
     }

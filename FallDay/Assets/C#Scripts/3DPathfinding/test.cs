@@ -54,8 +54,8 @@ public class test : MonoBehaviour
         if (path != null)
         {
             for (int i = 0; i < path.Count -1; i++) {
-                Vector3 pos1 = grid.GetWorldPosition(path[i].x, path[i].y, path[i].z);
-                Vector3 pos2 = grid.GetWorldPosition(path[i + 1].x, path[i + 1].y, path[i + 1].z);
+                Vector3 pos1 = grid.CellWorldPosition(path[i].x, path[i].y, path[i].z);
+                Vector3 pos2 = grid.CellWorldPosition(path[i + 1].x, path[i + 1].y, path[i + 1].z);
                 Debug.DrawLine(pos1 + new Vector3(1f, 1f, 1f) * .5f, pos2 + new Vector3(1f, 1f, 1f) * .5f, Color.green, 100f);
             }
         }

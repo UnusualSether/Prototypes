@@ -45,7 +45,7 @@ public class Pathfinding
         List<Vector3> pathPositions = new List<Vector3>();
         foreach (Cell_ cell in pathCells)
         {
-            pathPositions.Add(grid_.GetWorldPosition(cell.x, cell.y, cell.z));
+            pathPositions.Add(grid_.CellWorldPosition(cell.x, cell.y, cell.z));
         }
         // Return the first position in the path as the next target position
         return pathPositions;
@@ -59,13 +59,13 @@ public class Pathfinding
         if (startCell == null || endCell == null)
         {
             // Invalid Path
-            Debug.LogWarning("null Invalid Path");
+            Debug.LogError("nullCell Invalid Path");
             return null;
         }
         if (startCell.walkable == false || endCell.walkable == false)
         {
             // Invalid Path
-            Debug.LogWarning("walkable Invalid Path");
+            Debug.LogError($"InWalkable Invalid Path; StartCell {startCell.walkable} , EndCell {endCell.walkable}");
             return null;
         }
 

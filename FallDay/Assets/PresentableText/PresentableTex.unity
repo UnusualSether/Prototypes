@@ -306,70 +306,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 629368138481583320, guid: eaaffc07808ebaf4fae8b342b82799c9, type: 3}
   m_PrefabInstance: {fileID: 2043720487}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &324746865
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 324746867}
-  - component: {fileID: 324746866}
-  m_Layer: 0
-  m_Name: NavMesh Surface
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &324746866
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 324746865}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.AI.Navigation::Unity.AI.Navigation.NavMeshSurface
-  m_SerializedVersion: 0
-  m_AgentTypeID: 0
-  m_CollectObjects: 0
-  m_Size: {x: 10, y: 10, z: 10}
-  m_Center: {x: 0, y: 2, z: 0}
-  m_LayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_UseGeometry: 0
-  m_DefaultArea: 0
-  m_GenerateLinks: 1
-  m_IgnoreNavMeshAgent: 1
-  m_IgnoreNavMeshObstacle: 1
-  m_OverrideTileSize: 0
-  m_TileSize: 256
-  m_OverrideVoxelSize: 1
-  m_VoxelSize: 0.01
-  m_MinRegionArea: 4
-  m_NavMeshData: {fileID: 23800000, guid: f23297d20e6838349bbd1afa43ffd49e, type: 2}
-  m_BuildHeightMesh: 0
---- !u!4 &324746867
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 324746865}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.64723, y: 0, z: 1.19519}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &335037227 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8401835703245098119, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
@@ -905,8 +841,8 @@ Transform:
   m_GameObject: {fileID: 780791587}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.02, y: -1.09, z: -0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.195, y: 0.067, z: 0.964}
+  m_LocalScale: {x: 2.8477135, y: 0.37244, z: 0.37244}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1146,7 +1082,7 @@ MonoBehaviour:
   charTransform: {fileID: 1088469944}
   speed: 5
   navMesh: {fileID: 1088469940}
-  surface: {fileID: 324746866}
+  surface: {fileID: 0}
   wayPointList: []
 --- !u!4 &1088469944
 Transform:
@@ -1301,9 +1237,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87706a25d1e09c04dae4d53139d1c661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Grid_Generator
-  gridSize: {x: 10, y: 1, z: 10}
-  gridCenterOffset: {x: 0, y: 5, z: 0}
-  cellSize: 0.5
+  gridSize: {x: 20, y: 1, z: 20}
+  gridCenterOffset: {x: 0, y: 0.5, z: 0}
+  cellSize: 0.2
   cellHeightOverrite: 7.45
   gameHandler: {fileID: 2043720488}
   player: {fileID: 1088469939}
@@ -2558,7 +2494,6 @@ SceneRoots:
   - {fileID: 1871156144}
   - {fileID: 6639379496333506865}
   - {fileID: 1326751366}
-  - {fileID: 324746867}
   - {fileID: 1587255897}
   - {fileID: 660990395}
   - {fileID: 438882081}

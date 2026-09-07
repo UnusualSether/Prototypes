@@ -54,7 +54,7 @@ public class Grid_Generator : MonoBehaviour
     // Generate The Zombie In world
     public void generateEnemy(Zombie zombie) //Maybe this should be in a different script, but for now it is here
     {
-        Zombies3D.Add(Instantiate(zombie.enemyData.Zprefab, grid.GetWorldPosition((int)(gridSize.x / 2), (int)gridSize.y, (int)(gridSize.z)), Quaternion.identity));
+        Zombies3D.Add(Instantiate(zombie.enemyData.Zprefab, grid.CellWorldPosition((int)(gridSize.x / 2), (int)gridSize.y -1, (int)(gridSize.z) - 1), Quaternion.identity));
         Zombies3D[Zombies3D.Count - 1].GetComponent<PathFolower>().Zombie3dInfoReceve(zombie, grid, player);
         Zombies3D[Zombies3D.Count - 1].GetComponent<PathFolower>().canWalk();
     }
