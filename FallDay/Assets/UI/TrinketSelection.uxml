@@ -1,6 +1,8 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:Image scale-mode="StretchToFill" style="height: 2548px; width: 1194px; background-image: url(&quot;project://database/Assets/UI/MenuPixel2.png?fileID=2800000&amp;guid=fa14306668e6e6042a3845718bca861f&amp;type=3#MenuPixel2&quot;); position: absolute; top: -2px; left: -9px;"/>
-    <ui:Button text="Back to menu" name="Menu" style="height: 195px; font-size: 97px;"/>
-    <ui:VisualElement name="trinket_container" style="flex-grow: 1; flex-direction: column; align-items: center; position: relative; justify-content: center;"/>
-    <ui:Button text="To Levels" name="ToLevelSelectButton" style="height: 195px; font-size: 97px;"/>
+    <ui:VisualElement style="flex-grow: 1; align-items: center; justify-content: space-around; flex-direction: column-reverse;">
+        <ui:Image scale-mode="StretchToFill" style="height: 100%; width: 100%; background-image: url(&quot;project://database/Assets/UI/MenuPixel2.png?fileID=2800000&amp;guid=fa14306668e6e6042a3845718bca861f&amp;type=3#MenuPixel2&quot;); position: absolute; top: auto; left: auto;"/>
+        <ui:Button text="Back&#10;" name="Menu" style="height: 10%; font-size: 50%; width: 20%; align-self: flex-end; margin-top: 2%; margin-bottom: 2%; margin-right: 3%; margin-left: 0; white-space: nowrap; -unity-text-align: middle-center; -unity-font-definition: url(&quot;project://database/Assets/TRAFFIC6.TTF?fileID=12800000&amp;guid=f07357d919f588b48b520990911ee828&amp;type=3#TRAFFIC6&quot;); position: absolute;"/>
+        <ui:Button text="To Levels" name="ToLevelSelectButton" style="height: 10%; font-size: 90%; margin-top: 0; margin-right: 0; margin-bottom: 2%; margin-left: 0; -unity-font-definition: url(&quot;project://database/Assets/TRAFFIC6.TTF?fileID=12800000&amp;guid=f07357d919f588b48b520990911ee828&amp;type=3#TRAFFIC6&quot;); position: absolute;"/>
+        <ui:ScrollView name="trinket_container" style="position: relative;"/>
+    </ui:VisualElement>
 </ui:UXML>

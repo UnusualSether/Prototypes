@@ -646,7 +646,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &660990393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1561,11 +1561,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 187548070144772686, guid: 1f4767065a50de444b85b0dc9774004e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -376
+      value: -396.4
       objectReference: {fileID: 0}
     - target: {fileID: 187548070144772686, guid: 1f4767065a50de444b85b0dc9774004e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 951
+      value: -133.7
       objectReference: {fileID: 0}
     - target: {fileID: 187548070144772686, guid: 1f4767065a50de444b85b0dc9774004e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1583,6 +1583,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Health
       objectReference: {fileID: 0}
+    - target: {fileID: 2415572531020920398, guid: 1f4767065a50de444b85b0dc9774004e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 390
+      objectReference: {fileID: 0}
+    - target: {fileID: 2415572531020920398, guid: 1f4767065a50de444b85b0dc9774004e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 75
+      objectReference: {fileID: 0}
     - target: {fileID: 6046166540849062292, guid: 1f4767065a50de444b85b0dc9774004e, type: 3}
       propertyPath: HP
       value: 10
@@ -1590,6 +1598,14 @@ PrefabInstance:
     - target: {fileID: 6046166540849062292, guid: 1f4767065a50de444b85b0dc9774004e, type: 3}
       propertyPath: MaxHP
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046166540849062292, guid: 1f4767065a50de444b85b0dc9774004e, type: 3}
+      propertyPath: SizeX
+      value: 390
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046166540849062292, guid: 1f4767065a50de444b85b0dc9774004e, type: 3}
+      propertyPath: SizeY
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 6046166540849062292, guid: 1f4767065a50de444b85b0dc9774004e, type: 3}
       propertyPath: Damage
@@ -1603,6 +1619,30 @@ PrefabInstance:
       propertyPath: UIToggleManager
       value: 
       objectReference: {fileID: 660990393}
+    - target: {fileID: 6146754593699510109, guid: 1f4767065a50de444b85b0dc9774004e, type: 3}
+      propertyPath: m_Color.b
+      value: 0.4641509
+      objectReference: {fileID: 0}
+    - target: {fileID: 6146754593699510109, guid: 1f4767065a50de444b85b0dc9774004e, type: 3}
+      propertyPath: m_Color.g
+      value: 0.4641509
+      objectReference: {fileID: 0}
+    - target: {fileID: 6146754593699510109, guid: 1f4767065a50de444b85b0dc9774004e, type: 3}
+      propertyPath: m_Color.r
+      value: 0.4641509
+      objectReference: {fileID: 0}
+    - target: {fileID: 7260509908887010791, guid: 1f4767065a50de444b85b0dc9774004e, type: 3}
+      propertyPath: m_Color.b
+      value: 0.035265166
+      objectReference: {fileID: 0}
+    - target: {fileID: 7260509908887010791, guid: 1f4767065a50de444b85b0dc9774004e, type: 3}
+      propertyPath: m_Color.g
+      value: 0.035265166
+      objectReference: {fileID: 0}
+    - target: {fileID: 7260509908887010791, guid: 1f4767065a50de444b85b0dc9774004e, type: 3}
+      propertyPath: m_Color.r
+      value: 0.4792453
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
