@@ -23,6 +23,7 @@ public class PathFolower : MonoBehaviour
     public void SerchNewPath()
     {
         path = grid.pathfinding.FindPath(transform.position, new Vector3(player.transform.position.x, grid.CellWorldPosition(0, 0, 0).y, player.transform.position.z)); // 
+        path.RemoveAt(path.Count - 1); 
     }
 
     private IEnumerator WalkPathCoroutine()
@@ -34,7 +35,7 @@ public class PathFolower : MonoBehaviour
                 float step = speed * Time.deltaTime;
                 transform.position = Vector3.MoveTowards(transform.position, point, step);
                 yield return new WaitForFixedUpdate();
-            } while ((gameObject.transform.position - point).magnitude > 0.2f);
+            } while ((gameObject.transform.position - point).magnitude > 0.02f);
         }
     }
     public void canWalk()

@@ -159,16 +159,16 @@ public class Grid_
         float cellDevide = cellSize / devide;
 
         // pos Rays in form of cube pointed down (additional ray at center)
-        DetectorSystem.Add(new Vector3(CellPos.x + (cellSize / 2), CellPos.y + cellSize, CellPos.z + (cellSize / 2))); //RayStartPosCenter
-        DetectorSystem.Add(new Vector3(CellPos.x + cellDevide, CellPos.y + cellSize, CellPos.z + cellDevide));                                   //RayStartPosCloseTo0
-        DetectorSystem.Add(new Vector3(CellPos.x + cellDevide, CellPos.y + cellSize, CellPos.z + cellSize - cellDevide));                        //RayStartPosLowX
-        DetectorSystem.Add(new Vector3(CellPos.x + cellSize - cellDevide, CellPos.y + cellSize, CellPos.z + cellDevide));                        //RayStartPosLowZ
-        DetectorSystem.Add(new Vector3((CellPos.x + cellSize) - cellDevide, CellPos.y + cellSize, (CellPos.z + cellSize) - cellDevide));             //RayStartPosFarFrom0
+        DetectorSystem.Add(new Vector3(CellPos.x, CellPos.y + cellSize, CellPos.z));                                                                                                //RayStartPosCenter
+        DetectorSystem.Add(new Vector3(CellPos.x - (cellSize / 2) + cellDevide, CellPos.y + cellSize, CellPos.z - (cellSize / 2) + cellDevide));                                    //RayStartPosCloseTo0
+        DetectorSystem.Add(new Vector3(CellPos.x - (cellSize / 2) + cellDevide, CellPos.y + cellSize, CellPos.z + (cellSize / 2) - cellDevide));                                    //RayStartPosLowX
+        DetectorSystem.Add(new Vector3(CellPos.x + (cellSize / 2) - cellDevide, CellPos.y + cellSize, CellPos.z - (cellSize / 2) + cellDevide));                        //RayStartPosLowZ
+        DetectorSystem.Add(new Vector3(CellPos.x + (cellSize / 2) - cellDevide, CellPos.y + cellSize, CellPos.z + (cellSize / 2) - cellDevide));         //RayStartPosFarFrom0
 
-        for (int i = 0; i < rayCount; i++)
+        for (int i = 0; i < DetectorSystem.Count; i++)
         {
             //Physics.Raycast(DetectorSystem[i], Vector3.down, out RaycastHit hitInfo, cellSize)
-            if (DetectorSystem[i] != null)
+            if (DetectorSystem != null)
             {
                 RaycastHit[] hits = Physics.RaycastAll(DetectorSystem[i], Vector3.down, cellSize + cellHeightRayOverrite, ~LayerMask.GetMask("Player"), QueryTriggerInteraction.Ignore);
                 foreach (RaycastHit hitInfo in hits)
@@ -255,7 +255,7 @@ public class Grid_
                 for (int z = 0; z < gridArray.GetLength(2); z++)
                 {
                     GameObject debugObj = new GameObject($"DebugCell_ {x}, {y}, {z}");
-                    debugObj.transform.position = CellWorldPosition(x, y, z) + new Vector3(cellSize / 2, cellSize / 2, cellSize / 2);
+                    debugObj.transform.position = CellWorldPosition(x, y, z) /*+ new Vector3(cellSize / 2, cellSize / 2, cellSize / 2)*/;
                     debugObj.transform.parent = GeneratorObject.transform;
                     debugArray[x, y, z] = debugObj.AddComponent<Cell_Debug>();
                     debugArray[x, y, z].UpdateDebugInfo(gridArray[x, y, z]);

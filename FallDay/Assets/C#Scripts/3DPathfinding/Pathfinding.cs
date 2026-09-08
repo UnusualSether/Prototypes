@@ -12,7 +12,7 @@ public class Pathfinding
 
     private List<Cell_> NaborList;
 
-    private bool debug = false;
+    private bool debug = true;
 
     public Pathfinding(Grid_ grid)
     {
@@ -59,13 +59,13 @@ public class Pathfinding
         if (startCell == null || endCell == null)
         {
             // Invalid Path
-            Debug.LogError("nullCell Invalid Path");
+            if (debug) Debug.LogError("nullCell Invalid Path");
             return null;
         }
         if (startCell.walkable == false || endCell.walkable == false)
         {
             // Invalid Path
-            Debug.LogError($"InWalkable Invalid Path; StartCell {startCell.walkable} , EndCell {endCell.walkable}");
+            if (debug) Debug.LogError($"InWalkable Invalid Path; StartCell {startCell.walkable} , EndCell {endCell.walkable}");
             return null;
         }
 
@@ -186,6 +186,7 @@ public class Pathfinding
     }
     private List<Cell_> NaborSelectshift(List<Cell_> Nabors, Cell_ currentCell, int xpos, int ypos, int zpos)
     {
+        Cell_ toCheck;
         // This method is intended to filter out neighboring cells based on their relative positions (xpos, ypos, zpos)
         switch ((xpos, ypos, zpos))
         {
@@ -194,21 +195,24 @@ public class Pathfinding
                 break;
 
             case (-1, 0, 0): case (1, 0, 0): //right and left neighbors | x
-                if(currentCell.walkable == false) //Condition to remove the 9 cells in a 3x3 section around the current cell based on the specified position offsets (xpos, ypos, zpos)
+                toCheck = grid_.ReturnCell(currentCell.x + xpos, currentCell.y, currentCell.z);
+                if (toCheck != null && toCheck.walkable == false)
                 {
                     nineCellSectionRemover(Nabors, currentCell, 0, xpos);
                 }
                 break;
 
             case (0, -1, 0): case (0, 1, 0): //up and down neighbors | y
-                if (currentCell.walkable == false) //Condition to remove the 9 cells in a 3x3 section around the current cell based on the specified position offsets (xpos, ypos, zpos)
+                toCheck = grid_.ReturnCell(currentCell.x, currentCell.y + ypos, currentCell.z);
+                if (toCheck != null && toCheck.walkable == false)
                 {
                     nineCellSectionRemover(Nabors, currentCell, 1, ypos);
                 }
                 break;
 
             case (0, 0, -1): case (0, 0, 1): //front and back neighbors | z
-                if (currentCell.walkable == false) //Condition to remove the 9 cells in a 3x3 section around the current cell based on the specified position offsets (xpos, ypos, zpos)
+                toCheck = grid_.ReturnCell(currentCell.x, currentCell.y, currentCell.z + zpos);
+                if (toCheck != null && toCheck.walkable == false)
                 {
                     nineCellSectionRemover(Nabors, currentCell, 2, zpos);
                 }
@@ -217,7 +221,7 @@ public class Pathfinding
         return Nabors;
     }
 
-    // Removes the 9 cells in a 3x3 section around the current cell based on the specified position offsets (xpos, ypos, zpos)
+    // Removes the eges, within 9 cells in a 3x3 section around the current cell, based on the specified position offsets (xpos, ypos, zpos)
     private List<Cell_> nineCellSectionRemover(List<Cell_> Nabors, Cell_ currentCell, int switchSelect, int nVar) //switchSelect selects which axis to remove cells from (0 = x-axis, 1 = y-axis, 2 = z-axis), nVar is the offset for the selected axis
     {
         // Loop through the 3x3 section around the current cell
@@ -253,6 +257,8 @@ public class Pathfinding
             currentCell = currentCell.PreveousCell;
         }
         path.Reverse();
+        
+        if(debug){ DebugPathDysplay(path); }
         return path;
     }
     // Calculate the distance cost between two cells using Manhattan distance with diagonal movement
@@ -278,9 +284,28 @@ public class Pathfinding
 
     // Debugging method to print the contents of a list of cells to the console | Can Be Implemented in the future for debugging purposes
     private void DebugCell_List(List<Cell_> CellList){
-        for(int i = 0; i < CellList.Count; i++)
+        if (debug)
         {
-            Debug.Log($"Cell_ = {CellList[i]} CellNumber = {i}");
+            for (int i = 0; i < CellList.Count; i++)
+            {
+                Debug.Log($"Cell_ = {CellList[i]} CellNumber = {i}");
+            }
+        }
+    }
+    public void DebugPathDysplay(List<Cell_> path)
+    {
+        if (debug)
+        {
+            if (path != null)
+            {
+                for (int i = 0; i < path.Count; i++)
+                {
+                    if (i < path.Count -1) 
+                    { 
+                        Debug.DrawLine(grid_.CellWorldPosition(path[i].x, path[i].y, path[i].z), grid_.CellWorldPosition(path[i + 1].x, path[i + 1].y, path[i + 1].z), Color.blue, 70f);
+                    }
+                }
+            }
         }
     }
 }
