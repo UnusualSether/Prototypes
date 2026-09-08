@@ -12,7 +12,7 @@ public class MenuManager : MonoBehaviour
     public GameObject Weapons;
     public GameObject Difficulty;
     public GameObject Trinkets;
-   
+
     public void OnEnable()
     {
 
@@ -20,19 +20,7 @@ public class MenuManager : MonoBehaviour
 
         if (uiDocument != null)
         {
-            /*luiz
-            var root = GetComponent<UIDocument>().rootVisualElement;
-            var toggle = root.Q<Toggle>("trinket_toggle");
-            var card = root.Q<VisualElement>("trinket_view_element");
 
-            // aplica o estado inicial (caso o trinket já esteja equipado ao abrir a tela)
-            card.EnableInClassList("equipped", toggle.value);
-
-            toggle.RegisterValueChangedCallback(evt =>
-            {
-                card.EnableInClassList("equipped", evt.newValue);
-            });
-            luiz*/
             Button startbutton = uiDocument.rootVisualElement.Q<Button>("Play");
             Button configbutton = uiDocument.rootVisualElement.Q<Button>("Config");
             Button Devbutton = uiDocument.rootVisualElement.Q<Button>("Credits");
