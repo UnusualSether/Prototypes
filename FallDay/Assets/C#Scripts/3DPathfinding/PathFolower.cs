@@ -62,7 +62,15 @@ public class PathFolower : MonoBehaviour
             }
         }
     }
-
+    public void callerDestroy(Zombie zombie)
+    {
+        if (zombie == this.zombie)
+        Destroy(this.gameObject);
+    }
+    public void OnDestroy()
+    {
+        
+    }
 
     /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void TimeRamaning() // Used to get the time remaining for the zombie to reach the player (will be used for later)

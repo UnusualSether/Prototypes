@@ -1081,6 +1081,7 @@ MonoBehaviour:
   debugisOn: 1
   charTransform: {fileID: 1088469944}
   speed: 5
+  GridGenerator: {fileID: 1258179217}
   navMesh: {fileID: 1088469940}
   surface: {fileID: 0}
   wayPointList: []
@@ -1237,9 +1238,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87706a25d1e09c04dae4d53139d1c661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Grid_Generator
-  gridSize: {x: 20, y: 1, z: 20}
+  gridSize: {x: 10, y: 1, z: 10}
   gridCenterOffset: {x: 0, y: 0.5, z: 0}
-  cellSize: 0.2
+  cellSize: 2
   cellHeightOverrite: 7.45
   gameHandler: {fileID: 2043720488}
   player: {fileID: 1088469939}

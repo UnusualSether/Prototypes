@@ -24,7 +24,7 @@ public class Grid_Generator : MonoBehaviour
     public GameObject player;
 
     /// Enemys Refrence
-    private List<KeyValuePair<Zombie, GameObject>> Zombies3DwithInfo = new(); //Stores pairs of Zombie data and their corresponding 3D game objects for easy access and management>
+    private Dictionary<Zombie, GameObject> ThreeD_Zombie = new();//Stores pairs of Zombie data and their corresponding 3D game objects for easy access and management>
 
     public bool debug; // Debugging flag to enable or disable debug logs
 
@@ -36,30 +36,45 @@ public class Grid_Generator : MonoBehaviour
             if(debug) Debug.Log("Grid Size NotSetInpo: " + gridSize);
         }
         gameHandler.ZombieSpawned += generateEnemy;
-    }
-    void Start()
-    {
-        Vector3 posCorrection = new Vector3(-(cellSize * gridSize.x) / 2, -(cellSize * gridSize.y) /2, -(cellSize * gridSize.z) / 2);
+        gameHandler.ZombieKilled += zombieDeath;
+
+
+        // Genetates Grid with the specified size and cell size, centered around the GameObject's position with an optional offset
+        Vector3 posCorrection = new Vector3(-(cellSize * gridSize.x) / 2, -(cellSize * gridSize.y) / 2, -(cellSize * gridSize.z) / 2);
         Vector3 gridStartPos = this.gameObject.transform.position + posCorrection + gridCenterOffset; // Set the grid centered around the player position
         grid = new Grid_(gridSize, cellSize, cellHeightOverrite, gridStartPos, this.gameObject);
         grid.checkWalkableAll();
     }
+    private void OnDisable()
+    {
+        gameHandler.ZombieSpawned -= generateEnemy;
+    }
+    void Start()
+    {
 
+    }
     private void Update()
     {
-        grid.checkWalkableAll();
+        grid.DisplayGridOutline();
     }
-
+    public Grid_ GetGrid()
+    {
+        return grid;
+    }
     // Manage The 3DZombie In world
     public void generateEnemy(Zombie zombie) //Maybe this should be in a different script, but for now it is here
     {
         //Zombies3D.Add(Instantiate(zombie.enemyData.Zprefab, grid.CellWorldPosition((int)(gridSize.x / 2), (int)gridSize.y -1, (int)(gridSize.z) - 1), Quaternion.identity));
-        
-        Zombies3DwithInfo.Add(new KeyValuePair<Zombie, GameObject>(zombie, Instantiate(zombie.enemyData.Zprefab, grid.CellWorldPosition((int)(gridSize.x / 2), (int)gridSize.y - 1, (int)(gridSize.z) - 1), Quaternion.identity)));
-        
-        
-        Zombies3D[Zombies3D.Count - 1].GetComponent<PathFolower>().Zombie3dInfoReceve(zombie, grid, player);
-        Zombies3D[Zombies3D.Count - 1].GetComponent<PathFolower>().canWalk();
-    }
 
+        ThreeD_Zombie.Add(zombie, Instantiate(zombie.enemyData.Zprefab, grid.CellWorldPosition((int)(gridSize.x / 2), (int)gridSize.y - 1, (int)(gridSize.z) - 1), Quaternion.identity));
+
+        int i = ThreeD_Zombie.Count - 1;
+        ThreeD_Zombie[zombie].GetComponent<PathFolower>().Zombie3dInfoReceve(zombie, grid, player); // Pass Refrence
+        ThreeD_Zombie[zombie].GetComponent<PathFolower>().canWalk(); // Start Walk Coroutine
+    }
+    public void zombieDeath(Zombie zombie)
+    {
+        ThreeD_Zombie[zombie].GetComponent<PathFolower>().callerDestroy(zombie);
+        ThreeD_Zombie.Remove(zombie);
+    }
 }

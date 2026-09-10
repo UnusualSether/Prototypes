@@ -36,6 +36,8 @@ public class CharacterMove : MonoBehaviour
 
     public float speed = 0.2f;
 
+    public GameObject GridGenerator;
+    private Grid_ grid;
     public NavMeshAgent navMesh;
 
     public NavMeshSurface surface;
@@ -44,6 +46,7 @@ public class CharacterMove : MonoBehaviour
     {
         charTransform = this.gameObject.GetComponent<Transform>();
         navMesh = gameObject.GetComponent<NavMeshAgent>();
+        grid = GridGenerator.GetComponent<Grid_Generator>().GetGrid();
     }
 
     //Subscribe the player move to next waypoint function to whenevr the gamehandler deetcts that we're suppose to be on rails/
@@ -92,8 +95,8 @@ public class CharacterMove : MonoBehaviour
         }
 
 
-        surface.BuildNavMesh();
-
+        //surface.BuildNavMesh();
+        grid.checkWalkableAll();
 
     }
 

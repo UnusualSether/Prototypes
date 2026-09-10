@@ -47,7 +47,7 @@ public partial class GameHandler : MonoBehaviour
     public event Action<Zombie> ZombieSpawned;
     public event Action<Zombie> ZombieDamaged;
     public event Action<Zombie> zPhaseChange;
-    public event Action ZombieKilled;
+    public event Action<Zombie> ZombieKilled;
     //public event Action<Zombie> ZombieIsClose;
 
 
@@ -475,7 +475,7 @@ public partial class GameHandler : MonoBehaviour
 
             preferenceZombie = nulledPreference;
 
-            ZombieKilled?.Invoke();
+            ZombieKilled?.Invoke(zombieToKill);
 
             if (HasPlayerCompletedTheEncounter())
             {
@@ -487,7 +487,7 @@ public partial class GameHandler : MonoBehaviour
             zombieToKill.hp = 0;
 
             Debug.Log($"Zombie with id {zombieToKill.id} took fatal damage and now has {zombieToKill.hp} hp.");
-            ZombieKilled?.Invoke();
+            ZombieKilled?.Invoke(zombieToKill);
             SelectedZombie = ZombieList.First().id;
         }
     }

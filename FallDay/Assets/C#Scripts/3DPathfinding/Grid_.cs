@@ -17,6 +17,9 @@ public class Grid_
     private bool debug = true;
     private GameObject GeneratorObject;
 
+
+
+    //// !!!WARNING!!! NOT ALL SETUPS ARE FUNCTIONAL////
     //////////////////////////////////////////////////////////////////////////////////////////////////////
     ///Driffrent ways to start up the grid, with or without debug object, with Vector3 or int values for width, hight, and length
 
@@ -121,6 +124,8 @@ public class Grid_
 
     public void checkWalkableAll() // Loops For Cells verifying if they are walkable or not, and sets the walkable value accordingly (can be used to update the walkable status of all cells after grid generation)
     {
+        originPosition.x = GeneratorObject.transform.position.x;
+        originPosition.z = GeneratorObject.transform.position.z;
         for (int y = 0; y < gridArray.GetLength(1); y++)
         {
             for (int z = 0; z < gridArray.GetLength(2); z++)
@@ -177,7 +182,7 @@ public class Grid_
                     {
                         if(hitInfo.collider.gameObject.tag == "obstacle")
                         {
-                            if (debug) { Debug.DrawRay(DetectorSystem[i], Vector3.down * (cellSize + cellHeightRayOverrite), Color.red, 1f); }
+                            if (debug) { Debug.DrawRay(DetectorSystem[i], Vector3.down * (cellSize + cellHeightRayOverrite), Color.red, 5f); }
                             if (debug) { Debug.Log($"Cell at {xpos}, {ypos}, {zpos} is not walkable due to obstacle: {hitInfo.collider.gameObject.name} - RayTrigger {i}"); }
                             isWalkable = false;
                         }
@@ -245,6 +250,10 @@ public class Grid_
             changed = true;
         }
     }
+
+    /// // DebugFunctions
+    /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// </summary>
     public void GenerateDebugObjects()
     {
         debugArray = new Cell_Debug[width, hight, lengh];
@@ -263,5 +272,17 @@ public class Grid_
             }
         }
     }
+    public void DisplayGridOutline()
+    {
+        Vector3 pos1 = CellWorldPosition(0, 0, 0);
+        Vector3 pos2 = CellWorldPosition(width, 0, 0);
+        Vector3 pos3 = CellWorldPosition(0, 0, lengh);
+        Vector3 pos4 = CellWorldPosition(width, 0, lengh);
+        Debug.DrawLine(pos1, pos2, Color.blue);
+        Debug.DrawLine(pos1, pos3, Color.blue);
+        Debug.DrawLine(pos2, pos4, Color.blue);
+        Debug.DrawLine(pos3, pos4, Color.blue);
+    }
+
 
 }
