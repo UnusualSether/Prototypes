@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VampiricTrinket
   _trinket_name: Vampire Bites
   _trinket_description: '"I woke up with a few mosquito bites on my neck this morning."'
-  _trinket_sprite: {fileID: 0}
+  _trinket_sprite: {fileID: -337647674071963842, guid: 161cbc1b880c62c40b73156ce4187903, type: 3}
   health_gain: 1

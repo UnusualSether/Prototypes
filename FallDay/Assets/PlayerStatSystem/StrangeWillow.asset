@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ExplorersTrinket
   _trinket_name: Willow
   _trinket_description: '"I wish for a million dollars."'
-  _trinket_sprite: {fileID: 0}
+  _trinket_sprite: {fileID: -2093404852, guid: 89ccc5b3b9bcd0b40bd33baf05908f69, type: 3}
   soft_currency_gained: 3

@@ -124,6 +124,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6506213751061247739, guid: 53a90a212d90c324e9ace990e047a2b8, type: 3}
   m_PrefabInstance: {fileID: 1068143690632273190}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &355697580 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2417624218544236814, guid: 53a90a212d90c324e9ace990e047a2b8, type: 3}
+  m_PrefabInstance: {fileID: 1068143690632273190}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355697577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
 --- !u!1001 &745397144
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -413,6 +424,7 @@ GameObject:
   - component: {fileID: 1684983265}
   - component: {fileID: 1684983269}
   - component: {fileID: 1684983268}
+  - component: {fileID: 1684983270}
   m_Layer: 0
   m_Name: SystemManager
   m_TagString: Untagged
@@ -742,11 +754,41 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1684983270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684983264}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2a65a1c89c3a0647a5667cbad9c2575, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MainMenuSystem
+  mainMenuDocument: {fileID: 1802546157}
+  configDocument: {fileID: 355697580}
+  trinketDocument: {fileID: 957689636}
+  Menu: {fileID: 1802546155}
+  Config: {fileID: 355697577}
+  Trinkets: {fileID: 957689634}
+  gameSceneName: PresentableText/PresentableTex
 --- !u!1 &1802546155 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4004746050545178163, guid: 5b4fa346017188043b9aacad224ca14c, type: 3}
   m_PrefabInstance: {fileID: 8243617084101874134}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1802546157 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6809619032617853123, guid: 5b4fa346017188043b9aacad224ca14c, type: 3}
+  m_PrefabInstance: {fileID: 8243617084101874134}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1802546155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
 --- !u!1 &1807505139
 GameObject:
   m_ObjectHideFlags: 0
@@ -1179,7 +1221,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 740849265976129215, guid: 3b22b77efabf553468e8a1c5d10d0ed5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -1202,14 +1245,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Menu
       objectReference: {fileID: 0}
-    - target: {fileID: 2240169352333851048, guid: 5b4fa346017188043b9aacad224ca14c, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4004746050545178163, guid: 5b4fa346017188043b9aacad224ca14c, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4351865879563765256, guid: 5b4fa346017188043b9aacad224ca14c, type: 3}
       propertyPath: Devs
       value: 
@@ -1222,10 +1257,6 @@ PrefabInstance:
       propertyPath: Trinkets
       value: 
       objectReference: {fileID: 957689634}
-    - target: {fileID: 6809619032617853123, guid: 5b4fa346017188043b9aacad224ca14c, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8759473493732371773, guid: 5b4fa346017188043b9aacad224ca14c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 801.97455
@@ -1278,8 +1309,8 @@ SceneRoots:
   - {fileID: 2115632395}
   - {fileID: 1807505142}
   - {fileID: 1068143690632273190}
-  - {fileID: 745397144}
   - {fileID: 8243617084101874134}
+  - {fileID: 745397144}
   - {fileID: 5992229257428099474}
   - {fileID: 1684983267}
   - {fileID: 765434355}

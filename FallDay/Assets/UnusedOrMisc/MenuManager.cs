@@ -21,33 +21,22 @@ public class MenuManager : MonoBehaviour
 
         if (uiDocument != null)
         {
-            /*luiz
-            var root = GetComponent<UIDocument>().rootVisualElement;
-            var toggle = root.Q<Toggle>("trinket_toggle");
-            var card = root.Q<VisualElement>("trinket_view_element");
-
-            // aplica o estado inicial (caso o trinket já esteja equipado ao abrir a tela)
-            card.EnableInClassList("equipped", toggle.value);
-
-            toggle.RegisterValueChangedCallback(evt =>
-            {
-                card.EnableInClassList("equipped", evt.newValue);
-            });
-            luiz*/
+           
             Button startbutton = uiDocument.rootVisualElement.Q<Button>("Play");
             Button configbutton = uiDocument.rootVisualElement.Q<Button>("Config");
             Button Devbutton = uiDocument.rootVisualElement.Q<Button>("Credits");
-            Button returnbutton = uiDocument.rootVisualElement.Q<Button>("Return");
+            Button returnbutton = uiDocument.rootVisualElement.Q<Button>("ReturnLvl");
             Button level1button = uiDocument.rootVisualElement.Q<Button>("level1");
             Button level2button = uiDocument.rootVisualElement.Q<Button>("level2");
             ////////////////////////////////////////////////////////////////////////
+            //Pagina do level
             Button begin = uiDocument.rootVisualElement.Q<Button>("StartGame");
-            Button returntomenu = uiDocument.rootVisualElement.Q<Button>("ReturnMenu");
+            Button returntomenu = uiDocument.rootVisualElement.Q<Button>("ReturnLvl");
             ////////////////////////////////////////////////////////////////////////
             Button diffchoice = uiDocument.rootVisualElement.Q<Button>("ToDifficulty");
             ///////////////////////////////////////////////////////////////////////////////////////
-            var to_level_select = uiDocument.rootVisualElement.Q<Button>("ToLevelSelectButton");
-            var back_to_menu = uiDocument.rootVisualElement.Q<Button>("Menu");
+            var to_level_select = uiDocument.rootVisualElement.Q<Button>("ToDifficulty");
+            var back_to_menu = uiDocument.rootVisualElement.Q<Button>("Return");
 
 
             if (to_level_select != null)

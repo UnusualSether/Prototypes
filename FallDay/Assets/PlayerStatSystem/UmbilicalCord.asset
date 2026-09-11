@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthAddingTrinket
   _trinket_name: Umbilical Cord
   _trinket_description: '"It refuses to let go of this world."'
-  _trinket_sprite: {fileID: 0}
+  _trinket_sprite: {fileID: 21300000, guid: 276586e5fa8986e43907ba6d787a18a0, type: 3}
   health_boost: 5
