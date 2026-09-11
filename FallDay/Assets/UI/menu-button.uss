@@ -125,10 +125,6 @@ Slider #unity-dragger {
     translate: 0 -101%;
 }
 
-
-
-
-
 .close_menu_off {
     font-size: 90%;
     translate: -110% 0%;
@@ -164,4 +160,22 @@ Slider #unity-dragger {
     translate: 195% 0%;
     transition-timing-function: linear;
     transition-duration: 1s;
+}
+
+.select_trinked_off {
+    flex-grow: 1;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column-reverse;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition-timing-function: linear;
+    transition-duration: 2s;
+    translate: 100% 0%;
+}
+
+.select_triked_on {
+    translate: 0% 0%;
+    transition-duration: 0.2s;
 }

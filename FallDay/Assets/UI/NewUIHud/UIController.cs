@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UIElements;
+using System.Runtime.InteropServices.WindowsRuntime;
 public class UIController : MonoBehaviour
 {
 
@@ -20,6 +21,10 @@ public class UIController : MonoBehaviour
 
     private Button _closeMenu;
 
+    //triked
+    private VisualElement _trikedWindow;
+
+    private Button _tReturn;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -41,14 +46,21 @@ public class UIController : MonoBehaviour
         /*Start set*/
 
         _start = root.Q<Button>("Play");
+
+        //Trinked set widoww
+        _trikedWindow = root.Q<VisualElement>("trinked_window");
+
+        _tReturn = root.Q<Button>("TReturn");
+
+
         ///
         /////////////
         ///
 
         //set botão off
-        
+
         _scrim.style.display = DisplayStyle.None;
-        
+
 
         ///
         //////////////////
@@ -56,7 +68,25 @@ public class UIController : MonoBehaviour
         //configuração de botão
         _openConfig.RegisterCallback<ClickEvent>(OnOpenButtonClicker);
         _closeMenu.RegisterCallback<ClickEvent>(OnCloseButtonClicker);
+        _start.RegisterCallback<ClickEvent>(OnTrinkedButtonClicker);
+        _tReturn.RegisterCallback<ClickEvent>(Return);
     }
+
+
+    private void Return(ClickEvent evnt)
+    {
+        _trikedWindow.RemoveFromClassList("select_triked_on");
+    }
+
+
+    /*Set trinked window*/
+
+    private void OnTrinkedButtonClicker(ClickEvent evt)
+    {
+        _trikedWindow.AddToClassList("select_triked_on");
+    }
+
+    
 
     private void OnOpenButtonClicker(ClickEvent evt)
     {
