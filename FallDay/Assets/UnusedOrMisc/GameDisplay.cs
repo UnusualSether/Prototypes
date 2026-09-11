@@ -14,7 +14,7 @@ public partial class GameDisplay : MonoBehaviour
 
     public GameHandler handler;
 
-
+    public Label damage_number_label;
 
     public List<ZombieDisplay> zombieDisplayList = new List<ZombieDisplay>();
 
@@ -37,6 +37,8 @@ public partial class GameDisplay : MonoBehaviour
 
         public Zombie displayedZombie;
 
+        public Label zombie_damage_display_label;
+
         public VisualElement displayElement;
 
         public Coroutine activeAnimation;
@@ -55,6 +57,8 @@ public partial class GameDisplay : MonoBehaviour
 
         handler.ZombieKilled += RemoveCrosshair;
 
+        handler.ZombieHurt += ApplyZombieDamageNumber;
+
         handler.BulletSelected += ShakeBullet;
 
         handler.BulletSelected += PlayerClickSound;
@@ -66,6 +70,14 @@ public partial class GameDisplay : MonoBehaviour
         var bulletDisplaysFound = ui.Query<VisualElement>().Where(e => e.name.StartsWith("BSpot")).ToList();
 
         //Debug.Log($"{bulletDisplaysFound.Count} bullet displays found");
+
+        //Find the damage number display
+
+        damage_number_label = uiDoc.rootVisualElement.Query<Label>("DamageNumberDisplay");
+
+       
+
+        
 
         bulletDisplay = bulletDisplaysFound.ToArray();
 
@@ -86,6 +98,8 @@ public partial class GameDisplay : MonoBehaviour
 
             int nextDisplayNumber = zombieDisplayList.Count;
 
+           
+
             //Debug.Log(zombieDisplayList.Count);
 
             display.RegisterCallback<PointerEnterEvent>(SelectZombie);
@@ -96,7 +110,11 @@ public partial class GameDisplay : MonoBehaviour
 
                 displayId = zombieDisplayList.Count
 
-                , displayElement = display
+                , displayElement = display,
+
+                zombie_damage_display_label = display.Q<Label>("ZombieDamageDisplay")
+
+               
 
             }
 
@@ -133,6 +151,9 @@ public partial class GameDisplay : MonoBehaviour
     //Is here to detect changes in the other scripts.
     private void Update()
     {
+
+        HandleDamageNumberDisplay();
+
         //Handle Bullet Changes
         if (SelectableBulletsHaveChanged() == true)
         {
@@ -148,6 +169,59 @@ public partial class GameDisplay : MonoBehaviour
         }
     }
 
+    public void ApplyZombieDamageNumber(int total_damage, Zombie damaged_zombie)
+    {
+        var zombie_display = occupiedZombieDisplay.FirstOrDefault(x => x.displayedZombie == damaged_zombie);
+
+        if (zombie_display == null)
+        {
+            Debug.Log("Couldn't find zombie display!");
+        }
+
+        zombie_display.zombie_damage_display_label.text = total_damage.ToString();
+
+        if (zombie_display.zombie_damage_display_label == null)
+        {
+            Debug.Log("Couldn't find label!");
+        }
+
+        Debug.Log($"Applied {total_damage} to zombie with id nmb {damaged_zombie.id} ");
+
+        HandleNumberDisappear(zombie_display.zombie_damage_display_label);
+
+    }
+
+    public void HandleNumberDisappear(Label label_to_disappear)
+    {
+        ZombieDamageNumberDuration(5.0f,label_to_disappear);
+
+        
+    }
+
+    public IEnumerable ZombieDamageNumberDuration(float duration, Label label_to_disappear)
+    {
+
+        yield return new WaitForSeconds(duration);
+
+        label_to_disappear.text = "";
+
+
+    }
+    public void HandleDamageNumberDisplay()
+    {
+        if (handler.current_bullet_damage == 0)
+        {
+            damage_number_label.text = "";
+        }
+
+        else
+        {
+            damage_number_label.text = handler.current_bullet_damage.ToString();
+        }
+        
+
+        
+    }
 
     #region Bullet Spot Handling
     private bool SelectableBulletsHaveChanged()
