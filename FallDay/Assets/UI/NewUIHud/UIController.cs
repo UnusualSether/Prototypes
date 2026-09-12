@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UIElements;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Unity.VisualScripting;
 public class UIController : MonoBehaviour
 {
 
@@ -70,12 +71,17 @@ public class UIController : MonoBehaviour
         _closeMenu.RegisterCallback<ClickEvent>(OnCloseButtonClicker);
         _start.RegisterCallback<ClickEvent>(OnTrinkedButtonClicker);
         _tReturn.RegisterCallback<ClickEvent>(Return);
+
+        //teste de transição
+        _trikedWindow.RegisterCallback<TransitionEndEvent>(OnTransicaoFinalizada);
+
     }
 
 
     private void Return(ClickEvent evnt)
     {
-        _trikedWindow.RemoveFromClassList("select_triked_on");
+        _trikedWindow.RemoveFromClassList("trinked_select_on");
+        _trikedWindow.AddToClassList("trinked_select_off");
     }
 
 
@@ -83,7 +89,17 @@ public class UIController : MonoBehaviour
 
     private void OnTrinkedButtonClicker(ClickEvent evt)
     {
-        _trikedWindow.AddToClassList("select_triked_on");
+        _trikedWindow.style.display = DisplayStyle.Flex;
+
+
+        //teste
+        _trikedWindow.schedule.Execute(() =>
+        {
+
+            _trikedWindow.RemoveFromClassList("trinked_select_off");
+            _trikedWindow.AddToClassList("trinked_select_on");
+        });
+
     }
 
     
@@ -110,8 +126,18 @@ public class UIController : MonoBehaviour
         _closeMenu.RemoveFromClassList("close_menu_on");
     }
 
-    // Update is called once per frame
-    void Update()
+
+
+    private void OnTransicaoFinalizada(TransitionEndEvent evt)
+    {
+        // Se a animação terminou e o elemento está com a classe de oculto, remove do layout
+        if (_trikedWindow.ClassListContains("trinked_select_off"))
+        {
+            _trikedWindow.style.display = DisplayStyle.None;
+        }
+    }
+        // Update is called once per frame
+        void Update()
     {
         
     }
