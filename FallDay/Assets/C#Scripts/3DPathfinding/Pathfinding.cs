@@ -302,7 +302,7 @@ public class Pathfinding
                 {
                     if (i < path.Count -1) 
                     { 
-                        Debug.DrawLine(grid_.CellWorldPosition(path[i].x, path[i].y, path[i].z), grid_.CellWorldPosition(path[i + 1].x, path[i + 1].y, path[i + 1].z), Color.blue, 70f);
+                        Debug.DrawLine(grid_.CellWorldPosition(path[i].x, path[i].y, path[i].z), grid_.CellWorldPosition(path[i + 1].x, path[i + 1].y, path[i + 1].z), Color.blue, 30f);
                     }
                 }
             }

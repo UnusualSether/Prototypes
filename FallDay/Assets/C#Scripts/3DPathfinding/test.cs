@@ -21,7 +21,7 @@ public class test : MonoBehaviour
     }
     private void Update()
     {
-        grid.checkWalkableAll();
+        //grid.checkWalkableAll();
     }
     public void SetStartNode(InputAction.CallbackContext context)
     {

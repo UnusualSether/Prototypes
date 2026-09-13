@@ -23,45 +23,70 @@ public class Grid_Generator : MonoBehaviour
     public GameHandler gameHandler;
     public GameObject player;
 
-    /// Enemys Refrence
+    /// 3D Enemys Refrence
     private Dictionary<Zombie, GameObject> ThreeD_Zombie = new();//Stores pairs of Zombie data and their corresponding 3D game objects for easy access and management>
 
+    ///////////////////////////////////////////////////////////////////////////
     public bool debug; // Debugging flag to enable or disable debug logs
+    ///////////////////////////////////////////////////////////////////////////
 
-    void Awake()
+    ///////////////////////////////////////////////////////////////////////////
+    /// ------------------ Unity Lifecycle Methods -----------------
+    ///////////////////////////////////////////////////////////////////////////
+    void Awake()// Used to initialize the grid and subscribe to events from the GameHandler
     {
-        if (gridSize == null) 
-        { 
-            gridSize = new Vector3(10, 1, 10); 
-            if(debug) Debug.Log("Grid Size NotSetInpo: " + gridSize);
+        if (gridSize == Vector3.zero) 
+        {  
+            if(debug) Debug.LogError("Grid Size NotSetInpo: " + gridSize);
         }
-        gameHandler.ZombieSpawned += generateEnemy;
-        gameHandler.ZombieKilled += zombieDeath;
+        if (gameHandler != null)
+        {
+            gameHandler.ZombieSpawned += generateEnemy;
+            gameHandler.ZombieKilled += zombieDeath;
+        }
+        else { 
+            if(debug) Debug.LogError("GameHandler NotSetInpo: " + gameHandler);
+        }
 
-
-        // Genetates Grid with the specified size and cell size, centered around the GameObject's position with an optional offset
-        Vector3 posCorrection = new Vector3(-(cellSize * gridSize.x) / 2, -(cellSize * gridSize.y) / 2, -(cellSize * gridSize.z) / 2);
-        Vector3 gridStartPos = this.gameObject.transform.position + posCorrection + gridCenterOffset; // Set the grid centered around the player position
-        grid = new Grid_(gridSize, cellSize, cellHeightOverrite, gridStartPos, this.gameObject);
-        grid.checkWalkableAll();
+        Vector3 initialOrigin = GetCenteredOriginPosition();
+        grid = new Grid_(gridSize, cellSize, cellHeightOverrite, initialOrigin, this.gameObject);
+        UpdateGrid();
     }
-    private void OnDisable()
+    private void OnDisable() // To avoid memory leaks, unsubscribe from the event when the object is disabled or destroyed
     {
         gameHandler.ZombieSpawned -= generateEnemy;
+        gameHandler.ZombieKilled -= zombieDeath;
     }
-    void Start()
-    {
+    /////////////////////////////////////////////////////////////////////
+    // ----------------- Grid methods -----------------
+    /////////////////////////////////////////////////////////////////////
 
-    }
-    private void Update()
+    public void UpdateGrid() // Update the grid's walkable status for all cells
     {
-        grid.DisplayGridOutline();
+        CenterGridOnSelf();
     }
-    public Grid_ GetGrid()
+    public void CenterGridOnSelf()
     {
-        return grid;
+        if (grid == null) return;
+
+        Vector3 newOrigin = GetCenteredOriginPosition();
+        grid.UpdateGrid(newOrigin);
     }
-    // Manage The 3DZombie In world
+    public Vector3 GetCenteredOriginPosition()
+    {
+        // Metade do tamanho total do grid em X e Z usando apenas cellSize
+        float halfWidth = ((gridSize.x * cellSize) * 0.5f);
+        float halfDepth = ((gridSize.z * cellSize) * 0.5f);
+
+
+        // Adiciona metade da extensão em X e Z para centralizar; mantém o Y no nível do objeto
+        Vector3 offsetToOrigin = new Vector3(halfWidth, -0.1f, halfDepth);
+
+        return transform.position - offsetToOrigin;
+    }
+    /////////////////////////////////////////////////////////////////////
+    // ----------------- Manage The 3DZombie In world -----------------
+    /////////////////////////////////////////////////////////////////////
     public void generateEnemy(Zombie zombie) //Maybe this should be in a different script, but for now it is here
     {
         //Zombies3D.Add(Instantiate(zombie.enemyData.Zprefab, grid.CellWorldPosition((int)(gridSize.x / 2), (int)gridSize.y -1, (int)(gridSize.z) - 1), Quaternion.identity));
