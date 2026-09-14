@@ -897,6 +897,7 @@ GameObject:
   - component: {fileID: 974282076}
   - component: {fileID: 974282077}
   - component: {fileID: 974282078}
+  - component: {fileID: 974282079}
   m_Layer: 0
   m_Name: PauseButton
   m_TagString: Untagged
@@ -954,6 +955,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60bac88d75bc8754aaebebb1d46a7ec0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIGameController
+--- !u!114 &974282079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974282075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 070bc1638138c1141ab8ba7f058c4682, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VolumeScript
+  volumeControl: {fileID: 24100000, guid: a99669484a911c741872814f5a57f88a, type: 2}
+  UIDocument: {fileID: 974282077}
 --- !u!1 &1088469939
 GameObject:
   m_ObjectHideFlags: 0

@@ -76,8 +76,14 @@ public class UIGameController : MonoBehaviour
         _quit.RegisterCallback<ClickEvent>(QuitGame);
 
 
+        //PauseSetting
+        _setting.RegisterCallback<ClickEvent>(OnSettingButtonClicker);
+        _returnPause.RegisterCallback<ClickEvent>(ReturnPause);
+
+
         // Checagem de fim de transição
         _pausePanel.RegisterCallback<TransitionEndEvent>(OnTransicaoFinalizada);
+        _screenSetting.RegisterCallback<TransitionEndEvent>(OnTransicaoFinalizada);
 
     }
     #endregion
@@ -90,7 +96,15 @@ public class UIGameController : MonoBehaviour
         if (_pausePanel.ClassListContains("pause_panel_off"))
         {
             _pausePanel.style.display = DisplayStyle.None;
-        }   
+        }
+        if (_screenButton.ClassListContains("screen_button_off"))
+        {
+            _screenButton.style.display = DisplayStyle.None;    
+        }
+        if (_screenSetting.ClassListContains("screen_setting_off"))
+        {
+            _screenSetting.style.display = DisplayStyle.None;   
+        }
     }
     #endregion
 
@@ -122,6 +136,46 @@ public class UIGameController : MonoBehaviour
     #endregion
 
 
+    #region Setting menu
+    private void OnSettingButtonClicker(ClickEvent evt)
+    {
+        _screenSetting.style.display = DisplayStyle.Flex;
+        
+
+        _screenSetting.schedule.Execute(() =>
+        {
+            _screenSetting.RemoveFromClassList("screen_setting_off");
+            _screenSetting.AddToClassList("screen_setting_on");
+
+            _screenButton.AddToClassList("screen_button_off");
+            _screenButton.RemoveFromClassList("screen_button_on");
+        });
+        
+
+    }
+
+    // Dispara a animação de saída da janela pause 
+    private void ReturnPause(ClickEvent evnt)
+    {
+        _screenButton.style.display = DisplayStyle.Flex;
+        _screenButton.schedule.Execute(() =>
+         {
+             _screenSetting.RemoveFromClassList("screen_setting_on");
+             _screenSetting.AddToClassList("screen_setting_off");
+
+             _screenButton.AddToClassList("screen_button_on");
+             _screenButton.RemoveFromClassList("screen_button_off");
+         });
+
+    }
+#endregion
+
+
+
+
+
+
+    //sair do jogo
     private void QuitGame(ClickEvent evt)
     {
         Time.timeScale = 1;
