@@ -185,25 +185,32 @@ public partial class GameDisplay : MonoBehaviour
             Debug.Log("Couldn't find label!");
         }
 
+        ShakeLabel(zombie_display.zombie_damage_display_label);
+
         Debug.Log($"Applied {total_damage} to zombie with id nmb {damaged_zombie.id} ");
 
         HandleNumberDisappear(zombie_display.zombie_damage_display_label);
 
     }
 
+    public void ResetDamageNumberValue(Label label)
+    {
+        label.text = "";
+    }
+
     public void HandleNumberDisappear(Label label_to_disappear)
     {
-        ZombieDamageNumberDuration(5.0f,label_to_disappear);
+        StartCoroutine(ZombieDamageNumberDuration(2.5f,label_to_disappear));
 
         
     }
 
-    public IEnumerable ZombieDamageNumberDuration(float duration, Label label_to_disappear)
+    public IEnumerator ZombieDamageNumberDuration(float duration, Label label_to_disappear)
     {
 
         yield return new WaitForSeconds(duration);
 
-        label_to_disappear.text = "";
+        ResetDamageNumberValue(label_to_disappear);
 
 
     }
