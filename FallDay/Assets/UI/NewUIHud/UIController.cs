@@ -1,9 +1,10 @@
-using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.UIElements;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 public class UIController : MonoBehaviour
 {
 
@@ -27,6 +28,16 @@ public class UIController : MonoBehaviour
 
     private Button _tReturn;
 
+    private Button _openlevel;
+
+    //level
+    private VisualElement _levelWindow;
+
+    private Button _lReturn;
+    //setlevelstart
+
+    private Button _openGame;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -48,11 +59,21 @@ public class UIController : MonoBehaviour
 
         _start = root.Q<Button>("Play");
 
-        //Trinked set widoww
+        //Trinked set window
         _trikedWindow = root.Q<VisualElement>("trinked_window");
 
         _tReturn = root.Q<Button>("TReturn");
 
+        //Level set window
+        _openlevel = root.Q<Button>("Difficulty_btn");
+
+        _levelWindow = root.Q<VisualElement>("level_window");
+
+        _lReturn = root.Q<Button>("return_to_trinked");
+
+        //starGamelevel add psoteriro mente metodo de multilevel
+
+        _openGame = root.Q<Button>("level1");
 
         ///
         /////////////
@@ -69,21 +90,34 @@ public class UIController : MonoBehaviour
         //configuração de botão
         _openConfig.RegisterCallback<ClickEvent>(OnOpenButtonClicker);
         _closeMenu.RegisterCallback<ClickEvent>(OnCloseButtonClicker);
+        //config trinked window
         _start.RegisterCallback<ClickEvent>(OnTrinkedButtonClicker);
         _tReturn.RegisterCallback<ClickEvent>(Return);
+        //config level window
+        _openlevel.RegisterCallback<ClickEvent>(OnLevelButtonClicker);
+        _lReturn.RegisterCallback<ClickEvent>(LevelReturn);
 
-        //teste de transição
+
+        //return e open trinked transição check
         _trikedWindow.RegisterCallback<TransitionEndEvent>(OnTransicaoFinalizada);
+        //return e open level transição check
+        _levelWindow.RegisterCallback<TransitionEndEvent>(OnTransicaoFinalizada);
+
+
+
+        ///
+        //Game Start
+        _openGame.RegisterCallback<ClickEvent>(StarGame);
 
     }
 
+    //return e open trinked
 
     private void Return(ClickEvent evnt)
     {
         _trikedWindow.RemoveFromClassList("trinked_select_on");
         _trikedWindow.AddToClassList("trinked_select_off");
     }
-
 
     /*Set trinked window*/
 
@@ -101,8 +135,35 @@ public class UIController : MonoBehaviour
         });
 
     }
+    //
 
-    
+
+    //return e open level
+
+    private void LevelReturn(ClickEvent evnt)
+    {
+        _levelWindow.RemoveFromClassList("level_select_on");
+        _levelWindow.AddToClassList("level_select_off");
+    }
+
+
+    /*Set level window*/
+
+    private void OnLevelButtonClicker(ClickEvent evt)
+    {
+        _levelWindow.style.display = DisplayStyle.Flex;
+
+
+        //teste
+        _levelWindow.schedule.Execute(() =>
+        {
+
+            _levelWindow.RemoveFromClassList("level_select_off");
+            _levelWindow.AddToClassList("level_select_on");
+        });
+
+    }
+
 
     private void OnOpenButtonClicker(ClickEvent evt)
     {
@@ -135,6 +196,19 @@ public class UIController : MonoBehaviour
         {
             _trikedWindow.style.display = DisplayStyle.None;
         }
+
+        if (_levelWindow.ClassListContains("level_select_off"))
+        {
+            _levelWindow.style.display = DisplayStyle.None;
+        }
+
+
+
+    }
+
+    private void StarGame(ClickEvent evt)
+    {
+        SceneManager.LoadScene("PresentableText/PresentableTex");
     }
         // Update is called once per frame
         void Update()
