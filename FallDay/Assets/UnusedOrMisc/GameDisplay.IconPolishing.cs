@@ -3,6 +3,8 @@ using UnityEngine.UIElements;
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.Timeline;
+using UnityEngine.Rendering;
+using System;
 
 public partial class GameDisplay
 {
@@ -27,7 +29,11 @@ public partial class GameDisplay
     float zombieShakeDuration = 0.5f;
     [SerializeField]
     float zombieShakeMagnitude = 0.5f;
-
+    [SerializeField]
+    float labelShakeDuration = 2f;
+    [SerializeField]
+    float labelShakeMagnitude = 2f;
+    
     
     
 
@@ -49,6 +55,19 @@ public partial class GameDisplay
             StartCoroutine(ShakeElement(elementToShake, bulletElementShakeDuration, bulletElementShakeMagnitude));
 
 
+    }
+
+    void ShakeLabel(Label label)
+    {
+        if (label == null)
+        {
+            return;
+        }
+
+        else
+        {
+            StartCoroutine(ShakeElement(label, labelShakeDuration, labelShakeMagnitude));
+        }
     }
 
     void ShakeZombie(VisualElement elementToShake)
@@ -83,8 +102,8 @@ public partial class GameDisplay
             float progress = elapsed / duration;
             float currentMagnitude = magnitude * (1f - progress);
 
-            float randomX = Random.Range(-currentMagnitude, currentMagnitude);
-            float randomY = Random.Range(-currentMagnitude, currentMagnitude);
+            float randomX = UnityEngine.Random.Range(-currentMagnitude, currentMagnitude);
+            float randomY = UnityEngine.Random.Range(-currentMagnitude, currentMagnitude);
 
             elementToShake.style.translate = new StyleTranslate(new Translate(randomX, randomY));
 
@@ -103,9 +122,9 @@ public partial class GameDisplay
         while (elapsed < duration)
         {
             // Random offset within magnitude range
-            float randomX = Random.Range(-magnitude, magnitude);
-            float randomY = Random.Range(-magnitude, magnitude);
-            float randomZ = Random.Range(-magnitude, magnitude);
+            float randomX = UnityEngine.Random.Range(-magnitude, magnitude);
+            float randomY = UnityEngine.Random.Range(-magnitude, magnitude);
+            float randomZ = UnityEngine.Random.Range(-magnitude, magnitude);
 
             // Apply shake offset
             camera.transform.localPosition = originalPosition + new Vector3(randomX, randomY, randomZ);

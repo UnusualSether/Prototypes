@@ -4,8 +4,8 @@
     margin-bottom: 4px;
     margin-left: 4px;
     background-color: rgba(0, 0, 0, 0.8);
-    width: 15%;
-    height: 15%;
+    width: 80px;
+    height: 80px;
     border-top-left-radius: 60px;
     border-top-right-radius: 60px;
     border-bottom-right-radius: 60px;
@@ -129,11 +129,12 @@
     background-color: rgba(255, 255, 255, 0);
 }
 
-
-
-.btnProp {
-    width: 15%;
-    height: 15%;
-    background-color: rgba(97, 97, 97, 0);
-    flex-direction: column;
+.zombieDamageDisplay {
+    --damageNumberColor: rgb(255, 0, 0);
+    position: absolute;
+    top: -16px;
+    left: 0;
+    width: 39px;
+    color: rgb(255, 0, 0);
+    font-size: 81px;
 }
