@@ -60,7 +60,7 @@ Slider #unity-dragger {
     flex-direction: row;
     justify-content: space-evenly;
     translate: 0 76%;
-    transition-duration: 1s;
+    transition-duration: 0.5s;
     transition-timing-function: ease-in-bounce;
 }
 
@@ -80,11 +80,18 @@ Slider #unity-dragger {
     color: rgb(88, 88, 88);
     position: relative;
     background-color: rgba(0, 0, 0, 0);
-    transition-duration: 1s;
+    opacity:0;
+
+    transition-property: background-color,opacity;
+    transition-duration: 0.5s;
 }
 
 .scrim_fadein {
     background-color: rgba(0, 0, 0, 0.67);
+    opacity:1;
+
+    transition-property: background-color,opacity;
+    transition-duration:0.5s;
 }
 
 .StartOn {
@@ -125,42 +132,7 @@ Slider #unity-dragger {
     translate: 0 -101%;
 }
 
-.close_menu_off {
-    font-size: 90%;
-    translate: -110% 0%;
-    position: absolute;
-    top: 40%;
-    left: 0;
-    align-items: center;
-    justify-content: center;
-    width: 10%;
-    height: 5%;
-    -unity-font-definition: url("project://database/Assets/TRAFFIC6.TTF?fileID=12800000&guid=f07357d919f588b48b520990911ee828&type=3#TRAFFIC6");
-    color: rgb(26, 18, 10);
-    -unity-font-style: bold;
-    -unity-text-outline-width: 5px;
-    background-color: rgb(226, 217, 201);
-    border-top-left-radius: 50%;
-    border-top-right-radius: 50%;
-    border-bottom-right-radius: 50%;
-    border-bottom-left-radius: 50%;
-    border-top-width: 5px;
-    border-right-width: 5px;
-    border-bottom-width: 5px;
-    border-left-width: 5px;
-    border-left-color: rgb(26, 18, 10);
-    border-right-color: rgb(26, 18, 10);
-    border-top-color: rgb(26, 18, 10);
-    border-bottom-color: rgb(26, 18, 10);
-    transition-duration: 1s;
-    transition-timing-function: linear;
-}
 
-.close_menu_on {
-    translate: 195% 0%;
-    transition-timing-function: linear;
-    transition-duration: 1s;
-}
 
 .select_trinked_off {
     flex-grow: 1;
@@ -204,18 +176,17 @@ Slider #unity-dragger {
     transition-duration: 0.05s;
     transition-timing-function: ease-out;
 }
+
 .level_select_off {
     opacity: 0;
-    scale:0.85 0.85;
-    display: none; 
+    scale: 0.85 0.85;
+    display: none;
     position: absolute;
     width: 100%;
     height: 100%;
     align-items: center;
     align-self: center;
     justify-content: space-around;
-    
-    
     transition-property: opacity, scale;
     transition-duration: 0.05s;
     transition-timing-function: ease-out;
@@ -223,7 +194,7 @@ Slider #unity-dragger {
 
 .level_select_on {
     opacity: 1;
-    scale:1 1;
+    scale: 1 1;
     display: flex;
     position: absolute;
     width: 100%;
@@ -231,10 +202,75 @@ Slider #unity-dragger {
     align-items: center;
     align-self: center;
     justify-content: space-around;
-
     transition-property: opacity, scale;
     transition-duration: 0.05s;
     transition-timing-function: ease-out;
+}
+
+.close_menu_off {
+    translate: 0% 800%;
+    align-self: center;
+    font-size: 130%;
+    -unity-font-style: bold;
+    width: 15%;
+    height: 7%;
+    align-content: center;
+    top: auto;
+    left: auto;
+    position: absolute;
+    border-top-width: 4px;
+    border-right-width: 4px;
+    border-bottom-width: 4px;
+    border-left-width: 4px;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+    border-left-color: rgb(26, 18, 10);
+    border-right-color: rgb(26, 18, 10);
+    border-top-color: rgb(26, 18, 10);
+    border-bottom-color: rgb(26, 18, 10);
+    background-color: rgb(226, 217, 201);
+    -unity-font-definition: url("project://database/Assets/TRAFFIC6.TTF?fileID=12800000&guid=f07357d919f588b48b520990911ee828&type=3#TRAFFIC6");
+    color: rgb(26, 18, 10);
+    opacity:0;
+
+
+    transition-property: opacity,translate;
+    transition-duration: 1s;
+    transition-timing-function: linear;
     
 }
 
+.close_menu_on {
+    translate: 0% -70%;
+    align-self: center;
+    font-size: 130%;
+    -unity-font-style: bold;
+    width: 15%;
+    height: 7%;
+    align-content: center;
+    top: auto;
+    left: auto;
+    position: absolute;
+    border-top-width: 4px;
+    border-right-width: 4px;
+    border-bottom-width: 4px;
+    border-left-width: 4px;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+    border-left-color: rgb(26, 18, 10);
+    border-right-color: rgb(26, 18, 10);
+    border-top-color: rgb(26, 18, 10);
+    border-bottom-color: rgb(26, 18, 10);
+    background-color: rgb(226, 217, 201);
+    -unity-font-definition: url("project://database/Assets/TRAFFIC6.TTF?fileID=12800000&guid=f07357d919f588b48b520990911ee828&type=3#TRAFFIC6");
+    color: rgb(26, 18, 10);
+    opacity:1;
+    
+    transition-property: opacity,translate;
+    transition-duration: 1s;
+    transition-timing-function: linear;
+}

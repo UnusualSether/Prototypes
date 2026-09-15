@@ -123,7 +123,7 @@ public class UIController : MonoBehaviour
     }
     #endregion
 
-    //set animation Start
+    //set animation tap to start
     private void OnEnable()
     {
         var root = GetComponent<UIDocument>().rootVisualElement;
