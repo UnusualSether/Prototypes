@@ -17,7 +17,6 @@ public class Waypoint
 
 }
 
-
 public class CharacterMove : MonoBehaviour
 {
     #region Events
@@ -63,8 +62,6 @@ public class CharacterMove : MonoBehaviour
     }
 
 
-    
-
     public List<Waypoint> wayPointList = new List<Waypoint>();
 
 
@@ -108,8 +105,6 @@ public class CharacterMove : MonoBehaviour
 
 
         InitializeWaypoints();
-
-
 
     }
 
@@ -225,8 +220,6 @@ public class CharacterMove : MonoBehaviour
     }
 
 
-
-
     public bool PathBlocked()
     {
         Ray ray;
@@ -255,12 +248,7 @@ public class CharacterMove : MonoBehaviour
 
         return false;
 
-
-
     }
-
-
-
 
     
     public void PlayerSwipe(ThreeDGameHandler.SwipeDirection dir)

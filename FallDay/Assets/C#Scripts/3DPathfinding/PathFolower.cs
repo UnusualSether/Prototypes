@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+//using System.Drawing;
 using UnityEngine;
 
 public class PathFolower : MonoBehaviour
@@ -37,6 +38,7 @@ public class PathFolower : MonoBehaviour
                 yield return new WaitForFixedUpdate();
             } while ((gameObject.transform.position - point).magnitude > 0.02f);
         }
+        canWalk();
     }
     public void canWalk()
     {
@@ -58,6 +60,12 @@ public class PathFolower : MonoBehaviour
                 {
                     if (debug) Debug.Log("Not close enough to start pos, need to find new path");
                     //Call a new pathfinding
+                    SerchNewPath();
+                }
+                if((gameObject.transform.position - path[path.Count - 1]).magnitude < 0.2f)
+                {
+                    Debug.Log($"Close enough To damage");
+                    // Add a damage event to the player here
                 }
             }
         }

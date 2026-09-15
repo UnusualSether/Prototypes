@@ -1,13 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-// <summary>
-/// <summary>
 /// Add this script to a Player GameObject to generate a grid of cells based on the specified grid size. Around the player position. 
 /// The grid size can be set in the inspector, and the grid will be generated when the game starts. 
-/// </summary>
-
 
 //[ExecuteInEditMode]
 public class Grid_Generator : MonoBehaviour
