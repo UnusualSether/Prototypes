@@ -16,6 +16,10 @@ public class MenuTrinketEquipping : MonoBehaviour
 
     public VisualTreeAsset trinket_element_template;
 
+    private Toggle _toggle;
+
+    private VisualElement _triketScreen;
+
     public Dictionary<Toggle, Trinket> button_to_trinket = new Dictionary<Toggle, Trinket>();
 
     private void Start()
@@ -27,6 +31,7 @@ public class MenuTrinketEquipping : MonoBehaviour
 
 
         BuildMenuOffData();
+
 
     }
 
@@ -57,6 +62,8 @@ public class MenuTrinketEquipping : MonoBehaviour
 
         trinket_display.Q<Toggle>("trinket_toggle").RegisterValueChangedCallback(evt => PassToEquipAndUnequip(trinket_to_display));
 
+        
+
         InsertInstantiatedIntoMain(trinket_display);
     }
 
@@ -65,7 +72,6 @@ public class MenuTrinketEquipping : MonoBehaviour
         trinket_select_container.Add(element);
     }
 
-    
 
     void PassToEquipAndUnequip(Trinket toggled_trinket)
     {
