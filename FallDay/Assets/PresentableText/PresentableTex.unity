@@ -1616,6 +1616,18 @@ PrefabInstance:
       propertyPath: UIToggleManager
       value: 
       objectReference: {fileID: 660990393}
+    - target: {fileID: 7260509908887010791, guid: 1f4767065a50de444b85b0dc9774004e, type: 3}
+      propertyPath: m_Color.b
+      value: 0.006030591
+      objectReference: {fileID: 0}
+    - target: {fileID: 7260509908887010791, guid: 1f4767065a50de444b85b0dc9774004e, type: 3}
+      propertyPath: m_Color.g
+      value: 0.006030591
+      objectReference: {fileID: 0}
+    - target: {fileID: 7260509908887010791, guid: 1f4767065a50de444b85b0dc9774004e, type: 3}
+      propertyPath: m_Color.r
+      value: 0.4566037
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

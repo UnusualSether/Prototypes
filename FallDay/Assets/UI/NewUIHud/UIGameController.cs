@@ -165,6 +165,7 @@ public class UIGameController : MonoBehaviour
 
              _screenButton.AddToClassList("screen_button_on");
              _screenButton.RemoveFromClassList("screen_button_off");
+             
          });
 
     }

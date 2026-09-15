@@ -123,6 +123,30 @@ public class UIController : MonoBehaviour
     }
     #endregion
 
+    //set animation Start
+    private void OnEnable()
+    {
+        var root = GetComponent<UIDocument>().rootVisualElement;
+
+        
+        Pulse(root.Q<Image>("TapToStart"), min: 0.9f, max: 1.1f, speed: 2f);
+    }
+
+    
+    private void Pulse(VisualElement el, float min, float max, float speed)
+    {
+        if (el == null) return;
+
+        el.schedule.Execute(() =>
+        {
+            float t = (Mathf.Sin(Time.time * speed) + 1f) * 0.5f;
+            float s = Mathf.Lerp(min, max, t);
+            el.style.scale = new Scale(new Vector3(s, s, 1f));
+        }).Every(16); 
+    }
+
+
+
     #region Bottom Sheet / Menu de Configurações
     // Abre o menu: exibe o scrim e anima a entrada do bottom sheet
     private void OnOpenButtonClicker(ClickEvent evt)
