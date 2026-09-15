@@ -47,14 +47,14 @@ public class PathFolower : MonoBehaviour
         //false - serch new path
         if (path != null)
         {
-            if (path != null && path.Count > 0)
+            if (path != null && path.Count > 0) // is there path to follow
             {
-                if ((gameObject.transform.position - path[0]).magnitude < 0.2f)
+                if ((gameObject.transform.position - path[0]).magnitude < 0.2f) // is close enough to start pos (is path valid)
                 {
                     //is close enough to stert pos
                     //start walk
-                    StartCoroutine(WalkPathCoroutine());
                     if (debug) Debug.Log("Starting Walk Coroutine");
+                    StartCoroutine(WalkPathCoroutine());
                 }
                 else
                 {
@@ -64,35 +64,15 @@ public class PathFolower : MonoBehaviour
                 }
                 if((gameObject.transform.position - path[path.Count - 1]).magnitude < 0.2f)
                 {
-                    Debug.Log($"Close enough To damage");
+                    Debug.Log($"Has gotten Close to the end of the path");
                     // Add a damage event to the player here
                 }
             }
         }
     }
-    public void callerDestroy(Zombie zombie)
+    public void callerDestroy(Zombie zombie) //This should be unique to the zombie
     {
         if (zombie == this.zombie)
         Destroy(this.gameObject);
-    }
-    public void OnDestroy()
-    {
-        
-    }
-
-    /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public void TimeRamaning() // Used to get the time remaining for the zombie to reach the player (will be used for later)
-    {
-        float PhaseTimer = zombie.PhaseTimer;
-        //ZombiePhase phase = zombie.phase;
-    }
-    public void calculatePathDistance() //Can be used to calculate the distance of the path for the zombie to walk (will be used in a later update)
-    {
-        float distance = 0;
-        for (int i = 0; i < path.Count - 1; i++)
-        {
-            distance += Vector3.Distance(path[i], path[i + 1]);
-        }
-        Debug.Log("Total Path Distance: " + distance);
     }
 }
