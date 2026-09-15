@@ -27,6 +27,7 @@ public static class GlobalTrinketHolder
 public class Trinket : ScriptableObject
 {
 
+
     [SerializeField] protected string _trinket_name;
     public string trinket_name { get => _trinket_name; set => _trinket_name = value; }
 
