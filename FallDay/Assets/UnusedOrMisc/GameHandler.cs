@@ -1,4 +1,5 @@
 
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,6 +18,23 @@ public partial class GameHandler : MonoBehaviour
 
     public PlayerInstance player;
 
+
+
+    public int current_bullet_damage => ReadyBulletsDamageAggregate(readyBullets);
+
+    public int ReadyBulletsDamageAggregate(List<string> ready_bullets)
+    {
+        int damage_total = 0;
+
+        foreach(string bullet in ready_bullets)
+        {
+            BulletType bullet_type = bulletLookup[bullet];
+
+            damage_total += bullet_type.Damage;
+        }
+
+        return damage_total;
+    }
 
 
 
@@ -43,6 +61,8 @@ public partial class GameHandler : MonoBehaviour
     #region Events
     //Player related events
     public event Action<int> SucessfulShot;
+
+    public event Action<int, Zombie> ZombieHurt;
     public event Action FailedShot;
     public event Action<VisualElement> BulletSelected;
 
@@ -914,7 +934,8 @@ public partial class GameHandler : MonoBehaviour
 
         SucessfulShot?.Invoke(totalDamage);
         SucessfulHit?.Invoke(totalDamage);
-        ApplyDamage(totalDamage, zombieToAimAt());
+        ZombieHurt?.Invoke(totalDamage, targetZombie);
+        ApplyDamage(totalDamage, targetZombie);
     }
 
     public void SelectedBullet(PointerEnterEvent ev)
