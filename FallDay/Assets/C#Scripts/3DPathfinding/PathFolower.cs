@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-//using System.Drawing;
 using UnityEngine;
 
 public class PathFolower : MonoBehaviour
@@ -14,7 +13,7 @@ public class PathFolower : MonoBehaviour
     // Most Simple movement along the path
     // No Control over the speed nor how long it takes to reach the next point 
     private bool debug = false;
-    public void Zombie3dInfoReceve(Zombie zombie, Grid_ grid, GameObject player)
+    public void Zombie3dInfoReceive(Zombie zombie, Grid_ grid, GameObject player)
     {
         this.zombie = zombie;
         this.grid = grid;
@@ -26,7 +25,6 @@ public class PathFolower : MonoBehaviour
         path = grid.pathfinding.FindPath(transform.position, new Vector3(player.transform.position.x, grid.CellWorldPosition(0, 0, 0).y, player.transform.position.z)); // 
         path.RemoveAt(path.Count - 1); 
     }
-
     private IEnumerator WalkPathCoroutine()
     {
         foreach (Vector3 point in path)
