@@ -18,7 +18,11 @@ public partial class GameHandler : MonoBehaviour
 
     public PlayerInstance player;
 
+    public List<RoomReward> possible_room_rewards = new List<RoomReward>();
 
+    public RoomReward stored_reward;
+
+    public RoomReward[] reward_choice_trio;
 
     public int current_bullet_damage => ReadyBulletsDamageAggregate(readyBullets);
 
@@ -136,6 +140,8 @@ public partial class GameHandler : MonoBehaviour
         ThreeDGameHandler.EncounterStarted += ActivateMinigame;
         ThreeDGameHandler.EncounterEnded += DeactivateMinigame;
         destroyZombie += _KillZombie;
+        PlayerKilledAllZombies += GrantRewardToPlayer;
+        PlayerKilledAllZombies += GenerateNewRewardTrio;
     }
 
     void OnDisable()
@@ -1116,6 +1122,56 @@ public partial class GameHandler : MonoBehaviour
     {
         ui.visible = false;
         //Debug.Log("I should deactivate now!");
+    }
+
+
+
+    #endregion
+
+    #region Room Reward Granting
+
+    public void GrantRewardToPlayer()
+    {
+        if (stored_reward == null)
+        {
+            if (debugisOn)
+            {
+                Debug.Log("No stored reward to grant.");
+
+                return;
+            }
+        }
+
+        stored_reward.TakeReward(player.stats);
+    }
+
+    public void GenerateNewRewardTrio()
+    {
+
+        var empty_trio = new RoomReward[3];
+
+        for (int i = 0;i < empty_trio.Length; i++)
+        {
+            empty_trio[i] = RandomRoomReward();
+        }
+
+        reward_choice_trio = empty_trio;
+
+    }
+
+    public void DisplayRewardChoice()
+    {
+
+        
+
+
+    }
+
+    public RoomReward RandomRoomReward()
+    {
+        var random = UnityEngine.Random.Range(0, possible_room_rewards.Count);
+
+        return possible_room_rewards[random];
     }
 
 
