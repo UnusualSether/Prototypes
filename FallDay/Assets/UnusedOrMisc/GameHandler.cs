@@ -1,4 +1,5 @@
-using Mono.Cecil;
+
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,6 +17,26 @@ public partial class GameHandler : MonoBehaviour
     public bool debugisOn = false;
 
     public PlayerInstance player;
+
+
+
+    public int current_bullet_damage => ReadyBulletsDamageAggregate(readyBullets);
+
+    public int ReadyBulletsDamageAggregate(List<string> ready_bullets)
+    {
+        int damage_total = 0;
+
+        foreach(string bullet in ready_bullets)
+        {
+            BulletType bullet_type = bulletLookup[bullet];
+
+            damage_total += bullet_type.Damage;
+        }
+
+        return damage_total;
+    }
+
+
 
     #region Lists and Arrays
     //Bullet types that can show up in the grid.
@@ -40,14 +61,16 @@ public partial class GameHandler : MonoBehaviour
     #region Events
     //Player related events
     public event Action<int> SucessfulShot;
+
+    public event Action<int, Zombie> ZombieHurt;
     public event Action FailedShot;
     public event Action<VisualElement> BulletSelected;
 
     //Zombie related events
-    public event Action<Zombie> ZombieSpawned;
+    public event Action ZombieSpawned;
     public event Action<Zombie> ZombieDamaged;
     public event Action<Zombie> zPhaseChange;
-    public event Action<Zombie> ZombieKilled;
+    public event Action ZombieKilled;
     //public event Action<Zombie> ZombieIsClose;
 
 
@@ -61,6 +84,7 @@ public partial class GameHandler : MonoBehaviour
     public event Action<int> SucessfulHit;
 
     #endregion
+
 
     #region Variables
 
@@ -348,9 +372,10 @@ public partial class GameHandler : MonoBehaviour
         ZombieSpawnGate = true;
         yield return new WaitForSeconds(zombieSpawnTimer);
         
+        //Debug.Log("Grahh....");
+        ZombieSpawned?.Invoke();
 
         int nextZombieID;
-        //Debug.Log("Grahh....");
 
         //Give them a brand new Id which is just the last zombies ID plus 1;
         if (ZombieList.Count == 0)
@@ -376,9 +401,6 @@ public partial class GameHandler : MonoBehaviour
         );
 
         var newZombie = ZombieList.Last();
-
-        ZombieSpawned?.Invoke(newZombie);
-
         OnZombieUpdate += newZombie.UpdatePhase;
         zombieLookup.Add(newZombie.id, newZombie);
 
@@ -475,7 +497,7 @@ public partial class GameHandler : MonoBehaviour
 
             preferenceZombie = nulledPreference;
 
-            ZombieKilled?.Invoke(zombieToKill);
+            ZombieKilled?.Invoke();
 
             if (HasPlayerCompletedTheEncounter())
             {
@@ -487,7 +509,7 @@ public partial class GameHandler : MonoBehaviour
             zombieToKill.hp = 0;
 
             Debug.Log($"Zombie with id {zombieToKill.id} took fatal damage and now has {zombieToKill.hp} hp.");
-            ZombieKilled?.Invoke(zombieToKill);
+            ZombieKilled?.Invoke();
             SelectedZombie = ZombieList.First().id;
         }
     }
@@ -912,7 +934,8 @@ public partial class GameHandler : MonoBehaviour
 
         SucessfulShot?.Invoke(totalDamage);
         SucessfulHit?.Invoke(totalDamage);
-        ApplyDamage(totalDamage, zombieToAimAt());
+        ZombieHurt?.Invoke(totalDamage, targetZombie);
+        ApplyDamage(totalDamage, targetZombie);
     }
 
     public void SelectedBullet(PointerEnterEvent ev)
@@ -1155,7 +1178,10 @@ public partial class GameHandler : MonoBehaviour
             OnZombieUpdate -= zombie.UpdatePhase;
         }
 
+
         zombieLookup.Clear();
         ZombieList.Clear();
+
+        
     }
 }

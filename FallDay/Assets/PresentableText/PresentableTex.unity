@@ -732,7 +732,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 974282076}
-  - {fileID: 1846413632}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &780791587
@@ -1058,6 +1057,7 @@ GameObject:
   - component: {fileID: 974282076}
   - component: {fileID: 974282077}
   - component: {fileID: 974282078}
+  - component: {fileID: 974282079}
   m_Layer: 0
   m_Name: PauseButton
   m_TagString: Untagged
@@ -1112,10 +1112,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 974282075}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae9765e275b8cc344a5e34788b7868e8, type: 3}
+  m_Script: {fileID: 11500000, guid: 60bac88d75bc8754aaebebb1d46a7ec0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PauseGame
-  PauseMenu: {fileID: 1846413631}
+  m_EditorClassIdentifier: Assembly-CSharp::UIGameController
+--- !u!114 &974282079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974282075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 070bc1638138c1141ab8ba7f058c4682, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VolumeScript
+  volumeControl: {fileID: 24100000, guid: a99669484a911c741872814f5a57f88a, type: 2}
+  UIDocument: {fileID: 974282077}
 --- !u!1 &1088469939
 GameObject:
   m_ObjectHideFlags: 0
@@ -1817,6 +1830,18 @@ PrefabInstance:
       propertyPath: UIToggleManager
       value: 
       objectReference: {fileID: 660990393}
+    - target: {fileID: 7260509908887010791, guid: 1f4767065a50de444b85b0dc9774004e, type: 3}
+      propertyPath: m_Color.b
+      value: 0.006030591
+      objectReference: {fileID: 0}
+    - target: {fileID: 7260509908887010791, guid: 1f4767065a50de444b85b0dc9774004e, type: 3}
+      propertyPath: m_Color.g
+      value: 0.006030591
+      objectReference: {fileID: 0}
+    - target: {fileID: 7260509908887010791, guid: 1f4767065a50de444b85b0dc9774004e, type: 3}
+      propertyPath: m_Color.r
+      value: 0.4566037
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2046,76 +2071,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!1 &1846413631
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1846413632}
-  - component: {fileID: 1846413633}
-  - component: {fileID: 1846413634}
-  m_Layer: 0
-  m_Name: PauseMenu
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1846413632
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1846413631}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 735902041}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1846413633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1846413631}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
-  m_PanelSettings: {fileID: 11400000, guid: 7b16bd0c931c3d54084725a3410da29d, type: 2}
-  m_ParentUI: {fileID: 0}
-  sourceAsset: {fileID: 9197481963319205126, guid: ea784699bee61bc4fb2bc5e58b478db4, type: 3}
-  m_SortingOrder: 2
-  m_Position: 0
-  m_WorldSpaceSizeMode: 1
-  m_WorldSpaceWidth: 1920
-  m_WorldSpaceHeight: 1080
-  m_PivotReferenceSize: 0
-  m_Pivot: 0
-  m_WorldSpaceCollider: {fileID: 0}
---- !u!114 &1846413634
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1846413631}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef614343233195145b8cc69a2a5df22c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  PauseMenu: {fileID: 1846413631}
-  ConfigMM: {fileID: 1977339870}
 --- !u!1 &1871156142
 GameObject:
   m_ObjectHideFlags: 0
@@ -2345,7 +2300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef614343233195145b8cc69a2a5df22c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseScreen
-  PauseMenu: {fileID: 1846413631}
+  PauseMenu: {fileID: 0}
   ConfigMM: {fileID: 1977339870}
 --- !u!1001 &2043720487
 PrefabInstance:
