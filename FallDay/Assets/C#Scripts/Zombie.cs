@@ -110,7 +110,7 @@ public class Zombie
     {
         enemyData = data;
 
-        hp = (int)(data.HP * Diff);
+        hp = (int)(data.HP);
         PhaseTimer = data.phaseTimer;
         damage = data.Damage;
         EnemyType = data.enemyName;
