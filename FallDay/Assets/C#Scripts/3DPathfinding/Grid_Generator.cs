@@ -89,12 +89,12 @@ public class Grid_Generator : MonoBehaviour
         ThreeD_Zombie.Add(zombie, Instantiate(zombie.enemyData.Zprefab, grid.CellWorldPosition((int)(gridSize.x / 2), (int)gridSize.y - 1, (int)(gridSize.z) - 1), Quaternion.identity));
 
         int i = ThreeD_Zombie.Count - 1;
-        ThreeD_Zombie[zombie].GetComponent<PathFolower>().Zombie3dInfoReceive(zombie, grid, player); // Pass Refrence
-        ThreeD_Zombie[zombie].GetComponent<PathFolower>().canWalk(); // Start Walk Coroutine
+        ThreeD_Zombie[zombie].GetComponent<Individual3dEnemyController>().Zombie3dInfoReceive(zombie, player); // Pass Refrence
+        //ThreeD_Zombie[zombie].GetComponent<PathFolower>().canWalk(); // Start Walk Coroutine
     }
     public void zombieDeath(Zombie zombie)
     {
-        ThreeD_Zombie[zombie].GetComponent<PathFolower>().callerDestroy(zombie);
+        //ThreeD_Zombie[zombie].GetComponent<PathFolower>().callerDestroy(zombie);
         ThreeD_Zombie.Remove(zombie);
     }
 }
