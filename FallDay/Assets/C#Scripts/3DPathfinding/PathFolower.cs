@@ -5,21 +5,10 @@ using UnityEngine;
 public class PathFolower : MonoBehaviour
 {
     public float speed = 1.0f; //Speed of the object along the path
-
-    private Zombie zombie; // Zombie reference to subscride to the damege && death Event and ID refrence
     private List<Vector3> path;
-    private Grid_ grid;
-    private GameObject player; // Reference to the player object
     // Most Simple movement along the path
     // No Control over the speed nor how long it takes to reach the next point 
     private bool debug = false;
-    public void Zombie3dInfoReceive(Zombie zombie, Grid_ grid, GameObject player)
-    {
-        this.zombie = zombie;
-        this.grid = grid;
-        this.player = player;
-        SerchNewPath();
-    }
     public void SerchNewPath()
     {
         path = grid.pathfinding.FindPath(transform.position, new Vector3(player.transform.position.x, grid.CellWorldPosition(0, 0, 0).y, player.transform.position.z)); // 
@@ -68,9 +57,25 @@ public class PathFolower : MonoBehaviour
             }
         }
     }
+
+}
+// This script is attached to the 3D zombie prefab and handles its behavior in the game world
+public class Individual3dEnemyController : MonoBehaviour
+{
+    private Zombie zombie; // Zombie reference to subscride to the damege && death Event and ID refrence
+    private Grid_ grid;
+    private GameObject player; // Reference to the player object
+
+    public void Zombie3dInfoReceive(Zombie zombie, Grid_ grid, GameObject player)
+    {
+        this.zombie = zombie;
+        this.grid = grid;
+        this.player = player;
+    }
+
     public void callerDestroy(Zombie zombie) //This should be unique to the zombie
     {
         if (zombie == this.zombie)
-        Destroy(this.gameObject);
+            Destroy(this.gameObject);
     }
 }
