@@ -101,7 +101,7 @@ public partial class GameDisplay
                     new StyleBackground(current);
             }
 
-            yield return null; // espera o próximo frame
+            yield return new WaitForEndOfFrame(); // espera o próximo frame
         }
     }
 
