@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4539533364454121295}
   - component: {fileID: 9178786496545487861}
   - component: {fileID: 3516933044778184329}
+  - component: {fileID: 4346040438204322707}
   - component: {fileID: 8399156042280782560}
   m_Layer: 0
   m_Name: Capsule
@@ -115,6 +116,19 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4346040438204322707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3545187053336762459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54f1d4ea8d59b264dbfb37984b39111b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy3dBehaviour
+  pathFolower: {fileID: 8399156042280782560}
 --- !u!114 &8399156042280782560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,4 +141,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2758cae914c9084fb7b34882f5d8959, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PathFolower
-  speed: 0.1
+  speed: 0.3

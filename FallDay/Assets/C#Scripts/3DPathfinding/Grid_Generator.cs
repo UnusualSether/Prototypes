@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.iOS;
 
 /// Add this script to a Player GameObject to generate a grid of cells based on the specified grid size. Around the player position. 
 /// The grid size can be set in the inspector, and the grid will be generated when the game starts. 
@@ -20,7 +21,8 @@ public class Grid_Generator : MonoBehaviour
 
     /// 3D Enemys Refrence
     private Dictionary<Zombie, GameObject> ThreeD_Zombie = new();//Stores pairs of Zombie data and their corresponding 3D game objects for easy access and management>
-
+    private Dictionary<Zombie, Enemy3dBehaviour> path3DController = new();
+    private Dictionary<Zombie, PathFolower> PathFolowerDictionary = new();
     ///////////////////////////////////////////////////////////////////////////
     public bool debug; // Debugging flag to enable or disable debug logs
     ///////////////////////////////////////////////////////////////////////////
@@ -80,17 +82,22 @@ public class Grid_Generator : MonoBehaviour
         return transform.position - offsetToOrigin;
     }
     /////////////////////////////////////////////////////////////////////
-    // ----------------- Manage The 3DZombie In world -----------------
+    // ----------------- Manage The 3DZombie In world -----------------//
     /////////////////////////////////////////////////////////////////////
     public void generateEnemy(Zombie zombie) //Maybe this should be in a different script, but for now it is here
     {
-        //Zombies3D.Add(Instantiate(zombie.enemyData.Zprefab, grid.CellWorldPosition((int)(gridSize.x / 2), (int)gridSize.y -1, (int)(gridSize.z) - 1), Quaternion.identity));
+        GameObject spawnedEnemy;
+        spawnedEnemy = Instantiate(zombie.enemyData.Zprefab, grid.CellWorldPosition((int)(gridSize.x / 2), (int)gridSize.y - 1, (int)(gridSize.z) - 1), Quaternion.identity);
 
-        ThreeD_Zombie.Add(zombie, Instantiate(zombie.enemyData.Zprefab, grid.CellWorldPosition((int)(gridSize.x / 2), (int)gridSize.y - 1, (int)(gridSize.z) - 1), Quaternion.identity));
+        Enemy3dBehaviour Enemy3dBehaviour;
+        PathFolower pathFolowerComponer;
 
-        int i = ThreeD_Zombie.Count - 1;
-        ThreeD_Zombie[zombie].GetComponent<Individual3dEnemyController>().Zombie3dInfoReceive(zombie, player); // Pass Refrence
-        //ThreeD_Zombie[zombie].GetComponent<PathFolower>().canWalk(); // Start Walk Coroutine
+        Enemy3dBehaviour = spawnedEnemy.GetComponent<Enemy3dBehaviour>();
+        pathFolowerComponer = spawnedEnemy.GetComponent<PathFolower>();
+
+        ThreeD_Zombie.Add(zombie, spawnedEnemy);
+        Enemy3dBehaviour.Zombie3SetUP(zombie, player, grid, pathFolowerComponer);
+        Enemy3dBehaviour.startWalk();
     }
     public void zombieDeath(Zombie zombie)
     {
