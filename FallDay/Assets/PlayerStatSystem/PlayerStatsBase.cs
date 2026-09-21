@@ -68,7 +68,7 @@ public class PlayerInstance
 
 
  
-    void PlayerKilledZombie(Zombie zombie)
+    void PlayerKilledZombie()
     {
         DispatchEvent(TrinketEventType.OnKill);
     }

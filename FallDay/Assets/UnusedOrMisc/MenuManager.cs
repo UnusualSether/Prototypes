@@ -100,7 +100,6 @@ public class MenuManager : MonoBehaviour
     {
         Config.SetActive(true);
         Menu.SetActive(false);
-
     }
 
     private void returnmenu()

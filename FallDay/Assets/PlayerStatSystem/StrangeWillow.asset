@@ -14,40 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ExplorersTrinket
   _trinket_name: Willow
   _trinket_description: '"I wish for a million dollars."'
-  _trinket_sprite:
-  - {fileID: 370454264, guid: a0c503f403bf47e428a63e06022fade8, type: 3}
-  - {fileID: -1261184164, guid: a0c503f403bf47e428a63e06022fade8, type: 3}
-  - {fileID: 1257424609, guid: a0c503f403bf47e428a63e06022fade8, type: 3}
-  - {fileID: 259642175, guid: a0c503f403bf47e428a63e06022fade8, type: 3}
-  - {fileID: 2098373405, guid: a0c503f403bf47e428a63e06022fade8, type: 3}
-  - {fileID: -1336752717, guid: a0c503f403bf47e428a63e06022fade8, type: 3}
-  - {fileID: 42972402, guid: a0c503f403bf47e428a63e06022fade8, type: 3}
-  - {fileID: -1149366830, guid: a0c503f403bf47e428a63e06022fade8, type: 3}
-  - {fileID: 201815612, guid: a0c503f403bf47e428a63e06022fade8, type: 3}
-  - {fileID: 475532835, guid: a0c503f403bf47e428a63e06022fade8, type: 3}
-  - {fileID: 482431295, guid: a0c503f403bf47e428a63e06022fade8, type: 3}
-  - {fileID: -1617781832, guid: a0c503f403bf47e428a63e06022fade8, type: 3}
-  - {fileID: 630495804, guid: a0c503f403bf47e428a63e06022fade8, type: 3}
-  - {fileID: -1836505140, guid: a0c503f403bf47e428a63e06022fade8, type: 3}
-  - {fileID: 443245986, guid: a0c503f403bf47e428a63e06022fade8, type: 3}
-  - {fileID: -1854759583, guid: a0c503f403bf47e428a63e06022fade8, type: 3}
-  - {fileID: -35211764, guid: a0c503f403bf47e428a63e06022fade8, type: 3}
-  - {fileID: 269482005, guid: a0c503f403bf47e428a63e06022fade8, type: 3}
-  - {fileID: 1042313510, guid: a0c503f403bf47e428a63e06022fade8, type: 3}
-  - {fileID: 486238508, guid: a0c503f403bf47e428a63e06022fade8, type: 3}
-  - {fileID: 814630712, guid: a0c503f403bf47e428a63e06022fade8, type: 3}
-  - {fileID: 296200104, guid: a0c503f403bf47e428a63e06022fade8, type: 3}
-  - {fileID: 243586246, guid: a0c503f403bf47e428a63e06022fade8, type: 3}
-  - {fileID: -322637904, guid: a0c503f403bf47e428a63e06022fade8, type: 3}
-  - {fileID: 2049846811, guid: a0c503f403bf47e428a63e06022fade8, type: 3}
-  - {fileID: 1234525185, guid: a0c503f403bf47e428a63e06022fade8, type: 3}
-  - {fileID: 703005386, guid: a0c503f403bf47e428a63e06022fade8, type: 3}
-  - {fileID: 191113580, guid: a0c503f403bf47e428a63e06022fade8, type: 3}
-  - {fileID: 1343994869, guid: a0c503f403bf47e428a63e06022fade8, type: 3}
-  - {fileID: -1526439776, guid: a0c503f403bf47e428a63e06022fade8, type: 3}
-  - {fileID: 577264753, guid: a0c503f403bf47e428a63e06022fade8, type: 3}
-  - {fileID: 1068176994, guid: a0c503f403bf47e428a63e06022fade8, type: 3}
-  - {fileID: -536225200, guid: a0c503f403bf47e428a63e06022fade8, type: 3}
-  - {fileID: 867964957, guid: a0c503f403bf47e428a63e06022fade8, type: 3}
-  - {fileID: -1000189735, guid: a0c503f403bf47e428a63e06022fade8, type: 3}
+  _trinket_sprite: {fileID: -2093404852, guid: 89ccc5b3b9bcd0b40bd33baf05908f69, type: 3}
   soft_currency_gained: 3
