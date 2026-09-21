@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
-
+[ExecuteInEditMode]
 
 /// <summary>
 /// This class manages the character  views, assigning them eight way sprites which change according to how the camera is looking at them.

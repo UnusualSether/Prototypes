@@ -19,3 +19,4 @@ MonoBehaviour:
   HP: 80
   Damage: 4
   phaseTimer: 7
+  Zprefab: {fileID: 7406049963359113671, guid: 37a687bc12a091c4191270c52d632de4, type: 3}

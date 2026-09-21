@@ -67,10 +67,10 @@ public partial class GameHandler : MonoBehaviour
     public event Action<VisualElement> BulletSelected;
 
     //Zombie related events
-    public event Action ZombieSpawned;
+    public event Action<Zombie> ZombieSpawned;
     public event Action<Zombie> ZombieDamaged;
     public event Action<Zombie> zPhaseChange;
-    public event Action ZombieKilled;
+    public event Action<Zombie> ZombieKilled;
     //public event Action<Zombie> ZombieIsClose;
 
 
@@ -372,8 +372,6 @@ public partial class GameHandler : MonoBehaviour
         ZombieSpawnGate = true;
         yield return new WaitForSeconds(zombieSpawnTimer);
         
-        //Debug.Log("Grahh....");
-        ZombieSpawned?.Invoke();
 
         int nextZombieID;
 
@@ -401,6 +399,10 @@ public partial class GameHandler : MonoBehaviour
         );
 
         var newZombie = ZombieList.Last();
+
+        ZombieSpawned?.Invoke(newZombie);
+        if(debugisOn) Debug.Log("Grahh....");
+
         OnZombieUpdate += newZombie.UpdatePhase;
         zombieLookup.Add(newZombie.id, newZombie);
 
@@ -475,8 +477,7 @@ public partial class GameHandler : MonoBehaviour
     } 
     public void _KillZombie(Zombie zombieToKill) //<= same as zombie damege ,just skipping a step
     {
-        //Debug.Log($"killed zombie ID {zombieToKill.id} removing them from selectable zombies.");
-        if (zombieToKill != null)
+        if (zombieToKill != null) //safty check to make sure the zombie is valid before trying to kill it
         {
             ZombieList.Remove(zombieToKill);
             zombieLookup.Remove(zombieToKill.id);
@@ -497,21 +498,22 @@ public partial class GameHandler : MonoBehaviour
 
             preferenceZombie = nulledPreference;
 
-            ZombieKilled?.Invoke();
+            ZombieKilled?.Invoke(zombieToKill);
 
             if (HasPlayerCompletedTheEncounter())
             {
                 PlayerKilledAllZombies?.Invoke();
             }
         }
-        else
+        /*
+        else //MistakenCode found. Null zombie is not valid data can not be acessed in it.
         {
             zombieToKill.hp = 0;
-
             Debug.Log($"Zombie with id {zombieToKill.id} took fatal damage and now has {zombieToKill.hp} hp.");
-            ZombieKilled?.Invoke();
+            ZombieKilled?.Invoke(zombieToKill);
             SelectedZombie = ZombieList.First().id;
         }
+        */
     }
     public Zombie zombieToAimAt()
     {
