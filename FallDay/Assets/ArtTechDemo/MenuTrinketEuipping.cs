@@ -54,7 +54,11 @@ public class MenuTrinketEquipping : MonoBehaviour
     {
         var trinket_display = trinket_element_template.Instantiate();
 
-        trinket_display.Q<Image>("trinket_sprite").sprite = trinket_to_display.trinket_sprite;
+        var trinketimage = trinket_display.Q<Image>("trinket_sprite");
+
+        TrinketVisual.IMG(trinketimage, trinket_to_display);
+
+        //trinket_display.Q<Image>("trinket_sprite").sprite = trinket_to_display.trinket_sprite;
 
         trinket_display.Q<Label>("trinket_name").text = trinket_to_display.trinket_name;
 

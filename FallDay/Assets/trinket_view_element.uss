@@ -62,42 +62,14 @@
     border-left-color: rgb(95, 107, 62);
 }
 
-.trinked_nothing_set {
-    flex-grow: 1;
-    width: 600px;
-    height: 800px;
-    background-color: rgba(227, 218, 201, 0.8);
-    align-items: center;
-    justify-content: space-between;
-    align-self: center;
-    align-content: center;
-    margin-top: 0%;
-    margin-right: 100px;
-    margin-bottom: 0%;
-    margin-left: 100px;
-    flex-basis: 90%;
-    flex-direction: column;
-    padding-top: 0;
-    padding-right: 0;
-    padding-bottom: 0;
-    padding-left: 0;
-    -unity-font-definition: url("project://database/Assets/TRAFFIC6.TTF?fileID=12800000&guid=f07357d919f588b48b520990911ee828&type=3#TRAFFIC6");
-    border-top-width: 10px;
-    border-right-width: 10px;
-    border-bottom-width: 10px;
-    border-left-width: 10px;
-    border-left-color: rgb(0, 0, 0);
-    border-right-color: rgb(0, 0, 0);
-    border-top-color: rgb(0, 0, 0);
-    border-bottom-color: rgb(0, 0, 0);
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
-    border-bottom-right-radius: 30px;
-    border-bottom-left-radius: 30px;
-    letter-spacing: 0;
-    -unity-text-align: middle-center;
+
+
+.unity-toggle__checkmark {
+    min-height: 125px;
+    min-width: 125px;
 }
 
-.trinked_set {
-    background-color: rgba(16, 168, 51, 0.8);
+.unity-toggle__input {
+    min-width: 130px;
+    min-height: 130px;
 }
