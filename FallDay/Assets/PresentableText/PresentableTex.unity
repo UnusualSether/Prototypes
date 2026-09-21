@@ -176,7 +176,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 127173195}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.16078494, y: 0.47017023, z: -0.08755874, w: 0.86337805}
   m_LocalPosition: {x: 0, y: 0.221, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -204,7 +204,7 @@ MonoBehaviour:
   - {fileID: 42891496, guid: 80afd7f486abef84dbedfec943b631c1, type: 3}
   - {fileID: 1284934108, guid: 4d779f5ddd22e5f4ba2760b71f163d0d, type: 3}
   - {fileID: 57809865, guid: db5d90f4f95263c4e92960c731ebbb1c, type: 3}
-  spriteRenderer: {fileID: 0}
+  spriteRenderer: {fileID: 127173198}
   cameraTransform: {fileID: 1444338430}
   directionSource: {fileID: 27993027}
 --- !u!212 &127173198
@@ -256,7 +256,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 4763202352769144593, guid: 161cbc1b880c62c40b73156ce4187903, type: 3}
+  m_Sprite: {fileID: 42891496, guid: 80afd7f486abef84dbedfec943b631c1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2415,6 +2415,10 @@ PrefabInstance:
       value: escapeBullet
       objectReference: {fileID: 0}
     - target: {fileID: 1769905274112778612, guid: eaaffc07808ebaf4fae8b342b82799c9, type: 3}
+      propertyPath: possible_rewards.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769905274112778612, guid: eaaffc07808ebaf4fae8b342b82799c9, type: 3}
       propertyPath: selectableBullets.Array.size
       value: 43
       objectReference: {fileID: 0}
@@ -2422,6 +2426,14 @@ PrefabInstance:
       propertyPath: possibleEncounters.Array.size
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 1769905274112778612, guid: eaaffc07808ebaf4fae8b342b82799c9, type: 3}
+      propertyPath: 'possible_rewards.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 1859cc4f9b7903f46989ce791ec1060a, type: 2}
+    - target: {fileID: 1769905274112778612, guid: eaaffc07808ebaf4fae8b342b82799c9, type: 3}
+      propertyPath: 'possible_rewards.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 6f7af05ace959b444a8c55e391b2a80d, type: 2}
     - target: {fileID: 1769905274112778612, guid: eaaffc07808ebaf4fae8b342b82799c9, type: 3}
       propertyPath: 'possibleEncounters.Array.data[0]'
       value: 

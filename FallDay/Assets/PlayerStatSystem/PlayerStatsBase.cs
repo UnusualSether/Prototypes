@@ -32,9 +32,14 @@ public class PlayerStats
 
         base_damage = 1;
     }
-    public void ChangeMaxHealth(float max_health_change)
+    public void GainMaxHealth(float max_health_change)
     {
         max_hp += max_health_change;
+    }
+
+    public void LoseMaxHealth(float max_health_change)
+    {
+        max_hp -= max_health_change;
     }
 
 
