@@ -12,6 +12,9 @@ public partial class GameDisplay : MonoBehaviour
     public VisualElement[] bulletDisplay;
     public UIDocument uiDoc;
 
+
+    public DirectionDisplay[] direction_and_reward_buttons = new DirectionDisplay[3];
+
     public GameHandler handler;
 
     public Label damage_number_label;
@@ -44,11 +47,48 @@ public partial class GameDisplay : MonoBehaviour
         public Coroutine activeAnimation;
     }
 
+    [Serializable]
+    public class DirectionDisplay
+    {
+        public VisualElement displayElement;
+
+        public Label reward_name;
+
+        public Label reward_description;
+
+        public Image reward_icon;
+
+        public Reward displayed_reward;
+
+        public DirectionDisplay()
+        { 
+
+            reward_name = displayElement.Q<Label>("name_of_reward");
+
+            reward_description = displayElement.Q<Label>("reward_description");
+
+            reward_icon = displayElement.Q<Image>("reward_image");
+
+            reward_name.text = displayed_reward.reward_name;
+
+            reward_description.text = displayed_reward.reward_description;
+
+
+        }
+
+
+
+
+
+    }
+
     private void Awake()
     {
         ui = uiDoc.rootVisualElement;
 
         List<VisualElement> numberOfDisplay = new List<VisualElement>();
+
+        SetEachClassesElementToElement();
     }
     private void OnEnable()
     {
@@ -229,6 +269,47 @@ public partial class GameDisplay : MonoBehaviour
 
         
     }
+
+
+    #region Direction Button Handling
+
+
+    public void SetEachClassesElementToElement()
+    {
+        direction_and_reward_buttons[0].displayElement = uiDoc.rootVisualElement.Query<VisualElement>("up_button");
+        direction_and_reward_buttons[1].displayElement = uiDoc.rootVisualElement.Query<VisualElement>("right_button");
+        direction_and_reward_buttons[2].displayElement = uiDoc.rootVisualElement.Query<VisualElement>("left_button");
+    }
+
+    public void SetButtonDisplayToCurrentRewards()
+    {
+        var current_rewards = handler.reward_trio;
+
+        for(int i  = 0; i < current_rewards.Length; i++)
+        {
+            direction_and_reward_buttons[i].displayed_reward = current_rewards[i];
+        }
+
+    }
+
+    public void SetDirectionDisplayOff()
+    {
+        foreach (var button in direction_and_reward_buttons)
+        {
+            button.displayElement.SetEnabled(false);
+        }
+    }
+
+    public void SetDirectionDisplayOn()
+    {
+        foreach (var button in direction_and_reward_buttons)
+        {
+            button.displayElement.SetEnabled(true);
+        }
+    }
+
+
+    #endregion
 
     #region Bullet Spot Handling
     private bool SelectableBulletsHaveChanged()
