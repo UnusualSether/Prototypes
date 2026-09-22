@@ -44,20 +44,20 @@
 
 #trinket_toggle .unity-toggle__checkmark {
     background-image: none;
-    border-width: 2px;
+    border-width: 3px;
     border-color: rgb(140, 133, 121);
-    border-radius: 4px;
-    background-color: rgba(0, 0, 0, 0);
+    border-radius: 45px;
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 #trinket_toggle:checked .unity-toggle__checkmark {
-    background-image: url("project://database/Assets/UI/GearPixel.png?fileID=21300000&guid=dc9d8567e61ed1b40a4a53cdf1d0e9d0&type=3#GearPixel");
-    background-color: rgb(95, 107, 62);
+    background-image: none;
+    background-color: rgba(255, 0, 0, 0.8);
     border-color: rgb(95, 107, 62);
 }
 
 #trinket_view_element.equipped {
-    background-color: rgba(95, 107, 62, 0.15);
+    background-color: rgba(255, 0, 0, 0.8);
     border-left-width: 3px;
     border-left-color: rgb(95, 107, 62);
 }
