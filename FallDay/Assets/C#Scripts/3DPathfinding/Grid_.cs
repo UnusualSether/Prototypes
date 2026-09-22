@@ -215,11 +215,15 @@ public class Grid_
         return ((new Vector3(x, y, z) * cellSize) + originPosition);
     }
     // returns the cell coordinates of the given world position
-    public void GetXYZ(Vector3 worldPosition, out int x,out int y,out int z) 
+    public bool GetXYZ(Vector3 worldPosition, out int x,out int y,out int z) 
     {
+        bool InGrid = true;
         x = Mathf.FloorToInt((worldPosition - originPosition).x / cellSize); // calculates the x coordinate of the cell by subtracting the origin position and cell offset from the world position, dividing by the cell size, and flooring the result to get an integer value
         y = Mathf.FloorToInt((worldPosition - originPosition).y / cellSize);
         z = Mathf.FloorToInt((worldPosition - originPosition).z / cellSize);
+
+        if(x <= width || y <= hight || z <= lengh) { InGrid = false; }
+        return InGrid;
     }
     // Returns the cell at the given grid coordinates in the grid,
     // or null if the coordinates are out of grid bounds

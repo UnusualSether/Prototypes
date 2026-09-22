@@ -141,19 +141,16 @@ public class CharacterMove : MonoBehaviour
         ManualMove(nextWaypoint);
 
         cachedPlayerRoom = nextWaypoint.belongingRoom;
-
+        //Add_a System For new waypoint;
         PlayerMoved?.Invoke();
     }
 
     private void ManualMove(Waypoint wp)
     {
+        //StartCoroutine(CheckIfArrived(wp.wayPointPosition));
 
-
-       
-        
-        StartCoroutine(CheckIfArrived(wp.wayPointPosition));
     }
-
+    /*
     IEnumerator CheckIfArrived(Vector3 targetPos)
     {
         bool gate = false;
@@ -182,7 +179,7 @@ public class CharacterMove : MonoBehaviour
         OnTargetReached();
 
     }
-
+    */
 
     void OnTargetReached()
     {
