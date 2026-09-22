@@ -1,0 +1,22 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:VisualElement xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" template="player_choice_button">
+        <engine:Button text="" name="right_button" style="background-image: url(&quot;project://database/Assets/ArtTechDemo/Sprites/BathRoom%20Floor.png?fileID=2800000&amp;guid=aa872b9d8bebc8d479b53fba0df2a882&amp;type=3#BathRoom Floor&quot;); position: absolute; top: 825px; left: 749px; height: 460px; width: 502px;">
+            <engine:Image name="reward_image"/>
+            <engine:Label text="&#10;" name="name_of_reward" style="-unity-text-align: upper-center;"/>
+            <engine:Label text="&#10;" name="reward_description" style="-unity-text-align: upper-center;"/>
+            <engine:Image name="direction_arrow"/>
+        </engine:Button>
+        <engine:Button text="" name="up_button" style="background-image: url(&quot;project://database/Assets/ArtTechDemo/Sprites/BathRoom%20Floor.png?fileID=2800000&amp;guid=aa872b9d8bebc8d479b53fba0df2a882&amp;type=3#BathRoom Floor&quot;); width: 516px; position: absolute; top: 257px; left: 351px; height: 439px;">
+            <engine:Image name="reward_image"/>
+            <engine:Label text="&#10;" name="name_of_reward" style="-unity-text-align: upper-center;"/>
+            <engine:Label text="&#10;" name="reward_description" style="-unity-text-align: upper-center;"/>
+            <engine:Image name="direction_arrow"/>
+        </engine:Button>
+        <engine:Button text="" name="left_button" style="background-image: url(&quot;project://database/Assets/ArtTechDemo/Sprites/BathRoom%20Floor.png?fileID=2800000&amp;guid=aa872b9d8bebc8d479b53fba0df2a882&amp;type=3#BathRoom Floor&quot;); position: absolute; top: 819px; left: 2px; height: 471px; width: 464px;">
+            <engine:Image name="reward_image"/>
+            <engine:Label text="&#10;" name="name_of_reward" style="-unity-text-align: upper-center;"/>
+            <engine:Label text="&#10;" name="reward_description" style="-unity-text-align: upper-center;"/>
+            <engine:Image name="direction_arrow"/>
+        </engine:Button>
+    </engine:VisualElement>
+</ui:UXML>

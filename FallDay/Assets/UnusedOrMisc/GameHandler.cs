@@ -87,6 +87,8 @@ public partial class GameHandler : MonoBehaviour
     //Animação UI
     public event Action<int> SucessfulHit;
 
+    //Rewards
+    public event Action NewRewardsGenerated;
     #endregion
 
 
@@ -289,6 +291,8 @@ public partial class GameHandler : MonoBehaviour
         }
 
         reward_trio = RewardOptions();
+
+        NewRewardsGenerated?.Invoke();
     }
 
     public Reward[] RewardOptions()

@@ -8,10 +8,12 @@ using System;
 public partial class GameDisplay : MonoBehaviour
 {
 
-    public VisualElement ui;
+    public VisualElement gameplay_doc_root;
     public VisualElement[] bulletDisplay;
-    public UIDocument uiDoc;
+    public UIDocument gameplay_ui_doc;
 
+
+    public UIDocument direction_ui_doc;
 
     public DirectionDisplay[] direction_and_reward_buttons = new DirectionDisplay[3];
 
@@ -50,7 +52,7 @@ public partial class GameDisplay : MonoBehaviour
     [Serializable]
     public class DirectionDisplay
     {
-        public VisualElement displayElement;
+        public Button displayElement;
 
         public Label reward_name;
 
@@ -60,7 +62,7 @@ public partial class GameDisplay : MonoBehaviour
 
         public Reward displayed_reward;
 
-        public DirectionDisplay()
+        public void SetParams()
         { 
 
             reward_name = displayElement.Q<Label>("name_of_reward");
@@ -84,14 +86,17 @@ public partial class GameDisplay : MonoBehaviour
 
     private void Awake()
     {
-        ui = uiDoc.rootVisualElement;
+        
 
-        List<VisualElement> numberOfDisplay = new List<VisualElement>();
-
-        SetEachClassesElementToElement();
+        
     }
     private void OnEnable()
     {
+
+
+        gameplay_doc_root = gameplay_ui_doc.rootVisualElement;
+
+        List<VisualElement> numberOfDisplay = new List<VisualElement>();
 
         //Events
 
@@ -106,14 +111,17 @@ public partial class GameDisplay : MonoBehaviour
         handler.ZombieDamaged += ShakeZombieVisual;
         RegisterAnimationEvents();
 
+        ThreeDGameHandler.PlayerChoiceStarted += SetDirectionDisplayOn;
+        ThreeDGameHandler.PlayerChoiceEnded += SetDirectionDisplayOff;
+
         //Find the Bullet Displays using a for loop
-        var bulletDisplaysFound = ui.Query<VisualElement>().Where(e => e.name.StartsWith("BSpot")).ToList();
+        var bulletDisplaysFound = gameplay_doc_root.Query<VisualElement>().Where(e => e.name.StartsWith("BSpot")).ToList();
 
         //Debug.Log($"{bulletDisplaysFound.Count} bullet displays found");
 
         //Find the damage number display
 
-        damage_number_label = uiDoc.rootVisualElement.Query<Label>("DamageNumberDisplay");
+        damage_number_label = gameplay_ui_doc.rootVisualElement.Query<Label>("DamageNumberDisplay");
 
        
 
@@ -128,7 +136,7 @@ public partial class GameDisplay : MonoBehaviour
 
         //Find the Zombie Displays 
 
-        var zombieDisplaysFound = ui.Query<VisualElement>().Where(e => e.name.StartsWith("ZombieSpot")).ToList();
+        var zombieDisplaysFound = gameplay_doc_root.Query<VisualElement>().Where(e => e.name.StartsWith("ZombieSpot")).ToList();
 
         //Debug.Log(zombieDisplaysFound.Count + "Zombie Displays");
 
@@ -175,6 +183,9 @@ public partial class GameDisplay : MonoBehaviour
 
         cachedZombies = handler.ZombieList.ToList();
 
+
+        SetEachClassesElementToElement();
+
     }
     private void OnDisable()
     {
@@ -187,6 +198,9 @@ public partial class GameDisplay : MonoBehaviour
         handler.ZombieDamaged -= ShakeZombieVisual;
         UnregisterAnimationEvents();
         ResetLists();
+
+        ThreeDGameHandler.PlayerChoiceStarted -= SetDirectionDisplayOn;
+        ThreeDGameHandler.PlayerChoiceEnded -= SetDirectionDisplayOff;
     }
     //Is here to detect changes in the other scripts.
     private void Update()
@@ -273,12 +287,25 @@ public partial class GameDisplay : MonoBehaviour
 
     #region Direction Button Handling
 
+    public void UpdatePointRewards(DirectionDisplay display, Reward displayed_r)
+    {
+
+        display.displayed_reward = displayed_r;
+
+
+    }
 
     public void SetEachClassesElementToElement()
     {
-        direction_and_reward_buttons[0].displayElement = uiDoc.rootVisualElement.Query<VisualElement>("up_button");
-        direction_and_reward_buttons[1].displayElement = uiDoc.rootVisualElement.Query<VisualElement>("right_button");
-        direction_and_reward_buttons[2].displayElement = uiDoc.rootVisualElement.Query<VisualElement>("left_button");
+
+        direction_and_reward_buttons[0].displayElement = direction_ui_doc.rootVisualElement.Query<Button>("up_button");
+        direction_and_reward_buttons[1].displayElement = direction_ui_doc.rootVisualElement.Query<Button>("right_button");
+        direction_and_reward_buttons[2].displayElement = direction_ui_doc.rootVisualElement.Query<Button>("left_button");
+
+        foreach (var button in direction_and_reward_buttons)
+        {
+            button.SetParams();
+        }
     }
 
     public void SetButtonDisplayToCurrentRewards()
@@ -294,18 +321,12 @@ public partial class GameDisplay : MonoBehaviour
 
     public void SetDirectionDisplayOff()
     {
-        foreach (var button in direction_and_reward_buttons)
-        {
-            button.displayElement.SetEnabled(false);
-        }
+       direction_ui_doc.enabled = false;
     }
 
     public void SetDirectionDisplayOn()
     {
-        foreach (var button in direction_and_reward_buttons)
-        {
-            button.displayElement.SetEnabled(true);
-        }
+        direction_ui_doc.enabled = true;
     }
 
 
@@ -463,7 +484,7 @@ public partial class GameDisplay : MonoBehaviour
             assignedDisplay.displayedZombie = newZombie;
             //Debug.Log($"Zombie Display {assignedDisplay.displayId} now contains zombie with ID {assignedDisplay.displayedZombie.id}");
 
-            VisualElement zombieDisplayElement = ui.Query<VisualElement>().Where(e => e.name == $"ZombieSpot{assignedDisplay.displayId + 1}");
+            VisualElement zombieDisplayElement = gameplay_doc_root.Query<VisualElement>().Where(e => e.name == $"ZombieSpot{assignedDisplay.displayId + 1}");
 
             if (zombieDisplayElement == null)
             {
@@ -503,7 +524,7 @@ public partial class GameDisplay : MonoBehaviour
 
             assignedDisplay.displayedZombie = null;
 
-            VisualElement zombieDisplayElement = ui.Query<VisualElement>().Where(e => e.name == $"ZombieSpot{assignedDisplay.displayId + 1}");
+            VisualElement zombieDisplayElement = gameplay_doc_root.Query<VisualElement>().Where(e => e.name == $"ZombieSpot{assignedDisplay.displayId + 1}");
 
             if (zombieDisplayElement == null)
             {
