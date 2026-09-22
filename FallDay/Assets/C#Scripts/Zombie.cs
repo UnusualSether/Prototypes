@@ -18,15 +18,14 @@ public class Zombie
     public double Diff = 0;
     public string EnemyType;
 
-    public float PhT1 { get; private set; } = 0;
+    private float PhT1 = 0;
     private bool IsFirstUpdate = true;
     public Difficulty difficulty;
     public int damage;
     public bool debugisOn = false;
     public GameHandler handler; //Isso é para a outra parte do codigo que foi movido para o game handler
-    private float timeToPlayer;
 
-    public EnemyData enemyData { get; private set; }
+    private EnemyData enemyData;
 
     //public EnemyData enemyData; // BackUp em caso de falta de Informação.
     public enum ZombiePhase
@@ -47,6 +46,7 @@ public class Zombie
         {
             phase = ZombiePhase.Stop;
         }
+
         if (phase == ZombiePhase.Close && PhT1 <= 0)
         {
             PlayerTookDamage?.Invoke(damage);

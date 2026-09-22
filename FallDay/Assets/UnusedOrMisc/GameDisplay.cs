@@ -345,7 +345,7 @@ public partial class GameDisplay : MonoBehaviour
         clickedElement.AddToClassList("aimed");
     }
 
-    private void RemoveCrosshair(Zombie zombie)
+    private void RemoveCrosshair()
     {
         foreach (var display in occupiedZombieDisplay)
         {

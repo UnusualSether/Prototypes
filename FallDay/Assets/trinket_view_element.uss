@@ -51,7 +51,7 @@
 }
 
 #trinket_toggle:checked .unity-toggle__checkmark {
-    background-image: url("project://database/Assets/UI/GearPixel.png?fileID=21300000&guid=dc9d8567e61ed1b40a4a53cdf1d0e9d0&type=3#GearPixel");
+    background-image: url("project://database/Assets/UI/GearPixel.png");
     background-color: rgb(95, 107, 62);
     border-color: rgb(95, 107, 62);
 }
@@ -60,16 +60,4 @@
     background-color: rgba(95, 107, 62, 0.15);
     border-left-width: 3px;
     border-left-color: rgb(95, 107, 62);
-}
-
-
-
-.unity-toggle__checkmark {
-    min-height: 125px;
-    min-width: 125px;
-}
-
-.unity-toggle__input {
-    min-width: 130px;
-    min-height: 130px;
 }

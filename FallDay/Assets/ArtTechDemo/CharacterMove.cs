@@ -5,6 +5,7 @@ using System.Linq;
 using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Rendering;
 
 
 [Serializable]
@@ -16,6 +17,7 @@ public class Waypoint
     public GameObject belongingRoom;
 
 }
+
 
 public class CharacterMove : MonoBehaviour
 {
@@ -35,8 +37,6 @@ public class CharacterMove : MonoBehaviour
 
     public float speed = 0.2f;
 
-    public GameObject GridGenerator;
-    public Grid_Generator grid_Gen;
     public NavMeshAgent navMesh;
 
     public NavMeshSurface surface;
@@ -45,7 +45,6 @@ public class CharacterMove : MonoBehaviour
     {
         charTransform = this.gameObject.GetComponent<Transform>();
         navMesh = gameObject.GetComponent<NavMeshAgent>();
-        grid_Gen = GridGenerator.GetComponent<Grid_Generator>();
     }
 
     //Subscribe the player move to next waypoint function to whenevr the gamehandler deetcts that we're suppose to be on rails/
@@ -61,6 +60,8 @@ public class CharacterMove : MonoBehaviour
 
     }
 
+
+    
 
     public List<Waypoint> wayPointList = new List<Waypoint>();
 
@@ -91,8 +92,9 @@ public class CharacterMove : MonoBehaviour
             Destroy(item);
         }
 
-        // Update Required 
-        grid_Gen.UpdateGrid();
+
+        surface.BuildNavMesh();
+
 
     }
 
@@ -105,6 +107,8 @@ public class CharacterMove : MonoBehaviour
 
 
         InitializeWaypoints();
+
+
 
     }
 
@@ -220,6 +224,8 @@ public class CharacterMove : MonoBehaviour
     }
 
 
+
+
     public bool PathBlocked()
     {
         Ray ray;
@@ -248,7 +254,12 @@ public class CharacterMove : MonoBehaviour
 
         return false;
 
+
+
     }
+
+
+
 
     
     public void PlayerSwipe(ThreeDGameHandler.SwipeDirection dir)
