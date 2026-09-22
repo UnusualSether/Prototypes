@@ -20,8 +20,8 @@ public class TrinketVisual
 
             Sprite[] frames = TrinketVisual.trinket_sprite;
 
-            float maxWidth = 150f;
-            float maxHeight = 117f;
+            float maxWidth = 80f;
+            float maxHeight = 40f;
 
             foreach(var frame in frames)
             {
