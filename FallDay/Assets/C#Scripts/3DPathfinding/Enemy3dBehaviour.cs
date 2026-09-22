@@ -21,7 +21,7 @@ public class Enemy3dBehaviour : MonoBehaviour //!!!!!! PLACE THIS IN A NOTHER SC
     /**/private bool debug = true; /**/
     ///////////////////////////////////
 
-    public void Zombie3SetUP(Zombie zombie, GameHandler gameHandler, GameObject player, Grid_ grid, PathFolower PathFollowerComponer) // Needs to be called by the initial spawner to pass the zombie and player references to this script
+    public void Zombie3SetUP(Zombie zombie, GameHandler gameHandler, GameObject player, Grid_ grid, PathFolower PathFollowerComponent) // Needs to be called by the initial spawner to pass the zombie and player references to this script
     {
         this.zombie = zombie;
         this.gameHandler = gameHandler;

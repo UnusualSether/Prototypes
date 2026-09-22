@@ -11,7 +11,6 @@ public class Pathfinding
     private List<Cell_> closeList;
 
     private List<Cell_> NaborList;
-
     private bool debug = true;
 
     public Pathfinding(Grid_ grid)

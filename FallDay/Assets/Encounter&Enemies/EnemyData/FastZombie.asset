@@ -16,5 +16,6 @@ MonoBehaviour:
   devToDevDescription: "A zombie with a low phase timer but also low \nhealth."
   HP: 30
   Damage: 2
-  phaseTimer: 3
+  PhaseTime: 0
+  DamegeTimer: 0.7
   Zprefab: {fileID: 3609652424333018288, guid: f9ae0d6c7ec4ea444903f017f987a3e0, type: 3}

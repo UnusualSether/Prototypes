@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,12 +18,12 @@ public class Grid_
     Vector3 cellOffset; // Offset to center the debug objects within each cell
 
     //// !!!WARNING!!! NOT ALL SETUPS ARE FUNCTIONAL////
-    //////////////////////////////////////////////////////////////////////////////////////////////////////
-    /// ---------- Driffrent ways to start up the grid, with or without debug object, 
-    /// with Vector3 or int values for width, hight, and length -------------
-    //////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////
+    /// ---------- Driffrent ways to start up the grid, with or without debug object,  ///
+    /// with Vector3 or int values for width, hight, and length -------------          ///
+    //////////////////////////////////////////////////////////////////////////////////////
 
-    /// <Vector3Sise> /////////////
+    /// <Vector3Sise> ///
     public Grid_(Vector3 gridSize, float cellSize, Vector3 originPosition)//start up grid with debug object
     {
         GridSetUp((int)gridSize.x, (int)gridSize.y, (int)gridSize.z, cellSize, originPosition);
@@ -38,7 +37,7 @@ public class Grid_
         GridSetUp((int)gridSize.x, (int)gridSize.y, (int)gridSize.z, cellSize, originPosition);
     }
 
-    /// <IntSise> /////////////
+    /// <IntSise> ///
     public Grid_(int width, int hight, int lengh, float cellSize, Vector3 originPosition)//start up grid with no debug object
     {
         GridSetUp(width, hight, lengh, cellSize, originPosition);
@@ -52,7 +51,7 @@ public class Grid_
         GridSetUp(width, hight, lengh, cellSize, originPosition);
     }
 
-    /// <Vector3SiseWithHeightOverrite> /////////
+    /// <Vector3SiseWithHeightOverrite> ///
     public Grid_(Vector3 gridSize, float cellSize, float cellHeightRayOverrite, Vector3 originPosition)//start up grid with debug object
     {
         GridSetUpRayOverriteCall((int)gridSize.x, (int)gridSize.y, (int)gridSize.z, cellSize, cellHeightRayOverrite, originPosition);
@@ -65,7 +64,7 @@ public class Grid_
         }
         GridSetUpRayOverriteCall((int)gridSize.x, (int)gridSize.y, (int)gridSize.z, cellSize, cellHeightRayOverrite, originPosition);
     }
-    /// </IntSiseWithHeightOverrite> ///////////
+    /// </IntSiseWithHeightOverrite> ///
     public Grid_(int width, int hight, int lengh, float cellSize, float cellHeightRayOverrite, Vector3 originPosition)//start up grid with no debug object
     {
         GridSetUpRayOverriteCall(width, hight, lengh, cellSize, cellHeightRayOverrite, originPosition);
@@ -78,7 +77,7 @@ public class Grid_
         }
         GridSetUpRayOverriteCall(width, hight, lengh, cellSize, cellHeightRayOverrite, originPosition);
     }
-    /// -------------------------------- Main Grid Set Up logic ----------------------------- //////////////////////////
+    /// -------------------------------- Main Grid Set Up logic ----------------------------- ///
     private void GridSetUpRayOverriteCall(int width, int hight, int lengh, float cellSize, float cellHeightRayOverrite, Vector3 originPosition)//sets up the grid with the given parameters
     {
         this.cellHeightRayOverrite = cellHeightRayOverrite; //sets the height override of each cell in the grid
@@ -118,9 +117,9 @@ public class Grid_
     {
         pathfinding = new Pathfinding(this);
     }
-    ////////////////////////////////////////////////////////
-    /// ---------------- Grid Functions -----------------
-    ////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////
+    /// ---------------- Grid Functions ----------------- ///
+    /////////////////////////////////////////////////////////
     
     public void UpdateGrid(Vector3 newOriginPosition) //Updates the grid by checking the walkable status of all cells
     {
@@ -266,9 +265,9 @@ public class Grid_
         }
     }
 
-    ////////////////////////////////////////////////////////////////////////////////////////
-    /// ------------------------ DEBUG FUNCTIONS -------------------------------------------
-    ////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////
+    /// ------------------------ DEBUG FUNCTIONS ------------------------------------------- ///
+    ////////////////////////////////////////////////////////////////////////////////////////////
 
     //Function to generate debug objects for each cell in the grid,
     //allowing for visual representation and debugging of the grid structure and cell properties.

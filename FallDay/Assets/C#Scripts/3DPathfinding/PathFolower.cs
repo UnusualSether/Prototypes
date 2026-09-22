@@ -8,7 +8,8 @@ public class PathFolower : MonoBehaviour
     // This script adds a pathfinding component to a 3D object, allowing it to follow a path towards a target position.
     // It uses a grid-based pathfinding system to find the optimal path and moves the object along that path at a specified speed.
     // Needs a additional script to handle the target position and pathfinding logic (controller that can vary in behavior)
-        // this was decided to be a separate script to allow for more flexibility in the pathfinding logic and to avoid cluttering the PathFolower script with too much functionality.
+        // this was decided to be a separate script to allow for more flexibility in the pathfinding
+        // logic and to avoid cluttering the PathFolower script with too much functionality.
     // needs a grid system to define the walkable areas in the game world.
     // Grid_ can be changed to any other grid system that implements the same pathfinding logic, as long as it provides a method to find a path between two positions.
 
@@ -21,7 +22,7 @@ public class PathFolower : MonoBehaviour
     private Action AfterWalkCall; //Used to call a function afer walk is complete
 
     /////////////////////////////////////
-    /**/ private bool debug = false; /**/  //Debugging flag to enable or disable debug logs and other debug features
+    /**/ private bool debug = false; /**/  // Debugging flag to enable or disable debug logs and other debug features
     /////////////////////////////////////
     
     public void pathFolowerSetUp(Grid_ grid, Vector3 targetPosition, int ReducePathOveride, Action afterWalkCall)
