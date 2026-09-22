@@ -20,16 +20,15 @@ public class PathFolower : MonoBehaviour
     public Grid_ grid;
     private Action AfterWalkCall; //Used to call a function afer walk is complete
 
-    ///////////////////////////////////
-    /**/ private bool debug = false; // Debugging flag to enable or disable debug logs and other debug features
-    ///////////////////////////////////
+    /////////////////////////////////////
+    /**/ private bool debug = false; /**/  //Debugging flag to enable or disable debug logs and other debug features
+    /////////////////////////////////////
     
     public void pathFolowerSetUp(Grid_ grid, Vector3 targetPosition, int ReducePathOveride, Action afterWalkCall)
     {
         this.grid = grid;
         pathFolowerSetUp(targetPosition, ReducePathOveride, afterWalkCall);
     }
-
     public void pathFolowerSetUp(Vector3 targetPosition, int ReducePathOveride, Action afterWalkCall)
     {
         //set up 
@@ -85,7 +84,7 @@ public class PathFolower : MonoBehaviour
                         if (debug) Debug.Log("Starting Walk Coroutine");
                         StartCoroutine(WalkPathCoroutine());
                     }
-                    else
+                    else if ((gameObject.transform.position - path[0]).magnitude < 0.2f)
                     {
                         //Call a new pathfinding
                         if (errorThrow == false)
@@ -115,6 +114,4 @@ public class PathFolower : MonoBehaviour
             AfterWalkCall();
         }
     }
-
-
 }

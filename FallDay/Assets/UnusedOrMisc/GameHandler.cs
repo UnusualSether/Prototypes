@@ -18,8 +18,6 @@ public partial class GameHandler : MonoBehaviour
 
     public PlayerInstance player;
 
-
-
     public int current_bullet_damage => ReadyBulletsDamageAggregate(readyBullets);
 
     public int ReadyBulletsDamageAggregate(List<string> ready_bullets)
@@ -35,7 +33,6 @@ public partial class GameHandler : MonoBehaviour
 
         return damage_total;
     }
-
 
 
     #region Lists and Arrays
@@ -84,7 +81,6 @@ public partial class GameHandler : MonoBehaviour
     public event Action<int> SucessfulHit;
 
     #endregion
-
 
     #region Variables
 
@@ -403,7 +399,7 @@ public partial class GameHandler : MonoBehaviour
         ZombieSpawned?.Invoke(newZombie);
         if(debugisOn) Debug.Log("Grahh....");
 
-        OnZombieUpdate += newZombie.UpdatePhase;
+        //OnZombieUpdate += newZombie.UpdatePhase;
         zombieLookup.Add(newZombie.id, newZombie);
 
         //Check to make sure list and dictionary line up
@@ -445,7 +441,7 @@ public partial class GameHandler : MonoBehaviour
     }
     public void ApplyDamage(int damage)
     {
-        ApplyDamage(damage, zombieToAimAt());
+        //ApplyDamage(damage, zombieToAimAt());
     }
 
     public void ApplyDamage(int damage, Zombie zombieToDamage)
@@ -454,7 +450,7 @@ public partial class GameHandler : MonoBehaviour
 
         if (zombieToDamage == null)
         {
-            Debug.Log("Tried to damage invalid zombie, try again!");
+            if(debugisOn) Debug.Log("Tried to damage invalid zombie, trying again!");
             ApplyDamage(damage, zombieToAimAt());
             return;
         }
@@ -481,7 +477,7 @@ public partial class GameHandler : MonoBehaviour
         {
             ZombieList.Remove(zombieToKill);
             zombieLookup.Remove(zombieToKill.id);
-            OnZombieUpdate -= zombieToKill.UpdatePhase;
+            //OnZombieUpdate -= zombieToKill.UpdatePhase;
 
             //Update the dictionary with the new zombie ids
             int a = 0;
@@ -1177,7 +1173,7 @@ public partial class GameHandler : MonoBehaviour
     {
         foreach (var zombie in ZombieList)
         {
-            OnZombieUpdate -= zombie.UpdatePhase;
+            //OnZombieUpdate -= zombie.UpdatePhase;
         }
 
 

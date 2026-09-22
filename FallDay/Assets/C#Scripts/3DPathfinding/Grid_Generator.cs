@@ -96,12 +96,12 @@ public class Grid_Generator : MonoBehaviour
         pathFolowerComponer = spawnedEnemy.GetComponent<PathFolower>();
 
         ThreeD_Zombie.Add(zombie, spawnedEnemy);
-        Enemy3dBehaviour.Zombie3SetUP(zombie, player, grid, pathFolowerComponer);
+        Enemy3dBehaviour.Zombie3SetUP(zombie, gameHandler, player, grid, pathFolowerComponer);
         Enemy3dBehaviour.startWalk();
     }
     public void zombieDeath(Zombie zombie)
     {
-        //ThreeD_Zombie[zombie].GetComponent<PathFolower>().callerDestroy(zombie);
+        ThreeD_Zombie[zombie].GetComponent<Enemy3dBehaviour>().callerDestroy(zombie);
         ThreeD_Zombie.Remove(zombie);
     }
 }

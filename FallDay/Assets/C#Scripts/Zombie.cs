@@ -111,7 +111,7 @@ public class Zombie
         enemyData = data;
 
         hp = (int)(data.HP);
-        PhaseTimer = data.phaseTimer;
+        PhaseTimer = data.DamegeTimer;
         damage = data.Damage;
         EnemyType = data.enemyName;
     }
