@@ -63,7 +63,7 @@ public partial class GameDisplay : MonoBehaviour
         public Reward displayed_reward;
 
         public void SetParams()
-        { 
+        {
 
             reward_name = displayElement.Q<Label>("name_of_reward");
 
@@ -71,9 +71,37 @@ public partial class GameDisplay : MonoBehaviour
 
             reward_icon = displayElement.Q<Image>("reward_image");
 
-            reward_name.text = displayed_reward.reward_name;
+            
 
-            reward_description.text = displayed_reward.reward_description;
+        }
+
+        public void UpdateRewardDisplay()
+        {
+
+            if (displayed_reward == null)
+            {
+                return;
+            }
+
+            if (reward_icon == null)
+            {
+                Debug.Log("Didn't find a display for the icon!");
+            }
+
+            else
+            {
+                reward_icon.sprite = displayed_reward.reward_sprite;
+            }
+
+            if (reward_name == null)
+            {
+                Debug.Log("Didn't find a display for the name!");
+            }
+            else
+            {
+                reward_name.text = displayed_reward.reward_name;
+            }
+           
 
 
         }
@@ -184,6 +212,10 @@ public partial class GameDisplay : MonoBehaviour
         cachedZombies = handler.ZombieList.ToList();
 
 
+        handler.NewRewardsGenerated += UpdateButtonRewards;
+
+        handler.PlayerKilledAllZombies += SetDirectionDisplayOn;
+
         SetEachClassesElementToElement();
 
     }
@@ -287,6 +319,10 @@ public partial class GameDisplay : MonoBehaviour
 
     #region Direction Button Handling
 
+
+    public static event Action<Reward> RewardChosen;
+
+    public static event Action<ThreeDGameHandler.SwipeDirection> DirectionChosen;
     public void UpdatePointRewards(DirectionDisplay display, Reward displayed_r)
     {
 
@@ -295,12 +331,35 @@ public partial class GameDisplay : MonoBehaviour
 
     }
 
+    public void UpdateButtonRewards()
+    {
+        for (int i = 0; i < direction_and_reward_buttons.Length; i++)
+        {
+            direction_and_reward_buttons[i].displayed_reward = handler.reward_trio[i];
+        }
+   
+    }
+
     public void SetEachClassesElementToElement()
     {
 
         direction_and_reward_buttons[0].displayElement = direction_ui_doc.rootVisualElement.Query<Button>("up_button");
         direction_and_reward_buttons[1].displayElement = direction_ui_doc.rootVisualElement.Query<Button>("right_button");
         direction_and_reward_buttons[2].displayElement = direction_ui_doc.rootVisualElement.Query<Button>("left_button");
+
+        direction_and_reward_buttons[0].displayElement.clicked += () => SoundOffChosenReward(direction_and_reward_buttons[0].displayed_reward);
+        direction_and_reward_buttons[1].displayElement.clicked += () => SoundOffChosenReward(direction_and_reward_buttons[1].displayed_reward);
+        direction_and_reward_buttons[2].displayElement.clicked += () => SoundOffChosenReward(direction_and_reward_buttons[2].displayed_reward);
+
+        direction_and_reward_buttons[0].displayElement.clicked += () => SoundOffChosenDirection(ThreeDGameHandler.SwipeDirection.Up);
+        direction_and_reward_buttons[1].displayElement.clicked += () => SoundOffChosenDirection(ThreeDGameHandler.SwipeDirection.Right);
+        direction_and_reward_buttons[2].displayElement.clicked += () => SoundOffChosenDirection(ThreeDGameHandler.SwipeDirection.Left);
+
+
+        direction_and_reward_buttons[0].displayElement.clicked += SetDirectionDisplayOff;
+        direction_and_reward_buttons[1].displayElement.clicked += SetDirectionDisplayOff;
+        direction_and_reward_buttons[2].displayElement.clicked += SetDirectionDisplayOff;
+
 
         foreach (var button in direction_and_reward_buttons)
         {
@@ -321,12 +380,51 @@ public partial class GameDisplay : MonoBehaviour
 
     public void SetDirectionDisplayOff()
     {
-       direction_ui_doc.enabled = false;
+        foreach (var dir_button in direction_and_reward_buttons)
+        {
+            dir_button.displayElement.visible = false;
+        }
     }
 
     public void SetDirectionDisplayOn()
     {
-        direction_ui_doc.enabled = true;
+        foreach (var dir_button in direction_and_reward_buttons)
+        {
+            
+            if (ThreeDGameHandler.leftandrightnulling == ThreeDGameHandler.SwipeDirection.Left)
+            {
+                if (dir_button == direction_and_reward_buttons[1])
+                {
+                    continue;
+                }
+            }
+
+            if (ThreeDGameHandler.leftandrightnulling == ThreeDGameHandler.SwipeDirection.Right)
+            {
+                if (dir_button == direction_and_reward_buttons[2])
+                {
+                    continue;
+                }
+            }
+
+            dir_button.displayElement.visible = true;
+
+            dir_button.UpdateRewardDisplay();
+
+            
+        }
+    }
+
+    public void SoundOffChosenReward(Reward chosen)
+    {
+        RewardChosen?.Invoke(chosen);
+    }
+
+    public void SoundOffChosenDirection(ThreeDGameHandler.SwipeDirection direction)
+    {
+        DirectionChosen?.Invoke(direction);
+
+        Debug.Log($"This is the button! I'm sounding off the direction as {direction.ToString()}.");
     }
 
 

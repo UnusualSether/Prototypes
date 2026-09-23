@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: HealthDrink
   m_EditorClassIdentifier: Assembly-CSharp::HealthGrantingReward
   reward_name: Health Drink
+  reward_description: Recover 0 health.
+  reward_sprite: {fileID: 21300000, guid: e2831f4e84c622842a61874ac3aef37c, type: 3}
   health_gain: 5

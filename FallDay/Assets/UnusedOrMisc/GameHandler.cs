@@ -144,6 +144,7 @@ public partial class GameHandler : MonoBehaviour
         destroyZombie += _KillZombie;
         PlayerKilledAllZombies += GrantStoredReward;
         PlayerKilledAllZombies += GenerateNewRewardTrio;
+        GameDisplay.RewardChosen += StoreChosenReward;
 
     }
 
@@ -153,6 +154,7 @@ public partial class GameHandler : MonoBehaviour
         ThreeDGameHandler.EncounterEnded -= DeactivateMinigame;
         destroyZombie -= _KillZombie;
         PlayerKilledAllZombies -= GrantStoredReward;
+        GameDisplay.RewardChosen -= StoreChosenReward;
         PlayerKilledAllZombies -= GenerateNewRewardTrio;
         ResetLists();
     }   

@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: SmallCurrencyPouch
   m_EditorClassIdentifier: Assembly-CSharp::CurrencyGainingReward
   reward_name: Coin Pouch
+  reward_description: Gain 0 currency.
+  reward_sprite: {fileID: 21300000, guid: 31ecc55734017ce4a907e475759abd84, type: 3}
   currency_gained: 10
