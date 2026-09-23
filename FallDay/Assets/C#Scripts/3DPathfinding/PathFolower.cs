@@ -39,9 +39,13 @@ public class PathFolower : MonoBehaviour
         path = grid.pathfinding.FindPath(transform.position, new Vector3(this.targetPosition.x, grid.CellWorldPosition(0, 0, 0).y, this.targetPosition.z)); // 
         path.RemoveAt(path.Count - ReducePathOveride);
     }
+    public void setNewTarget(Vector3 target)
+    {
+        this.targetPosition = target;
+    }
     public void SerchNewPath() // Recheck the pathfinding in case the object is not close enough to the start position of the path (attempts to save in case the path becomes invalid) {Reroll}
     {
-        if (isThereTarget) { 
+        if (isThereTarget && targetPosition != Vector3.negativeInfinity) { 
         path = grid.pathfinding.FindPath(transform.position, new Vector3(this.targetPosition.x, grid.CellWorldPosition(0, 0, 0).y, this.targetPosition.z)); // 
         path.RemoveAt(path.Count - 1);
         if (debug) Debug.Log($"Path found with {path.Count} points");
@@ -49,7 +53,7 @@ public class PathFolower : MonoBehaviour
     }
     private IEnumerator WalkPathCoroutine()
     {
-        if (isThereTarget) // Check if there is a target position to move towards (avoids null reference)
+        if (isThereTarget && targetPosition != Vector3.negativeInfinity) // Check if there is a target position to move towards (avoids null reference)
         {
             foreach (Vector3 point in path)
             {
@@ -68,7 +72,7 @@ public class PathFolower : MonoBehaviour
     // This is a safety measure in case the path becomes invalid or the object is not close enough to the start position.
     public void canWalk() 
     {
-        if (isThereTarget)
+        if (isThereTarget && targetPosition != Vector3.negativeInfinity)
         {
             //is pos of curerent Object near start pos?
             //true - start path

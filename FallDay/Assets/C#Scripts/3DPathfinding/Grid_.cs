@@ -218,7 +218,9 @@ public class Grid_
     public bool GetXYZ(Vector3 worldPosition, out int x,out int y,out int z) 
     {
         bool InGrid = true;
-        x = Mathf.FloorToInt((worldPosition - originPosition).x / cellSize); // calculates the x coordinate of the cell by subtracting the origin position and cell offset from the world position, dividing by the cell size, and flooring the result to get an integer value
+        x = Mathf.FloorToInt((worldPosition - originPosition).x / cellSize); // calculates the x coordinate of the cell by subtracting the origin position and
+                                                                             // cell offset from the world position, dividing by the cell size,
+                                                                             // and flooring the result to get an integer value
         y = Mathf.FloorToInt((worldPosition - originPosition).y / cellSize);
         z = Mathf.FloorToInt((worldPosition - originPosition).z / cellSize);
 
