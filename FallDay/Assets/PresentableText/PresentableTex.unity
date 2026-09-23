@@ -1141,6 +1141,8 @@ GameObject:
   - component: {fileID: 1088469943}
   - component: {fileID: 1088469942}
   - component: {fileID: 1088469940}
+  - component: {fileID: 1088469946}
+  - component: {fileID: 1088469945}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -1210,6 +1212,7 @@ MonoBehaviour:
   grid_Gen: {fileID: 0}
   navMesh: {fileID: 1088469940}
   surface: {fileID: 0}
+  playerPathControl: {fileID: 1088469946}
   wayPointList: []
 --- !u!4 &1088469944
 Transform:
@@ -1229,6 +1232,33 @@ Transform:
   - {fileID: 1258179218}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1088469945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088469939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2758cae914c9084fb7b34882f5d8959, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PathFolower
+  speed: 1
+--- !u!114 &1088469946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088469939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 411318feeda01194399d822493703b38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerPathControl
+  characterMove: {fileID: 1088469943}
+  pathFolower: {fileID: 1088469945}
 --- !u!1001 &1098874423
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1370,6 +1400,7 @@ MonoBehaviour:
   cellHeightOverrite: 2.29
   gameHandler: {fileID: 2043720488}
   player: {fileID: 1088469939}
+  playerPathControl: {fileID: 0}
   debug: 1
 --- !u!1 &1265312831 stripped
 GameObject:

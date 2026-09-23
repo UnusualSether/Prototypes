@@ -18,14 +18,15 @@ public class Grid_Generator : MonoBehaviour
     // References for other components and objects
     public GameHandler gameHandler;
     public GameObject player;
+    public PlayerPathControl playerPathControl;
 
     /// 3D Enemys Refrence
     private Dictionary<Zombie, GameObject> ThreeD_Zombie = new();//Stores pairs of Zombie data and their corresponding 3D game objects for easy access and management>
     private Dictionary<Zombie, Enemy3dBehaviour> path3DController = new();
     private Dictionary<Zombie, PathFolower> PathFolowerDictionary = new();
-    ///////////////////////////////////////////////////////////////////////////
-    public bool debug; // Debugging flag to enable or disable debug logs
-    ///////////////////////////////////////////////////////////////////////////
+    ////////////////////////////
+    /**/ public bool debug; /**/         // Debugging flag to enable or disable debug logs
+    ////////////////////////////
 
     ///////////////////////////////////////////////////////////////////////////
     /// ------------------ Unity Lifecycle Methods -----------------
@@ -54,9 +55,9 @@ public class Grid_Generator : MonoBehaviour
         gameHandler.ZombieSpawned -= generateEnemy;
         gameHandler.ZombieKilled -= zombieDeath;
     }
-    /////////////////////////////////////////////////////////////////////
-    // ----------------- Grid methods -----------------
-    /////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////
+    // ----------------- Grid methods ----------------- //
+    //////////////////////////////////////////////////////
 
     public void UpdateGrid() // Update the grid's walkable status for all cells
     {
@@ -81,9 +82,9 @@ public class Grid_Generator : MonoBehaviour
 
         return transform.position - offsetToOrigin;
     }
-    /////////////////////////////////////////////////////////////////////
-    // ----------------- Manage The 3DZombie In world -----------------//
-    /////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////
+    // ----------------- Manage The 3DZombie In world ----------------- //
+    //////////////////////////////////////////////////////////////////////
     public void generateEnemy(Zombie zombie) //Maybe this should be in a different script, but for now it is here
     {
         GameObject spawnedEnemy;
@@ -94,9 +95,9 @@ public class Grid_Generator : MonoBehaviour
 
         Enemy3dBehaviour = spawnedEnemy.GetComponent<Enemy3dBehaviour>();
         pathFolowerComponer = spawnedEnemy.GetComponent<PathFolower>();
-
         ThreeD_Zombie.Add(zombie, spawnedEnemy);
         Enemy3dBehaviour.Zombie3SetUP(zombie, gameHandler, player, grid, pathFolowerComponer);
+
         Enemy3dBehaviour.startWalk();
     }
     public void zombieDeath(Zombie zombie)

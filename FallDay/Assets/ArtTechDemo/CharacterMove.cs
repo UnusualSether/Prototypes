@@ -11,10 +11,7 @@ using UnityEngine.AI;
 public class Waypoint
 {
     public Vector3 wayPointPosition;
-
-
     public GameObject belongingRoom;
-
 }
 
 public class CharacterMove : MonoBehaviour
@@ -40,6 +37,7 @@ public class CharacterMove : MonoBehaviour
     public NavMeshAgent navMesh;
 
     public NavMeshSurface surface;
+    public PlayerPathControl playerPathControl;
 
     public void Start()
     {
@@ -55,10 +53,7 @@ public class CharacterMove : MonoBehaviour
 
     public void Update()
     {
-
-
         CheckStatus();
-
     }
 
 
@@ -72,12 +67,8 @@ public class CharacterMove : MonoBehaviour
 
         var foundObjects = GameObject.FindGameObjectsWithTag("Waypoint");
 
-
-
-
         foreach (var item in foundObjects)
         {
-
 
             var newWaypoint = new Waypoint()
             {
@@ -93,7 +84,6 @@ public class CharacterMove : MonoBehaviour
 
         // Update Required 
         grid_Gen.UpdateGrid();
-
     }
 
     public void WayPointMaintenance()
@@ -148,7 +138,9 @@ public class CharacterMove : MonoBehaviour
     private void ManualMove(Waypoint wp)
     {
         //StartCoroutine(CheckIfArrived(wp.wayPointPosition));
-
+        //playerPathControl.
+        //playerPathControl.serchNewPathSetUp(wp);
+        //(wp.wayPointPosition);
     }
     /*
     IEnumerator CheckIfArrived(Vector3 targetPos)
