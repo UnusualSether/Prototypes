@@ -14,13 +14,15 @@ public class PathFolower : MonoBehaviour
     // Grid_ can be changed to any other grid system that implements the same pathfinding logic, as long as it provides a method to find a path between two positions.
 
     public float speed = 1.0f; //Speed of the object along the path
+    
     private Vector3 targetPosition; // Target position to move towards
+    
     private bool isThereTarget = false; // Control say there is a path terget start pos is always this game object
     private bool errorThrow = false; // Exists to loop a new path Once before throwing an error
-    private List<Vector3> path; 
+    private List<Vector3> path;
     public Grid_ grid;
     private Action AfterWalkCall; //Used to call a function afer walk is complete
-
+    private int ReducePathOveride;
     /////////////////////////////////////
     /**/ private bool debug = false; /**/  // Debugging flag to enable or disable debug logs and other debug features
     /////////////////////////////////////
@@ -36,18 +38,43 @@ public class PathFolower : MonoBehaviour
         this.targetPosition = targetPosition;
         isThereTarget = true;
         AfterWalkCall = afterWalkCall;
-        path = grid.pathfinding.FindPath(transform.position, new Vector3(this.targetPosition.x, grid.CellWorldPosition(0, 0, 0).y, this.targetPosition.z)); // 
-        path.RemoveAt(path.Count - ReducePathOveride);
     }
+    public void FindPath()
+    {
+        if (isThereTarget)
+        {
+            path = grid.pathfinding.FindPath(transform.position, new Vector3(this.targetPosition.x, grid.CellWorldPosition(0, 0, 0).y, this.targetPosition.z)); // 
+            if (ReducePathOveride > 0)
+            {
+                path.RemoveAt(path.Count - ReducePathOveride);
+            }
+        }
+        else Debug.LogError("Folower SetUp Incomplete");
+    }
+
+    public void FindPath(Vector3 a, Vector3 b)
+    {
+        if (isThereTarget)
+        {
+            path = grid.pathfinding.FindPath( a,  b); // 
+            if (ReducePathOveride > 0)
+            {
+                path.RemoveAt(path.Count - ReducePathOveride);
+            }
+        }
+        else Debug.LogError("Folower SetUp Incomplete");
+    }
+
     public void setNewTarget(Vector3 target)
     {
         this.targetPosition = target;
     }
     public void SerchNewPath() // Recheck the pathfinding in case the object is not close enough to the start position of the path (attempts to save in case the path becomes invalid) {Reroll}
     {
-        if (isThereTarget && targetPosition != Vector3.negativeInfinity) { 
-        path = grid.pathfinding.FindPath(transform.position, new Vector3(this.targetPosition.x, grid.CellWorldPosition(0, 0, 0).y, this.targetPosition.z)); // 
-        path.RemoveAt(path.Count - 1);
+        if (isThereTarget && targetPosition != Vector3.negativeInfinity) 
+        { 
+            path = grid.pathfinding.FindPath(transform.position, new Vector3(this.targetPosition.x, grid.CellWorldPosition(0, 0, 0).y, this.targetPosition.z)); // 
+            path.RemoveAt(path.Count - 1);
         if (debug) Debug.Log($"Path found with {path.Count} points");
         }
     }

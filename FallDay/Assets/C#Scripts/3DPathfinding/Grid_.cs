@@ -224,7 +224,8 @@ public class Grid_
         y = Mathf.FloorToInt((worldPosition - originPosition).y / cellSize);
         z = Mathf.FloorToInt((worldPosition - originPosition).z / cellSize);
 
-        if(x <= width || y <= hight || z <= lengh) { InGrid = false; }
+        //if(x >= width /*|| y <= hight*/ || z >= lengh) { InGrid = false; }
+        //if(x < 0 /*|| y <= hight*/ || z < 0) { InGrid = false; }
         return InGrid;
     }
     // Returns the cell at the given grid coordinates in the grid,

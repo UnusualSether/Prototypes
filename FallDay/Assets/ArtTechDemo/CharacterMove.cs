@@ -44,6 +44,7 @@ public class CharacterMove : MonoBehaviour
         charTransform = this.gameObject.GetComponent<Transform>();
         navMesh = gameObject.GetComponent<NavMeshAgent>();
         grid_Gen = GridGenerator.GetComponent<Grid_Generator>();
+        playerPathControl.pathFolowerSetUp(grid_Gen.grid, this, OnTargetReached);
     }
 
     //Subscribe the player move to next waypoint function to whenevr the gamehandler deetcts that we're suppose to be on rails/
@@ -140,7 +141,7 @@ public class CharacterMove : MonoBehaviour
         //StartCoroutine(CheckIfArrived(wp.wayPointPosition));
         //playerPathControl.
         //playerPathControl.serchNewPathSetUp(wp);
-        //(wp.wayPointPosition);
+        playerPathControl.serchNewPathSetUp(wp.wayPointPosition);
     }
     /*
     IEnumerator CheckIfArrived(Vector3 targetPos)

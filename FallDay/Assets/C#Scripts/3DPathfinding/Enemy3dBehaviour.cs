@@ -36,6 +36,7 @@ public class Enemy3dBehaviour : MonoBehaviour //!!!!!! PLACE THIS IN A NOTHER SC
     {
         if (activationGate)
         {
+            pathFolower.FindPath();
             pathFolower.canWalk();
         }
     }

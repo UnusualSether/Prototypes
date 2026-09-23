@@ -13,7 +13,7 @@ public class Grid_Generator : MonoBehaviour
     public Vector3 gridCenterOffset; // The offset to apply to the grid's center position relative to the GameObject's position
     public float cellSize = 1f; // The size of each cell in the grid
     public float cellHeightOverrite = 0f;
-    private Grid_ grid;
+    public Grid_ grid { get; private set; }
 
     // References for other components and objects
     public GameHandler gameHandler;

@@ -40,7 +40,7 @@ public class Pathfinding
         grid_.GetXYZ(startPos, out int startX, out int startY, out int startZ);
         grid_.GetXYZ(endPos, out int endX, out int endY, out int endZ);
         if(debug) Debug.Log($"startPos = {startPos} endPos = {endPos} startX = {startX} startY = {startY} startZ = {startZ} endX = {endX} endY = {endY} endZ = {endZ}");
-        List<Cell_> pathCells = FindPath(startX, startY, startZ, endX, endY, endZ);
+        List<Cell_> pathCells = FindPath(startX, 0, startZ, endX, 0, endZ);
 
         // Convert the list of cells to a list of Vector3 positions
         List<Vector3> pathPositions = new List<Vector3>();
