@@ -1,9 +1,10 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
-using System.Collections.Generic;
-using System.Collections;
-using System;
+using static GameDisplay;
 
 public partial class GameDisplay : MonoBehaviour
 {
@@ -35,6 +36,12 @@ public partial class GameDisplay : MonoBehaviour
 
     public Dictionary<int, ZombieDisplay> zombieDisplayLookup;
 
+    public StatusPopup statusPopup;
+
+    public Sprite healedStatusPopupIcon;
+
+    public Sprite currencyStatusPopupIcon;
+
     [Serializable]
     public class ZombieDisplay
     {
@@ -48,6 +55,43 @@ public partial class GameDisplay : MonoBehaviour
 
         public Coroutine activeAnimation;
     }
+
+    [Serializable]
+    public class StatusPopup
+    {
+        public VisualElement root;
+
+        public Label amount;
+
+        public Image icon;
+
+        public StatusPopup(VisualElement root)
+        {
+            this.root = root;
+
+            amount = root.Query<Label>("amount");
+
+            icon = root.Query<Image>("icon");
+
+
+        }
+
+        
+
+       
+
+
+        public void Appear()
+        {
+            root.visible = true;
+        }
+
+        public void Disappear()
+        {
+            root.visible = false;
+        }
+    }
+
 
     [Serializable]
     public class DirectionDisplay
@@ -71,7 +115,7 @@ public partial class GameDisplay : MonoBehaviour
 
             reward_icon = displayElement.Q<Image>("reward_image");
 
-            
+
 
         }
 
@@ -101,7 +145,7 @@ public partial class GameDisplay : MonoBehaviour
             {
                 reward_name.text = displayed_reward.reward_name;
             }
-           
+
 
 
         }
@@ -114,9 +158,9 @@ public partial class GameDisplay : MonoBehaviour
 
     private void Awake()
     {
-        
 
-        
+
+
     }
     private void OnEnable()
     {
@@ -151,9 +195,13 @@ public partial class GameDisplay : MonoBehaviour
 
         damage_number_label = gameplay_ui_doc.rootVisualElement.Query<Label>("DamageNumberDisplay");
 
-       
 
-        
+        //Find Status Display and Create new class with it.
+
+        statusPopup = new StatusPopup(direction_ui_doc.rootVisualElement.Query<VisualElement>("StatusPopup"));
+
+        PlayerInstance.PlayerHealed += DisplayHeal;
+        PlayerInstance.PlayerGainedCurrency += DisplayCurrencyGain;
 
         bulletDisplay = bulletDisplaysFound.ToArray();
 
@@ -174,7 +222,7 @@ public partial class GameDisplay : MonoBehaviour
 
             int nextDisplayNumber = zombieDisplayList.Count;
 
-           
+
 
             //Debug.Log(zombieDisplayList.Count);
 
@@ -190,7 +238,7 @@ public partial class GameDisplay : MonoBehaviour
 
                 zombie_damage_display_label = display.Q<Label>("ZombieDamageDisplay")
 
-               
+
 
             }
 
@@ -213,6 +261,7 @@ public partial class GameDisplay : MonoBehaviour
 
 
         handler.NewRewardsGenerated += UpdateButtonRewards;
+        handler.NewRewardsGenerated += SetButtonDisplayToCurrentRewards;
 
         handler.PlayerKilledAllZombies += SetDirectionDisplayOn;
 
@@ -222,7 +271,7 @@ public partial class GameDisplay : MonoBehaviour
     private void OnDisable()
     {
         handler.ZombieKilled -= RemoveCrosshair;
-        
+
         handler.BulletSelected -= ShakeBullet;
 
         handler.BulletSelected -= PlayerClickSound;
@@ -286,9 +335,14 @@ public partial class GameDisplay : MonoBehaviour
 
     public void HandleNumberDisappear(Label label_to_disappear)
     {
-        StartCoroutine(ZombieDamageNumberDuration(2.5f,label_to_disappear));
+        StartCoroutine(ZombieDamageNumberDuration(2.5f, label_to_disappear));
 
-        
+
+    }
+
+    public IEnumerator ExpandVisualElement(VisualElement element, float dur)
+    {
+        yield return null;
     }
 
     public IEnumerator ZombieDamageNumberDuration(float duration, Label label_to_disappear)
@@ -311,9 +365,9 @@ public partial class GameDisplay : MonoBehaviour
         {
             damage_number_label.text = handler.current_bullet_damage.ToString();
         }
-        
 
-        
+
+
     }
 
 
@@ -337,7 +391,7 @@ public partial class GameDisplay : MonoBehaviour
         {
             direction_and_reward_buttons[i].displayed_reward = handler.reward_trio[i];
         }
-   
+
     }
 
     public void SetEachClassesElementToElement()
@@ -366,7 +420,7 @@ public partial class GameDisplay : MonoBehaviour
             button.SetParams();
         }
     }
-
+    [ContextMenu("Update")]
     public void SetButtonDisplayToCurrentRewards()
     {
         var current_rewards = handler.reward_trio;
@@ -374,7 +428,10 @@ public partial class GameDisplay : MonoBehaviour
         for(int i  = 0; i < current_rewards.Length; i++)
         {
             direction_and_reward_buttons[i].displayed_reward = current_rewards[i];
+            direction_and_reward_buttons[i].UpdateRewardDisplay();
         }
+
+
 
     }
 
@@ -382,8 +439,21 @@ public partial class GameDisplay : MonoBehaviour
     {
         foreach (var dir_button in direction_and_reward_buttons)
         {
-            dir_button.displayElement.visible = false;
+            dir_button.displayElement.RemoveFromClassList("on");
+            dir_button.displayElement.AddToClassList("off");
         }
+    }
+
+    public void StartDirectionDisplayProcess()
+    {
+        StartCoroutine(DirectionDisplayDelay());
+    }
+
+    public IEnumerator DirectionDisplayDelay()
+    {
+        yield return new WaitForSeconds(1);
+
+        SetDirectionDisplayOn();
     }
 
     public void SetDirectionDisplayOn()
@@ -407,11 +477,14 @@ public partial class GameDisplay : MonoBehaviour
                 }
             }
 
-            dir_button.displayElement.visible = true;
-
-            dir_button.UpdateRewardDisplay();
-
             
+
+            dir_button.displayElement.RemoveFromClassList("off");
+            dir_button.displayElement.AddToClassList("on");
+
+
+
+
         }
     }
 
@@ -427,6 +500,41 @@ public partial class GameDisplay : MonoBehaviour
         Debug.Log($"This is the button! I'm sounding off the direction as {direction.ToString()}.");
     }
 
+
+    #endregion
+
+    #region Status Popup
+
+    public void DisplayHeal(int amount)
+    {
+        QuickDisplay(amount.ToString(), healedStatusPopupIcon);
+    }
+
+    public void DisplayCurrencyGain(int amount)
+    {
+        QuickDisplay(amount.ToString(), currencyStatusPopupIcon);
+    }
+
+    public void QuickDisplay(string display_string, Sprite display_icon)
+    {
+      
+
+        statusPopup.amount.text = display_string;
+
+        statusPopup.icon.sprite = display_icon;
+
+        statusPopup.Appear();
+
+        StartCoroutine(QuickDisplayTimer());
+    }
+
+    public IEnumerator QuickDisplayTimer()
+    {
+        yield return new WaitForSeconds(2);
+
+        statusPopup.Disappear();
+       
+    }
 
     #endregion
 

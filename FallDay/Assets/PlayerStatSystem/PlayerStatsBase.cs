@@ -71,8 +71,14 @@ public class PlayerInstance
 
     public SoftCurrency gained_currency = new SoftCurrency();
 
+    #region Player Related Events (OUTPUT ONLY)
 
- 
+    public static Action<int> PlayerHealed;
+
+    public static Action<int> PlayerGainedCurrency;
+
+    #endregion
+
     void PlayerKilledZombie()
     {
         DispatchEvent(TrinketEventType.OnKill);
@@ -107,6 +113,8 @@ public class PlayerInstance
         current_hp += gained_health;
 
         Debug.Log($"[PlayerInstance] player instance gained {gained_health} health");
+
+        PlayerHealed?.Invoke(gained_health);
     }
 
     public bool PlayerFullHP()
@@ -168,6 +176,8 @@ public class PlayerInstance
     public void GainSoftCurrency(int amount_gained)
     {
         gained_currency.Add(amount_gained);
+
+        PlayerGainedCurrency?.Invoke(amount_gained);
     }
 
     private protected void SetOwnStats()
