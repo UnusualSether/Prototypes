@@ -80,18 +80,16 @@ Slider #unity-dragger {
     color: rgb(88, 88, 88);
     position: relative;
     background-color: rgba(0, 0, 0, 0);
-    opacity:0;
-
-    transition-property: background-color,opacity;
+    opacity: 0;
+    transition-property: background-color, opacity;
     transition-duration: 0.5s;
 }
 
 .scrim_fadein {
     background-color: rgba(0, 0, 0, 0.67);
-    opacity:1;
-
-    transition-property: background-color,opacity;
-    transition-duration:0.5s;
+    opacity: 1;
+    transition-property: background-color, opacity;
+    transition-duration: 0.5s;
 }
 
 .StartOn {
@@ -131,8 +129,6 @@ Slider #unity-dragger {
 .starOff {
     translate: 0 -101%;
 }
-
-
 
 .select_trinked_off {
     flex-grow: 1;
@@ -233,13 +229,10 @@ Slider #unity-dragger {
     background-color: rgb(226, 217, 201);
     -unity-font-definition: url("project://database/Assets/TRAFFIC6.TTF?fileID=12800000&guid=f07357d919f588b48b520990911ee828&type=3#TRAFFIC6");
     color: rgb(26, 18, 10);
-    opacity:0;
-
-
-    transition-property: opacity,translate;
+    opacity: 0;
+    transition-property: opacity, translate;
     transition-duration: 1s;
     transition-timing-function: linear;
-    
 }
 
 .close_menu_on {
@@ -268,9 +261,12 @@ Slider #unity-dragger {
     background-color: rgb(226, 217, 201);
     -unity-font-definition: url("project://database/Assets/TRAFFIC6.TTF?fileID=12800000&guid=f07357d919f588b48b520990911ee828&type=3#TRAFFIC6");
     color: rgb(26, 18, 10);
-    opacity:1;
-    
-    transition-property: opacity,translate;
+    opacity: 1;
+    transition-property: opacity, translate;
     transition-duration: 1s;
     transition-timing-function: linear;
+}
+
+.unity-slider__input {
+    width: 250px;
 }
