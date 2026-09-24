@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -18,7 +19,11 @@ public partial class GameHandler : MonoBehaviour
 
     public PlayerInstance player;
 
+    public Reward stored_reward;
 
+    public Reward[] reward_trio = new Reward[3];
+
+    public List<Reward> possible_rewards = new List<Reward>();
 
     public int current_bullet_damage => ReadyBulletsDamageAggregate(readyBullets);
 
@@ -83,6 +88,8 @@ public partial class GameHandler : MonoBehaviour
     //Animação UI
     public event Action<int> SucessfulHit;
 
+    //Rewards
+    public event Action NewRewardsGenerated;
     #endregion
 
 
@@ -136,6 +143,10 @@ public partial class GameHandler : MonoBehaviour
         ThreeDGameHandler.EncounterStarted += ActivateMinigame;
         ThreeDGameHandler.EncounterEnded += DeactivateMinigame;
         destroyZombie += _KillZombie;
+        PlayerKilledAllZombies += GrantStoredReward;
+        PlayerKilledAllZombies += GenerateNewRewardTrio;
+        GameDisplay.RewardChosen += StoreChosenReward;
+
     }
 
     void OnDisable()
@@ -143,6 +154,9 @@ public partial class GameHandler : MonoBehaviour
         ThreeDGameHandler.EncounterStarted -= ActivateMinigame;
         ThreeDGameHandler.EncounterEnded -= DeactivateMinigame;
         destroyZombie -= _KillZombie;
+        PlayerKilledAllZombies -= GrantStoredReward;
+        GameDisplay.RewardChosen -= StoreChosenReward;
+        PlayerKilledAllZombies -= GenerateNewRewardTrio;
         ResetLists();
     }   
     #endregion
@@ -247,6 +261,66 @@ public partial class GameHandler : MonoBehaviour
         PlayerTookDamage?.Invoke(damage);
     }
     #endregion
+
+
+    #region Room Rewards
+    public void StoreChosenReward(Reward chosen_r)
+    {
+        stored_reward = chosen_r;
+    }
+
+    public void GrantStoredReward()
+    {
+        if (stored_reward == null)
+        {
+            Debug.Log("No reward to grant!");
+            return;
+        }
+
+
+        stored_reward.GainReward(player);
+
+        stored_reward = null;
+    }
+
+
+
+    public void GenerateNewRewardTrio()
+    {
+        if (possible_rewards.Count == 0)
+        {
+            Debug.Log("Possible rewards list is empty!");
+            return;
+        }
+
+        reward_trio = RewardOptions();
+
+        NewRewardsGenerated?.Invoke();
+    }
+
+    public Reward[] RewardOptions()
+    {
+        var to_return = new Reward[3];
+
+        for (int i = 0; i < to_return.Length; i++)
+        {
+            var random = UnityEngine.Random.Range(0, possible_rewards.Count);
+
+            to_return[i] = possible_rewards[random];
+
+
+
+        }
+
+        return to_return;
+
+
+
+    }
+
+
+    #endregion
+
 
     #region Unity Functions
     private void Start()

@@ -8,7 +8,7 @@ public class HealthAddingTrinket : Trinket, IPassiveTrinket
 
     public void ApplyPassive(PlayerStats stats)
     {
-        stats.ChangeMaxHealth(health_boost);
+        stats.GainMaxHealth(health_boost);
     }
 
 }

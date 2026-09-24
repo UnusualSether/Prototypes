@@ -88,6 +88,7 @@ public partial class ThreeDGameHandler : MonoBehaviour
         PlayerMadeDecision += EndPlayerChoice;
         //PlayerSwipedOnChoice += CatchDirection;
         CharacterMove.PlayerHasReachedNextPoint += DeGatePlayerChoice;
+        GameDisplay.DirectionChosen += ProcessDirection;
 
     }
 
