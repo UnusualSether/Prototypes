@@ -52,7 +52,15 @@
 }
 
 .aimed {
-    scale: 0.5 0.5;
+    scale: 0.8 0.8;
+    border-top-width: 5px;
+    border-right-width: 5px;
+    border-bottom-width: 5px;
+    border-left-width: 5px;
+    border-left-color: rgb(103, 1, 1);
+    border-right-color: rgb(103, 1, 1);
+    border-top-color: rgb(103, 1, 1);
+    border-bottom-color: rgb(103, 1, 1);
 }
 
 .used {

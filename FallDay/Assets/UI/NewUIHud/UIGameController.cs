@@ -33,8 +33,29 @@ public class UIGameController : MonoBehaviour
 
 
     }
+    //
+    void OnEnable()
+    {
+        ThreeDGameHandler.EncounterStarted += HidePauseButton;
+        ThreeDGameHandler.EncounterEnded += ShowPauseButton;
+    }
 
+    void OnDisable()
+    {
+        ThreeDGameHandler.EncounterStarted -= HidePauseButton;
+        ThreeDGameHandler.EncounterEnded -= ShowPauseButton;
+    }
 
+    private void HidePauseButton()
+    {
+        _pauseButton.style.display = DisplayStyle.Flex;
+    }
+
+    private void ShowPauseButton()
+    {
+        _pauseButton.style.display = DisplayStyle.None;
+    }
+    //
     #region Setup - Busca dos elementos visuais (bind com a UXML)
     private void BindElements(VisualElement root)
     {
