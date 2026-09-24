@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: StrangeWillow
   m_EditorClassIdentifier: Assembly-CSharp::ExplorersTrinket
   _trinket_name: Willow
+  _trinket_namePTBR: Salgueiro
   _trinket_description: '"I wish for a million dollars."'
   _trinket_sprite:
   - {fileID: 370454264, guid: a0c503f403bf47e428a63e06022fade8, type: 3}

@@ -13,6 +13,42 @@ MonoBehaviour:
   m_Name: UmbilicalCord
   m_EditorClassIdentifier: Assembly-CSharp::HealthAddingTrinket
   _trinket_name: Umbilical Cord
+  _trinket_namePTBR: "Cord\xE3o Umbilical"
   _trinket_description: '"It refuses to let go of this world."'
-  _trinket_sprite: {fileID: 2114238490, guid: 22873b447a6316c4ea759710c607dc7c, type: 3}
+  _trinket_sprite:
+  - {fileID: 364767192, guid: 232006f3bbcfb644488bfd63d89c7d4d, type: 3}
+  - {fileID: 1982796844, guid: 232006f3bbcfb644488bfd63d89c7d4d, type: 3}
+  - {fileID: 737859041, guid: 232006f3bbcfb644488bfd63d89c7d4d, type: 3}
+  - {fileID: -1268353221, guid: 232006f3bbcfb644488bfd63d89c7d4d, type: 3}
+  - {fileID: 987486412, guid: 232006f3bbcfb644488bfd63d89c7d4d, type: 3}
+  - {fileID: -1015545353, guid: 232006f3bbcfb644488bfd63d89c7d4d, type: 3}
+  - {fileID: -1705775337, guid: 232006f3bbcfb644488bfd63d89c7d4d, type: 3}
+  - {fileID: 1575002094, guid: 232006f3bbcfb644488bfd63d89c7d4d, type: 3}
+  - {fileID: 1233971955, guid: 232006f3bbcfb644488bfd63d89c7d4d, type: 3}
+  - {fileID: 155235613, guid: 232006f3bbcfb644488bfd63d89c7d4d, type: 3}
+  - {fileID: 1393022682, guid: 232006f3bbcfb644488bfd63d89c7d4d, type: 3}
+  - {fileID: 1698288004, guid: 232006f3bbcfb644488bfd63d89c7d4d, type: 3}
+  - {fileID: -1085576758, guid: 232006f3bbcfb644488bfd63d89c7d4d, type: 3}
+  - {fileID: 909652735, guid: 232006f3bbcfb644488bfd63d89c7d4d, type: 3}
+  - {fileID: -380190258, guid: 232006f3bbcfb644488bfd63d89c7d4d, type: 3}
+  - {fileID: -203153226, guid: 232006f3bbcfb644488bfd63d89c7d4d, type: 3}
+  - {fileID: 1278331414, guid: 232006f3bbcfb644488bfd63d89c7d4d, type: 3}
+  - {fileID: 260575843, guid: 232006f3bbcfb644488bfd63d89c7d4d, type: 3}
+  - {fileID: -1058489554, guid: 232006f3bbcfb644488bfd63d89c7d4d, type: 3}
+  - {fileID: 666165594, guid: 232006f3bbcfb644488bfd63d89c7d4d, type: 3}
+  - {fileID: -1367362998, guid: 232006f3bbcfb644488bfd63d89c7d4d, type: 3}
+  - {fileID: 150114486, guid: 232006f3bbcfb644488bfd63d89c7d4d, type: 3}
+  - {fileID: -905294173, guid: 232006f3bbcfb644488bfd63d89c7d4d, type: 3}
+  - {fileID: 1260919383, guid: 232006f3bbcfb644488bfd63d89c7d4d, type: 3}
+  - {fileID: 1218791375, guid: 232006f3bbcfb644488bfd63d89c7d4d, type: 3}
+  - {fileID: 1607239441, guid: 232006f3bbcfb644488bfd63d89c7d4d, type: 3}
+  - {fileID: -2073445451, guid: 232006f3bbcfb644488bfd63d89c7d4d, type: 3}
+  - {fileID: 1360474996, guid: 232006f3bbcfb644488bfd63d89c7d4d, type: 3}
+  - {fileID: 2120752055, guid: 232006f3bbcfb644488bfd63d89c7d4d, type: 3}
+  - {fileID: -662435759, guid: 232006f3bbcfb644488bfd63d89c7d4d, type: 3}
+  - {fileID: -927877440, guid: 232006f3bbcfb644488bfd63d89c7d4d, type: 3}
+  - {fileID: 1235913015, guid: 232006f3bbcfb644488bfd63d89c7d4d, type: 3}
+  - {fileID: 2032011618, guid: 232006f3bbcfb644488bfd63d89c7d4d, type: 3}
+  - {fileID: 1832890205, guid: 232006f3bbcfb644488bfd63d89c7d4d, type: 3}
+  - {fileID: 804562215, guid: 232006f3bbcfb644488bfd63d89c7d4d, type: 3}
   health_boost: 5

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
 
 /// <summary>
 /// Controla toda a navegação de UI do menu principal:
@@ -25,7 +27,8 @@ public class UIController : MonoBehaviour
     // junto do fundo escurecido (scrim) e do botão de fechar
     private VisualElement _bottomSheet;
     private VisualElement _scrim;
-    private Button _closeMenu;
+    private Button _closeMenu, LeftLang, RightLang;
+    private Label LangText;
     #endregion
 
     #region Referências - Botão Start
@@ -127,9 +130,61 @@ public class UIController : MonoBehaviour
     private void OnEnable()
     {
         var root = GetComponent<UIDocument>().rootVisualElement;
+        if (root != null)
+        {
+            LeftLang = root.Q<Button>("LeftLanguage");
+            RightLang = root.Q<Button>("RightLanguage");
+            LangText = root.Q<Label>("LanguageName");
+
+            if (LeftLang != null)
+            {
+                LeftLang.clicked += LanguageChange;
+            }
+
+            if (RightLang != null)
+            {
+                RightLang.clicked += LanguageChange;
+            }
+        }
+
+        LanguageText(LocalizationSettings.SelectedLocale);
+        LocalizationSettings.SelectedLocaleChanged += OnLocaleChanged;
 
         
         Pulse(root.Q<Image>("TapToStart"), min: 0.9f, max: 1.1f, speed: 2f);
+    
+    }
+
+    private void OnDisable()
+    {
+        if (LeftLang != null)
+        {
+            LeftLang.clicked += LanguageChange;
+        }
+        LocalizationSettings.SelectedLocaleChanged -= OnLocaleChanged;
+
+        if (RightLang != null)
+        {
+            RightLang.clicked += LanguageChange;
+        }
+    }
+
+    void OnLocaleChanged(Locale newLocale)
+    {
+        LanguageText(newLocale);
+    }
+
+    void LanguageLocaleChange()
+    {
+        if (LeftLang != null)
+        {
+            LeftLang.clicked += LanguageChange;
+        }
+
+        if (RightLang != null)
+        {
+            RightLang.clicked += LanguageChange;
+        }
     }
 
     
@@ -143,6 +198,36 @@ public class UIController : MonoBehaviour
             float s = Mathf.Lerp(min, max, t);
             el.style.scale = new Scale(new Vector3(s, s, 1f));
         }).Every(16); 
+    }
+
+    void LanguageChange()
+    {
+        var Languages = LocalizationSettings.AvailableLocales.Locales;
+        if (Languages.Count == 0) return;
+
+        int currentIndex = Languages.IndexOf(LocalizationSettings.SelectedLocale);
+
+        int nextIndex = (currentIndex + 1) % Languages.Count;
+
+        LocalizationSettings.SelectedLocale = Languages[nextIndex];
+    }
+
+    void LanguageText(Locale CurrentLanguage)
+    {
+        if (LangText != null && CurrentLanguage != null)
+        {
+            string text = CurrentLanguage.Identifier.Code;
+
+            if (text.StartsWith("pt"))
+            {
+                LangText.text = "Português";
+            }
+            else 
+            {
+                LangText.text = "English";    
+            }
+
+        }
     }
 
 

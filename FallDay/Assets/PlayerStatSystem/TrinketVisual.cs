@@ -11,7 +11,7 @@ public class TrinketVisual
 
         Trinketimage.style.display = DisplayStyle.Flex;
 
-        //sets animation velocity and max size
+        //sets Animation Velocity and Max Size
         if (TrinketVisual.trinket_sprite != null && TrinketVisual.trinket_sprite.Length > 0)
         {
             int fps = 24;
@@ -20,9 +20,10 @@ public class TrinketVisual
 
             Sprite[] frames = TrinketVisual.trinket_sprite;
 
-            float maxWidth = 150f;
-            float maxHeight = 117f;
+            float maxWidth = 80f;
+            float maxHeight = 40f;
 
+            //Makes Frames Fit on Trinket Sprite
             foreach(var frame in frames)
             {
                 if (frame == null) continue;
@@ -31,8 +32,10 @@ public class TrinketVisual
 
             }
 
+            //Combines Everything
             UpdatedFrame(Trinketimage, frames[0], maxWidth, maxHeight);
 
+            //Changes Images
             Trinketimage.schedule.Execute(() =>
             {
                 if (Trinketimage == null) return;
@@ -46,6 +49,7 @@ public class TrinketVisual
 
     }
 
+    //Update Frames to Fit on MaxWH Scales
     private static void UpdatedFrame(VisualElement element, Sprite sprite, float maxWidth, float maxHeight)
     {
         if (sprite == null) return;
@@ -58,7 +62,7 @@ public class TrinketVisual
         element.style.scale = new Scale(new Vector2(scaleX, scaleY));
     }
 
-    //Animates Sprite
+    //Get Sprites From SpriteSheet
     private static Sprite[] GetFramesFromClip(AnimationClip clip)
     {
         EditorCurveBinding[] bindings = AnimationUtility.GetObjectReferenceCurveBindings(clip);
