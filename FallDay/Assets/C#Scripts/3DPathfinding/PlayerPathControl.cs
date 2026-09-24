@@ -9,7 +9,6 @@ public class PlayerPathControl : MonoBehaviour
     public PathFolower pathFolower;
 
     private Vector3 targetPos;
-    private List<Vector3> path;
     private Action afterWalkCall;
     // Start is called once before the first execution
     // of Update after the MonoBehaviour is created
@@ -32,7 +31,7 @@ public class PlayerPathControl : MonoBehaviour
         //bool sa = grid.GetXYZ(targetPos, out int x, out int y, out int z);
         FindPath(targetPos);
     }
-    public void FindPath(Vector3 target)
+    private void FindPath(Vector3 target)
     {
         pathFolower.setNewTarget(target);
         //grid.pathfinding.FindPath(transform.position, targetPos);

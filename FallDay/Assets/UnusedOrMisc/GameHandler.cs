@@ -1,5 +1,3 @@
-
-using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -72,10 +70,10 @@ public partial class GameHandler : MonoBehaviour
     public event Action<VisualElement> BulletSelected;
 
     //Zombie related events
-    public event Action ZombieSpawned;
+    public event Action<Zombie> ZombieSpawned;
     public event Action<Zombie> ZombieDamaged;
     public event Action<Zombie> zPhaseChange;
-    public event Action ZombieKilled;
+    public event Action<Zombie> ZombieKilled;
     //public event Action<Zombie> ZombieIsClose;
 
 
@@ -446,8 +444,6 @@ public partial class GameHandler : MonoBehaviour
         ZombieSpawnGate = true;
         yield return new WaitForSeconds(zombieSpawnTimer);
         
-        //Debug.Log("Grahh....");
-        ZombieSpawned?.Invoke();
 
         int nextZombieID;
 
@@ -477,6 +473,9 @@ public partial class GameHandler : MonoBehaviour
         var newZombie = ZombieList.Last();
         OnZombieUpdate += newZombie.UpdatePhase;
         zombieLookup.Add(newZombie.id, newZombie);
+        
+        //Debug.Log("Grahh....");
+        ZombieSpawned?.Invoke(newZombie);
 
         //Check to make sure list and dictionary line up
         numberOfZombiesInLookup = zombieLookup.Count;
@@ -571,20 +570,20 @@ public partial class GameHandler : MonoBehaviour
 
             preferenceZombie = nulledPreference;
 
-            ZombieKilled?.Invoke();
+            ZombieKilled?.Invoke(zombieToKill);
 
             if (HasPlayerCompletedTheEncounter())
             {
                 PlayerKilledAllZombies?.Invoke();
             }
         }
-        else
+        else// stupid else 
         {
-            zombieToKill.hp = 0;
+            //zombieToKill.hp = 0;
 
-            Debug.Log($"Zombie with id {zombieToKill.id} took fatal damage and now has {zombieToKill.hp} hp.");
-            ZombieKilled?.Invoke();
-            SelectedZombie = ZombieList.First().id;
+            // Debug.Log($"Zombie with id {zombieToKill.id} took fatal damage and now has {zombieToKill.hp} hp.");
+            //ZombieKilled?.Invoke(zombieToKill);
+            //SelectedZombie = ZombieList.First().id;
         }
     }
     public Zombie zombieToAimAt()

@@ -18,4 +18,6 @@ MonoBehaviour:
     phase timer.'
   HP: 80
   Damage: 20
+  DamegeTimer: 1.5
   phaseTimer: 7
+  Zprefab: {fileID: 3666786984904150799, guid: fb5cfd50cb3e23c41bff309a2a2c231a, type: 3}

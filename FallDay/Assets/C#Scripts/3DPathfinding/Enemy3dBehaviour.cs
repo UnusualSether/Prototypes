@@ -15,10 +15,11 @@ public class Enemy3dBehaviour : MonoBehaviour //!!!!!! PLACE THIS IN A NOTHER SC
     private GameHandler gameHandler;
     private GameObject player; // Reference to the player object // target
     private bool activationGate = false; // Activation gate to prevent null reference errors when the zombie is not yet properly initialized
-
+    [HideInInspector]
     public bool whileControl;
     ///////////////////////////////////
-    /**/private bool debug = true; /**/
+    /**/
+    private bool debug = true; /**/
     ///////////////////////////////////
 
     public void Zombie3SetUP(Zombie zombie, GameHandler gameHandler, GameObject player, Grid_ grid, PathFolower PathFollowerComponent) // Needs to be called by the initial spawner to pass the zombie and player references to this script
@@ -44,7 +45,7 @@ public class Enemy3dBehaviour : MonoBehaviour //!!!!!! PLACE THIS IN A NOTHER SC
     {
         if (debug) Debug.Log("Afer Walk Called");
         StartCoroutine(DamegeCorutine());
-        
+
     }
 
     private IEnumerator DamegeCorutine()
