@@ -1,6 +1,10 @@
 using NUnit.Framework;
 using UnityEngine;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using UnityEditor;
+using UnityEngine.Localization.Settings;
 
 
 
@@ -28,15 +32,34 @@ public class Trinket : ScriptableObject
 {
 
     [SerializeField] protected string _trinket_name;
-    public string trinket_name { get => _trinket_name; set => _trinket_name = value; }
+    [SerializeField] protected string _trinket_namePTBR;
+    public string trinket_name
+    {
+        get
+        {
+            string currentLocale = LocalizationSettings.SelectedLocale.Identifier.Code;
+
+            if(currentLocale.StartsWith("pt"))
+            {
+                return _trinket_namePTBR;
+            }
+            else
+            {
+                return _trinket_name;
+            }
+        }
+        set => _trinket_name = value; 
+    }
+
 
     [SerializeField] protected string _trinket_description;
     public string trinket_description { get => _trinket_description; set => _trinket_description = value; }
 
-    [SerializeField] protected Sprite _trinket_sprite;
-    public Sprite trinket_sprite { get => _trinket_sprite; set => _trinket_sprite = value; }
+    [SerializeField] protected Sprite[] _trinket_sprite;
+    public Sprite[] trinket_sprite => _trinket_sprite;
 
 }
+
 
 /// <summary>
 /// USed to distinguish which trinkets should activate on which effects.
