@@ -17,5 +17,5 @@ MonoBehaviour:
 
     phase timer.'
   HP: 80
-  Damage: 4
+  Damage: 20
   phaseTimer: 7
