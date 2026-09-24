@@ -11,9 +11,7 @@ public class EnemyData : ScriptableObject
     public int HP;
 
     public int Damage;
-    public float PhaseTime;
-    
-    public float DamegeTimer;
 
-    public GameObject Zprefab;
+    public float phaseTimer;
+
 }

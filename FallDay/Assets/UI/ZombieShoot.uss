@@ -138,3 +138,10 @@
     color: rgb(255, 0, 0);
     font-size: 81px;
 }
+
+.statusOff {
+    visibility: hidden;
+}
+
+.statusOn {
+}

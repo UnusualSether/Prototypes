@@ -1,16 +1,22 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
-using System.Collections.Generic;
-using System.Collections;
-using System;
+using static GameDisplay;
 
 public partial class GameDisplay : MonoBehaviour
 {
 
-    public VisualElement ui;
+    public VisualElement gameplay_doc_root;
     public VisualElement[] bulletDisplay;
-    public UIDocument uiDoc;
+    public UIDocument gameplay_ui_doc;
+
+
+    public UIDocument direction_ui_doc;
+
+    public DirectionDisplay[] direction_and_reward_buttons = new DirectionDisplay[3];
 
     public GameHandler handler;
 
@@ -30,6 +36,12 @@ public partial class GameDisplay : MonoBehaviour
 
     public Dictionary<int, ZombieDisplay> zombieDisplayLookup;
 
+    public StatusPopup statusPopup;
+
+    public Sprite healedStatusPopupIcon;
+
+    public Sprite currencyStatusPopupIcon;
+
     [Serializable]
     public class ZombieDisplay
     {
@@ -44,14 +56,119 @@ public partial class GameDisplay : MonoBehaviour
         public Coroutine activeAnimation;
     }
 
+    [Serializable]
+    public class StatusPopup
+    {
+        public VisualElement root;
+
+        public Label amount;
+
+        public Image icon;
+
+        public StatusPopup(VisualElement root)
+        {
+            this.root = root;
+
+            amount = root.Query<Label>("amount");
+
+            icon = root.Query<Image>("icon");
+
+
+        }
+
+        
+
+       
+
+
+        public void Appear()
+        {
+            root.visible = true;
+        }
+
+        public void Disappear()
+        {
+            root.visible = false;
+        }
+    }
+
+
+    [Serializable]
+    public class DirectionDisplay
+    {
+        public Button displayElement;
+
+        public Label reward_name;
+
+        public Label reward_description;
+
+        public Image reward_icon;
+
+        public Reward displayed_reward;
+
+        public void SetParams()
+        {
+
+            reward_name = displayElement.Q<Label>("name_of_reward");
+
+            reward_description = displayElement.Q<Label>("reward_description");
+
+            reward_icon = displayElement.Q<Image>("reward_image");
+
+
+
+        }
+
+        public void UpdateRewardDisplay()
+        {
+
+            if (displayed_reward == null)
+            {
+                return;
+            }
+
+            if (reward_icon == null)
+            {
+                Debug.Log("Didn't find a display for the icon!");
+            }
+
+            else
+            {
+                reward_icon.sprite = displayed_reward.reward_sprite;
+            }
+
+            if (reward_name == null)
+            {
+                Debug.Log("Didn't find a display for the name!");
+            }
+            else
+            {
+                reward_name.text = displayed_reward.reward_name;
+            }
+
+
+
+        }
+
+
+
+
+
+    }
+
     private void Awake()
     {
-        ui = uiDoc.rootVisualElement;
 
-        List<VisualElement> numberOfDisplay = new List<VisualElement>();
+
+
     }
     private void OnEnable()
     {
+
+
+        gameplay_doc_root = gameplay_ui_doc.rootVisualElement;
+
+        List<VisualElement> numberOfDisplay = new List<VisualElement>();
 
         //Events
 
@@ -66,18 +183,25 @@ public partial class GameDisplay : MonoBehaviour
         handler.ZombieDamaged += ShakeZombieVisual;
         RegisterAnimationEvents();
 
+        ThreeDGameHandler.PlayerChoiceStarted += SetDirectionDisplayOn;
+        ThreeDGameHandler.PlayerChoiceEnded += SetDirectionDisplayOff;
+
         //Find the Bullet Displays using a for loop
-        var bulletDisplaysFound = ui.Query<VisualElement>().Where(e => e.name.StartsWith("BSpot")).ToList();
+        var bulletDisplaysFound = gameplay_doc_root.Query<VisualElement>().Where(e => e.name.StartsWith("BSpot")).ToList();
 
         //Debug.Log($"{bulletDisplaysFound.Count} bullet displays found");
 
         //Find the damage number display
 
-        damage_number_label = uiDoc.rootVisualElement.Query<Label>("DamageNumberDisplay");
+        damage_number_label = gameplay_ui_doc.rootVisualElement.Query<Label>("DamageNumberDisplay");
 
-       
 
-        
+        //Find Status Display and Create new class with it.
+
+        statusPopup = new StatusPopup(direction_ui_doc.rootVisualElement.Query<VisualElement>("StatusPopup"));
+
+        PlayerInstance.PlayerHealed += DisplayHeal;
+        PlayerInstance.PlayerGainedCurrency += DisplayCurrencyGain;
 
         bulletDisplay = bulletDisplaysFound.ToArray();
 
@@ -88,7 +212,7 @@ public partial class GameDisplay : MonoBehaviour
 
         //Find the Zombie Displays 
 
-        var zombieDisplaysFound = ui.Query<VisualElement>().Where(e => e.name.StartsWith("ZombieSpot")).ToList();
+        var zombieDisplaysFound = gameplay_doc_root.Query<VisualElement>().Where(e => e.name.StartsWith("ZombieSpot")).ToList();
 
         //Debug.Log(zombieDisplaysFound.Count + "Zombie Displays");
 
@@ -98,7 +222,7 @@ public partial class GameDisplay : MonoBehaviour
 
             int nextDisplayNumber = zombieDisplayList.Count;
 
-           
+
 
             //Debug.Log(zombieDisplayList.Count);
 
@@ -114,7 +238,7 @@ public partial class GameDisplay : MonoBehaviour
 
                 zombie_damage_display_label = display.Q<Label>("ZombieDamageDisplay")
 
-               
+
 
             }
 
@@ -135,11 +259,19 @@ public partial class GameDisplay : MonoBehaviour
 
         cachedZombies = handler.ZombieList.ToList();
 
+
+        handler.NewRewardsGenerated += UpdateButtonRewards;
+        handler.NewRewardsGenerated += SetButtonDisplayToCurrentRewards;
+
+        handler.PlayerKilledAllZombies += SetDirectionDisplayOn;
+
+        SetEachClassesElementToElement();
+
     }
     private void OnDisable()
     {
         handler.ZombieKilled -= RemoveCrosshair;
-        
+
         handler.BulletSelected -= ShakeBullet;
 
         handler.BulletSelected -= PlayerClickSound;
@@ -147,6 +279,9 @@ public partial class GameDisplay : MonoBehaviour
         handler.ZombieDamaged -= ShakeZombieVisual;
         UnregisterAnimationEvents();
         ResetLists();
+
+        ThreeDGameHandler.PlayerChoiceStarted -= SetDirectionDisplayOn;
+        ThreeDGameHandler.PlayerChoiceEnded -= SetDirectionDisplayOff;
     }
     //Is here to detect changes in the other scripts.
     private void Update()
@@ -200,9 +335,14 @@ public partial class GameDisplay : MonoBehaviour
 
     public void HandleNumberDisappear(Label label_to_disappear)
     {
-        StartCoroutine(ZombieDamageNumberDuration(2.5f,label_to_disappear));
+        StartCoroutine(ZombieDamageNumberDuration(2.5f, label_to_disappear));
 
-        
+
+    }
+
+    public IEnumerator ExpandVisualElement(VisualElement element, float dur)
+    {
+        yield return null;
     }
 
     public IEnumerator ZombieDamageNumberDuration(float duration, Label label_to_disappear)
@@ -225,10 +365,178 @@ public partial class GameDisplay : MonoBehaviour
         {
             damage_number_label.text = handler.current_bullet_damage.ToString();
         }
-        
 
-        
+
+
     }
+
+
+    #region Direction Button Handling
+
+
+    public static event Action<Reward> RewardChosen;
+
+    public static event Action<ThreeDGameHandler.SwipeDirection> DirectionChosen;
+    public void UpdatePointRewards(DirectionDisplay display, Reward displayed_r)
+    {
+
+        display.displayed_reward = displayed_r;
+
+
+    }
+
+    public void UpdateButtonRewards()
+    {
+        for (int i = 0; i < direction_and_reward_buttons.Length; i++)
+        {
+            direction_and_reward_buttons[i].displayed_reward = handler.reward_trio[i];
+        }
+
+    }
+
+    public void SetEachClassesElementToElement()
+    {
+
+        direction_and_reward_buttons[0].displayElement = direction_ui_doc.rootVisualElement.Query<Button>("up_button");
+        direction_and_reward_buttons[1].displayElement = direction_ui_doc.rootVisualElement.Query<Button>("right_button");
+        direction_and_reward_buttons[2].displayElement = direction_ui_doc.rootVisualElement.Query<Button>("left_button");
+
+        direction_and_reward_buttons[0].displayElement.clicked += () => SoundOffChosenReward(direction_and_reward_buttons[0].displayed_reward);
+        direction_and_reward_buttons[1].displayElement.clicked += () => SoundOffChosenReward(direction_and_reward_buttons[1].displayed_reward);
+        direction_and_reward_buttons[2].displayElement.clicked += () => SoundOffChosenReward(direction_and_reward_buttons[2].displayed_reward);
+
+        direction_and_reward_buttons[0].displayElement.clicked += () => SoundOffChosenDirection(ThreeDGameHandler.SwipeDirection.Up);
+        direction_and_reward_buttons[1].displayElement.clicked += () => SoundOffChosenDirection(ThreeDGameHandler.SwipeDirection.Right);
+        direction_and_reward_buttons[2].displayElement.clicked += () => SoundOffChosenDirection(ThreeDGameHandler.SwipeDirection.Left);
+
+
+        direction_and_reward_buttons[0].displayElement.clicked += SetDirectionDisplayOff;
+        direction_and_reward_buttons[1].displayElement.clicked += SetDirectionDisplayOff;
+        direction_and_reward_buttons[2].displayElement.clicked += SetDirectionDisplayOff;
+
+
+        foreach (var button in direction_and_reward_buttons)
+        {
+            button.SetParams();
+        }
+    }
+    [ContextMenu("Update")]
+    public void SetButtonDisplayToCurrentRewards()
+    {
+        var current_rewards = handler.reward_trio;
+
+        for(int i  = 0; i < current_rewards.Length; i++)
+        {
+            direction_and_reward_buttons[i].displayed_reward = current_rewards[i];
+            direction_and_reward_buttons[i].UpdateRewardDisplay();
+        }
+
+
+
+    }
+
+    public void SetDirectionDisplayOff()
+    {
+        foreach (var dir_button in direction_and_reward_buttons)
+        {
+            dir_button.displayElement.RemoveFromClassList("on");
+            dir_button.displayElement.AddToClassList("off");
+        }
+    }
+
+    public void StartDirectionDisplayProcess()
+    {
+        StartCoroutine(DirectionDisplayDelay());
+    }
+
+    public IEnumerator DirectionDisplayDelay()
+    {
+        yield return new WaitForSeconds(1);
+
+        SetDirectionDisplayOn();
+    }
+
+    public void SetDirectionDisplayOn()
+    {
+        foreach (var dir_button in direction_and_reward_buttons)
+        {
+            
+            if (ThreeDGameHandler.leftandrightnulling == ThreeDGameHandler.SwipeDirection.Left)
+            {
+                if (dir_button == direction_and_reward_buttons[1])
+                {
+                    continue;
+                }
+            }
+
+            if (ThreeDGameHandler.leftandrightnulling == ThreeDGameHandler.SwipeDirection.Right)
+            {
+                if (dir_button == direction_and_reward_buttons[2])
+                {
+                    continue;
+                }
+            }
+
+            
+
+            dir_button.displayElement.RemoveFromClassList("off");
+            dir_button.displayElement.AddToClassList("on");
+
+
+
+
+        }
+    }
+
+    public void SoundOffChosenReward(Reward chosen)
+    {
+        RewardChosen?.Invoke(chosen);
+    }
+
+    public void SoundOffChosenDirection(ThreeDGameHandler.SwipeDirection direction)
+    {
+        DirectionChosen?.Invoke(direction);
+
+        Debug.Log($"This is the button! I'm sounding off the direction as {direction.ToString()}.");
+    }
+
+
+    #endregion
+
+    #region Status Popup
+
+    public void DisplayHeal(int amount)
+    {
+        QuickDisplay(amount.ToString(), healedStatusPopupIcon);
+    }
+
+    public void DisplayCurrencyGain(int amount)
+    {
+        QuickDisplay(amount.ToString(), currencyStatusPopupIcon);
+    }
+
+    public void QuickDisplay(string display_string, Sprite display_icon)
+    {
+      
+
+        statusPopup.amount.text = display_string;
+
+        statusPopup.icon.sprite = display_icon;
+
+        statusPopup.Appear();
+
+        StartCoroutine(QuickDisplayTimer());
+    }
+
+    public IEnumerator QuickDisplayTimer()
+    {
+        yield return new WaitForSeconds(2);
+
+        statusPopup.Disappear();
+       
+    }
+
+    #endregion
 
     #region Bullet Spot Handling
     private bool SelectableBulletsHaveChanged()
@@ -345,7 +653,7 @@ public partial class GameDisplay : MonoBehaviour
         clickedElement.AddToClassList("aimed");
     }
 
-    private void RemoveCrosshair(Zombie zombie)
+    private void RemoveCrosshair()
     {
         foreach (var display in occupiedZombieDisplay)
         {
@@ -382,7 +690,7 @@ public partial class GameDisplay : MonoBehaviour
             assignedDisplay.displayedZombie = newZombie;
             //Debug.Log($"Zombie Display {assignedDisplay.displayId} now contains zombie with ID {assignedDisplay.displayedZombie.id}");
 
-            VisualElement zombieDisplayElement = ui.Query<VisualElement>().Where(e => e.name == $"ZombieSpot{assignedDisplay.displayId + 1}");
+            VisualElement zombieDisplayElement = gameplay_doc_root.Query<VisualElement>().Where(e => e.name == $"ZombieSpot{assignedDisplay.displayId + 1}");
 
             if (zombieDisplayElement == null)
             {
@@ -422,7 +730,7 @@ public partial class GameDisplay : MonoBehaviour
 
             assignedDisplay.displayedZombie = null;
 
-            VisualElement zombieDisplayElement = ui.Query<VisualElement>().Where(e => e.name == $"ZombieSpot{assignedDisplay.displayId + 1}");
+            VisualElement zombieDisplayElement = gameplay_doc_root.Query<VisualElement>().Where(e => e.name == $"ZombieSpot{assignedDisplay.displayId + 1}");
 
             if (zombieDisplayElement == null)
             {
