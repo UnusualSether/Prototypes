@@ -41,7 +41,7 @@
                                 </Bindings>
                             </ui:Slider>
                             <ui:Slider label="SFX" value="1" high-value="2" name="SFXVolume" fill="true" low-value="0.0001" style="margin-top: 2px; visibility: visible; overflow: visible; flex-direction: column; height: 5%; top: auto; width: 50%; font-size: 50%; left: 20%; scale: 2 2; -unity-font-style: bold; min-height: auto; justify-content: flex-start; align-self: flex-start; -unity-font-definition: url(&quot;project://database/Assets/TRAFFIC6.TTF?fileID=12800000&amp;guid=f07357d919f588b48b520990911ee828&amp;type=3#TRAFFIC6&quot;); -unity-text-align: middle-left; white-space: normal; color: rgb(0, 0, 0); -unity-background-image-tint-color: rgb(255, 255, 255);"/>
-                            <ui:Label text="Language" name="Label" style="font-size: 70px; position: absolute; top: 199px; left: 525px; -unity-font-definition: url(&quot;project://database/Assets/TRAFFIC6.TTF?fileID=12800000&amp;guid=f07357d919f588b48b520990911ee828&amp;type=3#TRAFFIC6&quot;);">
+                            <ui:Label text="Language" name="Label" style="font-size: 70px; position: absolute; top: 199px; left: 525px; -unity-font-definition: url(&quot;project://database/Assets/TRAFFIC6.TTF?fileID=12800000&amp;guid=f07357d919f588b48b520990911ee828&amp;type=3#TRAFFIC6&quot;); align-self: center;">
                                 <Bindings>
                                     <UnityEngine.Localization.LocalizedString property="text" table="GUID:3a4c8f6bc4064a84ba02c7692ca845dc" entry="Id(321811677184)"/>
                                 </Bindings>

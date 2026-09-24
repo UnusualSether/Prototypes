@@ -5,6 +5,9 @@ using System.Linq;
 using UnityEngine.InputSystem.Composites;
 using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
+
 public class MenuTrinketEquipping : MonoBehaviour
 {
 
@@ -18,6 +21,18 @@ public class MenuTrinketEquipping : MonoBehaviour
 
     public Dictionary<Toggle, Trinket> button_to_trinket = new Dictionary<Toggle, Trinket>();
 
+    private Dictionary<VisualElement, Trinket> activeTrinketDisplay = new Dictionary<VisualElement, Trinket>();
+
+    private void OnEnable()
+    {
+        LocalizationSettings.SelectedLocaleChanged += LanguageChange;
+    }
+
+    private void OnDisable()
+    {
+        LocalizationSettings.SelectedLocaleChanged -= LanguageChange;
+    }
+
     private void Start()
     {
 
@@ -28,6 +43,11 @@ public class MenuTrinketEquipping : MonoBehaviour
 
         BuildMenuOffData();
 
+    }
+
+    void LanguageChange(Locale newLocale)
+    {
+        RefreshText();
     }
 
     void ToLevelSelect()
@@ -61,7 +81,20 @@ public class MenuTrinketEquipping : MonoBehaviour
 
         trinket_display.Q<Toggle>("trinket_toggle").RegisterValueChangedCallback(evt => PassToEquipAndUnequip(trinket_to_display));
 
+        activeTrinketDisplay.Add(trinket_display, trinket_to_display);
+
         InsertInstantiatedIntoMain(trinket_display);
+    }
+
+    void RefreshText()
+    {
+        foreach (KeyValuePair<VisualElement, Trinket> pair in activeTrinketDisplay)
+        {
+            VisualElement TrinketName = pair.Key;
+            Trinket trinket = pair.Value;
+
+            TrinketName.Q<Label>("trinket_name").text = trinket.trinket_name;
+        }
     }
 
     void InsertInstantiatedIntoMain(VisualElement element)
