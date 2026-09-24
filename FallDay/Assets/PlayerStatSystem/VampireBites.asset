@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: VampireBites
   m_EditorClassIdentifier: Assembly-CSharp::VampiricTrinket
   _trinket_name: Vampire Bites
+  _trinket_namePTBR: Mordida de Vampiro
   _trinket_description: '"I woke up with a few mosquito bites on my neck this morning."'
   _trinket_sprite:
   - {fileID: 1785110927, guid: ac57c1d6f2f06e140a108067e209516d, type: 3}
