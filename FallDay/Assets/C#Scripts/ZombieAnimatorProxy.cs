@@ -9,8 +9,8 @@ public partial class ZombieAnimatorProxy : MonoBehaviour
     
     private Animator currentAnimator;
 
-    private Dictionary<string, CharacterAnimationProfile> AnimationProfile;
-    private bool AnimationIsActive = false; // animation Gate, controlles when there is an override (override is a difrent script)
+    //private Dictionary<string, CharacterAnimationProfile> AnimationProfile;
+    private bool AnimationIsActive = false; // animation Gate, controlles when there is an override (override is a difrent script - partial Reskinner)
 
     // Hashes dos parâmetros do Animator — mais performático que strings
     private static readonly int PhaseParam = Animator.StringToHash("Phase");    // Gets parameter Phase from Animator
