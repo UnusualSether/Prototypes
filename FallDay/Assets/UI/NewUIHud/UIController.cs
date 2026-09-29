@@ -52,6 +52,9 @@ public class UIController : MonoBehaviour
     #region Referências - Janeça Tutorial
     //janela aonde o jogador
     private VisualElement _tutorialWindow;
+    private Button _tutorialy;
+    private Button _tutorialn;
+
     #endregion
 
     #region Referências - Início do Jogo
@@ -94,6 +97,13 @@ public class UIController : MonoBehaviour
         _levelWindow = root.Q<VisualElement>("level_window");
         _lReturn = root.Q<Button>("return_to_trinked");
 
+        //Janela Tutorial
+
+        _tutorialWindow = root.Q<VisualElement>("tutorial_window");
+        _tutorialy = root.Q<Button>("TutorialNo");
+        _tutorialn = root.Q<Button>("TutorialYes");
+
+
         // Início do jogo (adicionar suporte a múltiplos níveis futuramente)
         _openGame = root.Q<Button>("level1");
     }
@@ -119,12 +129,14 @@ public class UIController : MonoBehaviour
         _tReturn.RegisterCallback<ClickEvent>(Return);
 
         // Janela Level
-        _openlevel.RegisterCallback<ClickEvent>(OnLevelButtonClicker);
+        _openlevel.RegisterCallback<ClickEvent>(OnTutorial /*OnLevelButtonClicker*/);
         _lReturn.RegisterCallback<ClickEvent>(LevelReturn);
 
         //Janela Tutorial
 
         _tutorialWindow.RegisterCallback<ClickEvent>(OnTutorial);
+        _tutorialy.RegisterCallback<ClickEvent>(TutorialAnswer);
+        _tutorialn.RegisterCallback<ClickEvent>(TutorialAnswer);
 
         // Checagem de fim de transição (usada para remover do layout após animação de saída)
         _trikedWindow.RegisterCallback<TransitionEndEvent>(OnTransicaoFinalizada);
@@ -135,7 +147,7 @@ public class UIController : MonoBehaviour
     }
     #endregion
 
-    #region - Setup Sistema de Tradução
+    #region Setup - Sistema de Tradução
     //set animation tap to start
     private void OnEnable()
     {
@@ -319,6 +331,18 @@ public class UIController : MonoBehaviour
             _tutorialWindow.RemoveFromClassList("Tutorial-Menu_off");
             _tutorialWindow.AddToClassList("Tutorial-Menu_on");
         });
+    }
+
+    private void TutorialAnswer(ClickEvent evt)
+    {
+        _tutorialWindow.style.display = DisplayStyle.None;
+
+        _tutorialWindow.schedule.Execute(() =>
+        {
+            _tutorialWindow.RemoveFromClassList("Tutorial-Menu_on");
+            _tutorialWindow.AddToClassList("Tutorial-Menu_off");
+        });
+
     }
 
     #endregion
