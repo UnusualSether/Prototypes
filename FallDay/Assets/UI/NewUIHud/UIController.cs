@@ -49,6 +49,11 @@ public class UIController : MonoBehaviour
     private Button _lReturn;      // volta da janela Level para a janela Trinked
     #endregion
 
+    #region Referências - Janeça Tutorial
+    //janela aonde o jogador
+    private VisualElement _tutorialWindow;
+    #endregion
+
     #region Referências - Início do Jogo
     // Botão que efetivamente carrega a cena do jogo (nível 1)
     private Button _openGame;
@@ -117,6 +122,10 @@ public class UIController : MonoBehaviour
         _openlevel.RegisterCallback<ClickEvent>(OnLevelButtonClicker);
         _lReturn.RegisterCallback<ClickEvent>(LevelReturn);
 
+        //Janela Tutorial
+
+        _tutorialWindow.RegisterCallback<ClickEvent>(OnTutorial);
+
         // Checagem de fim de transição (usada para remover do layout após animação de saída)
         _trikedWindow.RegisterCallback<TransitionEndEvent>(OnTransicaoFinalizada);
         _levelWindow.RegisterCallback<TransitionEndEvent>(OnTransicaoFinalizada);
@@ -126,6 +135,7 @@ public class UIController : MonoBehaviour
     }
     #endregion
 
+    #region - Setup Sistema de Tradução
     //set animation tap to start
     private void OnEnable()
     {
@@ -230,7 +240,7 @@ public class UIController : MonoBehaviour
         }
     }
 
-
+    #endregion
 
     #region Bottom Sheet / Menu de Configurações
     // Abre o menu: exibe o scrim e anima a entrada do bottom sheet
@@ -298,6 +308,21 @@ public class UIController : MonoBehaviour
     }
     #endregion
 
+    #region Janela Tutorial
+
+    private void OnTutorial(ClickEvent evt)
+    {
+        _tutorialWindow.style.display = DisplayStyle.Flex;
+
+        _tutorialWindow.schedule.Execute(() =>
+        {
+            _tutorialWindow.RemoveFromClassList("Tutorial-Menu_off");
+            _tutorialWindow.AddToClassList("Tutorial-Menu_on");
+        });
+    }
+
+    #endregion
+
     #region Transições - Limpeza pós-animação
     // Após a animação de saída terminar, remove a janela do layout (display: None)
     // para não ocupar espaço/receber interação enquanto estiver invisível
@@ -311,6 +336,11 @@ public class UIController : MonoBehaviour
         if (_levelWindow.ClassListContains("level_select_off"))
         {
             _levelWindow.style.display = DisplayStyle.None;
+        }
+
+        if (_tutorialWindow.ClassListContains("Tutorial-Menu_off"))
+        {
+            _tutorialWindow.style.display = DisplayStyle.None;
         }
     }
     #endregion
