@@ -292,6 +292,6 @@ Slider #unity-dragger {
 
 .Tutorial-Menu_off {
     display: none;
-    opacity: 0;
+    opacity: 1;
     position: absolute;
 }
