@@ -90,7 +90,7 @@ public class Grid_Generator : MonoBehaviour
     public void generateEnemy(Zombie zombie) //Maybe this should be in a different script, but for now it is here
     {
         GameObject spawnedEnemy;
-        spawnedEnemy = Instantiate(zombie.enemyData.Zprefab, grid.CellWorldPosition((int)(gridSize.x / 2), (int)gridSize.y - 1, (int)(gridSize.z) - 1), Quaternion.identity);
+        spawnedEnemy = Instantiate(zombie.enemyData.Zprefab, grid.CellWorldPosition((int)(0), (int)gridSize.y - 1, (int)(gridSize.z *0.5f)), Quaternion.identity);
 
         Enemy3dBehaviour Enemy3dBehaviour;
         PathFolower pathFolowerComponer;

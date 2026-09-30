@@ -297,6 +297,7 @@ public class Grid_
                     debugObj.transform.position = CellWorldPosition(x, y, z);
                     debugObj.transform.parent = GeneratorObject.transform;
                     debugArray[x, y, z] = debugObj.AddComponent<Cell_Debug>();
+                    debugArray[x, y, z].grid = this;
                     debugArray[x, y, z].UpdateDebugInfo(gridArray[x, y, z]);
                 }
             }
