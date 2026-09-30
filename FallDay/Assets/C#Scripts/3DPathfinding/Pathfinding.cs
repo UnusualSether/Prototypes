@@ -275,7 +275,7 @@ public class Pathfinding
         return path;
     }
     // Calculate the distance cost between two cells using Manhattan distance with diagonal movement
-    private int CalculateDistanceCost(Cell_ a, Cell_ b)
+    private int CalculateDistanceCost(Cell_ a, Cell_ b)// achei o erro
     {
         int xDistance = Mathf.Abs(a.x - b.x);
         int yDistance = Mathf.Abs(a.y - b.y);
