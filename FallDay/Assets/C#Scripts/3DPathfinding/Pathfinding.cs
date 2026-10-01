@@ -13,6 +13,9 @@ public class Pathfinding
     private List<Cell_> NaborList;
     private bool debug = true;
 
+    private bool EmergencyBreak = false;
+    private int EmergencyBreakCounter = 4;
+
     public Pathfinding(Grid_ grid)
     {
         grid_ = grid;
@@ -33,7 +36,6 @@ public class Pathfinding
     /// <summary>  Main Pathfinding Algorithm - A* _3D (A Star) Implementation (Resets uppon each call to FindPath)
     /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /// </summary>
-    private bool EmergencyBreak = false;
 
     public List<Vector3> FindPath(Vector3 startPos, Vector3 endPos) // Returns a list of Vector3 positions representing the path from startPos to endPos
     {
@@ -140,7 +142,12 @@ public class Pathfinding
             // Emergency Break for Debugging (allows to stop the pathfinding loop)
             if (EmergencyBreak)
             {
-                break;
+                if(EmergencyBreakCounter > 0) // counter to limit the number of iterations before breaking the loop // used for debugging purposes
+                {
+                    if(debug) Debug.LogWarning($"Emergency Break Activated at {EmergencyBreakCounter} iterations");
+                    EmergencyBreakCounter--;
+                }
+                else { break; }
             }
         }
         //Out Of Nodes on openList
@@ -279,8 +286,9 @@ public class Pathfinding
     {
         int xDistance = Mathf.Abs(a.x - b.x);
         int yDistance = Mathf.Abs(a.y - b.y);
-        int nOfStraitCell = Mathf.Abs(xDistance - yDistance);
-        int nOfDiagonalCell = Mathf.Min(xDistance, yDistance);
+        int zDistance = Mathf.Abs(a.z - b.z);
+        int nOfStraitCell = Mathf.Abs(xDistance - zDistance);
+        int nOfDiagonalCell = Mathf.Min(xDistance, zDistance);
         int ToReturn = MOVE_DIAGONAL_COST * nOfDiagonalCell + MOVE_STRAIGHT_COST * nOfStraitCell;
         return ToReturn;
     }

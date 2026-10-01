@@ -191,14 +191,14 @@ public class Grid_
             if (DetectorSystem != null)
             {
                 RaycastHit[] hits = Physics.RaycastAll(DetectorSystem[i], Vector3.down, cellSize + cellHeightRayOverrite, ~LayerMask.GetMask("Player"), QueryTriggerInteraction.Ignore);
-                if (debug) Debug.DrawRay(DetectorSystem[i], Vector3.down * (cellSize + cellHeightRayOverrite), Color.green, 5f);
+                if (debug) Debug.DrawRay(DetectorSystem[i], Vector3.down * (cellSize + cellHeightRayOverrite), Color.green, 1f);
                 foreach (RaycastHit hitInfo in hits)
                 {
                     if (hitInfo.collider != null)
                     {
                         if (hitInfo.collider.gameObject.tag == "obstacle")
                         {
-                            if (debug) { Debug.DrawRay(DetectorSystem[i], Vector3.down * (cellSize + cellHeightRayOverrite), Color.red, 5f); }
+                            if (debug) { Debug.DrawRay(DetectorSystem[i], Vector3.down * (cellSize + cellHeightRayOverrite), Color.red, 1.5f); }
                             if (debug) { Debug.Log($"Cell at {xpos}, {ypos}, {zpos} is not walkable due to obstacle: {hitInfo.collider.gameObject.name} - RayTrigger {i}"); }
                             isWalkable = false;
                         }
