@@ -154,10 +154,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ea1194a65b109dc41a704a08b7969099, type: 2}
   - {fileID: 11400000, guid: 9d369d0bfdc6acf4fb92b636cca76f8f, type: 2}
   trinket_element_template: {fileID: 9197481963319205126, guid: 845bdced0ea190d4c8e1787579df4f46, type: 3}
-  trinket_visual_shake_magnitude: 4.2
-  trinket_visual_shake_duration: 0.8
-  trinket_visual_minimize_magnitude: -1
-  trinket_visual_minimize_duration: 0.8
 --- !u!4 &765434355
 Transform:
   m_ObjectHideFlags: 0
@@ -303,7 +299,6 @@ GameObject:
   - component: {fileID: 1684983265}
   - component: {fileID: 1684983269}
   - component: {fileID: 1684983268}
-  - component: {fileID: 1684983270}
   m_Layer: 0
   m_Name: SystemManager
   m_TagString: Untagged
@@ -633,18 +628,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1684983270
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1684983264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dfcbb79095134f49b51a88ae5201e90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
 --- !u!1 &1802546155 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4004746050545178163, guid: 5b4fa346017188043b9aacad224ca14c, type: 3}

@@ -62,8 +62,6 @@
     border-left-color: rgb(7, 127, 1);
 }
 
-
-
 .unity-toggle__checkmark {
     min-height: 125px;
     min-width: 125px;
@@ -73,3 +71,5 @@
     min-width: 130px;
     min-height: 130px;
 }
+
+
