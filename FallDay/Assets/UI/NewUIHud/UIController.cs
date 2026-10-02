@@ -49,6 +49,18 @@ public class UIController : MonoBehaviour
     private Button _lReturn;      // volta da janela Level para a janela Trinked
     #endregion
 
+    #region Referências - Janeça Tutorial
+    //janela aonde o jogador
+    private VisualElement _tutorialWindow;
+    private Button _tutorialy;
+    private Button _tutorialn;
+
+    #endregion
+    private VisualElement _tutorialpages;
+    private List<VisualElement> _tutorialPages = new List<VisualElement>();
+    private int _currentTutorialPage = 0;
+    private Button _nextpage;
+
     #region Referências - Início do Jogo
     // Botão que efetivamente carrega a cena do jogo (nível 1)
     private Button _openGame;
@@ -89,6 +101,25 @@ public class UIController : MonoBehaviour
         _levelWindow = root.Q<VisualElement>("level_window");
         _lReturn = root.Q<Button>("return_to_trinked");
 
+        //Janela Tutorial
+
+        _tutorialWindow = root.Q<VisualElement>("tutorial_window");
+        _tutorialpages = root.Q<VisualElement>("TutorialWindows");
+        _nextpage = root.Q<Button>("NextPage");
+
+
+        _tutorialPages.Clear();
+        _tutorialPages.Add(root.Q<VisualElement>("TutorialWindow1"));
+        _tutorialPages.Add(root.Q<VisualElement>("TutorialWindow2"));
+        _tutorialPages.Add(root.Q<VisualElement>("TutorialWindow3"));
+        _tutorialPages.Add(root.Q<VisualElement>("TutorialWindow4"));
+        _tutorialPages.Add(root.Q<VisualElement>("TutorialWindow5"));
+        _tutorialPages.Add(root.Q<VisualElement>("TutorialWindow6"));
+
+        _tutorialy = root.Q<Button>("TutorialYes");
+        _tutorialn = root.Q<Button>("TutorialNo");
+
+
         // Início do jogo (adicionar suporte a múltiplos níveis futuramente)
         _openGame = root.Q<Button>("level1");
     }
@@ -114,8 +145,27 @@ public class UIController : MonoBehaviour
         _tReturn.RegisterCallback<ClickEvent>(Return);
 
         // Janela Level
-        _openlevel.RegisterCallback<ClickEvent>(OnLevelButtonClicker);
+        _openlevel.RegisterCallback<ClickEvent>(OnTutorial /*OnLevelButtonClicker*/);
         _lReturn.RegisterCallback<ClickEvent>(LevelReturn);
+
+        //Janela Tutorial
+
+        _tutorialWindow.RegisterCallback<TransitionEndEvent>(OnTransicaoFinalizada);
+
+        if (_nextpage != null)
+        {
+            _nextpage.RegisterCallback<ClickEvent>(NextTutorial);
+        }
+
+        if(_tutorialy != null)
+        {
+            _tutorialy.clicked += TutorialAnswer;
+        }
+
+        if (_tutorialn != null)
+        {
+            _tutorialn.clicked += TutorialAnswerNo;
+        }
 
         // Checagem de fim de transição (usada para remover do layout após animação de saída)
         _trikedWindow.RegisterCallback<TransitionEndEvent>(OnTransicaoFinalizada);
@@ -126,6 +176,7 @@ public class UIController : MonoBehaviour
     }
     #endregion
 
+    #region Setup - Sistema de Tradução
     //set animation tap to start
     private void OnEnable()
     {
@@ -150,22 +201,22 @@ public class UIController : MonoBehaviour
         LanguageText(LocalizationSettings.SelectedLocale);
         LocalizationSettings.SelectedLocaleChanged += OnLocaleChanged;
 
-        
+
         Pulse(root.Q<Image>("TapToStart"), min: 0.9f, max: 1.1f, speed: 2f);
-    
+
     }
 
     private void OnDisable()
     {
         if (LeftLang != null)
         {
-            LeftLang.clicked += LanguageChange;
+            LeftLang.clicked -= LanguageChange;
         }
         LocalizationSettings.SelectedLocaleChanged -= OnLocaleChanged;
 
         if (RightLang != null)
         {
-            RightLang.clicked += LanguageChange;
+            RightLang.clicked -= LanguageChange;
         }
     }
 
@@ -187,7 +238,7 @@ public class UIController : MonoBehaviour
         }
     }
 
-    
+
     private void Pulse(VisualElement el, float min, float max, float speed)
     {
         if (el == null) return;
@@ -197,7 +248,7 @@ public class UIController : MonoBehaviour
             float t = (Mathf.Sin(Time.time * speed) + 1f) * 0.5f;
             float s = Mathf.Lerp(min, max, t);
             el.style.scale = new Scale(new Vector3(s, s, 1f));
-        }).Every(16); 
+        }).Every(16);
     }
 
     void LanguageChange()
@@ -222,15 +273,15 @@ public class UIController : MonoBehaviour
             {
                 LangText.text = "Português";
             }
-            else 
+            else
             {
-                LangText.text = "English";    
+                LangText.text = "English";
             }
 
         }
     }
 
-
+    #endregion
 
     #region Bottom Sheet / Menu de Configurações
     // Abre o menu: exibe o scrim e anima a entrada do bottom sheet
@@ -279,16 +330,20 @@ public class UIController : MonoBehaviour
 
     #region Janela Level (seleção de dificuldade/fase)
     // Exibe a janela Level e dispara a classe de animação de entrada
-    private void OnLevelButtonClicker(ClickEvent evt)
+    private void OnLevelButtonClicker()
     {
-        _levelWindow.style.display = DisplayStyle.Flex;
-
-        _levelWindow.schedule.Execute(() =>
+        if (_levelWindow != null)
         {
+            _levelWindow.style.display = DisplayStyle.Flex;
             _levelWindow.RemoveFromClassList("level_select_off");
-            _levelWindow.AddToClassList("level_select_on");
-        });
+
+            _levelWindow.schedule.Execute(() =>
+            {
+                _levelWindow.AddToClassList("level_select_on");
+            });
+        }
     }
+
 
     // Dispara a animação de saída da janela Level, retornando para a Trinked
     private void LevelReturn(ClickEvent evnt)
@@ -296,6 +351,108 @@ public class UIController : MonoBehaviour
         _levelWindow.RemoveFromClassList("level_select_on");
         _levelWindow.AddToClassList("level_select_off");
     }
+    #endregion
+
+    #region Janela Tutorial
+
+    private void OnTutorial(ClickEvent evt)
+    {
+        _levelWindow.style.display = DisplayStyle.Flex;
+        _tutorialWindow.style.display = DisplayStyle.Flex;
+
+        _tutorialWindow.RemoveFromClassList("Tutorial-Menu_off");
+        _tutorialWindow.schedule.Execute(() =>
+        {
+            _tutorialWindow.AddToClassList("tutorial-Menu_on");
+        });
+
+
+    }
+
+    private void TutorialAnswer()
+    {
+
+        CloseTutorialQuestion();
+
+        if(_tutorialpages != null)
+        {
+            _tutorialpages.style.display = DisplayStyle.Flex;
+            _currentTutorialPage = 0;
+            CurrentPage(_currentTutorialPage);
+
+            _tutorialpages.RemoveFromClassList("Tutorial-Menu_off");
+            _tutorialpages.schedule.Execute(() =>
+            {
+                _tutorialpages.AddToClassList("Tutorial-Menu_on");
+            });
+        }  
+    }
+
+
+    private void TutorialAnswerNo()
+    {
+
+        CloseTutorialQuestion();
+
+        OnLevelButtonClicker();
+    }
+
+    private void CloseTutorialQuestion()
+    {
+        if (_tutorialWindow != null)
+        {
+            _tutorialWindow.style.display = DisplayStyle.None;
+            _tutorialWindow.RemoveFromClassList("Tutorial-Menu_on");
+            _tutorialWindow.AddToClassList("Tutorial-Menu_off");
+        }
+    }
+
+    private void NextTutorial(ClickEvent evt)
+    {
+        evt.StopPropagation();
+
+        _currentTutorialPage++;
+        
+        if(_currentTutorialPage >= _tutorialPages.Count)
+        {
+            EndTutorial();
+        }
+        else
+        {
+            CurrentPage(_currentTutorialPage);
+        }
+
+    }
+
+    private void CurrentPage(int pagenumber)
+    {
+        for (int i = 0; i < _tutorialPages.Count; i++)
+        {
+            if (_tutorialPages[i] != null)
+            {
+                _tutorialPages[i].style.display = (i == pagenumber) ? DisplayStyle.Flex : DisplayStyle.None;
+            }
+        }
+    }
+
+    private void EndTutorial()
+    {
+        if (_tutorialpages != null)
+        {
+            _tutorialpages.style.display = DisplayStyle.None;
+            _tutorialpages.RemoveFromClassList("Tutorial-Menu_on");
+            _tutorialpages.AddToClassList("Tutorial-Menu_off");
+        }
+
+        if (_tutorialWindow != null)
+        {
+            _tutorialWindow.style.display = DisplayStyle.None;
+            _tutorialWindow.RemoveFromClassList("Tutorial-Menu_on");
+            _tutorialWindow.AddToClassList("Tutorial-Menu_off");
+        }
+        OnLevelButtonClicker();
+    }
+
     #endregion
 
     #region Transições - Limpeza pós-animação
@@ -311,6 +468,11 @@ public class UIController : MonoBehaviour
         if (_levelWindow.ClassListContains("level_select_off"))
         {
             _levelWindow.style.display = DisplayStyle.None;
+        }
+
+        if (evt.target == _tutorialpages && _tutorialpages.ClassListContains("Tutorial-Menu_off"))
+        {
+            _tutorialpages.style.display = DisplayStyle.None;
         }
     }
     #endregion

@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UIElements;
-using UnityEngine.Video;
 using UnityEditor;
 
 public class TrinketVisual
@@ -61,11 +60,11 @@ public class TrinketVisual
 
         element.style.scale = new Scale(new Vector2(scaleX, scaleY));
     }
-
+    /*
     //Get Sprites From SpriteSheet
     private static Sprite[] GetFramesFromClip(AnimationClip clip)
     {
-        EditorCurveBinding[] bindings = AnimationUtility.GetObjectReferenceCurveBindings(clip);
+        EditorCurveBinding[] bindings = AnimationUtility.GetObjectReferenceCurveBindings(clip); // tere is an compilation buld error here don't know why.
         foreach (var binding in bindings)
         {
             if(binding.propertyName == "m_Sprite")
@@ -81,5 +80,6 @@ public class TrinketVisual
         }
         return null;
     }
+    */
 
 }

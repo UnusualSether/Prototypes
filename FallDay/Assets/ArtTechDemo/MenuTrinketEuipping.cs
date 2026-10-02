@@ -81,6 +81,11 @@ public class MenuTrinketEquipping : MonoBehaviour
 
         trinket_display.Q<Toggle>("trinket_toggle").RegisterValueChangedCallback(evt => PassToEquipAndUnequip(trinket_to_display));
 
+        if (GlobalTrinketHolder.player_chosen_trinkets.Contains(trinket_to_display))
+        {
+            trinket_display.Q<Toggle>("trinket_toggle").value = true;
+        }
+
         activeTrinketDisplay.Add(trinket_display, trinket_to_display);
 
         InsertInstantiatedIntoMain(trinket_display);
