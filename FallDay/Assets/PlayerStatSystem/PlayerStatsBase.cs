@@ -89,11 +89,20 @@ public class PlayerInstance
         DispatchEvent(TrinketEventType.OnRoomComplete);
     }
 
-    void PlayerTookDamageRoom()
+    void PlayerStartedNewEncounter()
     {
-
+        DispatchEvent(TrinketEventType.NewEncounterPulled);
     }
 
+
+    public int PlayerInstanceDamageCalculation(int damage_calculated_by_handler, Zombie target)
+    {
+        
+
+        return trinket_manager.TrinketFilteredDamage(damage_calculated_by_handler, target);
+
+
+    }
 
     void DispatchEvent(TrinketEventType event_type)
     {
@@ -198,6 +207,8 @@ public class PlayerInstance
 
         player_handler.PlayerKilledAllZombies += PlayerClearedRoom;
 
+        player_handler.NewEncounterStarted += PlayerStartedNewEncounter;
+
         trinket_manager.InitializeTrinketStatBoosts(stats);
 
         SetOwnStats();
@@ -276,6 +287,11 @@ public class TrinketManager
         {
             DispatchOnRoomClearedEffects(instance);
         }
+
+        if (event_type == TrinketEventType.NewEncounterPulled)
+        {
+            DispatchOnNewEncounterEffects(instance);
+        }
     }
 
 
@@ -295,6 +311,24 @@ public class TrinketManager
         }
     }
 
+
+    public int TrinketFilteredDamage(int total_damage, Zombie target_zombie)
+    {
+
+        var to_filter = total_damage;
+
+        foreach( var trinket in equipped_trinkets)
+        {
+            if (trinket is IDamageFilterTrinket filterTrinket)
+            {
+                to_filter = filterTrinket.ModifiedDamage(to_filter, target_zombie);
+            }
+        }
+
+        return to_filter;
+
+
+    }
 
 
     /// <summary>
@@ -323,6 +357,17 @@ public class TrinketManager
             if (trinket is IEventTricket event_tricket)
             {
                 event_tricket.EventTrigger(TrinketEventType.OnRoomComplete,instance);
+            }
+        }
+    }
+
+    void DispatchOnNewEncounterEffects(PlayerInstance instance)
+    {
+        foreach (var trinket in equipped_trinkets)
+        {
+            if (trinket is IPullInfoFromEncounterTrinket pullEncounterTrinket)
+            {
+                pullEncounterTrinket.PullEncounterInfo(instance.player_handler.currentEncounter);
             }
         }
     }
