@@ -73,8 +73,12 @@ public partial class GameHandler : MonoBehaviour
     public event Action ZombieSpawned;
     public event Action<Zombie> ZombieDamaged;
     public event Action<Zombie> zPhaseChange;
-    public event Action ZombieKilled;
+    public event Action <Zombie>ZombieKilled;
     //public event Action<Zombie> ZombieIsClose;
+
+    // Encounter Related Events
+
+    public event Action NewEncounterStarted;
 
 
     //Objective related events
@@ -515,7 +519,14 @@ public partial class GameHandler : MonoBehaviour
     }
     public void ApplyDamage(int damage)
     {
-        ApplyDamage(damage, zombieToAimAt());
+        FilterDamage(damage, zombieToAimAt());
+    }
+
+    public void FilterDamage(int raw_damage, Zombie target)
+    {
+        var new_damage = player.PlayerInstanceDamageCalculation(raw_damage, target);
+
+        ApplyDamage(new_damage, target);
     }
 
     public void ApplyDamage(int damage, Zombie zombieToDamage)
@@ -539,6 +550,7 @@ public partial class GameHandler : MonoBehaviour
             zombieToDamage.hp -= damage;
             Debug.Log($"Zombie with id {zombieToDamage.id} took {damage} damage and now has {zombieToDamage.hp} hp.");
             ZombieDamaged.Invoke(zombieToDamage);
+            ZombieHurt?.Invoke(damage, zombieToDamage);
         }
     }
     public void _KillZombie(int id)
@@ -569,7 +581,7 @@ public partial class GameHandler : MonoBehaviour
 
             preferenceZombie = nulledPreference;
 
-            ZombieKilled?.Invoke();
+            ZombieKilled?.Invoke(zombieToKill);
 
             if (HasPlayerCompletedTheEncounter())
             {
@@ -581,10 +593,12 @@ public partial class GameHandler : MonoBehaviour
             zombieToKill.hp = 0;
 
             Debug.Log($"Zombie with id {zombieToKill.id} took fatal damage and now has {zombieToKill.hp} hp.");
-            ZombieKilled?.Invoke();
+            ZombieKilled?.Invoke(zombieToKill);
             SelectedZombie = ZombieList.First().id;
         }
     }
+
+    
     public Zombie zombieToAimAt()
     {
         if (ZombieList.Count == 0)
@@ -1006,8 +1020,7 @@ public partial class GameHandler : MonoBehaviour
 
         SucessfulShot?.Invoke(totalDamage);
         SucessfulHit?.Invoke(totalDamage);
-        ZombieHurt?.Invoke(totalDamage, targetZombie);
-        ApplyDamage(totalDamage, targetZombie);
+        FilterDamage(totalDamage, targetZombie);
     }
 
     public void SelectedBullet(PointerEnterEvent ev)
@@ -1201,7 +1214,7 @@ public partial class GameHandler : MonoBehaviour
     private List<EncounterData> possibleEncounters;
 
 
-    private EncounterData currentEncounter;
+    public EncounterData currentEncounter;
 
     [SerializeField]
     private EncounterData tutorial;
@@ -1238,6 +1251,8 @@ public partial class GameHandler : MonoBehaviour
         zombiesSpawned = 0;
 
         currentEncounter = data;
+
+        NewEncounterStarted?.Invoke();
 
     }
     #endregion

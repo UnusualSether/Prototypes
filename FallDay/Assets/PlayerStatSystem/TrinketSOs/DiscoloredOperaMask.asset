@@ -13,8 +13,12 @@ MonoBehaviour:
   m_Name: DiscoloredOperaMask
   m_EditorClassIdentifier: Assembly-CSharp::StalkerTrinket
   _trinket_name: Discolored Mask
+  _trinket_namePTBR: 
   _trinket_description: For all your stalking needs.
-  _trinket_sprite: {fileID: 0}
+  _trinket_sprite:
+  - {fileID: 0}
+  _acquired: 1
+  _trinket_cost: 0
   stalked_list:
   - id: 0
     hp: 38
@@ -60,4 +64,27 @@ MonoBehaviour:
     handler: {fileID: 0}
     phase: 3
     currentDisplay: 0
+  - id: 0
+    hp: 10
+    PhaseTimer: 5
+    Diff: 0
+    EnemyType: Shambler
+    difficulty: 0
+    damage: 2
+    debugisOn: 0
+    handler: {fileID: 0}
+    phase: 1
+    currentDisplay: 0
+  - id: 0
+    hp: 10
+    PhaseTimer: 5
+    Diff: 0
+    EnemyType: Shambler
+    difficulty: 0
+    damage: 2
+    debugisOn: 0
+    handler: {fileID: 0}
+    phase: 2
+    currentDisplay: 0
   stalked_damage_bonus: 3
+  status_icon: {fileID: 0}

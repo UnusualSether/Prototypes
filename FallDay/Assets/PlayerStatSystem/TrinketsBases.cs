@@ -144,10 +144,17 @@ public interface IEventTricket
     void EventTrigger(TrinketEventType called_event_type, PlayerInstance instance_to_affect) { }
 }
 
-public interface IDamageFilterTrinket
+
+public interface IVisualClassApplyingTrinket
 {
+    string VisualClass();
+}
 
+public interface IDamageFilterTrinket
+{ 
 
+   
+    
     int ModifiedDamage(int damage, Zombie target);
 }
 
