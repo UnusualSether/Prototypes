@@ -270,3 +270,28 @@ Slider #unity-dragger {
 .unity-slider__input {
     width: 250px;
 }
+
+.TutorialButtonPressed:active {
+    background-color: rgb(91, 91, 91);
+    transition-property: background-color;
+    transition-duration: 0.2s;
+}
+
+.TutorialButtonYes {
+    background-color: rgb(66, 255, 0);
+}
+
+.TutorialButtonNo {
+    background-color: rgb(255, 0, 0);
+}
+
+.Tutorial-Menu_on {
+    opacity: 1;
+    display: flex;
+}
+
+.Tutorial-Menu_off {
+    display: none;
+    opacity: 1;
+    position: absolute;
+}
