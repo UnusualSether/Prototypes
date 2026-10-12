@@ -316,7 +316,6 @@ MonoBehaviour:
   cellHeightOverrite: 3
   gameHandler: {fileID: 2043720488}
   player: {fileID: 1088469939}
-  playerPathControl: {fileID: 1088469946}
   debug: 1
 --- !u!1 &258183357
 GameObject:
@@ -818,6 +817,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &733808591 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4490479919982181336, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+  m_PrefabInstance: {fileID: 6639379496333506865}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &735902039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1149,6 +1153,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPathControl
   pathFolower: {fileID: 1088469945}
+--- !u!4 &1090628604 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2525419972731610412, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+  m_PrefabInstance: {fileID: 6639379496333506865}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1098874423
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1300,6 +1309,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   roomPrefab: {fileID: 38049718111097171, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+  StartingRoomSpawnPoints:
+  - {fileID: 1641213743}
+  - {fileID: 733808591}
+  - {fileID: 1090628604}
   spawnedRooms:
   - roomPrefab: {fileID: 1447974799}
     doorTiles: []
@@ -1315,6 +1328,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a40a360cac3ec064da2cd2942b890feb, type: 2}
   - {fileID: 11400000, guid: 6784f63fafbe8b84bb54ef228841361c, type: 2}
   handler: {fileID: 2043720488}
+  gridGenerator: {fileID: 187929143}
   offsetToPlayer: {x: 0, y: 0, z: 0}
   playerChooseSystem: 1
   debugbool: 0
@@ -1816,6 +1830,11 @@ Transform:
   - {fileID: 1714045854}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1641213743 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6855426276761535448, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+  m_PrefabInstance: {fileID: 6639379496333506865}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1650392613
 PrefabInstance:
   m_ObjectHideFlags: 0

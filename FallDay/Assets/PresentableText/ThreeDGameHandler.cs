@@ -1,7 +1,8 @@
-using UnityEngine;
+using Microsoft.Unity.VisualStudio.Editor;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System;
+using UnityEngine;
 
 
 public partial class ThreeDGameHandler : MonoBehaviour
@@ -9,10 +10,25 @@ public partial class ThreeDGameHandler : MonoBehaviour
     [Header("ROOM TRACKING")]
     [Space(10)]
     public GameObject roomPrefab;
+    public Transform[] StartingRoomSpawnPoints; // I Wanted to use a diffrent way to do this, but I give up -RLH107#
     public List<Room> spawnedRooms = new List<Room>();
     public List<RoomData> possibleRooms = new List<RoomData>();
     public Queue<GameObject> roomsQueue = new Queue<GameObject>();
     public GameHandler handler;
+    public Grid_Generator gridGenerator;// Refrence to the Grid_Generator script, which is used to generate the grid of cells for the player && enemyes to move on.
+        public void gridGeneratorInspectorReferenceCheck() // Checks if the gridGenerator reference is set in the inspector, and if not, tries to find it in the scene.
+        {
+            if (gridGenerator == null)
+            {
+                Debug.LogWarning("Grid_Generator reference is not set in the inspector. Attempting to find it in the scene...");
+                gridGenerator = FindAnyObjectByType<Grid_Generator>();
+                if (gridGenerator == null)
+                {
+                    Debug.LogError("Grid_Generator reference is not set in the inspector and could not be found in the scene.");
+                }
+            }
+        }
+    
     public Vector3 offsetToPlayer;
 
     //GameObject[] current3Rooms = new GameObject[3];
@@ -49,7 +65,8 @@ public partial class ThreeDGameHandler : MonoBehaviour
 
 
     /// This is a function which you can call on any other partial ThreeDGameHandler script, it is basically a 
-    ///start which doesn't cause conflict between partial classes. Basically, use this instead of Start().
+    ///start which doesn't cause conflict between this and other partial classes. 
+    ///Basically, use this instead of Start() in other partialclasses based on this.
     partial void OnStartExtendRoomCulling();
 
     partial void OnStartExtendRailMethod();
@@ -58,6 +75,7 @@ public partial class ThreeDGameHandler : MonoBehaviour
 
     private void Start()
     {
+
         OnStartExtendRailMethod();
         OnStartExtendRoomCulling();
         OnStartExtendPlayerChoiceMethod();
@@ -66,6 +84,11 @@ public partial class ThreeDGameHandler : MonoBehaviour
     void Update() //Update?
     {
         HandleSwipeInput();
+    }
+
+    private void InspectorFilledCheck() 
+    {
+        
     }
 
     void OnEnable() 
@@ -87,7 +110,7 @@ public partial class ThreeDGameHandler : MonoBehaviour
         //PlayerSwipedOnChoice += CatchDirection;
         CharacterMove.PlayerHasReachedNextPoint += DeGatePlayerChoice;
         GameDisplay.DirectionChosen += ProcessDirection;
-
+        gridGenerator.setRoomIndexer(StartingRoomSpawnPoints);
     }
 
     void OnDisable() 
@@ -110,7 +133,7 @@ public partial class ThreeDGameHandler : MonoBehaviour
     }
 
     [ContextMenu("SpawnNewRoom")]
-    public void CreateNewRoom()
+    public void CreateNewRoom() // Spawns a new room next to the last room in the roomsQueue, and adds it to the queue and the spawnedRooms list.
     {
         var roomToSpawnNextTo = roomsQueue.Last();
         var newRoomData = NewRoomData();
@@ -128,11 +151,16 @@ public partial class ThreeDGameHandler : MonoBehaviour
                 randomDoorDirection = otherTwoPossibilites[UnityEngine.Random.Range(0, otherTwoPossibilites.Count)];
             }
         }
-
         Debug.LogWarning((DoorHandler.DoorDirection)randomDoor);
         previousDirection = (DoorHandler.DoorDirection)randomDoor;
         Vector3 spawnpoint = GetRoomsSpawnDiff(roomToSpawnNextTo, newRoom.roomPrefab, (DoorHandler.DoorDirection)randomDoor);
         var newlyCreatedRoomPrefab = Instantiate(newRoom.roomPrefab, spawnpoint, new Quaternion(roomToSpawnNextTo.transform.rotation.x, roomToSpawnNextTo.transform.rotation.y, roomToSpawnNextTo.transform.rotation.z, roomToSpawnNextTo.transform.rotation.w));
+
+        // Get Component form the roomToSpawnNextTo RoomIndexer Component Refrence to the Grid,
+        // it is the current room the player is in, and we need to get the component from it
+        // so that it can be used to spawn the zombies and other refrences necessary.
+        //gridGenerator.setRoomIndexer(roomToSpawnNextTo.GetComponent<RoomIndexer>());
+
         spawnedRooms.Add(newRoom);
         roomsQueue.Enqueue(newlyCreatedRoomPrefab);
         if(debugbool) Debug.Log("Create a room");
@@ -448,7 +476,7 @@ public partial class ThreeDGameHandler : MonoBehaviour
         Room[] rooms = new Room[numberOfRootRoomDoors];
         List<GameObject> roomsToQueue = new List<GameObject>();
         StorageShift = 0;
-
+        gridGenerator.setRoomIndexer(rootRoom.GetComponent<RoomIndexer>());
         foreach (var room in rooms)
         {
             rooms[roomIndexer] = new Room(NewRoomData());

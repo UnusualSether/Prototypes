@@ -24,6 +24,9 @@ public class Enemy3dBehaviour : MonoBehaviour //!!!!!! PLACE THIS IN A NOTHER SC
 
     public void Zombie3SetUP(Zombie zombie, GameHandler gameHandler, GameObject player, Grid_ grid, PathFolower PathFollowerComponent) // Needs to be called by the initial spawner to pass the zombie and player references to this script
     {
+        Vector3 t = this.transform.position; //StartPos
+        Vector3 a = player.transform.position; //EndPos
+
         this.zombie = zombie;
         this.gameHandler = gameHandler;
         this.player = player;

@@ -110,7 +110,10 @@ public class PathFolower : MonoBehaviour
             {
                 if (path.Count > 0) // is there path to follow
                 {
-                    if ((gameObject.transform.position - path[0]).magnitude < 0.2f) // is close enough to start pos (is path valid)
+                    Vector3 a = gameObject.transform.position;
+                    Vector3 b = new Vector3(path[0].x, 0, path[0].z);
+
+                    if ((a - b).magnitude < 0.5f) // is close enough to start pos (is path valid)
                     {
                         //is close enough to stert pos
                         //start walk
@@ -118,7 +121,7 @@ public class PathFolower : MonoBehaviour
                         if (debug) Debug.Log("Starting Walk Coroutine");
                         StartCoroutine(WalkPathCoroutine());
                     }
-                    else if ((gameObject.transform.position - path[0]).magnitude < 0.2f)
+                    else if ((a - b).magnitude < 0.5f)
                     {
                         //Call a new pathfinding
                         if (errorThrow == false)

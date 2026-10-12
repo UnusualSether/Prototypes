@@ -15,14 +15,14 @@ public class Grid_Generator : MonoBehaviour
     public Grid_ grid { get; private set; }
 
     // References for other components and objects
-    public GameHandler gameHandler;
-    public GameObject player;
-    public PlayerPathControl playerPathControl;
-
+    public GameHandler gameHandler; // Reference to the GameHandler script, which manages game events and state
+    public GameObject player; // Reference to the player GameObject, used for positioning and interactions
+    
+    private RoomIndexer roomIndexer; // Reference to the RoomIndexer script, which holds references to objects in the room for easy access
+    private Transform[] roomIndexerAlternative; // Alternative array of Transforms for spawn positions, if RoomIndexer is not used (startingRoom)
+    private bool useAlternativeRoomIndexer = false; // Flag to determine whether to use the alternative room indexer or the RoomIndexer script
     /// 3D Enemys Refrence
     private Dictionary<Zombie, GameObject> ThreeD_Zombie = new();//Stores pairs of Zombie data and their corresponding 3D game objects for easy access and management>
-    //private Dictionary<Zombie, Enemy3dBehaviour> path3DController = new();
-    //private Dictionary<Zombie, PathFolower> PathFolowerDictionary = new();
     
     ////////////////////////////////////
     /**/ public bool debug = false; /**/         // Debugging flag to enable or disable debug logs & other debug features
@@ -92,14 +92,51 @@ public class Grid_Generator : MonoBehaviour
 
 
 
-    
+
     //////////////////////////////////////////////////////////////////////
     // ----------------- Manage The 3DZombie In world ----------------- //
     //////////////////////////////////////////////////////////////////////
-    public Vector3 getSpawnPosition(/*Room room*/) // Called when player Enters a new room, to get a spawn position for the zombie, based on the grid and the player position.
+
+    /// To Get the spawn position for the zombie, based on the grid and the player position. This method is called when the player enters a new room.
+    int c = 0; // Variable to keep track of the current spawn position index for cycling through spawn positions
+    public void setRoomIndexer(Transform[] roomIndexerAlternative) // Set the alternative room indexer reference for this Grid_Generator
     {
-        Vector3 spawnPosition = Vector3.zero;
-        return spawnPosition;
+        this.roomIndexerAlternative = roomIndexerAlternative;
+        c = 0;
+        useAlternativeRoomIndexer = true; // Set the flag to use the alternative room indexer
+    }
+    public void setRoomIndexer(RoomIndexer roomIndexer) // Set the RoomIndexer reference for this Grid_Generator
+    {
+        this.roomIndexer = roomIndexer;
+        c = 0;
+        useAlternativeRoomIndexer = false; // Set the flag to use the RoomIndexer script
+    }
+    ///
+    
+    public Vector3 getSpawnPosition() // Called when player Enters a new room, to get a spawn position for the zombie, based on the grid and the player position.
+    {
+        if (useAlternativeRoomIndexer)
+        {
+            if (roomIndexerAlternative == null || roomIndexerAlternative.Length == 0)
+            {
+                Debug.LogError("roomIndexerAlternative in Grid_Generator is not set or empty.");
+                return Vector3.zero; // Return a default value if the alternative room indexer is not set
+            }
+            Vector3 spawnPosition = roomIndexerAlternative[c].position;
+            c = (c + 1) % roomIndexerAlternative.Length; // Cycle through spawn positions
+            return spawnPosition;
+        }
+        else
+        {
+            if (roomIndexer == null || roomIndexer.zombiesSpawnPositions == null || roomIndexer.zombiesSpawnPositions.Length == 0)
+            {
+                Debug.LogError("RoomIndexer or zombiesSpawnPositions in Grid_Generator is not set or empty.");
+                return Vector3.zero; // Return a default value if the RoomIndexer or spawn positions are not set
+            }
+            Vector3 spawnPosition = roomIndexer.zombiesSpawnPositions[c].transform.position;
+            c = (c + 1) % roomIndexer.zombiesSpawnPositions.Length; // Cycle through spawn positions
+            return spawnPosition;
+        }
     }
 
     public void generateEnemy(Zombie zombie)
@@ -109,6 +146,7 @@ public class Grid_Generator : MonoBehaviour
     }
     private void generateEnemy(Zombie zombie, Vector3 spawnPosition)
     {
+
         GameObject spawnedEnemy;
         spawnedEnemy = Instantiate(zombie.enemyData.Zprefab, spawnPosition, Quaternion.identity);
 
@@ -118,8 +156,8 @@ public class Grid_Generator : MonoBehaviour
         Enemy3dBehaviour = spawnedEnemy.GetComponent<Enemy3dBehaviour>();
         pathFolowerComponer = spawnedEnemy.GetComponent<PathFolower>();
         ThreeD_Zombie.Add(zombie, spawnedEnemy);
+        
         Enemy3dBehaviour.Zombie3SetUP(zombie, gameHandler, player, grid, pathFolowerComponer);
-
         Enemy3dBehaviour.startWalk();
     }
 

@@ -46,7 +46,7 @@ public class CharacterMove : MonoBehaviour
     public void Start()
     {
         charTransform = this.gameObject.GetComponent<Transform>();
-        navMesh = gameObject.GetComponent<NavMeshAgent>();
+        //navMesh = gameObject.GetComponent<NavMeshAgent>();
 
         PPathCtlr.pathFolowerSetUp(Grid_Generator.grid, this, OnTargetReached);
     }
@@ -156,9 +156,6 @@ public class CharacterMove : MonoBehaviour
     private void ManualMove(Waypoint wp)
     {
         PPathCtlr.serchNewPathSetUp(wp.wayPointPosition);
-
-       
-        
         //StartCoroutine(CheckIfArrived(wp.wayPointPosition));
     }
 
