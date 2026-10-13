@@ -1,7 +1,6 @@
 using UnityEngine;
-using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UIElements;
 public class MenuManager : MonoBehaviour
 {
     //Set Child Not Parent
@@ -11,7 +10,8 @@ public class MenuManager : MonoBehaviour
     public GameObject LevelMenu;
     public GameObject Weapons;
     public GameObject Difficulty;
-
+    public GameObject Trinkets;
+   
     public void OnEnable()
     {
 
@@ -19,23 +19,38 @@ public class MenuManager : MonoBehaviour
 
         if (uiDocument != null)
         {
-
+           
             Button startbutton = uiDocument.rootVisualElement.Q<Button>("Play");
             Button configbutton = uiDocument.rootVisualElement.Q<Button>("Config");
             Button Devbutton = uiDocument.rootVisualElement.Q<Button>("Credits");
-            Button returnbutton = uiDocument.rootVisualElement.Q<Button>("Return");
+            Button returnbutton = uiDocument.rootVisualElement.Q<Button>("ReturnLvl");
             Button level1button = uiDocument.rootVisualElement.Q<Button>("level1");
             Button level2button = uiDocument.rootVisualElement.Q<Button>("level2");
             ////////////////////////////////////////////////////////////////////////
+            //Pagina do level
             Button begin = uiDocument.rootVisualElement.Q<Button>("StartGame");
-            Button returntomenu = uiDocument.rootVisualElement.Q<Button>("ReturnMenu");
+            Button returntomenu = uiDocument.rootVisualElement.Q<Button>("ReturnLvl");
             ////////////////////////////////////////////////////////////////////////
             Button diffchoice = uiDocument.rootVisualElement.Q<Button>("ToDifficulty");
+            ///////////////////////////////////////////////////////////////////////////////////////
+            var to_level_select = uiDocument.rootVisualElement.Q<Button>("ToDifficulty");
+            var back_to_menu = uiDocument.rootVisualElement.Q<Button>("Return");
+
+
+            if (to_level_select != null)
+            {
+                to_level_select.clicked += ToLevelSelect;
+            }
+            
+            if (back_to_menu != null)
+            {
+                back_to_menu.clicked += returnmenu;
+            }
 
 
             if (startbutton != null)
             {
-                startbutton.clicked += LevelSelect;
+                startbutton.clicked += trinketsmenu;
             }
 
             if (diffchoice != null)
@@ -92,10 +107,22 @@ public class MenuManager : MonoBehaviour
         Devs.SetActive(false);
     }
 
+    private void trinketsmenu()
+    {
+        Menu.SetActive(false);
+    }
+
+
     private void DevMenu()
     {
         Devs.SetActive(true);
         Menu.SetActive(false);
+    }
+
+
+    private void ToLevelSelect()
+    {
+        SceneManager.LoadScene("LevelSelect");
     }
 
     private void ReturnMainMenu()
@@ -107,11 +134,6 @@ public class MenuManager : MonoBehaviour
     {
         SceneManager.LoadScene("PresentableText/PresentableTex");
     }
-    private void LevelSelect()
-    {
-        SceneManager.LoadScene("Scenes/LevelSelect");
-    }
-
     private void Level1()
     {
         //Debug.Log("Level 1");

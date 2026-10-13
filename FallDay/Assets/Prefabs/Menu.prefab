@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 1754224049049022601}
   - component: {fileID: 6809619032617853123}
   - component: {fileID: 4351865879563765256}
+  - component: {fileID: 7930258585491242016}
   m_Layer: 0
   m_Name: MainMenu
   m_TagString: Untagged
@@ -80,7 +81,7 @@ MonoBehaviour:
   m_PanelSettings: {fileID: 11400000, guid: 7b16bd0c931c3d54084725a3410da29d, type: 2}
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: 4156dee4cc3b28a42b0b15a1a072cedb, type: 3}
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Position: 0
   m_WorldSpaceSizeMode: 1
   m_WorldSpaceWidth: 1920
@@ -105,3 +106,17 @@ MonoBehaviour:
   Devs: {fileID: 0}
   LevelMenu: {fileID: 0}
   Weapons: {fileID: 0}
+  Difficulty: {fileID: 0}
+  Trinkets: {fileID: 0}
+--- !u!114 &7930258585491242016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4004746050545178163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 673aea1cea9b820409a3bb4be0193dcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIController

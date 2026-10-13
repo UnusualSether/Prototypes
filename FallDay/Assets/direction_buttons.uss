@@ -1,0 +1,24 @@
+:root {
+}
+
+.off {
+    visibility: hidden;
+    width: 0;
+    height: 0;
+    transition-property: width, height, visibility;
+    transition-duration: 0.5s, 0.5s, 0s;
+    transition-delay: 0s, 0s, 0.51s;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    top: 0;
+}
+
+.on {
+    visibility: visible;
+    width: 371px;
+    height: 339px;
+    transition-property: width, height, visibility;
+    transition-duration: 0.5s, 0.5s, 0s;
+    transition-delay: 0s, 0s, 0.6s;
+}

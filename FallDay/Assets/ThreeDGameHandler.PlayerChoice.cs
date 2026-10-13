@@ -27,7 +27,7 @@ public partial class ThreeDGameHandler //PlayerChoice Partial Class That Contain
     private Vector2 touch_end_pos;
     private SwipeDirection detected_swipe = SwipeDirection.None;
 
-    private SwipeDirection leftandrightnulling = SwipeDirection.None;  // => Unknown ask Scott? <= 
+    public static SwipeDirection leftandrightnulling = SwipeDirection.None;  // => Unknown ask Scott? <= 
 
     // Moved Update To ThreeDGameHandler.cs
     // Makes more sence to keep Start and Update Together.
@@ -94,8 +94,59 @@ public partial class ThreeDGameHandler //PlayerChoice Partial Class That Contain
     }
 
 
+    void ProcessDirection(SwipeDirection detected)
+    {
+
+    
+
+
+        switch (detected)
+        {
+            case SwipeDirection.Up:
+                leftandrightnulling = SwipeDirection.Up;
+                OnSwipeUp();
+                break;
+
+            case SwipeDirection.Left:
+                if (leftandrightnulling == SwipeDirection.Right)
+                {
+                    DeGatePlayerChoice();
+                    return;
+                }
+
+                leftandrightnulling = SwipeDirection.Left;
+                OnSwipeLeft();
+                break;
+
+            case SwipeDirection.Right:
+
+                if (leftandrightnulling == SwipeDirection.Left)
+                {
+                    DeGatePlayerChoice();
+                    return;
+                }
+
+                leftandrightnulling = SwipeDirection.Right;
+                OnSwipeRight();
+                break;
+
+            case SwipeDirection.None:
+                break;
+        }
+
+        PlayerChoiceGate = true;
+
+    }
+
+    public bool swipe_controls_on; 
     void ProcessSwipe()
     {
+
+        if (!swipe_controls_on)
+        {
+            return;
+        }
+
         if (PlayerChoiceGate)
         {
             return;

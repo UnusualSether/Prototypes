@@ -3,6 +3,10 @@ using UnityEngine.UIElements;
 using System.Collections.Generic;
 using static GameHandler;
 using static GameHandler.Encounter;
+using System;
+
+
+[Serializable]
 public class Zombie
 {
     public int id = 0;
@@ -106,7 +110,7 @@ public class Zombie
     {
         enemyData = data;
 
-        hp = (int)(data.HP * Diff);
+        hp = (int)(data.HP);
         PhaseTimer = data.phaseTimer;
         damage = data.Damage;
         EnemyType = data.enemyName;

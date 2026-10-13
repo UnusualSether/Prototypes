@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -13,6 +14,31 @@ public partial class GameHandler : MonoBehaviour
     [Header("Seleção de codigo")]
     public bool oldNew = true;
     public bool debugisOn = false;
+
+    public PlayerInstance player;
+
+    public Reward stored_reward;
+
+    public Reward[] reward_trio = new Reward[3];
+
+    public List<Reward> possible_rewards = new List<Reward>();
+
+    public int current_bullet_damage => ReadyBulletsDamageAggregate(readyBullets);
+
+    public int ReadyBulletsDamageAggregate(List<string> ready_bullets)
+    {
+        int damage_total = 0;
+
+        foreach(string bullet in ready_bullets)
+        {
+            BulletType bullet_type = bulletLookup[bullet];
+
+            damage_total += bullet_type.Damage;
+        }
+
+        return damage_total;
+    }
+
 
 
     #region Lists and Arrays
@@ -38,6 +64,8 @@ public partial class GameHandler : MonoBehaviour
     #region Events
     //Player related events
     public event Action<int> SucessfulShot;
+
+    public event Action<int, Zombie> ZombieHurt;
     public event Action FailedShot;
     public event Action<VisualElement> BulletSelected;
 
@@ -58,9 +86,15 @@ public partial class GameHandler : MonoBehaviour
     //Animação UI
     public event Action<int> SucessfulHit;
 
+    //Rewards
+    public event Action NewRewardsGenerated;
     #endregion
 
+
     #region Variables
+
+    
+
     [Header("Zombies!")]
     public int numberOfZombiesInLookup;
     public int numberOfZombiesinList;
@@ -107,6 +141,10 @@ public partial class GameHandler : MonoBehaviour
         ThreeDGameHandler.EncounterStarted += ActivateMinigame;
         ThreeDGameHandler.EncounterEnded += DeactivateMinigame;
         destroyZombie += _KillZombie;
+        PlayerKilledAllZombies += GrantStoredReward;
+        PlayerKilledAllZombies += GenerateNewRewardTrio;
+        GameDisplay.RewardChosen += StoreChosenReward;
+
     }
 
     void OnDisable()
@@ -114,6 +152,9 @@ public partial class GameHandler : MonoBehaviour
         ThreeDGameHandler.EncounterStarted -= ActivateMinigame;
         ThreeDGameHandler.EncounterEnded -= DeactivateMinigame;
         destroyZombie -= _KillZombie;
+        PlayerKilledAllZombies -= GrantStoredReward;
+        GameDisplay.RewardChosen -= StoreChosenReward;
+        PlayerKilledAllZombies -= GenerateNewRewardTrio;
         ResetLists();
     }   
     #endregion
@@ -124,6 +165,75 @@ public partial class GameHandler : MonoBehaviour
         public string name;
         public string description;
         public int Damage;
+    }
+
+    public class SpecialBullet : BulletType
+    {
+        public bool changes_zombie_phase = false;
+
+        public enum EffectResolve
+        {
+            OneTimeUse,
+            Stacking
+        }
+
+        public EffectResolve effect_type;
+        public virtual void BulletEffect(PlayerInstance player_instance, List<Zombie> active_zombies)
+        {
+
+        }
+    }
+
+    public class HealingBullet : SpecialBullet
+    {
+
+        public int heal_amount;
+
+        public override void BulletEffect(PlayerInstance player_instance, List<Zombie> active_zombies)
+        {
+            player_instance.GainHealth(heal_amount);
+        }
+
+        public HealingBullet()
+        {
+            effect_type = EffectResolve.Stacking;
+
+            heal_amount = 1;
+
+            Damage = 0;
+
+
+        }
+    }
+
+    public class EscapeBullet : SpecialBullet
+    {
+
+        public override void BulletEffect(PlayerInstance player_instance, List<Zombie> active_zombies)
+        {
+
+
+
+            foreach (var zombie in active_zombies)
+            {
+                if (zombie.phase > (Zombie.ZombiePhase)1)
+                {
+                    zombie.phase -= (Zombie.ZombiePhase)1;
+
+                    
+                }
+            }
+        }
+
+        public EscapeBullet()
+        {
+            effect_type = EffectResolve.OneTimeUse;
+
+            Damage = 0;
+
+            changes_zombie_phase = true;
+        }
+
     }
 
     public class BulletTable
@@ -150,9 +260,71 @@ public partial class GameHandler : MonoBehaviour
     }
     #endregion
 
+
+    #region Room Rewards
+    public void StoreChosenReward(Reward chosen_r)
+    {
+        stored_reward = chosen_r;
+    }
+
+    public void GrantStoredReward()
+    {
+        if (stored_reward == null)
+        {
+            Debug.Log("No reward to grant!");
+            return;
+        }
+
+
+        stored_reward.GainReward(player);
+
+        stored_reward = null;
+    }
+
+
+
+    public void GenerateNewRewardTrio()
+    {
+        if (possible_rewards.Count == 0)
+        {
+            Debug.Log("Possible rewards list is empty!");
+            return;
+        }
+
+        reward_trio = RewardOptions();
+
+        NewRewardsGenerated?.Invoke();
+    }
+
+    public Reward[] RewardOptions()
+    {
+        var to_return = new Reward[3];
+
+        for (int i = 0; i < to_return.Length; i++)
+        {
+            var random = UnityEngine.Random.Range(0, possible_rewards.Count);
+
+            to_return[i] = possible_rewards[random];
+
+
+
+        }
+
+        return to_return;
+
+
+
+    }
+
+
+    #endregion
+
+
     #region Unity Functions
     private void Start()
     {
+
+        player = new PlayerInstance(this);
 
         ui = uiDoc.rootVisualElement;
         
@@ -182,7 +354,7 @@ public partial class GameHandler : MonoBehaviour
                 description = "A good bullet.",
                 Damage = 10
             },
-        
+
             new BulletType()
             {
                name = "shitBullet",
@@ -195,6 +367,21 @@ public partial class GameHandler : MonoBehaviour
                 name = "epicBullet",
                 description = "An epic bullet!",
                 Damage = 20
+            },
+
+            new EscapeBullet()
+            {
+                name = "escapeBullet",
+                description = "A bullet made for running away.",
+
+
+            },
+
+            new HealingBullet()
+            {
+                name = "healingBullet",
+                description = "A bullet made for healing",
+
             }
         };
 
@@ -297,7 +484,6 @@ public partial class GameHandler : MonoBehaviour
         ZombieSpawnGate = false;
         zombiesSpawned++;
     }
-    
     public void InvokePhaseChange(Zombie zombie)
     {
         zPhaseChange?.Invoke(zombie);
@@ -536,8 +722,17 @@ public partial class GameHandler : MonoBehaviour
             int numberUsed = readyBullets.Count();
             BulletType realBulletType = bulletLookup[bulletTypeUsed];
 
-            
-            HandleDamage(realBulletType, numberUsed);
+            if (realBulletType is SpecialBullet special)
+            {
+                HandleSpecialBullet(special, numberUsed);
+
+            }
+
+            if (realBulletType is not SpecialBullet)
+            {
+                HandleDamage(realBulletType, numberUsed);
+            }
+
 
             ClearUsedBullets();
             
@@ -564,6 +759,41 @@ public partial class GameHandler : MonoBehaviour
 
         if(debugisOn) Debug.Log("Nenhuma bala selecionada!");
         FailedShot?.Invoke();
+    }
+
+    public void HandleSpecialBullet(SpecialBullet bullet_to_resolve,int number_used)
+    {
+        switch (bullet_to_resolve.effect_type)
+        {
+            case SpecialBullet.EffectResolve.OneTimeUse:
+
+                bullet_to_resolve.BulletEffect(player, ZombieList);
+
+                if (bullet_to_resolve.changes_zombie_phase == true)
+                {
+                    foreach (var zombie in ZombieList)
+                    {
+                        InvokePhaseChange(zombie);  
+                    }
+                }
+
+                break;
+
+            case SpecialBullet.EffectResolve.Stacking:
+
+                for( int i = 0; i < number_used; i++)
+                {
+                    bullet_to_resolve.BulletEffect(player, ZombieList);
+                }
+
+                break;
+
+
+        }
+        
+
+
+        
     }
 
     public void CancelFailFeedback()
@@ -732,16 +962,16 @@ public partial class GameHandler : MonoBehaviour
         //Need to fix, because these calculations on account for x and y and doesnt detect diagonal neighbours.
 
         List<int> neighbours = new List<int>();
-        int cols = 3;
-        int rows = 3;
+        int cols = 6;
+        int rows = 7;
 
         int row = index / cols;
         int col = index % cols;
 
-        int[] dr = { -1, -1, -1, 0, 0, 1, 1, 1 };
-        int[] dc = { -1, 0, 1, -1, 1, -1, 0, 1 };
+        int[] dr = { -1, -1, -1, 0, 0, 1, 1, 1, 0 };
+        int[] dc = { -1, 0, 1, -1, 1, -1, 0, 1, 0 };
 
-        for (int d = 0; d < 8; d++)
+        for (int d = 0; d < 9; d++)
         {
             int newRow = row + dr[d];
             int newCol = col + dc[d];
@@ -776,7 +1006,8 @@ public partial class GameHandler : MonoBehaviour
 
         SucessfulShot?.Invoke(totalDamage);
         SucessfulHit?.Invoke(totalDamage);
-        ApplyDamage(totalDamage, zombieToAimAt());
+        ZombieHurt?.Invoke(totalDamage, targetZombie);
+        ApplyDamage(totalDamage, targetZombie);
     }
 
     public void SelectedBullet(PointerEnterEvent ev)
