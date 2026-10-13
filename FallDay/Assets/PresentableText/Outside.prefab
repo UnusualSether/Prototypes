@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1851650461633327550}
   - component: {fileID: 4497580073575206212}
+  - component: {fileID: 7264214455990628802}
   - component: {fileID: 8969283354366850901}
   m_Layer: 0
   m_Name: Outside
@@ -90,6 +91,22 @@ MonoBehaviour:
   - {fileID: 2255811635392958402}
   - {fileID: 8258993778013047561}
   - {fileID: 7969615403215842065}
+--- !u!114 &7264214455990628802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 38049718111097171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a338b5adb8622334e98a00da08f31b3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoomIndexer
+  zombiesSpawnPositions:
+  - {fileID: 887532475200026107}
+  - {fileID: 1296301932057234533}
+  - {fileID: 2199708272546009160}
 --- !u!114 &8969283354366850901
 MonoBehaviour:
   m_ObjectHideFlags: 0

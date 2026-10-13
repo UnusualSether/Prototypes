@@ -142,11 +142,12 @@ public class Grid_Generator : MonoBehaviour
     public void generateEnemy(Zombie zombie)
     {
         Vector3 spawnPosition = getSpawnPosition();
+        grid.GetXYZ(spawnPosition, out int x, out int y, out int z);
+        spawnPosition = grid.CellWorldPosition(x, 0, z);
         generateEnemy(zombie, spawnPosition);
     }
     private void generateEnemy(Zombie zombie, Vector3 spawnPosition)
     {
-
         GameObject spawnedEnemy;
         spawnedEnemy = Instantiate(zombie.enemyData.Zprefab, spawnPosition, Quaternion.identity);
 

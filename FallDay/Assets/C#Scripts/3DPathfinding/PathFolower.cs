@@ -23,11 +23,9 @@ public class PathFolower : MonoBehaviour
     public Grid_ grid;
     private Action AfterWalkCall; //Used to call a function afer walk is complete
     private int ReducePathOveride;
-    /////////////////////////////////////
-    /**/
-    private bool debug = false; /**/  // Debugging flag to enable or disable debug logs and other debug features
-                                      /////////////////////////////////////
-
+    /////////////////////////////
+    private bool debug = false; // Debugging flag to enable or disable debug logs and other debug features
+    /////////////////////////////
     public void pathFolowerSetUp(Grid_ grid, Vector3 targetPosition, int ReducePathOveride, Action afterWalkCall)
     {
         this.grid = grid;
@@ -51,7 +49,7 @@ public class PathFolower : MonoBehaviour
                 path.RemoveAt(path.Count - ReducePathOveride);
             }
         }
-        else Debug.LogError("Folower SetUp Incomplete");
+        else {Debug.LogError("Folower SetUp Incomplete"); }
     }
 
     public void FindPath(Vector3 a, Vector3 b)
@@ -64,7 +62,7 @@ public class PathFolower : MonoBehaviour
                 path.RemoveAt(path.Count - ReducePathOveride);
             }
         }
-        else Debug.LogError("Folower SetUp Incomplete");
+        else { Debug.LogError("Folower SetUp Incomplete"); }
     }
 
     public void setNewTarget(Vector3 target)
@@ -110,34 +108,24 @@ public class PathFolower : MonoBehaviour
             {
                 if (path.Count > 0) // is there path to follow
                 {
-                    Vector3 a = gameObject.transform.position;
-                    Vector3 b = new Vector3(path[0].x, 0, path[0].z);
+                    Vector3 a = new Vector3 (gameObject.transform.position.x, 0, gameObject.transform.position.z); // Pos atual
+                    Vector3 b = new Vector3(path[0].x, 0, path[0].z); //Pos inicial do caminho
 
-                    if ((a - b).magnitude < 0.5f) // is close enough to start pos (is path valid)
+                    if ((a - b).magnitude < 1) // is close enough to start pos (is path valid)
                     {
                         //is close enough to stert pos
                         //start walk
                         errorThrow = true;
-                        if (debug) Debug.Log("Starting Walk Coroutine");
+                        if (debug) {Debug.Log("Starting Walk Coroutine");}
                         StartCoroutine(WalkPathCoroutine());
                     }
-                    else if ((a - b).magnitude < 0.5f)
+                    else
                     {
-                        //Call a new pathfinding
-                        if (errorThrow == false)
-                        {
-                            Debug.LogWarning("Not close enough to start pos, need to find new path");
-                            errorThrow = true;
-                            SerchNewPath();
-                        }
-                        else
-                        {
-                            Debug.LogError("Unable to find a valid path, stopping pathfinding");
-                        }
+                        if (debug) {Debug.Log("To far to start Walk");}
                     }
                     if ((gameObject.transform.position - path[path.Count - 1]).magnitude < 0.2f)
                     {
-                        Debug.Log($"Has gotten Close to the end of the path");
+                        if(debug) {Debug.Log($"Has gotten Close to the end of the path");}
                         AfeterpathCall();
                     }
                 }

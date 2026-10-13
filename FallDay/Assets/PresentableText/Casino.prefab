@@ -99,9 +99,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomIndexer
   zombiesSpawnPositions:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 3673074913831602148}
+  - {fileID: 3360085727210051267}
+  - {fileID: 678904360654936409}
 --- !u!1 &678904360654936409
 GameObject:
   m_ObjectHideFlags: 0
