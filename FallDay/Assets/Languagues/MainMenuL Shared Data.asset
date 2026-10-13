@@ -31,6 +31,26 @@ MonoBehaviour:
     m_Key: MainMenu.Language
     m_Metadata:
       m_Items: []
+  - m_Id: 5203511762833408
+    m_Key: LevelSelect.Floor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5204252925710336
+    m_Key: LevelSelect.Select1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5204526692126720
+    m_Key: LevelSelect.Select2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5204529040936960
+    m_Key: LevelSelect.Select3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5204531322638336
+    m_Key: LevelSelect.Select4
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

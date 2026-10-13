@@ -34,6 +34,26 @@ MonoBehaviour:
     m_Localized: Lingua
     m_Metadata:
       m_Items: []
+  - m_Id: 5204252925710336
+    m_Localized: Andar 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5204526692126720
+    m_Localized: Andar 2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5204529040936960
+    m_Localized: Andar 3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5204531322638336
+    m_Localized: Andar 4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5203511762833408
+    m_Localized: "Sele\xE7\xE3o de nivel"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

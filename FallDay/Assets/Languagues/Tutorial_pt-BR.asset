@@ -1,0 +1,116 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Tutorial_pt-BR
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: pt-BR
+  m_SharedData: {fileID: 11400000, guid: 4e64acc72f5023e4db8651299a0ad706, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 9713868951552
+    m_Localized: Gostaria de ver um tutorial?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10179898068992
+    m_Localized: "N\xE3o"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10142975610880
+    m_Localized: Sim
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10202870272000
+    m_Localized: Conecte 3 ou mais icones para atacar ou se defender baseado no tipo
+      de bloco que foi combinado
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13446128422912
+    m_Localized: Proximo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10239121641472
+    m_Localized: "Estes s\xE3o os tipos de Blocos que voc\xEA pode utilizar no jogo"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15344680128512
+    m_Localized: Bala Basica - Causa Pouco Dano
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15347372871680
+    m_Localized: "Bala Avan\xE7ada - Causa Dano Medio"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15382915403776
+    m_Localized: Bala Epica - Causa Bastante Dano
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15384253386752
+    m_Localized: Kit de cura - Cura 1 de Hp Por Bloco
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15385683644416
+    m_Localized: "Afastamento - Faz com que zumbis\ns\xE3o empurrados pra tr\xE1s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10241168461824
+    m_Localized: "Apos derrotar todos os zumbis de uma fase voc\xEA pode escolher
+      qual caminho escolher, cada um com uma recompensa a escolher sendo elas:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 45336440950784
+    m_Localized: OU
+    m_Metadata:
+      m_Items: []
+  - m_Id: 45326894714880
+    m_Localized: "Sala \nde Dinheiro"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 45325145690112
+    m_Localized: 'Sala
+
+      de Cura'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10242867154944
+    m_Localized: "Esta \xE9 a sua barra de vida"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47132332871680
+    m_Localized: "Para cada zumbi que te atacar, voc\xEA perdera vida baseada em
+      qual tipo de zumbi te atacou, se o hp chegar a 0 voc\xEA perde. "
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10244834283520
+    m_Localized: "Vamos falar um pouco sobre os zumbis, enquanto o jogo permite voc\xEA
+      atirar em zumbis aleatorios voc\xEA pode selecionar quais zumbis ataca utilizando
+      a tela de icones em cima dos blocos de combina\xE7\xE3o."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76086561296384
+    m_Localized: "Basta clicar e o jogo imediatamente come\xE7ara a focar no zumbi
+      selecionado!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13419444260864
+    m_Localized: "Parabens voc\xEA completou o Tutorial!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 77220155838464
+    m_Localized: "Agora explore a mans\xE3o, mas tenha cuidado com os perigos que
+      ira encontrar! "
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []
