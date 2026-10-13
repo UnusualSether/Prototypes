@@ -51,4 +51,6 @@ MonoBehaviour:
   - {fileID: -536225200, guid: a0c503f403bf47e428a63e06022fade8, type: 3}
   - {fileID: 867964957, guid: a0c503f403bf47e428a63e06022fade8, type: 3}
   - {fileID: -1000189735, guid: a0c503f403bf47e428a63e06022fade8, type: 3}
+  _acquired: 1
+  _trinket_cost: 100
   soft_currency_gained: 3
