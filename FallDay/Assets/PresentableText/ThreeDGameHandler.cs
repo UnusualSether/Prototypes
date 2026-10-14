@@ -15,16 +15,10 @@ public partial class ThreeDGameHandler : MonoBehaviour
     public GameHandler handler;
     public Vector3 offsetToPlayer;
 
-    //GameObject[] current3Rooms = new GameObject[3];
     public bool playerChooseSystem;
     public bool debugbool = false; // Place all debug Logs behind this bool, so you can easily turn them on and off. (Consider making it a public variable so you can change it in the inspector)
 
     #region RoomsInternalGrid[]
-
-    //GameObject[] previousThreeWay = new GameObject[3];
-    //GameObject[] currentThreeWay = new GameObject[3];
-    //GameObject[] toDestroyThreeWay = new GameObject[3];
-
 
     GameObject[,] RoomsInternalGrid = new GameObject[5, 3];  //Grid in the 
 
@@ -71,12 +65,7 @@ public partial class ThreeDGameHandler : MonoBehaviour
     void OnEnable() 
     { 
         //Room Culling Events
-        //CharacterMove.PlayerMoved += CullOldRooms; 
-        //CharacterMove.PlayerMoved += CullRoomList; 
         CharacterMove.PlayerMovingTowardsUnLoadedRoom += PlayerMovingTowardsNewRoom; 
-        //CharacterMove.PlayerWillClearList += DestroyUnusedRooms; 
-        //CharacterMove.PlayerHasReachedNextPoint += ClearPreviousRoomCache;
-        //CharacterMove.PlayerHasReachedNextPoint += PlayerHasReachedNewRoom;
         //On Rails Events
         handler.PlayerKilledAllZombies += EncounterEnd;
         //Player Events
@@ -93,11 +82,7 @@ public partial class ThreeDGameHandler : MonoBehaviour
     void OnDisable() 
     {
         //Room Culling Events
-        //CharacterMove.PlayerMoved -= CullOldRooms;
         CharacterMove.PlayerMovingTowardsUnLoadedRoom -= PlayerMovingTowardsNewRoom;
-        //CharacterMove.PlayerWillClearList -= DestroyUnusedRooms;
-        //CharacterMove.PlayerHasReachedNextPoint -= ClearPreviousRoomCache;
-        //CharacterMove.PlayerHasReachedNextPoint -= PlayerHasReachedNewRoom;
         //On Rails Events
         handler.PlayerKilledAllZombies -= EncounterEnd;
         CharacterMove.PlayerHasReachedNextPoint -= PlayerToEncounterGate;
@@ -105,14 +90,13 @@ public partial class ThreeDGameHandler : MonoBehaviour
         CharacterMove.PlayerHasReachedNextPoint -= EndRails;
         //Player Choice Events
         PlayerMadeDecision -= EndPlayerChoice;
-        //PlayerSwipedOnChoice -= CatchDirection;
         CharacterMove.PlayerHasReachedNextPoint -= DeGatePlayerChoice;
     }
 
     [ContextMenu("SpawnNewRoom")]
     public void CreateNewRoom()
     {
-        var roomToSpawnNextTo = roomsQueue.Last();
+        var roomToSpawnNextTo = roomsQueue.Last(); // Takes the last room in the queue, which is the room the player is currently in, and spawns a new room next to it.
         var newRoomData = NewRoomData();
         var newRoom = new Room(newRoomData);
         int randomDoor = UnityEngine.Random.Range((int)DoorHandler.DoorDirection.North, Enum.GetNames(typeof(DoorHandler.DoorDirection)).Length);
@@ -142,7 +126,7 @@ public partial class ThreeDGameHandler : MonoBehaviour
     DoorHandler.DoorDirection previousDirection;
     Vector3 GetRoomsSpawnDiff(GameObject previousRoom, GameObject newRoom, DoorHandler.DoorDirection direction)     // Mede o tamanho das salas para spawnar sem colidir Uma com a outra.
     {
-        var previousRoomSize = RoomBounds(previousRoom).size;
+        var previousRoomSize = RoomBounds(previousRoom).size; // Gets Room Scise
         var newRoomSize = RoomBounds(newRoom).size;
         Vector3 vectorToReturn = new Vector3();
         float sizeOffset;
@@ -174,7 +158,7 @@ public partial class ThreeDGameHandler : MonoBehaviour
         return vectorToReturn;
     }
 
-    Bounds RoomBounds(GameObject room) // Mede tamanho da sala
+    Bounds RoomBounds(GameObject room) // Mede tamanho da sala (Isso funciona ?)
     {
         var childRenderers = room.GetComponentsInChildren<Renderer>();
         if (childRenderers.Length == 0)
@@ -440,7 +424,7 @@ public partial class ThreeDGameHandler : MonoBehaviour
 
     private bool FirstThreeWayGenerated = true;
     private int StorageShift; //Changes StoregePos In RoomStorePos
-    private void CreateThreeWay(GameObject rootRoom)
+    private void CreateThreeWay(GameObject rootRoom) // This Is The Code That Is actualy Generating the room // Restructure This
     {
         var numberOfRootRoomDoors = rootRoom.GetComponent<DoorHandler>().doors.Length;
         int doorDirectionIndex = 0;

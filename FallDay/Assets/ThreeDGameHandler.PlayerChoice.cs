@@ -29,14 +29,6 @@ public partial class ThreeDGameHandler //PlayerChoice Partial Class That Contain
 
     public static SwipeDirection leftandrightnulling = SwipeDirection.None;  // => Unknown ask Scott? <= 
 
-    // Moved Update To ThreeDGameHandler.cs
-    // Makes more sence to keep Start and Update Together.
-    /*
-    void Update() //Update?
-    {
-        HandleSwipeInput();
-    }
-    */
     void HandleSwipeInput() // Takes Screen Input and selects if correct state and Generates Start_pos & End_Pos
     {
 
@@ -96,10 +88,6 @@ public partial class ThreeDGameHandler //PlayerChoice Partial Class That Contain
 
     void ProcessDirection(SwipeDirection detected)
     {
-
-    
-
-
         switch (detected)
         {
             case SwipeDirection.Up:

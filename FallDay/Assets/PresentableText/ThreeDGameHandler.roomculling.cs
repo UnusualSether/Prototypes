@@ -8,14 +8,6 @@ public partial class ThreeDGameHandler
     public int maxNumberOfRooms;
 
     public static event Action RoomSetupComplete;
-    /*
-    public void DestroyRoom(GameObject room)
-    {
-        room.GetComponent<RoomDissipate>().StartRoomDestroyCoroutine();
-
-
-    }
-    */
     partial void OnStartExtendRoomCulling()
     {
         roomsQueue.Enqueue(spawnedRooms.First().roomPrefab);
@@ -24,12 +16,8 @@ public partial class ThreeDGameHandler
 
     }
 
-
-
     private void RoomSetup()
     {
-
-
         if (!playerChooseSystem)
         {
             while (roomsQueue.Count != maxNumberOfRooms)
@@ -37,7 +25,6 @@ public partial class ThreeDGameHandler
                 CreateNewRoom();
             }
         }
-
         else
         {
             CreateThreeWay(roomsQueue.Dequeue());
@@ -56,39 +43,6 @@ public partial class ThreeDGameHandler
 
         return false;
     }
-    /*
-    public void CullOldRooms()
-    {
-        if (!RoomsNeedCulling())
-        {
-            return;
-        }
-
-        var farthestRoom = roomsQueue.Dequeue();
-
-        farthestRoom.GetComponent<RoomDissipate>().StartRoomDestroyCoroutine();
-
-
-
-        if (spawnedRooms.Count < 0)
-        {
-            spawnedRooms.Clear();
-        }
-
-
-
-    }
-    */
-    public void CullRoomList()
-    {
-        //toDestroyThreeWay = previousThreeWay;
-
-        //for (int i = 0; i < toDestroyThreeWay.Count(); i++)
-        {
-            //Destroy(toDestroyThreeWay[i]);
-        }
-
-    }
 
     GameObject previousPlayerChosenRoom;
     GameObject rootRoomNext;
@@ -97,45 +51,9 @@ public partial class ThreeDGameHandler
     {
 
         var rootRoom = waypointPlayerHasArrivedAt.belongingRoom;
-
-
-
         rootRoomNext = rootRoom;
 
         CreateThreeWay(rootRoom);
-
-       
     }
-    /*
-    public void DestroyUnusedRooms(List<Waypoint> waypoints)
-    {
-        
-        foreach (var waypoint in waypoints)
-        {
-            if (waypoint.belongingRoom != rootRoomNext)
-            {
-                DestroyRoom(waypoint.belongingRoom);
-            }
-        }
-
-        
-
-    }
-    
-    public void PlayerHasReachedNewRoom()
-    {
-        if (previousPlayerChosenRoom != null)
-        {
-            Destroy(previousPlayerChosenRoom);
-
-        }
-
-        previousPlayerChosenRoom = rootRoomNext;
-    }
-    */
-    
- 
-
-    
     
 }
