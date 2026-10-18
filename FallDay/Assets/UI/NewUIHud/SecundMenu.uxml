@@ -1,0 +1,18 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="TrinketSelection" src="project://database/Assets/UI/TrinketSelection.uxml?fileID=9197481963319205126&amp;guid=fac4a50fb2c1db8469baeb5205ddfd83&amp;type=3#TrinketSelection"/>
+    <Style src="project://database/Assets/SecondMenu.uss?fileID=7433441132597879392&amp;guid=ed1c2e6289ea612418beb7824cbd0f21&amp;type=3#SecondMenu"/>
+    <ui:TabView name="TabView" style="flex-direction: column-reverse; width: 100%; height: 100%;">
+        <ui:Tab label="" name="Trinked" icon-image="project://database/Assets/Scenes/Icons/EncounterIconCrushed.png?fileID=2800000&amp;guid=a9f925711cb1d5e4a8eef0223179f96a&amp;type=3#EncounterIconCrushed" closeable="false" style="background-image: none; background-color: rgba(0, 0, 0, 0); width: 100%; height: 100%; position: relative;">
+            <ui:Instance template="TrinketSelection" name="TemplateContainer" style="width: 100%; height: 2526px; position: relative;"/>
+        </ui:Tab>
+        <ui:Tab label="" name="Shop" icon-image="project://database/Assets/UI/DevReturnPixel.png?fileID=2800000&amp;guid=956f145ca323e124da7ddc5b7470bc9a&amp;type=3#DevReturnPixel" style="width: 100%; height: 100%; position: absolute;">
+            <ui:VisualElement name="VisualElement" style="flex-grow: 1; width: 100%; height: 100%; background-color: rgb(0, 155, 0); position: absolute;"/>
+        </ui:Tab>
+        <ui:Tab label="" name="Store" icon-image="project://database/Assets/Sprites/BulletButtons/BulletRenderedCrushedShadowed.png?fileID=2800000&amp;guid=260e01015e39b794aaa114106cfd0ac8&amp;type=3#BulletRenderedCrushedShadowed" style="position: absolute;">
+            <ui:VisualElement name="VisualElement" style="flex-grow: 1; width: 100%; height: 100%; background-color: rgb(155, 0, 8); position: absolute;"/>
+        </ui:Tab>
+        <ui:Tab label="" name="Store" icon-image="project://database/Assets/TestIcons/Plus%201st%2064px.png?fileID=2800000&amp;guid=e2831f4e84c622842a61874ac3aef37c&amp;type=3#Plus 1st 64px" style="position: absolute;">
+            <ui:VisualElement name="VisualElement" style="flex-grow: 1; width: 100%; height: 100%; background-color: rgb(155, 0, 8); position: absolute;"/>
+        </ui:Tab>
+    </ui:TabView>
+</ui:UXML>

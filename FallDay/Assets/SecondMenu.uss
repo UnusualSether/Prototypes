@@ -1,0 +1,98 @@
+/* =========================================================
+   SecondMenu.uss — Estilo do TabView (SecundMenu.uxml)
+   ========================================================= */
+
+/* ---------- VARIÁVEIS (edite aqui primeiro) ---------- */
+:root {
+    --tab-icon-size: 120px;      /* << TAMANHO DO ÍCONE DAS ABAS */
+    --tab-icon-gap: 15px;        /* espaço entre ícone e texto */
+    --tab-height: 230px;         /* altura do botão da aba */
+    --tab-margin-v: 30px;        /* margem superior (a inferior é 20px) */
+}
+
+/* ---------- RAIZ DO TABVIEW ----------*/
+.unity-tab-view {
+    width: 100%;
+    height: 100%;
+    flex-grow: 1;
+}
+
+/* ---------- BARRA DE ABAS (header) ---------- */
+.unity-tab-view__header-container {
+    height: 300px;
+    width: 100%;
+    background-image: url("project://database/Assets/UI/NewUIHud/Icons_menu/BarSolidPx-export.png");
+}
+
+/* ---------- AREA DE CONTEUDO ---------- */
+.unity-tab-view__container-container {
+    flex-grow: 1;
+    padding: 5px;
+    flex-basis: 80%;
+    align-items: center;
+}
+
+/* ---------- CONTEUDO DE CADA ABA ---------- */
+.unity-tab {
+    padding: 5px;
+    height: 100%;
+    width: 100%;
+    flex-grow: 1;
+}
+
+.unity-tab__content-container {
+    flex-grow: 1;
+    align-items: center;
+}
+
+/* ---------- BOTAO DA ABA (estado normal) ----------*/
+.unity-tab-view__header-container .unity-tab__header {
+    min-height: var(--tab-height);
+    min-width: 20%;
+    flex-grow: 1;
+    padding: 10px 20px;
+    margin: var(--tab-margin-v) 25px 20px 25px;
+
+    flex-direction: row;          /* ícone ao lado do texto; use "column" p/ ícone em cima */
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(0, 0, 0, 0);   /* remove a cor padrao */
+    background-image: url("project://database/Assets/UI/NewUIHud/BtnIcons/Btnoff-export.png");
+    -unity-background-scale-mode: stretch-to-fill;
+    /* Se o sprite tiver bordas, evita distorção: */
+    /* -unity-slice-left: 40; -unity-slice-right: 40;
+       -unity-slice-top: 40;  -unity-slice-bottom: 40; */
+    border-width: 0;
+}
+
+/* ---------- ÍCONE DA ABA (NOVO) ----------*/
+.unity-tab-view__header-container .unity-tab__header-image {
+    width: var(--tab-icon-size);
+    height: var(--tab-icon-size);
+    min-width: var(--tab-icon-size);   /* impede de encolher */
+    flex-shrink: 0;
+    margin-right: var(--tab-icon-gap);
+    -unity-background-scale-mode: scale-to-fit;  /* mantém proporção */
+}
+
+/* ---------- LINHA SOB A ABA ----------*/
+.unity-tab__header-underline {
+    display: none;
+}
+
+/* ---------- TEXTO DA ABA ---------- */
+.unity-tab-view__header-container .unity-tab__header-label {
+    font-size: 50px;
+    -unity-font-style: bold;
+}
+
+/* ---------- ESTADO HOVER ---------- */
+.unity-tab-view__header-container .unity-tab__header:hover {
+    background-image: url("project://database/Assets/UI/NewUIHud/BtnIcons/Btnon-export.png");
+}
+
+/* ---------- ESTADO SELECIONADO ---------- */
+.unity-tab-view__header-container .unity-tab__header:checked {
+    background-image: url("project://database/Assets/UI/NewUIHud/BtnIcons/Btnon2-export.png");
+}
