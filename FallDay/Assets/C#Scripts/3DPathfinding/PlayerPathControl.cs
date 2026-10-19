@@ -15,7 +15,7 @@ public class PlayerPathControl : MonoBehaviour
 
     /////////////////////////////////////
     /**/
-    private bool debug = false; /**/
+    private bool debug = true; /**/
     /////////////////////////////////////
 
     public void pathFolowerSetUp(Grid_ grid, CharacterMove characterMove, Action afterWalkCall)
