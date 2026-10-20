@@ -196,13 +196,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EightWaySpriteView
   directionalSprites:
-  - {fileID: -1268338344, guid: 6dca93b2b2efa664bb5df07a079860e4, type: 3}
-  - {fileID: -1268338344, guid: 6dca93b2b2efa664bb5df07a079860e4, type: 3}
+  - {fileID: -1673792648, guid: d2ebb430f9a731b4da544aa5eb2a1554, type: 3}
+  - {fileID: -1673792648, guid: d2ebb430f9a731b4da544aa5eb2a1554, type: 3}
   - {fileID: -935531765, guid: 22873b447a6316c4ea759710c607dc7c, type: 3}
-  - {fileID: 42891496, guid: 80afd7f486abef84dbedfec943b631c1, type: 3}
+  - {fileID: 552229298, guid: c8fa992e4c406894c9db610316291cbf, type: 3}
   - {fileID: 2132856581, guid: 5774e04817ae57d408a9a89512c3d262, type: 3}
-  - {fileID: 42891496, guid: 80afd7f486abef84dbedfec943b631c1, type: 3}
-  - {fileID: 1284934108, guid: 4d779f5ddd22e5f4ba2760b71f163d0d, type: 3}
+  - {fileID: 552229298, guid: c8fa992e4c406894c9db610316291cbf, type: 3}
+  - {fileID: -1494957870, guid: 73286d11018d21840b1ff7ebedfe4590, type: 3}
   - {fileID: 57809865, guid: db5d90f4f95263c4e92960c731ebbb1c, type: 3}
   spriteRenderer: {fileID: 127173198}
   cameraTransform: {fileID: 1444338430}
@@ -266,6 +266,57 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &187929141
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 187929142}
+  - component: {fileID: 187929143}
+  m_Layer: 0
+  m_Name: GridGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &187929142
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187929141}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.00000046193594, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1088469944}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &187929143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187929141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87706a25d1e09c04dae4d53139d1c661, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Grid_Generator
+  gridSize: {x: 30, y: 1, z: 30}
+  gridCenterOffset: {x: 0, y: 2, z: 0}
+  cellSize: 0.5
+  cellHeightOverrite: 3
+  gameHandler: {fileID: 2043720488}
+  player: {fileID: 1088469939}
+  debug: 1
 --- !u!1 &258183357
 GameObject:
   m_ObjectHideFlags: 0
@@ -322,7 +373,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &324746866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -766,6 +817,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &733808591 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4490479919982181336, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+  m_PrefabInstance: {fileID: 6639379496333506865}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &735902039
 GameObject:
   m_ObjectHideFlags: 0
@@ -981,6 +1037,8 @@ GameObject:
   - component: {fileID: 1088469943}
   - component: {fileID: 1088469942}
   - component: {fileID: 1088469940}
+  - component: {fileID: 1088469946}
+  - component: {fileID: 1088469945}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -1048,6 +1106,8 @@ MonoBehaviour:
   speed: 5
   navMesh: {fileID: 1088469940}
   surface: {fileID: 324746866}
+  Grid_Generator: {fileID: 187929143}
+  PPathCtlr: {fileID: 1088469946}
   wayPointList: []
 --- !u!4 &1088469944
 Transform:
@@ -1064,8 +1124,40 @@ Transform:
   m_Children:
   - {fileID: 27993027}
   - {fileID: 127173196}
+  - {fileID: 187929142}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1088469945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088469939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2758cae914c9084fb7b34882f5d8959, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PathFolower
+  speed: 2
+--- !u!114 &1088469946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088469939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 411318feeda01194399d822493703b38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerPathControl
+  pathFolower: {fileID: 1088469945}
+--- !u!4 &1090628604 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2525419972731610412, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+  m_PrefabInstance: {fileID: 6639379496333506865}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1098874423
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1217,6 +1309,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   roomPrefab: {fileID: 38049718111097171, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+  StartingRoomSpawnPoints:
+  - {fileID: 1641213743}
+  - {fileID: 733808591}
+  - {fileID: 1090628604}
   spawnedRooms:
   - roomPrefab: {fileID: 1447974799}
     doorTiles: []
@@ -1232,6 +1328,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a40a360cac3ec064da2cd2942b890feb, type: 2}
   - {fileID: 11400000, guid: 6784f63fafbe8b84bb54ef228841361c, type: 2}
   handler: {fileID: 2043720488}
+  gridGenerator: {fileID: 187929143}
   offsetToPlayer: {x: 0, y: 0, z: 0}
   playerChooseSystem: 1
   debugbool: 0
@@ -1733,6 +1830,11 @@ Transform:
   - {fileID: 1714045854}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1641213743 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6855426276761535448, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
+  m_PrefabInstance: {fileID: 6639379496333506865}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1650392613
 PrefabInstance:
   m_ObjectHideFlags: 0

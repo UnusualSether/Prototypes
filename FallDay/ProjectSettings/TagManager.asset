@@ -8,6 +8,7 @@ TagManager:
   - Waypoint
   - DoorTile
   - Tile
+  - obstacle
   layers:
   - Default
   - TransparentFX
