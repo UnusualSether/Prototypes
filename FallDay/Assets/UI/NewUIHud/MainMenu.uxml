@@ -1,7 +1,7 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:Template name="trinket_view_element" src="project://database/Assets/trinket_view_element.uxml?fileID=9197481963319205126&amp;guid=845bdced0ea190d4c8e1787579df4f46&amp;type=3#trinket_view_element"/>
     <Style src="project://database/Assets/UI/menu-button.uss?fileID=7433441132597879392&amp;guid=5ff4fe793556fb647bf035ecb21b8114&amp;type=3#menu-button"/>
-    <ui:VisualElement name="VisualElement" style="flex-grow: 1; height: auto;">
+    <ui:VisualElement name="VisualElement" style="flex-grow: 1; height: auto; display: flex;">
         <ui:VisualElement name="Menu" style="flex-grow: 1; width: 100%; height: 100%; position: absolute; align-items: center;">
             <ui:Image source="project://database/Assets/UI/NewUIHud/Icons_menu/BG.png?fileID=21300000&amp;guid=8b5e1b191a602234d813cfc5864871e2&amp;type=3#BG" scale-mode="StretchToFill" name="Image" style="position: absolute; height: 100%; width: 100%; top: auto; left: auto;"/>
             <ui:VisualElement name="Title" style="flex-grow: 1; width: 90%; height: 40%; align-items: center; justify-content: space-between; align-self: center;">
@@ -58,7 +58,7 @@
             <ui:Button text="" name="Play" icon-image="" emoji-fallback-support="false" triple-click-selects-line="false" double-click-selects-word="false" enabled="true" class="menu-button unity-base-field unity-base-slider unity-base-slider--horizontal unity-slider StartOn" style="background-color: rgba(188, 188, 188, 0); flex-direction: column; flex-wrap: nowrap; flex-shrink: 1; -unity-text-align: middle-center;"/>
         </ui:VisualElement>
     </ui:VisualElement>
-    <ui:VisualElement name="trinked_window" class="trinked_select_off" style="display: none;">
+    <ui:VisualElement name="trinked_window" class="trinked_select_on" style="display: none;">
         <ui:Image scale-mode="StretchToFill" name="Image" style="height: 100%; width: 100%; background-image: url(&quot;project://database/Assets/UI/MenuPixel2.png?fileID=2800000&amp;guid=fa14306668e6e6042a3845718bca861f&amp;type=3#MenuPixel2&quot;); position: absolute; top: 0; left: auto; right: auto; bottom: auto; border-top-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; border-bottom-left-radius: 0; flex-grow: 1; background-size: 102% 100%;"/>
         <ui:ScrollView name="trinket_container" mode="Horizontal" horizontal-scroller-visibility="Hidden" nested-interaction-kind="ForwardScrolling" vertical-scroller-visibility="Hidden" style="position: relative; background-color: rgba(55, 55, 55, 0.53); width: 100%; height: 45%; flex-direction: row; align-items: center; justify-content: space-between; align-self: stretch; align-content: center; flex-grow: 0; border-top-width: 15px; border-right-width: 0; border-bottom-width: 15px; border-left-width: 0; border-left-color: rgba(0, 0, 0, 0.53); border-right-color: rgba(0, 0, 0, 0.53); border-top-color: rgba(0, 0, 0, 0.53); border-bottom-color: rgba(0, 0, 0, 0.53);">
             <ui:Instance template="trinket_view_element"/>
@@ -135,5 +135,8 @@
             <ui:Label text="Agora explore a mansão, mas tenha cuidado com os perigos que ira encontrar! " name="Tutorial5Text" style="font-size: 73px; -unity-text-align: upper-center; position: relative; bottom: -390px; white-space: normal; top: 717px;"/>
         </ui:VisualElement>
         <ui:Button text="Proximo" name="NextPage" style="position: absolute; top: 1701px; left: 400px; width: 300px; height: 150px; font-size: 50px; display: flex;"/>
+    </ui:VisualElement>
+    <ui:VisualElement template="trinket_view_element">
+        <Style src="project://database/Assets/trinket_view_element.uss?fileID=7433441132597879392&amp;guid=23986a1d5a5043a42b677204438b9b7c&amp;type=3#trinket_view_element"/>
     </ui:VisualElement>
 </ui:UXML>

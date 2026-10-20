@@ -51,4 +51,6 @@ MonoBehaviour:
   - {fileID: -429187361, guid: ac57c1d6f2f06e140a108067e209516d, type: 3}
   - {fileID: -1241842947, guid: ac57c1d6f2f06e140a108067e209516d, type: 3}
   - {fileID: 618451728, guid: ac57c1d6f2f06e140a108067e209516d, type: 3}
+  _acquired: 0
+  _trinket_cost: 26
   health_gain: 1
