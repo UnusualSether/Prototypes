@@ -1,6 +1,8 @@
 
 using System.Collections;
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
+using UnityEngine.Rendering.RenderGraphModule;
 // This script is attached to the 3D zombie prefab and handles its behavior in the game world
 // It receives information about the zombie and the player
 // can destroy itself when the zombie is killed
@@ -47,8 +49,43 @@ public class Enemy3dBehaviour : MonoBehaviour //!!!!!! PLACE THIS IN A NOTHER SC
     public void afterWalk()// To Add functions and other events justt in case
     {
         if (debug) Debug.Log("Afer Walk Called");
-        StartCoroutine(DamegeCorutine());
 
+        StartAttacking();
+    }
+
+
+    public void StartAttacking()
+    {
+         if (FindExtraAttackBehaviourComponents(out AttackBehaviourComponent comp))
+         {
+            HandleAttackComponents(comp);
+         }
+
+        StartCoroutine(DamegeCorutine());
+    }
+
+    public void HandleAttackComponents(AttackBehaviourComponent comp)
+    {
+        comp.OnAttack(zombie, gameHandler);
+    }
+
+    public AttackBehaviourComponent FindExtraAttackBehaviourComponents(out AttackBehaviourComponent comp)
+    {
+
+
+        this.gameObject.TryGetComponent<AttackBehaviourComponent>(out AttackBehaviourComponent component);
+        
+        if (component != null)
+        {
+            comp = component;
+
+            return component;
+        }
+
+        comp = null;
+
+        return null;
+        
     }
 
     private IEnumerator DamegeCorutine()

@@ -8,6 +8,7 @@ using Unity.VisualScripting;
 using System.Security.Authentication.ExtendedProtection;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System;
+using UnityEngine.Rendering;
 
 /// <summary>
 /// Contains stats which the PlayerInstance class requires for intialization.
@@ -41,12 +42,11 @@ public class PlayerStats
     {
         max_hp -= max_health_change;
     }
-
+   
 
 }
 
-        
-    
+       
 
 
 
@@ -76,6 +76,8 @@ public class PlayerInstance
     public static Action<int> PlayerHealed;
 
     public static Action<int> PlayerGainedCurrency;
+
+    public static Action PlayerDiedOutput;
 
     #endregion
 
@@ -157,7 +159,7 @@ public class PlayerInstance
 
     public void PlayerDied()
     {
-        Debug.Log("I Died!");
+        PlayerDiedOutput?.Invoke();
     }
 
     public bool DeathCheck(float damage)

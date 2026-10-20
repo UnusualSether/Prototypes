@@ -262,6 +262,8 @@ public partial class GameDisplay : MonoBehaviour
         handler.NewRewardsGenerated += UpdateButtonRewards;
         handler.NewRewardsGenerated += SetButtonDisplayToCurrentRewards;
 
+
+
         handler.PlayerKilledAllZombies += SetDirectionDisplayOn;
 
         SetEachClassesElementToElement();
@@ -281,6 +283,9 @@ public partial class GameDisplay : MonoBehaviour
 
         ThreeDGameHandler.PlayerChoiceStarted -= SetDirectionDisplayOn;
         ThreeDGameHandler.PlayerChoiceEnded -= SetDirectionDisplayOff;
+
+        PlayerInstance.PlayerHealed -= DisplayHeal;
+        PlayerInstance.PlayerGainedCurrency -= DisplayCurrencyGain;
     }
     //Is here to detect changes in the other scripts.
     private void Update()

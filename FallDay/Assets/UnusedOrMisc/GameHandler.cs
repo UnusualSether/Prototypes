@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 
@@ -144,6 +145,7 @@ public partial class GameHandler : MonoBehaviour
         PlayerKilledAllZombies += GrantStoredReward;
         PlayerKilledAllZombies += GenerateNewRewardTrio;
         GameDisplay.RewardChosen += StoreChosenReward;
+        PlayerInstance.PlayerDiedOutput += GameOver;
 
     }
 
@@ -155,6 +157,7 @@ public partial class GameHandler : MonoBehaviour
         PlayerKilledAllZombies -= GrantStoredReward;
         GameDisplay.RewardChosen -= StoreChosenReward;
         PlayerKilledAllZombies -= GenerateNewRewardTrio;
+        PlayerInstance.PlayerDiedOutput -= GameOver;
         ResetLists();
     }   
     #endregion
@@ -325,6 +328,8 @@ public partial class GameHandler : MonoBehaviour
     {
 
         player = new PlayerInstance(this);
+
+
 
         ui = uiDoc.rootVisualElement;
         
@@ -1244,6 +1249,15 @@ public partial class GameHandler : MonoBehaviour
     #endregion
 
 
+    #region Handle Gameover and reset
+
+    public void GameOver()
+    {
+        ResetLists();
+
+        SceneManager.LoadScene("MainMenu");
+    }
+
     private void ResetLists()
     {
         foreach (var zombie in ZombieList)
@@ -1257,4 +1271,8 @@ public partial class GameHandler : MonoBehaviour
 
         
     }
+
+    #endregion
 }
+
+
