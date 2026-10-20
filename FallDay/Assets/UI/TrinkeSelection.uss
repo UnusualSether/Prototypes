@@ -1,12 +1,3 @@
 :root {
 
 }
-#ToLevel{
-	background-image: url("project://database/Assets/UI/NewUIHud/BtnIcons/BtnStartOff-export.png");
-}
-#ToLevel:houver{
-	background-image: url("project://database/Assets/UI/NewUIHud/BtnIcons/BtnStartOn-export.png");
-}
-#ToLevel:checked{
-	background-image: url("project://database/Assets/UI/NewUIHud/BtnIcons/BtnStartOn-export.png");
-}
