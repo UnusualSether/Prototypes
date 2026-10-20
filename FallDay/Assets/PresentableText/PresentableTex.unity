@@ -196,13 +196,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EightWaySpriteView
   directionalSprites:
-  - {fileID: -1268338344, guid: 6dca93b2b2efa664bb5df07a079860e4, type: 3}
-  - {fileID: -1268338344, guid: 6dca93b2b2efa664bb5df07a079860e4, type: 3}
+  - {fileID: -1673792648, guid: d2ebb430f9a731b4da544aa5eb2a1554, type: 3}
+  - {fileID: -1673792648, guid: d2ebb430f9a731b4da544aa5eb2a1554, type: 3}
   - {fileID: -935531765, guid: 22873b447a6316c4ea759710c607dc7c, type: 3}
-  - {fileID: 42891496, guid: 80afd7f486abef84dbedfec943b631c1, type: 3}
+  - {fileID: 552229298, guid: c8fa992e4c406894c9db610316291cbf, type: 3}
   - {fileID: 2132856581, guid: 5774e04817ae57d408a9a89512c3d262, type: 3}
-  - {fileID: 42891496, guid: 80afd7f486abef84dbedfec943b631c1, type: 3}
-  - {fileID: 1284934108, guid: 4d779f5ddd22e5f4ba2760b71f163d0d, type: 3}
+  - {fileID: 552229298, guid: c8fa992e4c406894c9db610316291cbf, type: 3}
+  - {fileID: -1494957870, guid: 73286d11018d21840b1ff7ebedfe4590, type: 3}
   - {fileID: 57809865, guid: db5d90f4f95263c4e92960c731ebbb1c, type: 3}
   spriteRenderer: {fileID: 127173198}
   cameraTransform: {fileID: 1444338430}
