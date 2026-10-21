@@ -1,21 +1,13 @@
 using UnityEngine;
 using System.Linq;
 using System;
-using System.Collections.Generic;
 
 public partial class ThreeDGameHandler
 {
     public int maxNumberOfRooms;
 
     public static event Action RoomSetupComplete;
-    /*
-    public void DestroyRoom(GameObject room)
-    {
-        room.GetComponent<RoomDissipate>().StartRoomDestroyCoroutine();
 
-
-    }
-    */
     partial void OnStartExtendRoomCulling()
     {
         roomsQueue.Enqueue(spawnedRooms.First().roomPrefab);

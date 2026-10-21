@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Build;
 using UnityEngine;
 
 public class PathFolower : MonoBehaviour
@@ -82,14 +83,24 @@ public class PathFolower : MonoBehaviour
     {
         if (isThereTarget && targetPosition != Vector3.negativeInfinity) // Check if there is a target position to move towards (avoids null reference)
         {
-            foreach (Vector3 point in path)
+            //foreach (Vector3 point in path)
+            for (int i = 0; i < path.Count; i++)
             {
+                Vector3 pointNext = path[i];
+                Vector3 preveosPoint = path[0];
+                if(i > 0) { preveosPoint = path[i - 1]; }
+                Vector3 vectorBetweenPoints = pointNext - preveosPoint;
+
+                while (((gameObject.transform.position - pointNext).magnitude > 0.02f) && transform.rotation vectorBetweenPoints) //I need a Vector that points twords The front of the character to check if the character is facing the point, if not, it will rotate the character to face the point before moving towards it
+                {
+
+                }
                 do
                 {
                     float step = speed * Time.deltaTime;
-                    transform.position = Vector3.MoveTowards(transform.position, point, step);
+                    transform.position = Vector3.MoveTowards(transform.position, pointNext, step);
                     yield return new WaitForFixedUpdate();
-                } while ((gameObject.transform.position - point).magnitude > 0.02f);
+                } while ((gameObject.transform.position - pointNext).magnitude > 0.02f);
             }
             canWalk();
         }
