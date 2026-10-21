@@ -79,6 +79,8 @@ public class PathFolower : MonoBehaviour
             if (debug) Debug.Log($"Path found with {path.Count} points");
         }
     }
+    private bool CanTurn;
+    private float alinhamento;
     private IEnumerator WalkPathCoroutine()
     {
         if (isThereTarget && targetPosition != Vector3.negativeInfinity) // Check if there is a target position to move towards (avoids null reference)
@@ -86,25 +88,41 @@ public class PathFolower : MonoBehaviour
             //foreach (Vector3 point in path)
             for (int i = 0; i < path.Count; i++)
             {
-                Vector3 pointNext = path[i];
-                Vector3 preveosPoint = path[0];
-                if(i > 0) { preveosPoint = path[i - 1]; }
-                Vector3 vectorBetweenPoints = pointNext - preveosPoint;
+                Vector3 nextPoint = path[i];
+                Vector3 preveosPoint = i > 0 ? path[i - 1] : path[i];
+                Vector3 vectorBetweenPoints;
 
-                while (((gameObject.transform.position - pointNext).magnitude > 0.02f) && transform.rotation vectorBetweenPoints) //I need a Vector that points twords The front of the character to check if the character is facing the point, if not, it will rotate the character to face the point before moving towards it
+                if (nextPoint == preveosPoint)
                 {
-
+                    vectorBetweenPoints = Vector3.zero;
+                    CanTurn = false;
                 }
+                else
+                {
+                    vectorBetweenPoints = (nextPoint - preveosPoint).normalized;
+                    CanTurn = true;
+                }
+                while (((gameObject.transform.position - nextPoint).magnitude > 0.02f) && Vector3.Dot(transform.forward.normalized, vectorBetweenPoints) < 0.99f) //I need a Vector that points twords The front of the character to check if the character is facing the point, if not, it will rotate the character to face the point before moving towards it
+                {
+                    Quaternion rotacaoAlvo = Quaternion.LookRotation(new Vector3(nextPoint.x, transform.position.y, nextPoint.z));
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, rotacaoAlvo, velocidadeRotacao * Time.deltaTime);
+                }
+                if(alinhamento > 0.99f)
+                {
+                    transform.forward = nextPoint;
+                }
+
                 do
                 {
                     float step = speed * Time.deltaTime;
-                    transform.position = Vector3.MoveTowards(transform.position, pointNext, step);
+                    transform.position = Vector3.MoveTowards(transform.position, nextPoint, step);
                     yield return new WaitForFixedUpdate();
-                } while ((gameObject.transform.position - pointNext).magnitude > 0.02f);
+                } while ((gameObject.transform.position - nextPoint).magnitude > 0.02f);
             }
             canWalk();
         }
     }
+
     // Emrgency check to see if the object is close enough to the start position of the path,
     // and if not, it will attempt to find a new path.
     // This is a safety measure in case the path becomes invalid or the object is not close enough to the start position.
