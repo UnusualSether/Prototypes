@@ -332,6 +332,11 @@ public class TrinketManager
 
          var to_return = new List<ZombieEffect>();
 
+        if (equipped_trinkets.Count == 0)
+        {
+            return null;
+        }
+
         foreach(ZombieEffectCarryingTrinket zomb_mod_trinket in equipped_trinkets)
         {
             to_return.Add(zomb_mod_trinket.effect);
