@@ -15,7 +15,7 @@ MonoBehaviour:
   enemyName: Runner
   devToDevDescription: "A zombie with a low phase timer but also low \nhealth."
   HP: 30
-  Damage: 8
+  Damage: 3
   DamegeTimer: 0.5
   phaseTimer: 3
   Zprefab: {fileID: 7950749782550973647, guid: 35a70222a12f0ed46aa18fced76fcfea, type: 3}

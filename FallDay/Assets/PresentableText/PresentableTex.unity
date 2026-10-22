@@ -1036,7 +1036,6 @@ GameObject:
   - component: {fileID: 1088469944}
   - component: {fileID: 1088469943}
   - component: {fileID: 1088469942}
-  - component: {fileID: 1088469940}
   - component: {fileID: 1088469946}
   - component: {fileID: 1088469945}
   m_Layer: 0
@@ -1046,28 +1045,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!195 &1088469940
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1088469939}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 0
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0.25
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!65 &1088469942
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1104,8 +1081,6 @@ MonoBehaviour:
   debugisOn: 1
   charTransform: {fileID: 1088469944}
   speed: 5
-  navMesh: {fileID: 1088469940}
-  surface: {fileID: 324746866}
   Grid_Generator: {fileID: 187929143}
   PPathCtlr: {fileID: 1088469946}
   wayPointList: []
@@ -1140,6 +1115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PathFolower
   speed: 2
+  velocidadeRotacao: 110
 --- !u!114 &1088469946
 MonoBehaviour:
   m_ObjectHideFlags: 0

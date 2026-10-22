@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Build;
 using UnityEngine;
 
 public class PathFolower : MonoBehaviour
@@ -15,6 +14,7 @@ public class PathFolower : MonoBehaviour
     // Grid_ can be changed to any other grid system that implements the same pathfinding logic, as long as it provides a method to find a path between two positions.
 
     public float speed = 1.0f; //Speed of the object along the path
+    public float velocidadeRotacao; // Rotation speed of the object when turning towards the next point in the path
 
     private Vector3 targetPosition; // Target position to move towards
 
@@ -102,14 +102,17 @@ public class PathFolower : MonoBehaviour
                     vectorBetweenPoints = (nextPoint - preveosPoint).normalized;
                     CanTurn = true;
                 }
-                while (((gameObject.transform.position - nextPoint).magnitude > 0.02f) && Vector3.Dot(transform.forward.normalized, vectorBetweenPoints) < 0.99f) //I need a Vector that points twords The front of the character to check if the character is facing the point, if not, it will rotate the character to face the point before moving towards it
+                alinhamento = Vector3.Dot(transform.forward.normalized, vectorBetweenPoints);
+                while (((gameObject.transform.position - nextPoint).magnitude > 0.02f) && alinhamento <= 0.99f && CanTurn) //I need a Vector that points twords The front of the character to check if the character is facing the point, if not, it will rotate the character to face the point before moving towards it
                 {
-                    Quaternion rotacaoAlvo = Quaternion.LookRotation(new Vector3(nextPoint.x, transform.position.y, nextPoint.z));
+                    Quaternion rotacaoAlvo = Quaternion.LookRotation(new Vector3(nextPoint.x, transform.position.y, nextPoint.z) - transform.position); //the target rotation to face the next point in the path
                     transform.rotation = Quaternion.RotateTowards(transform.rotation, rotacaoAlvo, velocidadeRotacao * Time.deltaTime);
+                    alinhamento = Vector3.Dot(transform.forward.normalized, vectorBetweenPoints);
+                    yield return new WaitForFixedUpdate();
                 }
                 if(alinhamento > 0.99f)
                 {
-                    transform.forward = nextPoint;
+                    transform.rotation = Quaternion.LookRotation(new Vector3(nextPoint.x, transform.position.y, nextPoint.z) - transform.position);
                 }
 
                 do
@@ -117,10 +120,11 @@ public class PathFolower : MonoBehaviour
                     float step = speed * Time.deltaTime;
                     transform.position = Vector3.MoveTowards(transform.position, nextPoint, step);
                     yield return new WaitForFixedUpdate();
-                } while ((gameObject.transform.position - nextPoint).magnitude > 0.02f);
+                } while ((gameObject.transform.position - nextPoint).magnitude > 0.02f); // is Z pos near the next point in the path, if not, it will keep moving towards it
             }
             canWalk();
         }
+        yield return null;
     }
 
     // Emrgency check to see if the object is close enough to the start position of the path,
