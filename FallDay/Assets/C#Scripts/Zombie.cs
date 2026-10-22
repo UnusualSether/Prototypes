@@ -25,6 +25,8 @@ public class Zombie
     public bool debugisOn = false;
     public GameHandler handler; //Isso é para a outra parte do codigo que foi movido para o game handler
 
+    public List<ZombieEffect> effects = new List<ZombieEffect>();
+            
     public EnemyData enemyData {  get; private set; }
 
     //public EnemyData enemyData; // BackUp em caso de falta de Informação.
@@ -39,6 +41,14 @@ public class Zombie
     public ZombiePhase phase;
 
     public int currentDisplay;
+
+
+    public void GainEffect(ZombieEffect effect)
+    {
+        effects.Add(effect);
+
+        effect.SetAttachedZombie(this);
+    }
 
     public void UpdatePhase(float deltaTime)
     {
@@ -104,6 +114,11 @@ public class Zombie
             Diff = 2.0f;
             if (debugisOn) Debug.Log("Dificuldade virou Dificil");
         }
+    }
+
+    public void Die()
+    {
+        handler._KillZombie(id);
     }
 
     public Zombie(EnemyData data)

@@ -470,7 +470,16 @@ public partial class GameHandler : MonoBehaviour
         }
         );
 
+        var effects_to_add = player.trinket_manager.AllTrinketManagerZombieEffects();
+
+        
+
         var newZombie = ZombieList.Last();
+
+        newZombie.handler = this;
+
+        AddAllEffectsToZombie(newZombie, effects_to_add);
+
         OnZombieUpdate += newZombie.UpdatePhase;
         zombieLookup.Add(newZombie.id, newZombie);
         
@@ -484,6 +493,14 @@ public partial class GameHandler : MonoBehaviour
         //Debug.Log($"Spawned zombie with id {newZombie.id} and {newZombie.hp} hp! There are now {ZombieList.Count} zombies in the list and {zombieLookup.Count} zombies in the lookup!");
         ZombieSpawnGate = false;
         zombiesSpawned++;
+    }
+
+    public void AddAllEffectsToZombie(Zombie zombie, List<ZombieEffect> effects)
+    {
+        foreach (var effect in effects)
+        {
+            zombie.GainEffect(effect);
+        }
     }
     public void InvokePhaseChange(Zombie zombie)
     {
