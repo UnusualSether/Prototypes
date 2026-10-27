@@ -11,10 +11,13 @@ public class EightWaySpriteView : MonoBehaviour
     /// The character's 8 sprites will be placed in this array in the following order:
     ///0 = front, 1 = front-right, 2 = right, 3 = right-back, 4 = back, 5 = back-left, 6 = left, 7 = left-front.
     /// </summary>
-    public Sprite[] directionalSprites = new Sprite[8];
+    
+    private Animator animationController;
+    //public Sprite[] directionalSprites = new Sprite[8];
 
     public SpriteRenderer spriteRenderer;
     public Transform cameraTransform;
+    public int sidesCount = 8;
 
     public Transform directionSource;
 
@@ -38,13 +41,12 @@ public class EightWaySpriteView : MonoBehaviour
 
     private void UpdateSprite()
     {
-        if (directionalSprites == null || directionalSprites.Length == 0)
+        if (animationController == null)
         {
             Debug.Log($"{this.gameObject.name} has no sprites assigned to it!");
             return;
         }
 
-        int frameCount = directionalSprites.Length;
 
 
         Vector3 toCamera = transform.position - cameraTransform.position;
@@ -62,8 +64,8 @@ public class EightWaySpriteView : MonoBehaviour
             angle += 360;
         }
 
-        float sizeOfSectors = 360 / frameCount;
-        int frameIndex = Mathf.RoundToInt(angle / sizeOfSectors) % frameCount;
+        float sizeOfSectors = 360 / sidesCount;
+        int frameIndex = Mathf.RoundToInt(angle / sizeOfSectors) % sidesCount;
 
         if (frameIndex > 4)
         {
@@ -74,7 +76,7 @@ public class EightWaySpriteView : MonoBehaviour
         {
             spriteRenderer.flipX = false;
         }
-            spriteRenderer.sprite = directionalSprites[frameIndex];
+        animationController.SetInteger("Direction", frameIndex);
 
     }
 }
