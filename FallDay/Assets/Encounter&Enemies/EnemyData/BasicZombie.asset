@@ -16,7 +16,7 @@ MonoBehaviour:
   devToDevDescription: 'A basic zombie with ok hp and an ok phase
 
     timer.'
-  HP: 90
+  HP: 10
   Damage: 2
   DamegeTimer: 1
   phaseTimer: 5

@@ -327,25 +327,6 @@ public class TrinketManager
         }
     }
 
-    public List<ZombieEffect> AllTrinketManagerZombieEffects()
-    {
-
-         var to_return = new List<ZombieEffect>();
-
-        if (equipped_trinkets.Count == 0)
-        {
-            return null;
-        }
-
-        foreach(ZombieEffectCarryingTrinket zomb_mod_trinket in equipped_trinkets)
-        {
-            to_return.Add(zomb_mod_trinket.effect);
-        }
-
-        return to_return;
-    }
-
-
     /// <summary>
     /// Adds a trinket to the equipped trinkets array.
     /// </summary>
@@ -366,22 +347,4 @@ public class TrinketManager
 
    
 }
-
-public interface IZombieModifyingTrinket
-{
-   
-    public void AddEffectToZombie(ZombieEffect to_on_load, Zombie target_zombie)
-    {
-        target_zombie.effects.Add(to_on_load);
-
-        to_on_load.SetAttachedZombie(target_zombie);
-    }
-}
-
-public class ZombieEffectCarryingTrinket : Trinket, IZombieModifyingTrinket
-{
-    public ZombieEffect effect;
-}
-
-
 
