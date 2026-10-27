@@ -67,12 +67,16 @@ public partial class GameHandler : MonoBehaviour
     public event Action<int> SucessfulShot;
 
     public event Action<int, Zombie> ZombieHurt;
+
+    public event Action<int, Zombie> ZombieHealed;
     public event Action FailedShot;
     public event Action<VisualElement> BulletSelected;
 
     //Zombie related events
     public event Action<Zombie> ZombieSpawned;
     public event Action<Zombie> ZombieDamaged;
+
+    
     public event Action<Zombie> zPhaseChange;
     public event Action<Zombie> ZombieKilled;
     //public event Action<Zombie> ZombieIsClose;
@@ -475,7 +479,21 @@ public partial class GameHandler : MonoBehaviour
         }
         );
 
+        var effects_to_add = player.trinket_manager.AllTrinketManagerZombieEffects();
+
+        
+        
+
         var newZombie = ZombieList.Last();
+
+        newZombie.handler = this;
+
+        if (effects_to_add != null)
+        {
+            AddAllEffectsToZombie(newZombie, effects_to_add);
+        }
+        
+
         OnZombieUpdate += newZombie.UpdatePhase;
         zombieLookup.Add(newZombie.id, newZombie);
         
@@ -489,6 +507,14 @@ public partial class GameHandler : MonoBehaviour
         //Debug.Log($"Spawned zombie with id {newZombie.id} and {newZombie.hp} hp! There are now {ZombieList.Count} zombies in the list and {zombieLookup.Count} zombies in the lookup!");
         ZombieSpawnGate = false;
         zombiesSpawned++;
+    }
+
+    public void AddAllEffectsToZombie(Zombie zombie, List<ZombieEffect> effects)
+    {
+        foreach (var effect in effects)
+        {
+            zombie.GainEffect(effect);
+        }
     }
     public void InvokePhaseChange(Zombie zombie)
     {
@@ -528,6 +554,9 @@ public partial class GameHandler : MonoBehaviour
     {
         //zombieToDamage = zombieLookup[SelectedZombie];
 
+
+        int zombie_to_damage_org_hp = zombieToDamage.hp;
+
         if (zombieToDamage == null)
         {
             Debug.Log("Tried to damage invalid zombie, try again!");
@@ -535,16 +564,29 @@ public partial class GameHandler : MonoBehaviour
             return;
         }
 
-        var zombieDeathCheck = zombieToDamage.hp -= damage;
+        int damage_to_display = damage;
+
+        var zombieDeathCheck = zombieToDamage.hp - damage;
         if (zombieDeathCheck <= 0)
         {
             _KillZombie(zombieToDamage);
         }
         else
         {
-            zombieToDamage.hp -= damage;
-            Debug.Log($"Zombie with id {zombieToDamage.id} took {damage} damage and now has {zombieToDamage.hp} hp.");
-            ZombieDamaged.Invoke(zombieToDamage);
+            zombieToDamage.TakeDamage(damage, out int filtered);
+
+            damage_to_display = filtered;
+
+        }
+
+        if (zombieToDamage.hp > zombie_to_damage_org_hp)
+        {
+            ZombieHealed?.Invoke(damage_to_display, zombieToDamage);
+        }
+
+        if (zombieToDamage.hp < zombie_to_damage_org_hp)
+        {
+            ZombieHurt?.Invoke(damage_to_display, zombieToDamage);
         }
     }
     public void _KillZombie(int id)
@@ -1012,7 +1054,6 @@ public partial class GameHandler : MonoBehaviour
 
         SucessfulShot?.Invoke(totalDamage);
         SucessfulHit?.Invoke(totalDamage);
-        ZombieHurt?.Invoke(totalDamage, targetZombie);
         ApplyDamage(totalDamage, targetZombie);
     }
 
