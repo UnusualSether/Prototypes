@@ -20,6 +20,10 @@ public class MenuTrinketEquipping : MonoBehaviour
 
     public Label currency_display;
 
+    public Label current_and_max_trinket_display;
+
+    public Label coin_count;
+
     public string global_currency_total => MoneyHolder.total_soft_currency.total.ToString();
 
     public VisualTreeAsset trinket_element_template;
@@ -43,12 +47,27 @@ public class MenuTrinketEquipping : MonoBehaviour
 
         var root = doc.rootVisualElement;
 
+        var max_trinket_element = root.Q<VisualElement>("Trinked_Count");
+
+        current_and_max_trinket_display = max_trinket_element.Q<Label>("Trinked_Count_Text");
+
         trinket_select_container = root.Q<VisualElement>("trinket_container");
 
+        var coin_container = root.Q<VisualElement>("Coin_Count");
+
+        coin_count = coin_container.Q<Label>("Coin_CountM");
 
         BuildMenuOffData();
 
+        MoneyHolder.PlayerGainedSoftCurrencyDuringRun(5);
 
+    }
+    public void Update()
+    {
+
+        coin_count.text = MoneyHolder.total_soft_currency.total.ToString();
+
+        current_and_max_trinket_display.text = $"{GlobalTrinketHolder.player_chosen_trinkets.Count}/{GlobalTrinketHolder.max_trinkets}";
     }
 
     void LanguageChange(Locale newLocale)
