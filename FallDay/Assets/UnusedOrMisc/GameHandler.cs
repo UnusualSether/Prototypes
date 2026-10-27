@@ -220,12 +220,7 @@ public partial class GameHandler : MonoBehaviour
 
             foreach (var zombie in active_zombies)
             {
-                if (zombie.phase > (Zombie.ZombiePhase)1)
-                {
-                    zombie.phase -= (Zombie.ZombiePhase)1;
-
-                    
-                }
+                zombie.Pushback();
             }
         }
 
