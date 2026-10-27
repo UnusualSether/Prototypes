@@ -82,8 +82,17 @@ public static class GlobalTrinketHolder
 public class Trinket : ScriptableObject
 {
 
+    enum TrinketDifficulty
+    {
+        Simple,
+        Intermediate,
+        Advanced
+    }
+
     [SerializeField] protected string _trinket_name;
     [SerializeField] protected string _trinket_namePTBR;
+
+    [SerializeField] TrinketDifficulty trinket_difficulty;
     public string trinket_name
     {
         get

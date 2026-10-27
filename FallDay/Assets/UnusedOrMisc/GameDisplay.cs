@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -175,6 +176,8 @@ public partial class GameDisplay : MonoBehaviour
 
         handler.ZombieHurt += ApplyZombieDamageNumber;
 
+        handler.ZombieHealed += ApplyZombieHealNumber;
+
         handler.BulletSelected += ShakeBullet;
 
         handler.BulletSelected += PlayerClickSound;
@@ -273,6 +276,10 @@ public partial class GameDisplay : MonoBehaviour
 
         handler.BulletSelected -= ShakeBullet;
 
+
+        handler.ZombieHurt -= ApplyZombieDamageNumber;
+        handler.ZombieHealed -= ApplyZombieHealNumber;
+
         handler.BulletSelected -= PlayerClickSound;
 
         handler.ZombieDamaged -= ShakeZombieVisual;
@@ -312,6 +319,8 @@ public partial class GameDisplay : MonoBehaviour
             Debug.Log("Couldn't find zombie display!");
         }
 
+        zombie_display.zombie_damage_display_label.style.color = Color.red;
+
         zombie_display.zombie_damage_display_label.text = total_damage.ToString();
 
         if (zombie_display.zombie_damage_display_label == null)
@@ -321,7 +330,32 @@ public partial class GameDisplay : MonoBehaviour
 
         ShakeLabel(zombie_display.zombie_damage_display_label);
 
-        Debug.Log($"Applied {total_damage} to zombie with id nmb {damaged_zombie.id} ");
+       
+
+        HandleNumberDisappear(zombie_display.zombie_damage_display_label);
+
+    }
+
+    public void ApplyZombieHealNumber(int total_healed, Zombie healed_zombie)
+    {
+        var zombie_display = occupiedZombieDisplay.FirstOrDefault(x => x.displayedZombie == healed_zombie);
+
+        if (zombie_display == null)
+        {
+            Debug.Log("Couldn't find zombie display!");
+        }
+
+        zombie_display.zombie_damage_display_label.style.color = Color.green;
+
+        zombie_display.zombie_damage_display_label.text = total_healed.ToString();
+
+        if (zombie_display.zombie_damage_display_label == null)
+        {
+            Debug.Log("Couldn't find label!");
+        }
+
+        ShakeLabel(zombie_display.zombie_damage_display_label);
+
 
         HandleNumberDisappear(zombie_display.zombie_damage_display_label);
 

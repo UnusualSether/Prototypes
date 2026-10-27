@@ -16,7 +16,7 @@ MonoBehaviour:
   devToDevDescription: 'A heavy zombie with high HP but also a long
 
     phase timer.'
-  HP: 80
+  HP: 100
   Damage: 20
   DamegeTimer: 1.5
   phaseTimer: 7

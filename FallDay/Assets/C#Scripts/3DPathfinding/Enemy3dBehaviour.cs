@@ -58,11 +58,13 @@ public class Enemy3dBehaviour : MonoBehaviour //!!!!!! PLACE THIS IN A NOTHER SC
         {
             yield return new WaitForSeconds(zombie.enemyData.DamegeTimer);
             if (debug) Debug.Log($"Damage Corutine yield return called");
-            gameHandler.CallPlayerDamage(zombie.enemyData.Damage);
+            zombie.DealDamage();
 
         } while (whileControl);
     }
 
+
+   
     public void callerDestroy(Zombie zombie)
     {
         if (activationGate && this.zombie == zombie)
