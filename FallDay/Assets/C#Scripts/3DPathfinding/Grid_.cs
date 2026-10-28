@@ -237,7 +237,7 @@ public class Grid_
         {
             if (debug)
             {
-                Debug.Log($"Out of Grid Bownds x = {x} y = {y} z = {z}");
+                Debug.LogError($"Out of Grid Bownds x = {x} y = {y} z = {z}");
             }
             return null;
         }

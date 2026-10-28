@@ -111,25 +111,26 @@ public class PathFolower : MonoBehaviour
             {
                 if (path.Count > 0) // is there path to follow
                 {
+                    if ((gameObject.transform.position - path[path.Count - 1]).magnitude < 0.2f)
+                    {
+                        if(debug) {Debug.Log($"[{gameObject.name}]Has gotten Close to the end of the path");}
+                        AfeterpathCall();
+                        return;
+                    }
+
                     Vector3 a = new Vector3 (gameObject.transform.position.x, 0, gameObject.transform.position.z); // Pos atual
                     Vector3 b = new Vector3(path[0].x, 0, path[0].z); //Pos inicial do caminho
-
                     if ((a - b).magnitude < 0.3f) // is close enough to start pos (is path valid)
                     {
                         //is close enough to stert pos
                         //start walk
                         errorThrow = true;
-                        if (debug) {Debug.Log($"[{gameObject.name}]Starting Walk Coroutine");}
+                        if (debug) {Debug.Log($"[{gameObject.name}]Starting Walk Coroutine if is {(a - b).magnitude < 0.3f}");}
                         StartCoroutine(WalkPathCoroutine());
                     }
                     else
                     {
                         if (debug) {Debug.LogWarning($"[{gameObject.name}]To far to start Walk");}
-                    }
-                    if ((gameObject.transform.position - path[path.Count - 1]).magnitude < 0.2f)
-                    {
-                        if(debug) {Debug.Log($"[{gameObject.name}]Has gotten Close to the end of the path");}
-                        AfeterpathCall();
                     }
                 }
             }
