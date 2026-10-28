@@ -35,14 +35,14 @@ public partial class GameDisplay
 
     public void RegisterAnimationEvents()
     {
-        handler.ZombieDamaged += OnZombieDamaged;
+        //handler.ZombieDamaged += OnZombieDamaged;
     }
 
     public void UnregisterAnimationEvents()
     {
-        handler.ZombieDamaged -= OnZombieDamaged;
+        //handler.ZombieDamaged -= OnZombieDamaged;
     }
-
+    /*
     // Chamado quando o zumbi entra no display
     public void StartZombieAnimation(ZombieDisplay display)
     {
@@ -54,7 +54,7 @@ public partial class GameDisplay
         proxy.SetAnimationLock();
         display.activeAnimation = StartCoroutine(SyncSpriteToUI(display, proxy));
     }
-
+    
     // Chamado quando o zumbi sai do display
     public void StopZombieAnimation(ZombieDisplay display)
     {
@@ -117,4 +117,5 @@ public partial class GameDisplay
             display.activeAnimation = null;
         }
     }
+    */
 }
