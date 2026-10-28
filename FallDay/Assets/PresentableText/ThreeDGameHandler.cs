@@ -11,6 +11,7 @@ public partial class ThreeDGameHandler : MonoBehaviour
     [Space(10)]
     public GameObject roomPrefab;
     public Transform[] StartingRoomSpawnPoints; // I Wanted to use a diffrent way to do this, but I give up -RLH107#
+    public GameObject root_room;
     public List<Room> spawnedRooms = new List<Room>();
     public List<RoomData> possibleRooms = new List<RoomData>();
     public Queue<GameObject> roomsQueue = new Queue<GameObject>();

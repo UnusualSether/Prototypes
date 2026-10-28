@@ -1,9 +1,11 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Localization.SmartFormat.Utilities;
 using UnityEngine.UIElements;
 
 
@@ -18,6 +20,12 @@ public partial class GameHandler : MonoBehaviour
     public PlayerInstance player;
 
     public Reward stored_reward;
+
+    public int number_of_rooms_to_complete => level_handler.rooms_to_complete;
+
+    public ThreeDGameHandler three_d_game_handler;
+
+    public LevelHandler level_handler = new LevelHandler();
 
     public Reward[] reward_trio = new Reward[3];
 
@@ -95,6 +103,7 @@ public partial class GameHandler : MonoBehaviour
     #endregion
 
 
+
     #region Variables
 
     
@@ -148,6 +157,9 @@ public partial class GameHandler : MonoBehaviour
         PlayerKilledAllZombies += GrantStoredReward;
         PlayerKilledAllZombies += GenerateNewRewardTrio;
         GameDisplay.RewardChosen += StoreChosenReward;
+
+        PlayerKilledAllZombies += LevelCheck;
+        
 
     }
 
@@ -329,6 +341,8 @@ public partial class GameHandler : MonoBehaviour
     {
 
         player = new PlayerInstance(this);
+
+        level_handler.InitLevelManager(this, three_d_game_handler);
 
         ui = uiDoc.rootVisualElement;
         
@@ -1282,6 +1296,22 @@ public partial class GameHandler : MonoBehaviour
         currentEncounter = data;
 
     }
+    #endregion
+
+
+    #region Level Handling
+
+
+    public void LevelCheck()
+    {
+        level_handler.RoomCleared(out bool level_cleared);
+
+        if (level_cleared)
+        {
+            level_handler.LoadLevel(level_handler.current_level.next_level);
+        }
+    }
+
     #endregion
 
 
