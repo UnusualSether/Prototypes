@@ -50,7 +50,7 @@ public class TakeDamageAndHealZombieEffect : ZombieEffect , IOnTakeDamage
 
             attached_zombie.Heal(amount_of_dmg);
 
-            Debug.Log("I'm on heal, now i should go to damage.");
+           
 
             
         }
@@ -61,7 +61,7 @@ public class TakeDamageAndHealZombieEffect : ZombieEffect , IOnTakeDamage
 
             effect_on_total_damage = amount_of_dmg / 2;
 
-            Debug.Log("I'm on damage, now i should go to heal.");
+          
 
             
         }

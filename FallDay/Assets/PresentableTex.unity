@@ -1313,6 +1313,7 @@ MonoBehaviour:
   - {fileID: 1641213743}
   - {fileID: 733808591}
   - {fileID: 1090628604}
+  root_room: {fileID: 0}
   spawnedRooms:
   - roomPrefab: {fileID: 1447974799}
     doorTiles: []
@@ -2374,6 +2375,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1769905274112778612, guid: eaaffc07808ebaf4fae8b342b82799c9, type: 3}
+      propertyPath: three_d_game_handler
+      value: 
+      objectReference: {fileID: 1326751365}
+    - target: {fileID: 1769905274112778612, guid: eaaffc07808ebaf4fae8b342b82799c9, type: 3}
       propertyPath: bulletList.Array.size
       value: 5
       objectReference: {fileID: 0}
@@ -2385,6 +2390,10 @@ PrefabInstance:
       propertyPath: 'bulletList.Array.data[4]'
       value: escapeBullet
       objectReference: {fileID: 0}
+    - target: {fileID: 1769905274112778612, guid: eaaffc07808ebaf4fae8b342b82799c9, type: 3}
+      propertyPath: level_handler.current_level
+      value: 
+      objectReference: {fileID: 11400000, guid: c921af29d9168c5448aecf8a5159e019, type: 2}
     - target: {fileID: 1769905274112778612, guid: eaaffc07808ebaf4fae8b342b82799c9, type: 3}
       propertyPath: possible_rewards.Array.size
       value: 2
@@ -2405,6 +2414,10 @@ PrefabInstance:
       propertyPath: 'possible_rewards.Array.data[1]'
       value: 
       objectReference: {fileID: 11400000, guid: 6f7af05ace959b444a8c55e391b2a80d, type: 2}
+    - target: {fileID: 1769905274112778612, guid: eaaffc07808ebaf4fae8b342b82799c9, type: 3}
+      propertyPath: level_handler.rooms_to_complete
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1769905274112778612, guid: eaaffc07808ebaf4fae8b342b82799c9, type: 3}
       propertyPath: 'possibleEncounters.Array.data[0]'
       value: 

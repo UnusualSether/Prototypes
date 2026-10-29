@@ -140,4 +140,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2758cae914c9084fb7b34882f5d8959, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PathFolower
-  speed: 0.7
+  speed: 0.4
