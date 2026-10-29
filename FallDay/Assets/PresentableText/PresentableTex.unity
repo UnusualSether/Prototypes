@@ -160,6 +160,7 @@ GameObject:
   m_Component:
   - component: {fileID: 127173196}
   - component: {fileID: 127173198}
+  - component: {fileID: 127173199}
   - component: {fileID: 127173197}
   m_Layer: 0
   m_Name: Sprite
@@ -195,10 +196,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc16ebeeda2f1e43bc69c1e24fe7ba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EightWaySpriteView
+  directionalSprites:
+  - {fileID: 1281383502, guid: da8ec03ec2111814d9c2b5fa8f7041c0, type: 3}
+  - {fileID: -428355419, guid: a0e2b5900ee65fd4bb4ad550ab93a770, type: 3}
+  - {fileID: 109220436, guid: ba72be14e5131d043946fce8b64c3044, type: 3}
+  - {fileID: -1883467004, guid: e886a4ccb2b7dac4bafa3fb7d33eaeed, type: 3}
+  - {fileID: -1030090455, guid: 48dc050b7e4b36d49af2c4a7a7caef5b, type: 3}
+  - {fileID: 1784686408, guid: 71f58e0e9e4e5f14fab695f33054e5a2, type: 3}
+  - {fileID: 2047928210, guid: 0349308f1363b9d409da3a4b21a3087a, type: 3}
+  - {fileID: -2041201686, guid: 3058cd2a3094edd4cb80eb859ba935d6, type: 3}
+  animator: {fileID: 127173199}
   spriteRenderer: {fileID: 127173198}
   cameraTransform: {fileID: 1444338430}
-  sidesCount: 8
   directionSource: {fileID: 27993027}
+  debug: 1
 --- !u!212 &127173198
 SpriteRenderer:
   serializedVersion: 2
@@ -258,6 +269,28 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!95 &127173199
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 127173195}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bb2c0f9a3d18852408a3302a7b889222, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &187929141
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,7 +341,7 @@ MonoBehaviour:
   cellHeightOverrite: 3
   gameHandler: {fileID: 2043720488}
   player: {fileID: 1088469939}
-  debug: 1
+  debug: 0
 --- !u!1 &258183357
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,18 +471,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 258183359}
     m_Modifications:
-    - target: {fileID: 15069021308457810, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
-      propertyPath: debugisOn
+    - target: {fileID: 81318338886881340, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
+      propertyPath: InnerColler.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 81318338886881340, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
+      propertyPath: InnerColler.b
+      value: 0.00931406
+      objectReference: {fileID: 0}
+    - target: {fileID: 81318338886881340, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
+      propertyPath: InnerColler.g
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 15069021308457810, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
-      propertyPath: InfoStorege
-      value: 
+    - target: {fileID: 81318338886881340, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
+      propertyPath: InnerColler.r
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 15069021308457810, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
-      propertyPath: proxyesInfoHolder
-      value: 
-      objectReference: {fileID: 11400000, guid: b430758d16a041142a8e8282f87b8341, type: 2}
+    - target: {fileID: 81318338886881340, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
+      propertyPath: OuterColler.a
+      value: 0.23921569
+      objectReference: {fileID: 0}
     - target: {fileID: 3009441118544998834, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.41356
@@ -1030,6 +1071,7 @@ GameObject:
   - component: {fileID: 1088469942}
   - component: {fileID: 1088469946}
   - component: {fileID: 1088469945}
+  - component: {fileID: 1088469947}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -1121,6 +1163,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPathControl
   pathFolower: {fileID: 1088469945}
+--- !u!114 &1088469947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088469939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc453fe0701bd554cbd17b22fd61e484, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DebugShowObjectInEditor
+  showObjectInEditor: 1
+  SciseOfCube: 0.42
+  OuterColler: {r: 1, g: 1, b: 0, a: 0.5019608}
+  InnerColler: {r: 1, g: 0, b: 0, a: 1}
 --- !u!4 &1090628604 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2525419972731610412, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
@@ -1336,18 +1394,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 258183359}
     m_Modifications:
-    - target: {fileID: 15069021308457810, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
-      propertyPath: debugisOn
+    - target: {fileID: 81318338886881340, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
+      propertyPath: InnerColler.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 81318338886881340, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
+      propertyPath: InnerColler.b
+      value: 0.00931406
+      objectReference: {fileID: 0}
+    - target: {fileID: 81318338886881340, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
+      propertyPath: InnerColler.g
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 15069021308457810, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
-      propertyPath: InfoStorege
-      value: 
+    - target: {fileID: 81318338886881340, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
+      propertyPath: InnerColler.r
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 15069021308457810, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
-      propertyPath: proxyesInfoHolder
-      value: 
-      objectReference: {fileID: 11400000, guid: b430758d16a041142a8e8282f87b8341, type: 2}
+    - target: {fileID: 81318338886881340, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
+      propertyPath: OuterColler.a
+      value: 0.23921569
+      objectReference: {fileID: 0}
     - target: {fileID: 3009441118544998834, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.41356
@@ -1808,7 +1874,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1626594614}
   - component: {fileID: 1626594613}
-  - component: {fileID: 1626594615}
   m_Layer: 0
   m_Name: AnimTester
   m_TagString: Untagged
@@ -1828,6 +1893,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc453fe0701bd554cbd17b22fd61e484, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DebugShowObjectInEditor
+  showObjectInEditor: 1
+  SciseOfCube: 1
+  OuterColler: {r: 0.5, g: 0.5, b: 0, a: 0.5}
+  InnerColler: {r: 1, g: 0, b: 0, a: 1}
 --- !u!4 &1626594614
 Transform:
   m_ObjectHideFlags: 0
@@ -1843,28 +1912,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &1626594615
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1626594612}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: bb2c0f9a3d18852408a3302a7b889222, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &1641213743 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6855426276761535448, guid: c3349b8f1ccf89545a1c3f63add14103, type: 3}
@@ -1878,22 +1925,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 258183359}
     m_Modifications:
-    - target: {fileID: 15069021308457810, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
-      propertyPath: debugisOn
+    - target: {fileID: 81318338886881340, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
+      propertyPath: InnerColler.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 81318338886881340, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
+      propertyPath: InnerColler.b
+      value: 0.00931406
+      objectReference: {fileID: 0}
+    - target: {fileID: 81318338886881340, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
+      propertyPath: InnerColler.g
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 15069021308457810, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
-      propertyPath: InfoStorege
-      value: 
+    - target: {fileID: 81318338886881340, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
+      propertyPath: InnerColler.r
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 15069021308457810, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
-      propertyPath: proxyesInfoHolder
-      value: 
-      objectReference: {fileID: 11400000, guid: b430758d16a041142a8e8282f87b8341, type: 2}
-    - target: {fileID: 15069021308457810, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
-      propertyPath: activeProfileObject
-      value: 
-      objectReference: {fileID: 11400000, guid: 9de970382c6a7e94193933a6fd98b495, type: 2}
+    - target: {fileID: 81318338886881340, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
+      propertyPath: OuterColler.a
+      value: 0.23921569
+      objectReference: {fileID: 0}
     - target: {fileID: 3009441118544998834, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.41356
@@ -2196,18 +2247,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 258183359}
     m_Modifications:
-    - target: {fileID: 15069021308457810, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
-      propertyPath: debugisOn
+    - target: {fileID: 81318338886881340, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
+      propertyPath: InnerColler.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 81318338886881340, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
+      propertyPath: InnerColler.b
+      value: 0.00931406
+      objectReference: {fileID: 0}
+    - target: {fileID: 81318338886881340, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
+      propertyPath: InnerColler.g
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 15069021308457810, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
-      propertyPath: InfoStorege
-      value: 
+    - target: {fileID: 81318338886881340, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
+      propertyPath: InnerColler.r
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 15069021308457810, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
-      propertyPath: proxyesInfoHolder
-      value: 
-      objectReference: {fileID: 11400000, guid: b430758d16a041142a8e8282f87b8341, type: 2}
+    - target: {fileID: 81318338886881340, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
+      propertyPath: OuterColler.a
+      value: 0.23921569
+      objectReference: {fileID: 0}
     - target: {fileID: 3009441118544998834, guid: 8e393ea0f065ff34792edcfa92225a29, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.41356

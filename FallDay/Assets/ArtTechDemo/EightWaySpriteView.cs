@@ -6,17 +6,21 @@ using UnityEngine;
 /// </summary>
 public class EightWaySpriteView : MonoBehaviour
 {
-
     /// <summary>
     /// The character's 8 sprites will be placed in this array in the following order:
     ///0 = front, 1 = front-right, 2 = right, 3 = right-back, 4 = back, 5 = back-left, 6 = left, 7 = left-front.
     /// </summary>
-    public Sprite[] directionalSprites = new Sprite[8];
+    public Sprite[] directionalSprites = new Sprite[8]; // array of sprites for the 8 directions
+
+    public Animator animator;
 
     public SpriteRenderer spriteRenderer;
     public Transform cameraTransform;
-
     public Transform directionSource;
+
+    //////////////////////////////////////////////////
+    public bool debug = true;       //////////////////
+    //////////////////////////////////////////////////
 
     public void Start()
     {
@@ -38,13 +42,14 @@ public class EightWaySpriteView : MonoBehaviour
 
     private void UpdateSprite()
     {
+        /*
         if (directionalSprites == null || directionalSprites.Length == 0)
         {
-            Debug.Log($"{this.gameObject.name} has no sprites assigned to it!");
+            Debug.LogError($"{this.gameObject.name} has no sprites assigned to it!");
             return;
-        }
+        } */
 
-        int frameCount = directionalSprites.Length;
+        int frameCount = 8; //directionalSprites.Length;
 
 
         Vector3 toCamera = transform.position - cameraTransform.position;
@@ -65,16 +70,19 @@ public class EightWaySpriteView : MonoBehaviour
         float sizeOfSectors = 360 / frameCount;
         int frameIndex = Mathf.RoundToInt(angle / sizeOfSectors) % frameCount;
 
-        if (frameIndex > 4)
+        if(debug) Debug.Log($"[EightWaySpriteView] {this.gameObject.name} angle: {angle}, frameIndex: {frameIndex}");
+
+        if (frameIndex > 4 && spriteRenderer.flipX == false)
         {
             spriteRenderer.flipX = true;
         }
-
-        else
+        else if (spriteRenderer.flipX == true)
         {
             spriteRenderer.flipX = false;
         }
-            spriteRenderer.sprite = directionalSprites[frameIndex];
+            //spriteRenderer.sprite = directionalSprites[frameIndex];
+
+        animator.SetInteger("Rotation", frameIndex);
 
     }
 }
