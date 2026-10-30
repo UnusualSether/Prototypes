@@ -16,6 +16,41 @@ MonoBehaviour:
   _trinket_namePTBR: Heavenly Smiles
   trinket_difficulty: 1
   _trinket_description: '"For the United States of America."'
-  _trinket_sprite: []
+  _trinket_sprite:
+  - {fileID: 1915693574, guid: f26b6b19c877d7b4d887c50bad1ff4e3, type: 3}
+  - {fileID: 207324335, guid: f26b6b19c877d7b4d887c50bad1ff4e3, type: 3}
+  - {fileID: -151127128, guid: f26b6b19c877d7b4d887c50bad1ff4e3, type: 3}
+  - {fileID: -812493990, guid: f26b6b19c877d7b4d887c50bad1ff4e3, type: 3}
+  - {fileID: -189857776, guid: f26b6b19c877d7b4d887c50bad1ff4e3, type: 3}
+  - {fileID: -288725043, guid: f26b6b19c877d7b4d887c50bad1ff4e3, type: 3}
+  - {fileID: -236197993, guid: f26b6b19c877d7b4d887c50bad1ff4e3, type: 3}
+  - {fileID: 1782087501, guid: f26b6b19c877d7b4d887c50bad1ff4e3, type: 3}
+  - {fileID: -1871223812, guid: f26b6b19c877d7b4d887c50bad1ff4e3, type: 3}
+  - {fileID: -1030899770, guid: f26b6b19c877d7b4d887c50bad1ff4e3, type: 3}
+  - {fileID: 156908830, guid: f26b6b19c877d7b4d887c50bad1ff4e3, type: 3}
+  - {fileID: 514473632, guid: f26b6b19c877d7b4d887c50bad1ff4e3, type: 3}
+  - {fileID: -711791169, guid: f26b6b19c877d7b4d887c50bad1ff4e3, type: 3}
+  - {fileID: 681544217, guid: f26b6b19c877d7b4d887c50bad1ff4e3, type: 3}
+  - {fileID: 481243664, guid: f26b6b19c877d7b4d887c50bad1ff4e3, type: 3}
+  - {fileID: -689400084, guid: f26b6b19c877d7b4d887c50bad1ff4e3, type: 3}
+  - {fileID: 1319569710, guid: f26b6b19c877d7b4d887c50bad1ff4e3, type: 3}
+  - {fileID: 904079968, guid: f26b6b19c877d7b4d887c50bad1ff4e3, type: 3}
+  - {fileID: -1090068759, guid: f26b6b19c877d7b4d887c50bad1ff4e3, type: 3}
+  - {fileID: -426578756, guid: f26b6b19c877d7b4d887c50bad1ff4e3, type: 3}
+  - {fileID: 1274208517, guid: f26b6b19c877d7b4d887c50bad1ff4e3, type: 3}
+  - {fileID: -1566025990, guid: f26b6b19c877d7b4d887c50bad1ff4e3, type: 3}
+  - {fileID: -45445162, guid: f26b6b19c877d7b4d887c50bad1ff4e3, type: 3}
+  - {fileID: 1930308018, guid: f26b6b19c877d7b4d887c50bad1ff4e3, type: 3}
+  - {fileID: -372291950, guid: f26b6b19c877d7b4d887c50bad1ff4e3, type: 3}
+  - {fileID: 1453012846, guid: f26b6b19c877d7b4d887c50bad1ff4e3, type: 3}
+  - {fileID: -1315970131, guid: f26b6b19c877d7b4d887c50bad1ff4e3, type: 3}
+  - {fileID: 1142270815, guid: f26b6b19c877d7b4d887c50bad1ff4e3, type: 3}
+  - {fileID: -337678746, guid: f26b6b19c877d7b4d887c50bad1ff4e3, type: 3}
+  - {fileID: 1450037557, guid: f26b6b19c877d7b4d887c50bad1ff4e3, type: 3}
+  - {fileID: -967865445, guid: f26b6b19c877d7b4d887c50bad1ff4e3, type: 3}
+  - {fileID: -23837102, guid: f26b6b19c877d7b4d887c50bad1ff4e3, type: 3}
+  - {fileID: -655995240, guid: f26b6b19c877d7b4d887c50bad1ff4e3, type: 3}
+  - {fileID: -1518692955, guid: f26b6b19c877d7b4d887c50bad1ff4e3, type: 3}
+  - {fileID: 718875156, guid: f26b6b19c877d7b4d887c50bad1ff4e3, type: 3}
   _acquired: 1
   _trinket_cost: 0
