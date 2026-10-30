@@ -76,7 +76,7 @@ public class EightWaySpriteView : MonoBehaviour
         {
             spriteRenderer.flipX = true;
         }
-        else if (spriteRenderer.flipX == true)
+        else if (frameIndex <= 4 && spriteRenderer.flipX == true)
         {
             spriteRenderer.flipX = false;
         }
