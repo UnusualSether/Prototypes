@@ -13,9 +13,11 @@ public class PathFolower : MonoBehaviour
     // needs a grid system to define the walkable areas in the game world.
     // Grid_ can be changed to any other grid system that implements the same pathfinding logic, as long as it provides a method to find a path between two positions.
 
-    public float speed = 1.0f; //Speed of the object along the path
+    public float speed = 0.0001f; //Speed of the object along the path
 
     private Vector3 targetPosition; // Target position to move towards
+
+    
 
     private bool isThereTarget = false; // Control say there is a path terget start pos is always this game object
     private bool errorThrow = false; // Exists to loop a new path Once before throwing an error
@@ -24,7 +26,7 @@ public class PathFolower : MonoBehaviour
     private Action AfterWalkCall; //Used to call a function afer walk is complete
     private int ReducePathOveride;
     /////////////////////////////
-    private bool debug = false; // Debugging flag to enable or disable debug logs and other debug features
+    private bool debug = true; // Debugging flag to enable or disable debug logs and other debug features
     /////////////////////////////
     public void pathFolowerSetUp(Grid_ grid, Vector3 targetPosition, int ReducePathOveride, Action afterWalkCall)
     {
@@ -80,6 +82,7 @@ public class PathFolower : MonoBehaviour
     }
     private IEnumerator WalkPathCoroutine()
     {
+
         if (isThereTarget && targetPosition != Vector3.negativeInfinity) // Check if there is a target position to move towards (avoids null reference)
         {
             foreach (Vector3 point in path)

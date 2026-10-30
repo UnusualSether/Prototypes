@@ -337,12 +337,22 @@ public class TrinketManager
             return null;
         }
 
-        foreach (var zomb_mod_trinket in equipped_trinkets.OfType<ZombieEffectCarryingTrinket>())
+        foreach (ZombieEffectCarryingTrinket zomb_mod_trinket in equipped_trinkets.OfType<ZombieEffectCarryingTrinket>())
         {
             to_return.Add(zomb_mod_trinket.effect);
         }
 
-        return to_return;
+        if (to_return.Count == 0)
+        {
+            return null;
+        }
+
+        else
+        {
+            return to_return;
+        }
+
+        
     }
 
 
