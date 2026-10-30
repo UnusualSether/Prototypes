@@ -34,7 +34,7 @@ public class LevelHandler
     public void LoadLevel(Level level)
     {
 
-        SceneManager.LoadScene(nameof(level.level_scene));
+        SceneManager.LoadScene(level.level_scene);
 
 
         

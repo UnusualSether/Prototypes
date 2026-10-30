@@ -337,7 +337,7 @@ public class TrinketManager
             return null;
         }
 
-        foreach(ZombieEffectCarryingTrinket zomb_mod_trinket in equipped_trinkets)
+        foreach (var zomb_mod_trinket in equipped_trinkets.OfType<ZombieEffectCarryingTrinket>())
         {
             to_return.Add(zomb_mod_trinket.effect);
         }
