@@ -14,17 +14,17 @@ public class EightWaySpriteView : MonoBehaviour
 
     public Animator animator;
 
-    public SpriteRenderer spriteRenderer;
+    //public SpriteRenderer spriteRenderer;
     public Transform cameraTransform;
     public Transform directionSource;
 
-    //////////////////////////////////////////////////
-    public bool debug = true;       //////////////////
-    //////////////////////////////////////////////////
+    //////////////////////////////////
+    public bool debug = true;       //
+    //////////////////////////////////
 
     public void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        //spriteRenderer = GetComponent<SpriteRenderer>();
         cameraTransform = Camera.main.transform;
     }
 
@@ -71,7 +71,7 @@ public class EightWaySpriteView : MonoBehaviour
         int frameIndex = Mathf.RoundToInt(angle / sizeOfSectors) % frameCount;
 
         if(debug) Debug.Log($"[EightWaySpriteView] {this.gameObject.name} angle: {angle}, frameIndex: {frameIndex}");
-
+        /*
         if (frameIndex > 4 && spriteRenderer.flipX == false)
         {
             spriteRenderer.flipX = true;
@@ -80,7 +80,8 @@ public class EightWaySpriteView : MonoBehaviour
         {
             spriteRenderer.flipX = false;
         }
-            //spriteRenderer.sprite = directionalSprites[frameIndex];
+            spriteRenderer.sprite = directionalSprites[frameIndex];
+        */
 
         animator.SetInteger("Rotation", frameIndex);
 

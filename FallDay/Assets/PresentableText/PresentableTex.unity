@@ -160,8 +160,8 @@ GameObject:
   m_Component:
   - component: {fileID: 127173196}
   - component: {fileID: 127173198}
-  - component: {fileID: 127173199}
   - component: {fileID: 127173197}
+  - component: {fileID: 127173199}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -206,7 +206,6 @@ MonoBehaviour:
   - {fileID: 2047928210, guid: 0349308f1363b9d409da3a4b21a3087a, type: 3}
   - {fileID: -2041201686, guid: 3058cd2a3094edd4cb80eb859ba935d6, type: 3}
   animator: {fileID: 127173199}
-  spriteRenderer: {fileID: 127173198}
   cameraTransform: {fileID: 1444338430}
   directionSource: {fileID: 27993027}
   debug: 1
@@ -259,12 +258,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 42891496, guid: 80afd7f486abef84dbedfec943b631c1, type: 3}
+  m_Sprite: {fileID: 1784686408, guid: 71f58e0e9e4e5f14fab695f33054e5a2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.37, y: 0.59}
+  m_Size: {x: 0.57, y: 1.22}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -279,7 +278,7 @@ Animator:
   m_GameObject: {fileID: 127173195}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: bb2c0f9a3d18852408a3302a7b889222, type: 2}
+  m_Controller: {fileID: 9100000, guid: a00c42c63994b664ebafaa6b0ecf8b9c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
