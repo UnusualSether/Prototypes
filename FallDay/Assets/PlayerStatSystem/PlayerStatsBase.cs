@@ -79,7 +79,7 @@ public class PlayerInstance
 
     #endregion
 
-    void PlayerKilledZombie(Zombie killed)
+    void PlayerKilledZombie(Zombie z)
     {
         DispatchEvent(TrinketEventType.OnKill);
     }
@@ -89,20 +89,11 @@ public class PlayerInstance
         DispatchEvent(TrinketEventType.OnRoomComplete);
     }
 
-    void PlayerStartedNewEncounter()
+    void PlayerTookDamageRoom()
     {
-        DispatchEvent(TrinketEventType.NewEncounterPulled);
+
     }
 
-
-    public int PlayerInstanceDamageCalculation(int damage_calculated_by_handler, Zombie target)
-    {
-        
-
-        return trinket_manager.TrinketFilteredDamage(damage_calculated_by_handler, target);
-
-
-    }
 
     void DispatchEvent(TrinketEventType event_type)
     {
@@ -207,8 +198,6 @@ public class PlayerInstance
 
         player_handler.PlayerKilledAllZombies += PlayerClearedRoom;
 
-        player_handler.NewEncounterStarted += PlayerStartedNewEncounter;
-
         trinket_manager.InitializeTrinketStatBoosts(stats);
 
         SetOwnStats();
@@ -287,11 +276,6 @@ public class TrinketManager
         {
             DispatchOnRoomClearedEffects(instance);
         }
-
-        if (event_type == TrinketEventType.NewEncounterPulled)
-        {
-            DispatchOnNewEncounterEffects(instance);
-        }
     }
 
 
@@ -311,24 +295,6 @@ public class TrinketManager
         }
     }
 
-
-    public int TrinketFilteredDamage(int total_damage, Zombie target_zombie)
-    {
-
-        var to_filter = total_damage;
-
-        foreach( var trinket in equipped_trinkets)
-        {
-            if (trinket is IDamageFilterTrinket filterTrinket)
-            {
-                to_filter = filterTrinket.ModifiedDamage(to_filter, target_zombie);
-            }
-        }
-
-        return to_filter;
-
-
-    }
 
 
     /// <summary>
@@ -361,16 +327,34 @@ public class TrinketManager
         }
     }
 
-    void DispatchOnNewEncounterEffects(PlayerInstance instance)
+    public List<ZombieEffect> AllTrinketManagerZombieEffects()
     {
-        foreach (var trinket in equipped_trinkets)
+
+         var to_return = new List<ZombieEffect>();
+
+        if (equipped_trinkets.Count == 0)
         {
-            if (trinket is IPullInfoFromEncounterTrinket pullEncounterTrinket)
-            {
-                pullEncounterTrinket.PullEncounterInfo(instance.player_handler.currentEncounter);
-            }
+            return null;
         }
+
+        foreach (ZombieEffectCarryingTrinket zomb_mod_trinket in equipped_trinkets.OfType<ZombieEffectCarryingTrinket>())
+        {
+            to_return.Add(zomb_mod_trinket.effect);
+        }
+
+        if (to_return.Count == 0)
+        {
+            return null;
+        }
+
+        else
+        {
+            return to_return;
+        }
+
+        
     }
+
 
     /// <summary>
     /// Adds a trinket to the equipped trinkets array.
@@ -392,4 +376,22 @@ public class TrinketManager
 
    
 }
+
+public interface IZombieModifyingTrinket
+{
+   
+    public void AddEffectToZombie(ZombieEffect to_on_load, Zombie target_zombie)
+    {
+        target_zombie.effects.Add(to_on_load);
+
+        to_on_load.SetAttachedZombie(target_zombie);
+    }
+}
+
+public class ZombieEffectCarryingTrinket : Trinket, IZombieModifyingTrinket
+{
+    public ZombieEffect effect;
+}
+
+
 
