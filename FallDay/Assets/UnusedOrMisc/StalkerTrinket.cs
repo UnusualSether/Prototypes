@@ -40,7 +40,6 @@ public class StalkerTrinket : Trinket, IDamageFilterTrinket, IVisualClassApplyin
             {
                 stalked_list.Add(target);
 
-                ApplyVisual(GameDisplay.ZombieToDisplay(target));
             }
 
             return 0;
