@@ -8,6 +8,15 @@
 
 O Jogador explora quartos dentro da fase selecionada tendo que matar inimigos com a mecânica de match-3 enquanto escolhe quartos para progredir
 
+#### *Cena de Jogo*
+![WalkFlow](GameFlowWalk.png)
+#### *Combate Match3*
+![Combate mach3](Mach3Fight.png)
+#### *Cena de Configurações_V1*
+![Configurações](optionv1.png)
+#### *Cena de Morte_V1*
+![cena de morte](deadScreen_V1.png)
+
 ## Mini Game Principal
 ![image.png](images/img_1773324034423_3742ef3176e68.png)
 
