@@ -1,0 +1,937 @@
+fileFormatVersion: 2
+guid: 24f55e67c45a6af47869f8bb524029da
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: KnifePosterSpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2951
+        width: 839
+        height: 968
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35d67ca83dd60844ba5ba21b5e7ac5ac
+      internalID: -328770090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KnifePosterSpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 852
+        y: 2951
+        width: 826
+        height: 968
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ee567ffadfd69840b5befbda51ece01
+      internalID: -736888120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KnifePosterSpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 1691
+        y: 2951
+        width: 788
+        height: 968
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c143fb0adfef0d4f9ea23994a6374f7
+      internalID: -373721714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KnifePosterSpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 2492
+        y: 2951
+        width: 726
+        height: 968
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 280735fdc2a37a2428301016ae58194f
+      internalID: 2093987942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KnifePosterSpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 3231
+        y: 2951
+        width: 641
+        height: 968
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8d386630f37ccd4c914178f6db55a17
+      internalID: 719925081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KnifePosterSpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 3884
+        y: 2951
+        width: 534
+        height: 968
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d38485ec902e464f84b7b4fb9e69c04
+      internalID: -429851135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KnifePosterSpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 4431
+        y: 2951
+        width: 412
+        height: 968
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8619afeabc140c94f9ba3e368cf842b5
+      internalID: -1193680496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KnifePosterSpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 4855
+        y: 2951
+        width: 271
+        height: 968
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07ebbad97f51d034f9021afb3cdc5167
+      internalID: -94227081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KnifePosterSpriteSheet_8
+      rect:
+        serializedVersion: 2
+        x: 5138
+        y: 2951
+        width: 120
+        height: 968
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38ce89f4a4e6d1e4ca441581e0217932
+      internalID: 1071621103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KnifePosterSpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 5270
+        y: 2951
+        width: 44
+        height: 968
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e80c2b8a53ae524eaade072d127d53d
+      internalID: -1944318037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KnifePosterSpriteSheet_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1967
+        width: 192
+        height: 971
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e4254e9c14a2a1409e0c8b594a1c9be
+      internalID: -301719606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KnifePosterSpriteSheet_11
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 1967
+        width: 340
+        height: 971
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7d61dce7d1e9b24fbb66ded7853c5be
+      internalID: -337041059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KnifePosterSpriteSheet_12
+      rect:
+        serializedVersion: 2
+        x: 553
+        y: 1967
+        width: 471
+        height: 971
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f708671deb1e9c04a9dde4ef6d6dab3c
+      internalID: -658280703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KnifePosterSpriteSheet_13
+      rect:
+        serializedVersion: 2
+        x: 1037
+        y: 1967
+        width: 588
+        height: 971
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfa11ddb60f86a545bb21a1e6be3fa72
+      internalID: 484637885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KnifePosterSpriteSheet_14
+      rect:
+        serializedVersion: 2
+        x: 1637
+        y: 1967
+        width: 685
+        height: 971
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d39e80a64f75824f8f6318d4d0c7f3f
+      internalID: 304372570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KnifePosterSpriteSheet_15
+      rect:
+        serializedVersion: 2
+        x: 2335
+        y: 1967
+        width: 757
+        height: 971
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a1a13df93bf604488215fee4f57f2d2
+      internalID: -157615099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KnifePosterSpriteSheet_16
+      rect:
+        serializedVersion: 2
+        x: 3105
+        y: 1967
+        width: 811
+        height: 971
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6613b2b79fbbefd49bc7a27fca599ba4
+      internalID: 534689542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KnifePosterSpriteSheet_17
+      rect:
+        serializedVersion: 2
+        x: 3928
+        y: 1967
+        width: 836
+        height: 968
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 626685f825ba48444bda49236cafbada
+      internalID: 349055774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KnifePosterSpriteSheet_18
+      rect:
+        serializedVersion: 2
+        x: 4777
+        y: 1967
+        width: 836
+        height: 971
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9540f783e13b8804fa75d891f7860a23
+      internalID: 496240335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KnifePosterSpriteSheet_19
+      rect:
+        serializedVersion: 2
+        x: 5625
+        y: 1967
+        width: 811
+        height: 971
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ef6b388ce0fa2e459fcd5f332131e8e
+      internalID: -156625979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KnifePosterSpriteSheet_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 984
+        width: 761
+        height: 968
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae2558b75fe1c30409d24c73d8da4d19
+      internalID: -55611662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KnifePosterSpriteSheet_21
+      rect:
+        serializedVersion: 2
+        x: 773
+        y: 984
+        width: 685
+        height: 968
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c8e9cb0f8e303140bdb2e6bfb72f9b5
+      internalID: 995582887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KnifePosterSpriteSheet_22
+      rect:
+        serializedVersion: 2
+        x: 1471
+        y: 981
+        width: 591
+        height: 971
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa77cdf9ac280ef4780c7c82d6ca3879
+      internalID: -1029086201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KnifePosterSpriteSheet_23
+      rect:
+        serializedVersion: 2
+        x: 2074
+        y: 984
+        width: 475
+        height: 968
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2d59c904d6a31c4d87dd5bbe5168d36
+      internalID: 176123728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KnifePosterSpriteSheet_24
+      rect:
+        serializedVersion: 2
+        x: 2561
+        y: 984
+        width: 343
+        height: 971
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00cfd29271e84fe4f9ee1480b9ae9121
+      internalID: -22958785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KnifePosterSpriteSheet_25
+      rect:
+        serializedVersion: 2
+        x: 2913
+        y: 984
+        width: 198
+        height: 968
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26a89f04b273203468bb02a29822e55e
+      internalID: 1956691926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KnifePosterSpriteSheet_26
+      rect:
+        serializedVersion: 2
+        x: 3124
+        y: 984
+        width: 47
+        height: 968
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd430895ed3035845aed0d8f5794e17d
+      internalID: 329069782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KnifePosterSpriteSheet_27
+      rect:
+        serializedVersion: 2
+        x: 3180
+        y: 984
+        width: 120
+        height: 968
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e43df6d5435c6764b9f4d3d6a0902f09
+      internalID: -493504313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KnifePosterSpriteSheet_28
+      rect:
+        serializedVersion: 2
+        x: 3312
+        y: 984
+        width: 267
+        height: 968
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c64a3b94e874b0547b90f8b4a2d8e5ee
+      internalID: -683964557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KnifePosterSpriteSheet_29
+      rect:
+        serializedVersion: 2
+        x: 3592
+        y: 981
+        width: 405
+        height: 971
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 095e777f153cdef41afac959862c89ef
+      internalID: 1767906644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KnifePosterSpriteSheet_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 531
+        height: 968
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26f57fec0309a72478a991e2ba5a477d
+      internalID: -877573334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KnifePosterSpriteSheet_31
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 0
+        width: 638
+        height: 968
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbed25d64dd0d894aa5f22f91fa3c6f5
+      internalID: -1325818320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KnifePosterSpriteSheet_32
+      rect:
+        serializedVersion: 2
+        x: 1194
+        y: 0
+        width: 723
+        height: 968
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35088dcfc121f29409983685ef9b54cf
+      internalID: 1229251533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KnifePosterSpriteSheet_33
+      rect:
+        serializedVersion: 2
+        x: 1933
+        y: 0
+        width: 785
+        height: 971
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0eaf745b506e46142b79c80ebf0690c6
+      internalID: -1166906996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KnifePosterSpriteSheet_34
+      rect:
+        serializedVersion: 2
+        x: 2731
+        y: 0
+        width: 826
+        height: 968
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d459583cde9a8b8498118062839e9206
+      internalID: 1071566753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: df30445b331ad024199ca1d62f1ec830
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      KnifePosterSpriteSheet_0: -328770090
+      KnifePosterSpriteSheet_1: -736888120
+      KnifePosterSpriteSheet_10: -301719606
+      KnifePosterSpriteSheet_11: -337041059
+      KnifePosterSpriteSheet_12: -658280703
+      KnifePosterSpriteSheet_13: 484637885
+      KnifePosterSpriteSheet_14: 304372570
+      KnifePosterSpriteSheet_15: -157615099
+      KnifePosterSpriteSheet_16: 534689542
+      KnifePosterSpriteSheet_17: 349055774
+      KnifePosterSpriteSheet_18: 496240335
+      KnifePosterSpriteSheet_19: -156625979
+      KnifePosterSpriteSheet_2: -373721714
+      KnifePosterSpriteSheet_20: -55611662
+      KnifePosterSpriteSheet_21: 995582887
+      KnifePosterSpriteSheet_22: -1029086201
+      KnifePosterSpriteSheet_23: 176123728
+      KnifePosterSpriteSheet_24: -22958785
+      KnifePosterSpriteSheet_25: 1956691926
+      KnifePosterSpriteSheet_26: 329069782
+      KnifePosterSpriteSheet_27: -493504313
+      KnifePosterSpriteSheet_28: -683964557
+      KnifePosterSpriteSheet_29: 1767906644
+      KnifePosterSpriteSheet_3: 2093987942
+      KnifePosterSpriteSheet_30: -877573334
+      KnifePosterSpriteSheet_31: -1325818320
+      KnifePosterSpriteSheet_32: 1229251533
+      KnifePosterSpriteSheet_33: -1166906996
+      KnifePosterSpriteSheet_34: 1071566753
+      KnifePosterSpriteSheet_4: 719925081
+      KnifePosterSpriteSheet_5: -429851135
+      KnifePosterSpriteSheet_6: -1193680496
+      KnifePosterSpriteSheet_7: -94227081
+      KnifePosterSpriteSheet_8: 1071621103
+      KnifePosterSpriteSheet_9: -1944318037
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

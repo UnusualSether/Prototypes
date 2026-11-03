@@ -16,7 +16,41 @@ MonoBehaviour:
   _trinket_namePTBR: 
   _trinket_description: For all your stalking needs.
   _trinket_sprite:
-  - {fileID: 0}
+  - {fileID: -859730689, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: -1318377883, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: 125319853, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: -469246451, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: -833806291, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: 1613843824, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: 1256697170, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: -1100804947, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: 1454253689, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: 1900926937, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: -1986746900, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: -2078019846, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: 273220462, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: 184063365, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: -1137402925, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: -1800861647, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: -385107428, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: -880580138, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: -795702123, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: -567418212, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: -1912677486, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: -1073740294, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: -1549022521, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: -153932010, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: 604222548, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: -2006564946, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: 608759328, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: 1916303788, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: 1408017718, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: -1704925441, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: -1053219137, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: 217261921, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: 1043296821, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: 163975673, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: -481343280, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
   _acquired: 1
   _trinket_cost: 0
   stalked_list:
