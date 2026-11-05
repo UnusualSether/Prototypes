@@ -129,11 +129,11 @@
 
 .healingBullet {
     background-color: rgba(255, 255, 255, 0);
-    background-image: url("project://database/Assets/Sprites/BulletButtons/NewHealthIcon.png?fileID=2800000&guid=616ca18ae523ca3459854c2d515a4154&type=3#NewHealthIcon");
+    background-image: url("project://database/Assets/Sprites/BulletButtons/NewHealthIcon2.png?fileID=2800000&guid=c1f83250e2e226d4fa8dde6301605388&type=3#NewHealthIcon2");
 }
 
 .escapeBullet {
-    background-image: url("project://database/Assets/Sprites/BulletButtons/NewDodgeIcon.png?fileID=2800000&guid=9158e089be1924742a6438f66e0486a1&type=3#NewDodgeIcon");
+    background-image: url("project://database/Assets/Sprites/BulletButtons/NewDodgeIcon2.png?fileID=2800000&guid=a0e7cd333378edc4bbadceb260d05f0a&type=3#NewDodgeIcon2");
     background-color: rgba(255, 255, 255, 0);
 }
 
