@@ -801,6 +801,32 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1802546164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1802546155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e7cb636c1fcb4441bac7e41329c6ae9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TouchIndicatorUI
+  size: 120
+  frames:
+  - {fileID: -546749573, guid: f5d5a68f43b1a544fa29a8e45a21b52a, type: 3}
+  - {fileID: 1505766669, guid: f5d5a68f43b1a544fa29a8e45a21b52a, type: 3}
+  - {fileID: 155981489, guid: f5d5a68f43b1a544fa29a8e45a21b52a, type: 3}
+  - {fileID: 1371854492, guid: f5d5a68f43b1a544fa29a8e45a21b52a, type: 3}
+  - {fileID: 1349227352, guid: f5d5a68f43b1a544fa29a8e45a21b52a, type: 3}
+  - {fileID: 2051564640, guid: f5d5a68f43b1a544fa29a8e45a21b52a, type: 3}
+  - {fileID: -1006921388, guid: f5d5a68f43b1a544fa29a8e45a21b52a, type: 3}
+  - {fileID: -429222392, guid: f5d5a68f43b1a544fa29a8e45a21b52a, type: 3}
+  - {fileID: -816932821, guid: f5d5a68f43b1a544fa29a8e45a21b52a, type: 3}
+  fps: 12
+  loop: 1
+  removeDelayMs: 400
 --- !u!1 &1807505139
 GameObject:
   m_ObjectHideFlags: 0
@@ -1200,6 +1226,10 @@ PrefabInstance:
       propertyPath: _sound
       value: 
       objectReference: {fileID: 1802546162}
+    - target: {fileID: 7930258585491242016, guid: 5b4fa346017188043b9aacad224ca14c, type: 3}
+      propertyPath: sheetTransitionMs
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 8759473493732371773, guid: 5b4fa346017188043b9aacad224ca14c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 801.97455
@@ -1254,6 +1284,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4004746050545178163, guid: 5b4fa346017188043b9aacad224ca14c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1802546162}
+    - targetCorrespondingSourceObject: {fileID: 4004746050545178163, guid: 5b4fa346017188043b9aacad224ca14c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1802546164}
   m_SourcePrefab: {fileID: 100100000, guid: 5b4fa346017188043b9aacad224ca14c, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

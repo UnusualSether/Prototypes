@@ -295,3 +295,16 @@ Slider #unity-dragger {
     opacity: 1;
     position: absolute;
 }
+
+
+.touch-indicator {
+    opacity: 1;
+    scale: 1 1;
+    transition-property: scale, opacity;
+    transition-duration: 0.15s, 0.35s;
+}
+
+.touch-indicator--hidden {
+    opacity: 0;
+    scale: 0.5 0.5;
+}
