@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-/// <summary>Funções de apoio usadas por vários painéis.</summary>
 public static class UIUtils
 {
     // Liga o som a um botão (ignora se o som ou o botão não existirem)

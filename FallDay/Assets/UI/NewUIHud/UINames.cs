@@ -58,6 +58,6 @@ public static class UINames
     public const string TutorialOn = "Tutorial-Menu_on";
     public const string TutorialOff = "Tutorial-Menu_off";
     // Atenção: o código original usava "tutorial-Menu_on" (t minúsculo) na janela da pergunta.
-    // Mantido separado para não alterar o visual; unifique com TutorialOn se o USS usar um só nome.
+    
     public const string TutorialQuestionOn = "tutorial-Menu_on";
 }

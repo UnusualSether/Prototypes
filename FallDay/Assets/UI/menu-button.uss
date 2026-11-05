@@ -308,3 +308,6 @@ Slider #unity-dragger {
     opacity: 0;
     scale: 0.5 0.5;
 }
+.btn_setpainel:hover{
+    scale:.95;
+}

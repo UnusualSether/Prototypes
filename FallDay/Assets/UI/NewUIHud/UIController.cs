@@ -1,11 +1,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-/// <summary>
-/// Único MonoBehaviour da interface do menu principal.
-/// Cria os painéis, liga um ao outro e descarta tudo ao desativar.
-/// Cada painel cuida da sua própria parte (ver pasta Panels).
-/// </summary>
+
 [RequireComponent(typeof(UIDocument))]
 public class UIController : MonoBehaviour
 {
@@ -13,7 +9,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private UISoundManager _sound;
 
     [Header("Bottom Sheet")]
-    [SerializeField] private long sheetTransitionMs = 350; // igual à duração da transition no USS
+    [SerializeField] private long sheetTransitionMs = 350; 
 
     [Header("Jogo")]
     [SerializeField] private string firstLevelScene = "Level1";
@@ -28,7 +24,7 @@ public class UIController : MonoBehaviour
 
     void OnEnable() => TryBuild();
 
-    // Garantia: se o UIDocument ainda não tinha criado a árvore no OnEnable, monta aqui
+    
     void Start() => TryBuild();
 
     void OnDisable() => Teardown();
@@ -45,7 +41,7 @@ public class UIController : MonoBehaviour
         _level = new LevelPanel(root, _sound, firstLevelScene);
         _tutorial = new TutorialPanel(root, _sound, onFinished: _level.Show);
 
-        // Trinked -> botão de dificuldade: mostra o fundo do Level e abre a pergunta do tutorial
+        
         _trinked = new TrinkedPanel(root, _sound, onOpenLevel: () =>
         {
             _level.ShowBackdrop();
