@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4136fa4b7eebc7c4fa96b82c3eeff934, type: 3}
+  m_Name: SLICEPoster
+  m_EditorClassIdentifier: Assembly-CSharp::SecretAdvantageTrinket
+  _trinket_name: SLICE Poster
+  _trinket_namePTBR: 
+  trinket_difficulty: 1
+  _trinket_description: '"Heard the movie was based off true events."'
+  _trinket_sprite:
+  - {fileID: -328770090, guid: 24f55e67c45a6af47869f8bb524029da, type: 3}
+  - {fileID: -736888120, guid: 24f55e67c45a6af47869f8bb524029da, type: 3}
+  - {fileID: -373721714, guid: 24f55e67c45a6af47869f8bb524029da, type: 3}
+  - {fileID: 2093987942, guid: 24f55e67c45a6af47869f8bb524029da, type: 3}
+  - {fileID: 719925081, guid: 24f55e67c45a6af47869f8bb524029da, type: 3}
+  - {fileID: -429851135, guid: 24f55e67c45a6af47869f8bb524029da, type: 3}
+  - {fileID: -1193680496, guid: 24f55e67c45a6af47869f8bb524029da, type: 3}
+  - {fileID: -94227081, guid: 24f55e67c45a6af47869f8bb524029da, type: 3}
+  - {fileID: 1071621103, guid: 24f55e67c45a6af47869f8bb524029da, type: 3}
+  - {fileID: -1944318037, guid: 24f55e67c45a6af47869f8bb524029da, type: 3}
+  - {fileID: -301719606, guid: 24f55e67c45a6af47869f8bb524029da, type: 3}
+  - {fileID: -337041059, guid: 24f55e67c45a6af47869f8bb524029da, type: 3}
+  - {fileID: -658280703, guid: 24f55e67c45a6af47869f8bb524029da, type: 3}
+  - {fileID: 484637885, guid: 24f55e67c45a6af47869f8bb524029da, type: 3}
+  - {fileID: 304372570, guid: 24f55e67c45a6af47869f8bb524029da, type: 3}
+  - {fileID: -157615099, guid: 24f55e67c45a6af47869f8bb524029da, type: 3}
+  - {fileID: 534689542, guid: 24f55e67c45a6af47869f8bb524029da, type: 3}
+  - {fileID: 349055774, guid: 24f55e67c45a6af47869f8bb524029da, type: 3}
+  - {fileID: 496240335, guid: 24f55e67c45a6af47869f8bb524029da, type: 3}
+  - {fileID: -156625979, guid: 24f55e67c45a6af47869f8bb524029da, type: 3}
+  - {fileID: -55611662, guid: 24f55e67c45a6af47869f8bb524029da, type: 3}
+  - {fileID: 995582887, guid: 24f55e67c45a6af47869f8bb524029da, type: 3}
+  - {fileID: -1029086201, guid: 24f55e67c45a6af47869f8bb524029da, type: 3}
+  - {fileID: 176123728, guid: 24f55e67c45a6af47869f8bb524029da, type: 3}
+  - {fileID: -22958785, guid: 24f55e67c45a6af47869f8bb524029da, type: 3}
+  - {fileID: 1956691926, guid: 24f55e67c45a6af47869f8bb524029da, type: 3}
+  - {fileID: 329069782, guid: 24f55e67c45a6af47869f8bb524029da, type: 3}
+  - {fileID: -493504313, guid: 24f55e67c45a6af47869f8bb524029da, type: 3}
+  - {fileID: -683964557, guid: 24f55e67c45a6af47869f8bb524029da, type: 3}
+  - {fileID: 1767906644, guid: 24f55e67c45a6af47869f8bb524029da, type: 3}
+  - {fileID: -877573334, guid: 24f55e67c45a6af47869f8bb524029da, type: 3}
+  - {fileID: -1325818320, guid: 24f55e67c45a6af47869f8bb524029da, type: 3}
+  - {fileID: 1229251533, guid: 24f55e67c45a6af47869f8bb524029da, type: 3}
+  - {fileID: -1166906996, guid: 24f55e67c45a6af47869f8bb524029da, type: 3}
+  - {fileID: 1071566753, guid: 24f55e67c45a6af47869f8bb524029da, type: 3}
+  _acquired: 1
+  _trinket_cost: 0
+  AdvantageousEnemy: Tank
+  DisadvantegousEnemy: Runner
+  reduced_damage: 3
+  amplified_damage: 3

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6ac8083074c9534683ad679edef3a07, type: 3}
+  m_Name: Level1
+  m_EditorClassIdentifier: Assembly-CSharp::Level
+  number_of_rooms_to_complete: 5
+  level_scene: Level1
+  next_level: {fileID: 11400000, guid: fe7ee0fbafcf9d840bd7bc8f487b4669, type: 2}
+  possible_rewards:
+  - {fileID: 11400000, guid: 6f7af05ace959b444a8c55e391b2a80d, type: 2}
+  - {fileID: 11400000, guid: 1859cc4f9b7903f46989ce791ec1060a, type: 2}
+  - {fileID: 0}
+  difficulty: {fileID: 0}
+  possible_rooms:
+  - {fileID: 11400000, guid: 4fdbbc16de754f74e905a2d12edbc4f1, type: 2}
+  - {fileID: 11400000, guid: 09ce630323037fb4e8537a3ca6839c7b, type: 2}
+  - {fileID: 11400000, guid: 843c0d2555d3d7547828cd295e09e380, type: 2}
+  possible_encounters:
+  - {fileID: 11400000, guid: 5f01e602bbf13774a998fe9d6e7a2cac, type: 2}
+  - {fileID: 11400000, guid: 3730aa9501d93494d86376e1da46e9e4, type: 2}
+  - {fileID: 11400000, guid: c4878bc9c640a09428647019d158a78f, type: 2}

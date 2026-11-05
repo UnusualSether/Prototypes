@@ -1,0 +1,9 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/SecondMenu.uss?fileID=7433441132597879392&amp;guid=879b4ddc0ace9624885733b5a7138004&amp;type=3#SecondMenu"/>
+    <ui:TabView style="flex-direction: column-reverse; position: absolute; top: 0; left: 0; bottom: 0; right: 0; align-items: center; justify-content: flex-start; align-self: center; align-content: stretch;">
+        <ui:Tab label="Tab" name="Power" style="position: relative;"/>
+        <ui:Tab label="Tab" name="Gear"/>
+        <ui:Tab label="Tab" name="Heal"/>
+        <ui:Tab label="Tab" name="Fuction"/>
+    </ui:TabView>
+</ui:UXML>
