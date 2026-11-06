@@ -107,17 +107,17 @@ public class PathFolower : MonoBehaviour
 
 
                     Quaternion targetRotation = Quaternion.LookRotation(directionOfNextPoint);  // Calculate the target rotation to face the next point
+                    targetRotation = new Quaternion(0, targetRotation.y, 0, targetRotation.w); // Keep the y position constant to avoid tilting the object
+                    //transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, speed * Time.deltaTime); // Smoothly rotate towards the target rotation
 
-                    transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-
-                    //alinhamento = Vector3.Dot(transform.forward.normalized, vectorBetweenPoints); // Calculate the alignment between the object's forward direction and the direction to the next point
+                    alinhamento = Vector3.Dot(transform.forward.normalized, vectorBetweenPoints); // Calculate the alignment between the object's forward direction and the direction to the next point
 
 
-                    //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, speed * Time.deltaTime); // Smoothly rotate towards the target rotation
-                    //if(alinhamento > 0.99f)
-                    //{
-                    //transform.forward = new Vector3(nextPoint.x, transform.position.y, nextPoint.z); // Set the object's forward direction to face the next point, keeping the y position constant
-                    //}
+                    if(alinhamento > 0.99f)
+                    {
+                        transform.rotation = targetRotation; // Set the object's forward direction to face the next point, keeping the y position constant
+                    }
                     yield return new WaitForFixedUpdate();
                 }
 

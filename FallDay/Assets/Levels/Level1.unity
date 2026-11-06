@@ -1140,6 +1140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PathFolower
   speed: 2
+  rotationSpeed: 80
 --- !u!114 &1088469946
 MonoBehaviour:
   m_ObjectHideFlags: 0

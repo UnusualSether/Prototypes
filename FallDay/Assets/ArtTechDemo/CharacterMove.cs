@@ -270,10 +270,10 @@ public class CharacterMove : MonoBehaviour
         var posToGo = FetchWayPoint(dir);
         GoToNextWaypoint(posToGo);
         PlayerMovingTowardsUnLoadedRoom?.Invoke(posToGo);
-        ChangeSprite(dir);
+        //ChangeSprite(dir);
 
     }
-
+    /*
     public void ChangeSprite(ThreeDGameHandler.SwipeDirection dir)
     {
         if (dir == ThreeDGameHandler.SwipeDirection.Up)
@@ -291,7 +291,7 @@ public class CharacterMove : MonoBehaviour
             gameObject.transform.rotation = new Quaternion(0, -0.707106829f, 0, 0.707106829f);
         }
     }
-
+    */
 
     public Waypoint FetchWayPoint(ThreeDGameHandler.SwipeDirection dir)
     {
