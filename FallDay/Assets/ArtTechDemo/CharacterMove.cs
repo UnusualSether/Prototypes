@@ -2,9 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.AI.Navigation;
 using UnityEngine;
-using UnityEngine.AI;
 
 
 [Serializable]
@@ -36,9 +34,9 @@ public class CharacterMove : MonoBehaviour
 
     public float speed = 0.2f;
 
-    public NavMeshAgent navMesh;
+    //public NavMeshAgent navMesh;
 
-    public NavMeshSurface surface;
+    //public NavMeshSurface surface;
 
     public Grid_Generator Grid_Generator;
     public PlayerPathControl PPathCtlr;
@@ -60,7 +58,7 @@ public class CharacterMove : MonoBehaviour
     {
 
 
-        CheckStatus();
+        //CheckStatus();
 
     }
 
@@ -199,29 +197,29 @@ public class CharacterMove : MonoBehaviour
     bool encounterGate = false;
     private void CheckStatus()
     {
-        if (wayPointList.Count <= 0) return;
+        //if (wayPointList.Count <= 0) return;
 
         //Debug.Log($"[Player] Checking status, has path: {navMesh.hasPath}, path pending: {navMesh.pathPending}, remaining distance: {navMesh.remainingDistance}");
-        bool hasPath = navMesh.hasPath || navMesh.pathPending;
-        bool reachedDestination = !navMesh.pathPending
-                               && navMesh.hasPath
-                               && navMesh.remainingDistance < 0.1f;
+        //bool hasPath = navMesh.hasPath || navMesh.pathPending;
+        //bool reachedDestination = !navMesh.pathPending
+        //                       && navMesh.hasPath
+        //                       && navMesh.remainingDistance < 0.1f;
 
-        if (reachedDestination)
-        {
-            if (debugisOn) Debug.Log($"[Player] Reached destination at {transform.position}");
-            PlayerHasReachedNextPoint?.Invoke();
-            PlayerWillClearList?.Invoke(wayPointList);
-            wayPointList.Clear();
-            InitializeWaypoints();
+        //if (reachedDestination)
+        //{
+        //    if (debugisOn) Debug.Log($"[Player] Reached destination at {transform.position}");
+            //PlayerHasReachedNextPoint?.Invoke();
+            //PlayerWillClearList?.Invoke(wayPointList);
+           // wayPointList.Clear();
+           // InitializeWaypoints();
 
-        }
+        //}
 
-        if (transform.position == wayPointList[0].wayPointPosition)
-        {
-            if (debugisOn) Debug.Log($"[Player] Reached waypoint at {transform.position}");
-            InitializeWaypoints();
-        }
+        //if (transform.position == wayPointList[0].wayPointPosition)
+        //{
+            //if (debugisOn) Debug.Log($"[Player] Reached waypoint at {transform.position}");
+            //InitializeWaypoints();
+        //}
     }
 
 

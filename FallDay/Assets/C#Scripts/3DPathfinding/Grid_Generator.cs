@@ -25,7 +25,7 @@ public class Grid_Generator : MonoBehaviour
     private Dictionary<Zombie, GameObject> ThreeD_Zombie = new();//Stores pairs of Zombie data and their corresponding 3D game objects for easy access and management>
     
     ////////////////////////////////////
-    /**/ public bool debug = true; /**/         // Debugging flag to enable or disable debug logs & other debug features
+    /**/ public bool debug = false; /**/         // Debugging flag to enable or disable debug logs & other debug features
     ////////////////////////////////////
 
 
