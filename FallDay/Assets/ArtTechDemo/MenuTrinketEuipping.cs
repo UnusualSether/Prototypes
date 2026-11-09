@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,8 @@ public class MenuTrinketEquipping : MonoBehaviour
 
     public Label coin_count;
 
+    public Label error_message_label;
+
     public string global_currency_total => MoneyHolder.total_soft_currency.total.ToString();
 
     public VisualTreeAsset trinket_element_template;
@@ -31,6 +34,8 @@ public class MenuTrinketEquipping : MonoBehaviour
     public Dictionary<Toggle, Trinket> button_to_trinket = new Dictionary<Toggle, Trinket>();
 
     private Dictionary<VisualElement, Trinket> activeTrinketDisplay = new Dictionary<VisualElement, Trinket>();
+
+    public static Action<string> FailedToEquipTrinket;
 
     private void OnEnable()
     {
@@ -57,6 +62,8 @@ public class MenuTrinketEquipping : MonoBehaviour
 
         coin_count = coin_container.Q<Label>("Coin_CountM");
 
+        error_message_label = root.Q<Label>("error_message");
+
         BuildMenuOffData();
 
         MoneyHolder.PlayerGainedSoftCurrencyDuringRun(5);
@@ -69,6 +76,9 @@ public class MenuTrinketEquipping : MonoBehaviour
 
         current_and_max_trinket_display.text = $"{GlobalTrinketHolder.player_chosen_trinkets.Count}/{GlobalTrinketHolder.max_trinkets}";
     }
+
+    
+    
 
     void LanguageChange(Locale newLocale)
     {
@@ -175,11 +185,14 @@ public class MenuTrinketEquipping : MonoBehaviour
         if (reason == GlobalTrinketHolder.EquipResult.EquipLimitReached)
         {
             Debug.Log("Max trinket equip limit reached!");
+            DisplayErrorMessage("Max trinket equip limit reached!");
         }
+
 
         if (reason == GlobalTrinketHolder.EquipResult.AlreadyEquipped)
         {
             Debug.Log("This is already equipped!");
+            DisplayErrorMessage("This is already equipped!");
         }
     }
 
@@ -228,7 +241,7 @@ public class MenuTrinketEquipping : MonoBehaviour
     void FailedToBuyTrinket(Trinket to_buy, VisualElement display)
     {
         ShakeTrinketDisplay(display);
-        Debug.Log("Couldn't afford the trinket!");
+        DisplayErrorMessage("Couldn't afford the trinket!");
     }
 
     void UpdateTrinketVisual(VisualElement trinket_visual)
@@ -245,6 +258,30 @@ public class MenuTrinketEquipping : MonoBehaviour
 
     public float trinket_visual_shake_duration;
 
+    
+
+    public void DisplayErrorMessage(string message)
+    {
+        if (current_routine != null)
+        {
+            StopCoroutine(current_routine);
+        } 
+
+        error_message_label.text = string.Empty;
+
+        error_message_label.text = message;
+
+        current_routine = ErrorMessageTimer(1f);
+
+        StartCoroutine(current_routine);
+    }
+    private IEnumerator current_routine;
+    public IEnumerator ErrorMessageTimer(float timer)
+    {
+        yield return new WaitForSeconds(timer);
+
+        error_message_label.text = string.Empty;
+    }
     public void ShakeTrinketDisplay(VisualElement display)
     {
         StartCoroutine(ShakeElement(display, trinket_visual_shake_duration, trinket_visual_shake_magnitude));
