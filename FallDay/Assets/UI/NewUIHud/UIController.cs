@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
+using BetterSceneManagement;
 
 /// <summary>
 /// Controla toda a navegação de UI do menu principal:
@@ -481,7 +482,7 @@ public class UIController : MonoBehaviour
     // Carrega a cena do jogo ao selecionar o nível
     private void StarGame(ClickEvent evt)
     {
-        SceneManager.LoadScene("Level1");
+        BetterSceneManager.LoadScene("Level1", AnimationType.Door);
     }
     #endregion
 

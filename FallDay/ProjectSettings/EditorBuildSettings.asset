@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/LevelSelect.unity
     guid: 5195b32a087a64d4eb0871454a51f292
   - enabled: 1
-    path: Assets/Levels/PresentableTex.unity
+    path: Assets/Levels/Level1.unity
     guid: a77a36b34ac32ee4ca2cd8a19087e310
   - enabled: 1
     path: Assets/Levels/Level2.unity
