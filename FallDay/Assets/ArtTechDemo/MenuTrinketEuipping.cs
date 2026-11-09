@@ -115,6 +115,8 @@ public class MenuTrinketEquipping : MonoBehaviour
         {
             trinket_display.Q<Toggle>("trinket_toggle").visible = false;
             var buy_button = trinket_display.Q<Button>("buy_button");
+            var price_tag = buy_button.Q<Label>("_price");
+            price_tag.text = trinket_to_display.trinket_cost.ToString();
             buy_button.visible = true;
             buy_button.RegisterCallback<ClickEvent>(evt => BuyTrinket(trinket_to_display, trinket_display));
         }

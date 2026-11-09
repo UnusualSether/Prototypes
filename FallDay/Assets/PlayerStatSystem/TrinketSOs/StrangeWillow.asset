@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ExplorersTrinket
   _trinket_name: Willow
   _trinket_namePTBR: Salgueiro
+  trinket_difficulty: 0
   _trinket_description: '"I wish for a million dollars."'
   _trinket_sprite:
   - {fileID: 370454264, guid: a0c503f403bf47e428a63e06022fade8, type: 3}
@@ -51,6 +52,6 @@ MonoBehaviour:
   - {fileID: -536225200, guid: a0c503f403bf47e428a63e06022fade8, type: 3}
   - {fileID: 867964957, guid: a0c503f403bf47e428a63e06022fade8, type: 3}
   - {fileID: -1000189735, guid: a0c503f403bf47e428a63e06022fade8, type: 3}
-  _acquired: 1
+  _acquired: 0
   _trinket_cost: 100
   soft_currency_gained: 3

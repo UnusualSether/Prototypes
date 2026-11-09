@@ -79,9 +79,12 @@ public class PlayerInstance
 
     #endregion
 
+
+    
     void PlayerKilledZombie(Zombie z)
     {
         DispatchEvent(TrinketEventType.OnKill);
+
     }
 
     void PlayerClearedRoom()
