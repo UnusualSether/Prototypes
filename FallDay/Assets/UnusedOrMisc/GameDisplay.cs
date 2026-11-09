@@ -491,6 +491,12 @@ public partial class GameDisplay : MonoBehaviour
 
     public void SetDirectionDisplayOn()
     {
+
+        if (handler.transition_to_new_level)
+        {
+            return;
+        }
+
         foreach (var dir_button in direction_and_reward_buttons)
         {
             

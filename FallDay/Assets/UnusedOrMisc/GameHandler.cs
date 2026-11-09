@@ -26,6 +26,7 @@ public partial class GameHandler : MonoBehaviour
     public ThreeDGameHandler three_d_game_handler;
 
     public LevelHandler level_handler = new LevelHandler();
+    public bool transition_to_new_level = false;
 
     public Reward[] reward_trio = new Reward[3];
 
@@ -1303,7 +1304,10 @@ public partial class GameHandler : MonoBehaviour
 
         if (level_cleared)
         {
+
             level_handler.LoadLevel(level_handler.current_level.next_level);
+            
+
         }
     }
 
