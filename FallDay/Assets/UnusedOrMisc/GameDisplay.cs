@@ -280,6 +280,9 @@ public partial class GameDisplay : MonoBehaviour
         handler.ZombieHurt -= ApplyZombieDamageNumber;
         handler.ZombieHealed -= ApplyZombieHealNumber;
 
+        PlayerInstance.PlayerHealed -= DisplayHeal;
+        PlayerInstance.PlayerGainedCurrency -= DisplayCurrencyGain;
+
         handler.BulletSelected -= PlayerClickSound;
 
         handler.ZombieDamaged -= ShakeZombieVisual;
