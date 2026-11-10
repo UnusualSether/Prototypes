@@ -153,3 +153,7 @@
 
 .statusOn {
 }
+
+.stalked {
+    background-color: rgb(240, 180, 180);
+}

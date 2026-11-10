@@ -16,6 +16,8 @@ MonoBehaviour:
   devToDevDescription: 'A basic zombie with ok hp and an ok phase
 
     timer.'
-  HP: 10
+  HP: 90
   Damage: 2
+  DamegeTimer: 1
   phaseTimer: 5
+  Zprefab: {fileID: 4019750633462361863, guid: fddb0ad8f7804db428d155860a9c1011, type: 3}

@@ -1,13 +1,6 @@
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Xml;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.Video;
 using System.Collections.Generic;
-using System.Collections;
-using System.Runtime.CompilerServices;
-
 public class TechDemoCamera : MonoBehaviour
 {
   

@@ -481,7 +481,7 @@ public class UIController : MonoBehaviour
     // Carrega a cena do jogo ao selecionar o nível
     private void StarGame(ClickEvent evt)
     {
-        SceneManager.LoadScene("PresentableText/PresentableTex");
+        SceneManager.LoadScene("Level1");
     }
     #endregion
 

@@ -82,8 +82,17 @@ public static class GlobalTrinketHolder
 public class Trinket : ScriptableObject
 {
 
+    enum TrinketDifficulty
+    {
+        Simple,
+        Intermediate,
+        Advanced
+    }
+
     [SerializeField] protected string _trinket_name;
     [SerializeField] protected string _trinket_namePTBR;
+
+    [SerializeField] TrinketDifficulty trinket_difficulty;
     public string trinket_name
     {
         get
@@ -129,7 +138,8 @@ public class Trinket : ScriptableObject
 {
     OnKill,
     OnRoomComplete,
-    OnTakeDamage
+    OnTakeDamage,
+    NewEncounterPulled
 }
 
 
@@ -144,6 +154,20 @@ public interface IEventTricket
 }
 
 
+public interface IVisualClassApplyingTrinket
+{
+    string VisualClass();
+}
+
+public interface IDamageFilterTrinket
+{ 
+
+   
+    
+    int ModifiedDamage(int damage, Zombie target);
+}
+
+
 /// <summary>
 /// Interface for all trinkets which apply passive stat boosts to the player's PlayerStats class.
 /// </summary>
@@ -154,6 +178,13 @@ public interface IPassiveTrinket
     void ApplyPassive(PlayerStats stats) { }
 }
 
+
+public interface IPullInfoFromEncounterTrinket
+{
+
+
+    void PullEncounterInfo(EncounterData encounter_data);
+}
 
 #endregion
 
@@ -188,6 +219,9 @@ public class OnKillTrinket : Trinket, IEventTricket
     }
 
 }
+
+
+
 
 
 /// <summary>
