@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
+using BetterSceneManagement;
 
 /// <summary>
 /// Controla toda a navegação de UI do menu principal:
@@ -65,6 +66,8 @@ public class UIController : MonoBehaviour
     // Botão que efetivamente carrega a cena do jogo (nível 1)
     private Button _openGame;
     #endregion
+    /*audiotest*/
+    [SerializeField] private UISoundManager _sound;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -173,6 +176,22 @@ public class UIController : MonoBehaviour
 
         // Início do jogo
         _openGame.RegisterCallback<ClickEvent>(StarGame);
+
+        //testes sound
+        if (_sound != null)
+        {
+            _sound.Bind(_openConfig, "Click");
+            _sound.Bind(_closeMenu, "Back");
+            _sound.Bind(_start, "Confirm");
+            _sound.Bind(_tReturn, "Confirm");
+            _sound.Bind(_openlevel, "Confirm");
+            _sound.Bind(_lReturn, "Confirm");
+            _sound.Bind(_tutorialy, "Confirm");
+            _sound.Bind(_tutorialn, "Confirm");
+            _sound.Bind(_nextpage, "Confirm");
+            _sound.Bind(_openGame, "Confirm");
+            _sound.Bind(_openShop, "Click");
+        }
     }
     #endregion
 
@@ -195,6 +214,12 @@ public class UIController : MonoBehaviour
             if (RightLang != null)
             {
                 RightLang.clicked += LanguageChange;
+            }
+            //test sound
+            if (_sound != null)
+            {
+                _sound.Bind(LeftLang, "Click");
+                _sound.Bind(RightLang, "Click");
             }
         }
 
@@ -481,7 +506,7 @@ public class UIController : MonoBehaviour
     // Carrega a cena do jogo ao selecionar o nível
     private void StarGame(ClickEvent evt)
     {
-        SceneManager.LoadScene("Level1");
+        BetterSceneManager.LoadScene("Level1", AnimationType.Door);
     }
     #endregion
 
