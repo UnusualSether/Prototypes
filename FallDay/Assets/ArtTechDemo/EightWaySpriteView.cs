@@ -19,7 +19,7 @@ public class EightWaySpriteView : MonoBehaviour
     public Transform directionSource;
 
     //////////////////////////////////
-    public bool debug = true;       //
+    private bool debug = false;       //
     //////////////////////////////////
 
     public void Start()

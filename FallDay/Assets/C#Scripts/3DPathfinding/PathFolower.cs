@@ -126,7 +126,7 @@ public class PathFolower : MonoBehaviour
                     float step = speed * Time.deltaTime;
                     transform.position = Vector3.MoveTowards(transform.position, nextPoint, step);
                     yield return new WaitForFixedUpdate();
-                } while ((gameObject.transform.position - nextPoint).magnitude > 0.02f);
+                } while ((gameObject.transform.position - nextPoint).magnitude > 0.1f);
             }
             /*
             foreach (Vector3 point in path)

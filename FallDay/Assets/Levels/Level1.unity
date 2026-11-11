@@ -208,7 +208,7 @@ MonoBehaviour:
   animator: {fileID: 127173199}
   cameraTransform: {fileID: 1444338430}
   directionSource: {fileID: 27993027}
-  debug: 1
+  debug: 0
 --- !u!212 &127173198
 SpriteRenderer:
   serializedVersion: 2
