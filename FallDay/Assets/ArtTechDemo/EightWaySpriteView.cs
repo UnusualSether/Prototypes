@@ -13,6 +13,7 @@ public class EightWaySpriteView : MonoBehaviour
     public Sprite[] directionalSprites = new Sprite[8]; // array of sprites for the 8 directions
 
     public Animator animator;
+    public PathFolower pathFolower;
 
     //public SpriteRenderer spriteRenderer;
     public Transform cameraTransform;
@@ -74,6 +75,15 @@ public class EightWaySpriteView : MonoBehaviour
         if(debug) Debug.Log($"[EightWaySpriteView] {this.gameObject.name} angle: {angle}, frameIndex: {frameIndex}");
 
         animator.SetInteger("Rotation", frameIndex);
+        UpdateWalkCondition();
+    }
 
+    private void UpdateWalkCondition()
+    {
+        if(pathFolower != null)
+        {
+            bool isWalking = pathFolower.IsWalking;
+            animator.SetBool("Walk", isWalking);
+        }
     }
 }

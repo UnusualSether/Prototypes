@@ -206,9 +206,9 @@ MonoBehaviour:
   - {fileID: -1494957870, guid: 73286d11018d21840b1ff7ebedfe4590, type: 3}
   - {fileID: 57809865, guid: db5d90f4f95263c4e92960c731ebbb1c, type: 3}
   animator: {fileID: 127173199}
+  pathFolower: {fileID: 1088469945}
   cameraTransform: {fileID: 1444338430}
   directionSource: {fileID: 27993027}
-  debug: 1
 --- !u!212 &127173198
 SpriteRenderer:
   serializedVersion: 2
@@ -278,7 +278,7 @@ Animator:
   m_GameObject: {fileID: 127173195}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a00c42c63994b664ebafaa6b0ecf8b9c, type: 2}
+  m_Controller: {fileID: 9100000, guid: 8df5076873f0ee24890a2c73a685b340, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -334,7 +334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87706a25d1e09c04dae4d53139d1c661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Grid_Generator
-  gridSize: {x: 30, y: 1, z: 30}
+  gridSize: {x: 50, y: 1, z: 50}
   gridCenterOffset: {x: 0, y: 2, z: 0}
   cellSize: 0.5
   cellHeightOverrite: 3

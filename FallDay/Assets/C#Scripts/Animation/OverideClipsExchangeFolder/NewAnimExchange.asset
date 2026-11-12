@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f2061c161f44a348b9afce026f30b56, type: 3}
   m_Name: NewAnimExchange
   m_EditorClassIdentifier: Assembly-CSharp::CharacterAnimationProfile
-  EnemyTipe: 
-  ClipList: []
+  EnemyTipe: Shambler
+  ClipList:
+  - BaseClip: {fileID: 0}
+    OverrideClip: {fileID: 0}
