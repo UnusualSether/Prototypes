@@ -813,6 +813,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e7cb636c1fcb4441bac7e41329c6ae9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TouchIndicatorUI
+  useTouchSimulation: 0
   size: 120
   frames:
   - {fileID: -546749573, guid: f5d5a68f43b1a544fa29a8e45a21b52a, type: 3}
@@ -1005,7 +1006,7 @@ Camera:
   m_GameObject: {fileID: 2115632392}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
+  m_ClearFlags: 4
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2

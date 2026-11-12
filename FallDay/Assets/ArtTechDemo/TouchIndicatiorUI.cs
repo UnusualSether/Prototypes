@@ -8,6 +8,11 @@ using TouchPhase = UnityEngine.InputSystem.TouchPhase;
 [RequireComponent(typeof(UIDocument))]
 public class TouchIndicatorUI : MonoBehaviour
 {
+
+    [Header("Editor")]
+    [SerializeField] private bool useTouchSimulation = true; // desmarque ao testar no Device Simulator
+
+    private bool _simulationEnabled;
     [Header("Visual")]
     [SerializeField] private float size = 120f;
 
@@ -17,7 +22,10 @@ public class TouchIndicatorUI : MonoBehaviour
     [SerializeField] private bool loop = true;
 
     [Header("Saída")]
-    [SerializeField] private int removeDelayMs = 400; // deve bater com a transition do USS
+    [SerializeField] private int removeDelayMs = 400;
+
+    
+
 
     private class Indicator
     {
@@ -35,14 +43,22 @@ public class TouchIndicatorUI : MonoBehaviour
         root = GetComponent<UIDocument>().rootVisualElement;
         EnhancedTouchSupport.Enable();
 #if UNITY_EDITOR
-        TouchSimulation.Enable();
+        if (useTouchSimulation)
+        {
+            TouchSimulation.Enable();
+            _simulationEnabled = true;
+        }
 #endif
     }
 
     void OnDisable()
     {
 #if UNITY_EDITOR
-        TouchSimulation.Disable();
+        if (_simulationEnabled)
+        {
+            TouchSimulation.Disable();
+            _simulationEnabled = false;
+        }
 #endif
         EnhancedTouchSupport.Disable();
 
@@ -56,7 +72,11 @@ public class TouchIndicatorUI : MonoBehaviour
 
     void Update()
     {
-        if (root == null || root.panel == null) return;
+        if (root == null || root.panel == null)
+        {
+            root = GetComponent<UIDocument>().rootVisualElement;
+            if (root == null || root.panel == null) return;
+        }
 
         seen.Clear();
 
@@ -66,6 +86,7 @@ public class TouchIndicatorUI : MonoBehaviour
             seen.Add(id);
 
             var screen = touch.screenPosition;
+            if (!float.IsFinite(screen.x) || !float.IsFinite(screen.y)) continue;
             var pos = RuntimePanelUtils.ScreenToPanel(root.panel,
                 new Vector2(screen.x, Screen.height - screen.y));
 
@@ -89,6 +110,8 @@ public class TouchIndicatorUI : MonoBehaviour
         }
 
        // Limpa indicadores de toques que sumiram sem a fase "Ended"
+
+
         toRemove.Clear();
         foreach (var id in indicators.Keys)
             if (!seen.Contains(id)) toRemove.Add(id);
@@ -101,7 +124,7 @@ public class TouchIndicatorUI : MonoBehaviour
 
         var el = new VisualElement();
         el.AddToClassList("touch-indicator");
-        el.pickingMode = PickingMode.Ignore;          // não bloqueia cliques nos botões
+        el.pickingMode = PickingMode.Ignore;          
         el.style.position = Position.Absolute;
         el.style.width = size;
         el.style.height = size;
@@ -126,7 +149,7 @@ public class TouchIndicatorUI : MonoBehaviour
         }
 
         root.Add(el);
-        el.BringToFront();                            // fica por cima do menu
+        el.BringToFront(); // fica por cima do menu
         indicators[id] = ind;
         Move(el, pos);
     }
