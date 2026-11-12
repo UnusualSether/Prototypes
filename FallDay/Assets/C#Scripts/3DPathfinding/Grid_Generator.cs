@@ -25,7 +25,7 @@ public class Grid_Generator : MonoBehaviour
     private Dictionary<Zombie, GameObject> ThreeD_Zombie = new();//Stores pairs of Zombie data and their corresponding 3D game objects for easy access and management>
     
     ////////////////////////////////////
-    /**/ public bool debug = true; /**/         // Debugging flag to enable or disable debug logs & other debug features
+    /**/ public bool debug = false; /**/         // Debugging flag to enable or disable debug logs & other debug features
     ////////////////////////////////////
 
 
@@ -146,6 +146,7 @@ public class Grid_Generator : MonoBehaviour
         spawnPosition = grid.CellWorldPosition(x, 0, z);
         generateEnemy(zombie, spawnPosition);
     }
+    int Num = 0; // Variable to keep track of the number of spawned enemies for naming purposes
     private void generateEnemy(Zombie zombie, Vector3 spawnPosition)
     {
         GameObject spawnedEnemy;
@@ -153,7 +154,8 @@ public class Grid_Generator : MonoBehaviour
 
         Enemy3dBehaviour Enemy3dBehaviour;
         PathFolower pathFolowerComponer;
-
+        spawnedEnemy.name = zombie.enemyData.Zprefab.name + "_" + Num;
+        Num++;
         Enemy3dBehaviour = spawnedEnemy.GetComponent<Enemy3dBehaviour>();
         pathFolowerComponer = spawnedEnemy.GetComponent<PathFolower>();
         ThreeD_Zombie.Add(zombie, spawnedEnemy);

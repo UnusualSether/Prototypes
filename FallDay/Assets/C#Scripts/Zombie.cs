@@ -22,6 +22,8 @@ public class Zombie
     public double Diff = 0;
     public string EnemyType;
 
+    public Enemy3dBehaviour zombie_3d_space;
+
     private float PhT1 = 0;
     private bool IsFirstUpdate = true;
     public Difficulty difficulty;
@@ -155,6 +157,10 @@ public class Zombie
         }
     }
 
+    public void Pushback()
+    {
+        zombie_3d_space.Pushback3DSpace();
+    }
     public void DealDamage()
     {
         RunOnDealDamageEvents();
