@@ -148,34 +148,51 @@ public class PathFolower : MonoBehaviour
 
     private IEnumerator WalkToNextPoint(Vector3 nextPoint, Action endCall)
     {
-        // Move the object towards the next point in the path
-        IsWalking = true;   // Set the walking flag to true to indicate that the object is currently walking along the path
-        do
+        IsWalking = true;
+
+        // 1. A 'while' loop is safer than 'do-while' in case the object is already at the destination.
+        // 2. Vector3.MoveTowards automatically clamps at the exact target without overshooting, 
+        // so checking for exact inequality is completely safe and avoids calculating magnitudes.
+        while (transform.position != nextPoint)
         {
+            // 3. Match Time.deltaTime with yield return null (Update loop)
             float step = speed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, nextPoint, step);
-            yield return new WaitForFixedUpdate();
-        } while ((gameObject.transform.position - nextPoint).magnitude > 0.1f);
-        IsWalking = false; // Set the walking flag to false to indicate that the object has reached the next point in the path
-        if (endCall != null)
-        {
-            endCall(); // Call the end callback function if it is not null
+
+            yield return null;
         }
+
+        IsWalking = false;
+
+        // 4. Simplify the callback invocation
+        endCall?.Invoke();
     }
     private IEnumerator TurnToTargetCoroutine(Vector3 target, Action endCall)
     {
-        Vector3 directionToTarget = (target - transform.position).normalized; // Calculate the direction to the target position
-        Quaternion targetRotation = Quaternion.LookRotation(directionToTarget); // Calculate the target rotation to face the target position
-        targetRotation = new Quaternion(0, targetRotation.y, 0, targetRotation.w); // Keep the y position constant to avoid tilting the object
-        while (Vector3.Dot(transform.forward.normalized, directionToTarget) < 0.1f) // While the object's forward direction is not aligned with the direction to the target position
+        // 1. Flatten the target position to the object's Y level before calculating direction.
+        // This safely prevents tilting without breaking quaternion mathematics.
+        Vector3 flatTarget = new Vector3(target.x, transform.position.y, target.z);
+        Vector3 directionToTarget = (flatTarget - transform.position).normalized;
+
+        // Prevent LookRotation from throwing an error if the object is exactly on the target
+        if (directionToTarget != Vector3.zero)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime); // Smoothly rotate towards the target rotation
-            yield return new WaitForFixedUpdate();
+            Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
+
+            // 2. Use Quaternion.Angle for a predictable threshold (e.g., stop when within 1 degree)
+            while (Quaternion.Angle(transform.rotation, targetRotation) > 1f)
+            {
+                // 3. Match Time.deltaTime with yield return null (Update loop)
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+                yield return null;
+            }
+
+            // Snap to the exact target rotation to prevent leftover micro-inaccuracies
+            transform.rotation = targetRotation;
         }
-        if (endCall != null)
-        {
-            endCall(); // Call the end callback function if it is not null
-        }
+
+        // 4. Simplify the callback with the null-conditional operator
+        endCall?.Invoke();
     }
     private void AfeterpathCall()
     {
