@@ -11,7 +11,7 @@ public partial class ZombieAnimatorProxy
     }
     */
     [Header("Scriptable Object References")]
-    public ProxyesInfoHolder proxyesInfoHolder;
+    public AlternativeAnimHolder proxyesInfoHolder;
     //private CharacterAnimationProfile activeProfileObject;
 
     private AnimatorOverrideController overrideController;

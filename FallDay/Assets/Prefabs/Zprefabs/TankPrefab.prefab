@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 6655423332425676602}
   - component: {fileID: 2826085645402498124}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: TankPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

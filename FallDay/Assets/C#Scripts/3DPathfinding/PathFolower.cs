@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Security.Cryptography;
 using UnityEngine;
 
 public class PathFolower : MonoBehaviour
@@ -20,7 +18,8 @@ public class PathFolower : MonoBehaviour
 
     private Vector3 targetPosition; // Target position to move towards
 
-    
+    [HideInInspector]
+    public bool IsWalking { get; private set; } = false; // Flag to indicate if the object is currently walking along the path
 
     private bool isThereTarget = false; // Control say there is a path terget start pos is always this game object
     private List<Vector3> path;
@@ -121,12 +120,15 @@ public class PathFolower : MonoBehaviour
                     yield return new WaitForFixedUpdate();
                 }
 
+                // Move the object towards the next point in the path
+                IsWalking = true;   // Set the walking flag to true to indicate that the object is currently walking along the path
                 do
                 {
                     float step = speed * Time.deltaTime;
                     transform.position = Vector3.MoveTowards(transform.position, nextPoint, step);
                     yield return new WaitForFixedUpdate();
                 } while ((gameObject.transform.position - nextPoint).magnitude > 0.1f);
+                IsWalking = false; // Set the walking flag to false to indicate that the object has reached the next point in the path
             }
             /*
             foreach (Vector3 point in path)

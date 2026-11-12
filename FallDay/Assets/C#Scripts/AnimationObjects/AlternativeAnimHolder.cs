@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu(fileName = "ProxyesInfoHolder", menuName = "Animation/Proxyes Info Holder")]
-public class ProxyesInfoHolder : ScriptableObject
+[CreateAssetMenu(fileName = "OverrideAnimHolder", menuName = "Animation/Override Anim Holder")]
+public class AlternativeAnimHolder : ScriptableObject
 {
     [Tooltip("All enemy variations _Warning: All the elements need to be in the same order as other lists.")]
     public List<CharacterAnimationProfile> characterAnimationGroups;
