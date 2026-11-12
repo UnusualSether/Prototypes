@@ -37,6 +37,11 @@ public class PlayerPathControl : MonoBehaviour
         pathFolower.canWalk();
     }
 
+    public void ShootZombie()
+    {
+
+    }
+
     public void AfterWalk()
     {
         afterWalkCall();
