@@ -160,7 +160,7 @@ public class Grid_Generator : MonoBehaviour
         pathFolowerComponer = spawnedEnemy.GetComponent<PathFolower>();
         ThreeD_Zombie.Add(zombie, spawnedEnemy);
         
-        Enemy3dBehaviour.Zombie3SetUP(zombie, gameHandler, player, grid, pathFolowerComponer);
+        Enemy3dBehaviour.Zombie3SetUP(zombie, gameHandler, player, this, pathFolowerComponer);
         Enemy3dBehaviour.startWalk();
     }
 

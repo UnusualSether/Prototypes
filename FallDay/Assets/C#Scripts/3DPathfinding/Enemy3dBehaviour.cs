@@ -33,7 +33,7 @@ public class Enemy3dBehaviour : MonoBehaviour //!!!!!! PLACE THIS IN A NOTHER SC
 
     public float minimum_attack_distance = 2f;
 
-    public void Zombie3SetUP(Zombie zombie, GameHandler gameHandler, GameObject player, Grid_ grid, PathFolower PathFollowerComponent) // Needs to be called by the initial spawner to pass the zombie and player references to this script
+    public void Zombie3SetUP(Zombie zombie, GameHandler gameHandler, GameObject player, Grid_Generator gridGen, PathFolower PathFollowerComponent) // Needs to be called by the initial spawner to pass the zombie and player references to this script
     {
         Vector3 t = this.transform.position; //StartPos
         Vector3 a = player.transform.position; //EndPos
@@ -45,7 +45,7 @@ public class Enemy3dBehaviour : MonoBehaviour //!!!!!! PLACE THIS IN A NOTHER SC
         whileControl = true;
         if (pathFolower == null) pathFolower = GetComponent<PathFolower>(); //in case the pathFolower is not set in the inspector, it will try to get it from the same gameObject
 
-        pathFolower.pathFolowerSetUp(grid, player.transform.position, 1, afterWalk);
+        pathFolower.pathFolowerSetUp(gridGen, player.transform.position, 1, afterWalk);
         activationGate = true;
     }
     public void startWalk() // This method is called by the 3DzombieGenerator when the zombie is spawned and is ready to start moving towards the player

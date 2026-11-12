@@ -97,7 +97,7 @@ public class PathFolower : MonoBehaviour
             {
                 if (path.Count > 0) // is there path to follow
                 {
-                    if ((gameObject.transform.position - path[path.Count - 1]).magnitude < 0.2f)
+                    if ((gameObject.transform.position - path[path.Count - 1]).magnitude < 0.2f) // Has Reached Target
                     {
                         if(debug) {Debug.Log($"[{gameObject.name}]Has gotten Close to the end of the path");}
                         AfeterpathCall();
@@ -123,7 +123,7 @@ public class PathFolower : MonoBehaviour
     }
 
     // Check Tiss 
-    asd;
+    
     private void WalkPath(int index = 0)
     {
         if (isThereTarget && targetPosition != Vector3.negativeInfinity) // Check if there is a target position to move towards (avoids null reference)
@@ -167,7 +167,7 @@ public class PathFolower : MonoBehaviour
         Vector3 directionToTarget = (target - transform.position).normalized; // Calculate the direction to the target position
         Quaternion targetRotation = Quaternion.LookRotation(directionToTarget); // Calculate the target rotation to face the target position
         targetRotation = new Quaternion(0, targetRotation.y, 0, targetRotation.w); // Keep the y position constant to avoid tilting the object
-        while (Vector3.Dot(transform.forward.normalized, directionToTarget) < 0.99f) // While the object's forward direction is not aligned with the direction to the target position
+        while (Vector3.Dot(transform.forward.normalized, directionToTarget) < 0.1f) // While the object's forward direction is not aligned with the direction to the target position
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime); // Smoothly rotate towards the target rotation
             yield return new WaitForFixedUpdate();
