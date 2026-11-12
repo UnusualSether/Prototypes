@@ -2393,7 +2393,7 @@ PrefabInstance:
     - target: {fileID: 1769905274112778612, guid: eaaffc07808ebaf4fae8b342b82799c9, type: 3}
       propertyPath: level_handler.current_level
       value: 
-      objectReference: {fileID: 11400000, guid: c921af29d9168c5448aecf8a5159e019, type: 2}
+      objectReference: {fileID: 11400000, guid: cb3fda8fa54fb6843933c3e358cbcaff, type: 2}
     - target: {fileID: 1769905274112778612, guid: eaaffc07808ebaf4fae8b342b82799c9, type: 3}
       propertyPath: possible_rewards.Array.size
       value: 2

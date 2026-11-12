@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6ac8083074c9534683ad679edef3a07, type: 3}
   m_Name: Level2
   m_EditorClassIdentifier: Assembly-CSharp::Level
-  number_of_rooms_to_complete: 5
+  number_of_rooms_to_complete: 1
   level_scene: Level2
   next_level: {fileID: 11400000, guid: cb3fda8fa54fb6843933c3e358cbcaff, type: 2}
   possible_rewards:
