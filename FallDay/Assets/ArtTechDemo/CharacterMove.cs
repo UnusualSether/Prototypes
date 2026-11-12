@@ -46,24 +46,12 @@ public class CharacterMove : MonoBehaviour
         charTransform = this.gameObject.GetComponent<Transform>();
         //navMesh = gameObject.GetComponent<NavMeshAgent>();
 
-        PPathCtlr.pathFolowerSetUp(Grid_Generator.grid, this, OnTargetReached);
+        PPathCtlr.pathFolowerSetUp(Grid_Generator, this, OnTargetReached);
     }
 
     //Subscribe the player move to next waypoint function to whenevr the gamehandler deetcts that we're suppose to be on rails/
     void OnEnable() { ThreeDGameHandler.RailStarted += FindNextWaypoint; ThreeDGameHandler.RoomSetupComplete += InitializeWaypoints; ThreeDGameHandler.PlayerSwipedOnChoice += PlayerSwipe; }
     void OnDisable() { ThreeDGameHandler.RailStarted -= FindNextWaypoint; ThreeDGameHandler.RoomSetupComplete -= InitializeWaypoints; ThreeDGameHandler.PlayerSwipedOnChoice -= PlayerSwipe; }
-
-
-    public void Update()
-    {
-
-
-        //CheckStatus();
-
-    }
-
-
-    
 
     public List<Waypoint> wayPointList = new List<Waypoint>();
 
@@ -72,16 +60,10 @@ public class CharacterMove : MonoBehaviour
 
     public void InitializeWaypoints()
     {
-
         var foundObjects = GameObject.FindGameObjectsWithTag("Waypoint");
-
-
-
 
         foreach (var item in foundObjects)
         {
-
-
             var newWaypoint = new Waypoint()
             {
                 wayPointPosition = item.transform.position,
@@ -109,9 +91,6 @@ public class CharacterMove : MonoBehaviour
 
 
         InitializeWaypoints();
-
-
-
     }
 
 
@@ -136,7 +115,6 @@ public class CharacterMove : MonoBehaviour
         GoToNextWaypoint(nextWayPoint);
 
         WayPointMaintenance();
-
     }
 
 
@@ -179,7 +157,6 @@ public class CharacterMove : MonoBehaviour
                 transform.position = Vector3.MoveTowards(transform.position, targetPos, step);
                 yield return null;
             }
-               
         }
 
         OnTargetReached();
@@ -194,36 +171,6 @@ public class CharacterMove : MonoBehaviour
         wayPointList.Clear();
         InitializeWaypoints();
     }
-    bool encounterGate = false;
-    private void CheckStatus()
-    {
-        //if (wayPointList.Count <= 0) return;
-
-        //Debug.Log($"[Player] Checking status, has path: {navMesh.hasPath}, path pending: {navMesh.pathPending}, remaining distance: {navMesh.remainingDistance}");
-        //bool hasPath = navMesh.hasPath || navMesh.pathPending;
-        //bool reachedDestination = !navMesh.pathPending
-        //                       && navMesh.hasPath
-        //                       && navMesh.remainingDistance < 0.1f;
-
-        //if (reachedDestination)
-        //{
-        //    if (debugisOn) Debug.Log($"[Player] Reached destination at {transform.position}");
-            //PlayerHasReachedNextPoint?.Invoke();
-            //PlayerWillClearList?.Invoke(wayPointList);
-           // wayPointList.Clear();
-           // InitializeWaypoints();
-
-        //}
-
-        //if (transform.position == wayPointList[0].wayPointPosition)
-        //{
-            //if (debugisOn) Debug.Log($"[Player] Reached waypoint at {transform.position}");
-            //InitializeWaypoints();
-        //}
-    }
-
-
-
 
     public bool PathBlocked()
     {
@@ -235,8 +182,6 @@ public class CharacterMove : MonoBehaviour
         {
             return true;
         }
-
-
 
         return false;
     }
@@ -252,8 +197,6 @@ public class CharacterMove : MonoBehaviour
         }
 
         return false;
-
-
 
     }
 
@@ -271,25 +214,6 @@ public class CharacterMove : MonoBehaviour
         //ChangeSprite(dir);
 
     }
-    /*
-    public void ChangeSprite(ThreeDGameHandler.SwipeDirection dir)
-    {
-        if (dir == ThreeDGameHandler.SwipeDirection.Up)
-        {
-            gameObject.transform.rotation = new Quaternion(0, 0, 0,0);
-        }
-
-        if (dir == ThreeDGameHandler.SwipeDirection.Right)
-        {
-            gameObject.transform.rotation = new Quaternion(0, 0.707106829f, 0, 0.707106829f);
-        }
-
-        if (dir == ThreeDGameHandler.SwipeDirection.Left)
-        {
-            gameObject.transform.rotation = new Quaternion(0, -0.707106829f, 0, 0.707106829f);
-        }
-    }
-    */
 
     public Waypoint FetchWayPoint(ThreeDGameHandler.SwipeDirection dir)
     {

@@ -16,7 +16,7 @@ public class PathFolower : MonoBehaviour
     public float speed = 0.0001f; //Speed of the object along the path
     public float rotationSpeed = 0.5f; // Speed of rotation when turning towards the next point in the path
 
-    private Vector3 targetPosition; // Target position to move towards
+    private Vector3 targetPosition = Vector3.negativeInfinity; // Target position to move towards
 
     [HideInInspector]
     public bool IsWalking { get; private set; } = false; // Flag to indicate if the object is currently walking along the path
@@ -29,9 +29,9 @@ public class PathFolower : MonoBehaviour
     /////////////////////////////
     private bool debug = true; // Debugging flag to enable or disable debug logs and other debug features
     /////////////////////////////
-    public void pathFolowerSetUp(Grid_ grid, Vector3 targetPosition, int ReducePathOveride, Action afterWalkCall)
+    public void pathFolowerSetUp(Grid_Generator gridGen, Vector3 targetPosition, int ReducePathOveride, Action afterWalkCall)
     {
-        this.grid = grid;
+        this.grid = gridGen.grid;
         pathFolowerSetUp(targetPosition, ReducePathOveride, afterWalkCall);
     }
     public void pathFolowerSetUp(Vector3 targetPosition, int ReducePathOveride, Action afterWalkCall)
@@ -81,70 +81,11 @@ public class PathFolower : MonoBehaviour
             if (debug) Debug.Log($"[{gameObject.name}]Path found with {path.Count} points");
         }
     }
-    private IEnumerator WalkPathCoroutine()
-    {
-
-        if (isThereTarget && targetPosition != Vector3.negativeInfinity) // Check if there is a target position to move towards (avoids null reference)
-        {
-            for (int i = 0; i < path.Count; i++)
-            {
-                float alinhamento;
-                bool needTurn = false;
-                Vector3 nextPoint = path[i];
-                Vector3 preveosPoint = i > 0 ? path[i - 1] : path[i];
-                Vector3 vectorBetweenPoints = Vector3.zero;
-                if(nextPoint != preveosPoint)
-                {
-                    vectorBetweenPoints = (nextPoint - preveosPoint).normalized;
-                    needTurn = true;
-                }
-
-                while ((gameObject.transform.position - nextPoint).magnitude > 0.02f && needTurn && Vector3.Dot(transform.forward.normalized, vectorBetweenPoints) < 0.99f)
-                {
-                    // Rotate the object to face the next point in the path
-                    Vector3 directionOfNextPoint = (nextPoint - transform.position).normalized;  // Calculate the direction to the next point
-
-
-                    Quaternion targetRotation = Quaternion.LookRotation(directionOfNextPoint);  // Calculate the target rotation to face the next point
-                    targetRotation = new Quaternion(0, targetRotation.y, 0, targetRotation.w); // Keep the y position constant to avoid tilting the object
-                    //transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, speed * Time.deltaTime); // Smoothly rotate towards the target rotation
-
-                    alinhamento = Vector3.Dot(transform.forward.normalized, vectorBetweenPoints); // Calculate the alignment between the object's forward direction and the direction to the next point
-
-
-                    if(alinhamento > 0.99f)
-                    {
-                        transform.rotation = targetRotation; // Set the object's forward direction to face the next point, keeping the y position constant
-                    }
-                    yield return new WaitForFixedUpdate();
-                }
-
-                // Move the object towards the next point in the path
-                IsWalking = true;   // Set the walking flag to true to indicate that the object is currently walking along the path
-                do
-                {
-                    float step = speed * Time.deltaTime;
-                    transform.position = Vector3.MoveTowards(transform.position, nextPoint, step);
-                    yield return new WaitForFixedUpdate();
-                } while ((gameObject.transform.position - nextPoint).magnitude > 0.1f);
-                IsWalking = false; // Set the walking flag to false to indicate that the object has reached the next point in the path
-            }
-            /*
-            foreach (Vector3 point in path)
-            {
-                while (true)
-                {
-                    yield return new WaitForFixedUpdate();
-                }
-            }
-            */
-            canWalk();
-        }
-    }
+    /// <summary>
+    /// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// </summary>
     // Emrgency check to see if the object is close enough to the start position of the path,
     // and if not, it will attempt to find a new path.
-    // This is a safety measure in case the path becomes invalid or the object is not close enough to the start position.
     public void canWalk()
     {
         if (isThereTarget && targetPosition != Vector3.negativeInfinity)
@@ -170,7 +111,7 @@ public class PathFolower : MonoBehaviour
                         //is close enough to stert pos
                         //start walk
                         if (debug) {Debug.Log($"[{gameObject.name}]Starting Walk Coroutine if is {(a - b).magnitude < 0.3f}");}
-                        StartCoroutine(WalkPathCoroutine());
+                        WalkPath();
                     }
                     else
                     {
@@ -178,6 +119,62 @@ public class PathFolower : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+
+    // Check Tiss 
+    asd;
+    private void WalkPath(int index = 0)
+    {
+        if (isThereTarget && targetPosition != Vector3.negativeInfinity) // Check if there is a target position to move towards (avoids null reference)
+        {
+            if (index < path.Count)
+            {
+                Vector3 nextPoint = path[index];
+                StartCoroutine(TurnToTargetCoroutine(nextPoint, () =>
+                {
+                    StartCoroutine(WalkToNextPoint(nextPoint, () =>
+                    {
+                        WalkPath(index + 1); // Recursively call WalkPath with the next index
+                    }));
+                }));
+            }
+            else
+            {
+                AfeterpathCall(); // Call the AfterWalkCall action when the path is completed
+            }
+        }
+    }
+
+    private IEnumerator WalkToNextPoint(Vector3 nextPoint, Action endCall)
+    {
+        // Move the object towards the next point in the path
+        IsWalking = true;   // Set the walking flag to true to indicate that the object is currently walking along the path
+        do
+        {
+            float step = speed * Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, nextPoint, step);
+            yield return new WaitForFixedUpdate();
+        } while ((gameObject.transform.position - nextPoint).magnitude > 0.1f);
+        IsWalking = false; // Set the walking flag to false to indicate that the object has reached the next point in the path
+        if (endCall != null)
+        {
+            endCall(); // Call the end callback function if it is not null
+        }
+    }
+    private IEnumerator TurnToTargetCoroutine(Vector3 target, Action endCall)
+    {
+        Vector3 directionToTarget = (target - transform.position).normalized; // Calculate the direction to the target position
+        Quaternion targetRotation = Quaternion.LookRotation(directionToTarget); // Calculate the target rotation to face the target position
+        targetRotation = new Quaternion(0, targetRotation.y, 0, targetRotation.w); // Keep the y position constant to avoid tilting the object
+        while (Vector3.Dot(transform.forward.normalized, directionToTarget) < 0.99f) // While the object's forward direction is not aligned with the direction to the target position
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime); // Smoothly rotate towards the target rotation
+            yield return new WaitForFixedUpdate();
+        }
+        if (endCall != null)
+        {
+            endCall(); // Call the end callback function if it is not null
         }
     }
     private void AfeterpathCall()
