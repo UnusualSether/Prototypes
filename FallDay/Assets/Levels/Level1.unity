@@ -161,6 +161,7 @@ GameObject:
   - component: {fileID: 127173196}
   - component: {fileID: 127173198}
   - component: {fileID: 127173197}
+  - component: {fileID: 127173199}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -204,9 +205,10 @@ MonoBehaviour:
   - {fileID: 552229298, guid: c8fa992e4c406894c9db610316291cbf, type: 3}
   - {fileID: -1494957870, guid: 73286d11018d21840b1ff7ebedfe4590, type: 3}
   - {fileID: 57809865, guid: db5d90f4f95263c4e92960c731ebbb1c, type: 3}
-  spriteRenderer: {fileID: 127173198}
+  animator: {fileID: 127173199}
   cameraTransform: {fileID: 1444338430}
   directionSource: {fileID: 27993027}
+  debug: 0
 --- !u!212 &127173198
 SpriteRenderer:
   serializedVersion: 2
@@ -266,6 +268,28 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!95 &127173199
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 127173195}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a00c42c63994b664ebafaa6b0ecf8b9c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &187929141
 GameObject:
   m_ObjectHideFlags: 0
@@ -1036,7 +1060,6 @@ GameObject:
   - component: {fileID: 1088469944}
   - component: {fileID: 1088469943}
   - component: {fileID: 1088469942}
-  - component: {fileID: 1088469940}
   - component: {fileID: 1088469946}
   - component: {fileID: 1088469945}
   m_Layer: 0
@@ -1046,28 +1069,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!195 &1088469940
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1088469939}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 0
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0.25
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!65 &1088469942
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1104,8 +1105,6 @@ MonoBehaviour:
   debugisOn: 1
   charTransform: {fileID: 1088469944}
   speed: 5
-  navMesh: {fileID: 1088469940}
-  surface: {fileID: 324746866}
   Grid_Generator: {fileID: 187929143}
   PPathCtlr: {fileID: 1088469946}
   wayPointList: []
@@ -1140,6 +1139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PathFolower
   speed: 2
+  rotationSpeed: 80
 --- !u!114 &1088469946
 MonoBehaviour:
   m_ObjectHideFlags: 0

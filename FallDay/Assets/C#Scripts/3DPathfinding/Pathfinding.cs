@@ -57,6 +57,7 @@ public class Pathfinding
 
     public List<Cell_> FindPath(int startX, int startY, int startZ, int endX, int endY, int endZ)
     {
+        if(debug) Debug.Log($"FindPath(); startX = {startX} startY = {startY} startZ = {startZ} endX = {endX} endY = {endY} endZ = {endZ}");
         Cell_ startCell = grid_.ReturnCell(startX, startY, startZ);//Get Start Cell
         Cell_ endCell = grid_.ReturnCell(endX, endY, endZ);//Get End Cell
 
@@ -172,7 +173,7 @@ public class Pathfinding
                 for (int varX = -1; varX <= 1; ++varX)
                 {
                     // All Nodes in a 3x3x3 grid around the current node, including diagonals and the current node itself
-                    Nabors.Add(grid_.ReturnCell(currentCell.x + varX, currentCell.y + varY, currentCell.z + varZ)); //
+                    Nabors.Add(grid_.ReturnCell(currentCell.x + varX, 0, currentCell.z + varZ)); //
                 }
             }
         }
@@ -184,7 +185,7 @@ public class Pathfinding
             {
                 for (int varX = -1; varX <= 1; ++varX) // -1, 0, 1 | x
                 {
-                    NaborSelectshift(Nabors, currentCell, varX, varY, varZ);
+                    NaborSelectshift(Nabors, currentCell, varX, 0, varZ);
                 }
             }
         }

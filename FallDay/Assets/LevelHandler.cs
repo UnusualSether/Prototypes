@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
+using BetterSceneManagement;
 
 [Serializable]
 public class LevelHandler
@@ -34,7 +35,7 @@ public class LevelHandler
     public void LoadLevel(Level level)
     {
 
-        SceneManager.LoadScene(level.level_scene);
+        BetterSceneManager.LoadScene(level.level_scene, AnimationType.Stairs);
 
 
         
