@@ -171,7 +171,10 @@ public class Grid_Generator : MonoBehaviour
         ThreeD_Zombie.Remove(zombie);
     }
 
-
+    public GameHandler GetGH()
+    {
+        return gameHandler;
+    }
 
 
     /////////////////////////////////////////////////////////////

@@ -44,13 +44,6 @@ public class EightWayAnimationCTLR : MonoBehaviour
 
     private void UpdateSprite()
     {
-        /*
-        if (directionalSprites == null || directionalSprites.Length == 0)
-        {
-            Debug.LogError($"{this.gameObject.name} has no sprites assigned to it!");
-            return;
-        } */
-
         int frameCount = 8; //directionalSprites.Length;
 
 
@@ -76,6 +69,10 @@ public class EightWayAnimationCTLR : MonoBehaviour
 
         animator.SetInteger("Rotation", frameIndex);
         UpdateWalkCondition();
+    }
+    public void Attack()
+    {
+        animator.SetTrigger("Attack");
     }
 
     private void UpdateWalkCondition()

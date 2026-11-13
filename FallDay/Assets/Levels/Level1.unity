@@ -1106,7 +1106,7 @@ MonoBehaviour:
   charTransform: {fileID: 1088469944}
   speed: 5
   Grid_Generator: {fileID: 187929143}
-  PPathCtlr: {fileID: 1088469946}
+  PathCtlr: {fileID: 1088469946}
   wayPointList: []
 --- !u!4 &1088469944
 Transform:
@@ -1152,6 +1152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 411318feeda01194399d822493703b38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPathControl
+  eightWayAnimationCTLR: {fileID: 127173197}
   pathFolower: {fileID: 1088469945}
 --- !u!4 &1090628604 stripped
 Transform:

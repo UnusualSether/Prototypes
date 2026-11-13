@@ -122,8 +122,12 @@ public class PathFolower : MonoBehaviour
         }
     }
 
-    // Check Tiss 
-    
+    public void aimIntoPosition(Vector3 target, Action endCall)
+    {
+        StartCoroutine(TurnToTargetCoroutine(target, endCall));
+    }
+
+
     private void WalkPath(int index = 0)
     {
         if (isThereTarget && targetPosition != Vector3.negativeInfinity) // Check if there is a target position to move towards (avoids null reference)

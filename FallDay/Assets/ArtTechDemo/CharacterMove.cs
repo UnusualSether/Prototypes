@@ -39,14 +39,14 @@ public class CharacterMove : MonoBehaviour
     //public NavMeshSurface surface;
 
     public Grid_Generator Grid_Generator;
-    public PlayerPathControl PPathCtlr;
+    public PlayerControl PathCtlr;
     
     public void Start()
     {
         charTransform = this.gameObject.GetComponent<Transform>();
         //navMesh = gameObject.GetComponent<NavMeshAgent>();
 
-        PPathCtlr.pathFolowerSetUp(Grid_Generator, this, OnTargetReached);
+        PathCtlr.pathFolowerSetUp(Grid_Generator, this, OnTargetReached);
     }
 
     //Subscribe the player move to next waypoint function to whenevr the gamehandler deetcts that we're suppose to be on rails/
@@ -131,7 +131,7 @@ public class CharacterMove : MonoBehaviour
 
     private void ManualMove(Waypoint wp)
     {
-        PPathCtlr.serchNewPathSetUp(wp.wayPointPosition);
+        PathCtlr.serchNewPathSetUp(wp.wayPointPosition);
         //StartCoroutine(CheckIfArrived(wp.wayPointPosition));
     }
 

@@ -96,9 +96,6 @@ public partial class GameHandler : MonoBehaviour
     //Sound detect events
     public event Action PieceConnected;
 
-    //Animação UI
-    public event Action<int> SucessfulHit;
-
     //Rewards
     public event Action NewRewardsGenerated;
     #endregion
@@ -1058,7 +1055,6 @@ public partial class GameHandler : MonoBehaviour
         //Debug.Log($"Did {totalDamage} damage with {numberUsed} {bulletType.name}s!");
 
         SucessfulShot?.Invoke(totalDamage);
-        SucessfulHit?.Invoke(totalDamage);
         ApplyDamage(totalDamage, targetZombie);
     }
 
