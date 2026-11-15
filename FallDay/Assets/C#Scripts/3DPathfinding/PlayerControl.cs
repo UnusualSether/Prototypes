@@ -10,16 +10,18 @@ public class PlayerControl : MonoBehaviour
     private CharacterMove characterMove;
     private Vector3 pathTargetPos;
     private GameHandler GH;
-    // Start is called once before the first execution
-    // of Update after the MonoBehaviour is created
+
+    bool isAiming = false;
 
     ////////////////////////////////////
-    /**/ private bool debug = true; /**/
+    /**/
+    private bool debug = true; /**/
     ////////////////////////////////////
 
     private void OnDisable()
     {
         this.GH.SucessfulShot -= ShootZombie;
+        this.GH.ZombieAimChanged -= ZombieToAimAt;
     }
 
     public void pathFolowerSetUp(Grid_Generator gridGen, CharacterMove characterMove, Action afterWalkCall)
@@ -42,11 +44,25 @@ public class PlayerControl : MonoBehaviour
         pathFolower.canWalk();
     }
 
+    public void ZombieToAimAt(Zombie zombie)
+    {
+        if (debug) Debug.Log("PlayerControl: ZombieToAimAt called");
+        gridGen.GetZombieObject(zombie,out GameObject zombieObject);
+        aimAtZombie(zombieObject.transform.position);
+    }
+
+    private void aimAtZombie(Vector3 zombiePos)
+    {
+        if (debug) Debug.Log("PlayerControl: aimAtZombie called");
+        isAiming = false;
+        pathFolower.aimIntoPosition(zombiePos, null, () => isAiming = true);
+    }
     public void ShootZombie(int a)
     {
-        //start turn corutine in path Follower
-        //Once the turn is complete, call the Shoot animation method in CharacterMove
-
-        eightWayAnimationCTLR.Attack();
+        if(isAiming)
+        {
+            if (debug) Debug.Log($"PlayerControl: ShootZombie isAiming = {isAiming}");
+            eightWayAnimationCTLR.Attack();
+        }
     }
 }

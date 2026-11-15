@@ -122,9 +122,9 @@ public class PathFolower : MonoBehaviour
         }
     }
 
-    public void aimIntoPosition(Vector3 target, Action endCall)
+    public void aimIntoPosition(Vector3 target, Action startCall = null, Action endCall = null)
     {
-        StartCoroutine(TurnToTargetCoroutine(target, endCall));
+        StartCoroutine(TurnToTargetCoroutine(target, startCall, endCall));
     }
 
 
@@ -171,7 +171,7 @@ public class PathFolower : MonoBehaviour
         // 4. Simplify the callback invocation
         endCall?.Invoke();
     }
-    private IEnumerator TurnToTargetCoroutine(Vector3 target, Action endCall)
+    private IEnumerator TurnToTargetCoroutine(Vector3 target, Action startCall = null, Action endCall = null)
     {
         // 1. Flatten the target position to the object's Y level before calculating direction.
         // This safely prevents tilting without breaking quaternion mathematics.
@@ -182,7 +182,7 @@ public class PathFolower : MonoBehaviour
         if (directionToTarget != Vector3.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
-
+            startCall?.Invoke();
             // 2. Use Quaternion.Angle for a predictable threshold (e.g., stop when within 1 degree)
             while (Quaternion.Angle(transform.rotation, targetRotation) > 1f)
             {

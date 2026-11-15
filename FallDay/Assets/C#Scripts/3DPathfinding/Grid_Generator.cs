@@ -111,7 +111,6 @@ public class Grid_Generator : MonoBehaviour
         c = 0;
         useAlternativeRoomIndexer = false; // Set the flag to use the RoomIndexer script
     }
-    ///
     
     public Vector3 getSpawnPosition() // Called when player Enters a new room, to get a spawn position for the zombie, based on the grid and the player position.
     {
@@ -176,6 +175,18 @@ public class Grid_Generator : MonoBehaviour
         return gameHandler;
     }
 
+    public void GetZombieObject(Zombie zombie, out GameObject zombieObject)
+    {
+        if (ThreeD_Zombie.TryGetValue(zombie, out GameObject foundZombieObject))
+        {
+            zombieObject = foundZombieObject;
+        }
+        else
+        {
+            Debug.LogError($"Zombie object not found for the given Zombie data: {zombie}");
+            zombieObject = null; // Return null if the zombie object is not found
+        }
+    }
 
     /////////////////////////////////////////////////////////////
     // ----------------- GridDebugFuiinction ----------------- //

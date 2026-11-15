@@ -83,8 +83,9 @@ public partial class GameHandler : MonoBehaviour
     //Zombie related events
     public event Action<Zombie> ZombieSpawned;
     public event Action<Zombie> ZombieDamaged;
+    public event Action<Zombie> ZombieAimChanged;
 
-    
+
     public event Action<Zombie> zPhaseChange;
     public event Action<Zombie> ZombieKilled;
     //public event Action<Zombie> ZombieIsClose;
@@ -640,6 +641,7 @@ public partial class GameHandler : MonoBehaviour
         if (ZombieList.Count == 0)
         {
             if(debugisOn) Debug.LogWarning("Tried to find a zombie to aim at but there are no zombies! Returning null.");
+            ZombieAimChanged?.Invoke(null);
             return null;
         }
         if (preferenceZombie != nulledPreference)
@@ -648,12 +650,13 @@ public partial class GameHandler : MonoBehaviour
             if (foundZombie == null)
             {
                 Debug.Log("Preference zombie did not return a valid zombie! Auto aiming fail safe activating...");
+                ZombieAimChanged?.Invoke(ZombieList.First());
                 return ZombieList.First();
             }
-
+            ZombieAimChanged?.Invoke(foundZombie);
             return foundZombie;
         }
-
+        ZombieAimChanged?.Invoke(ZombieList.First());
         return ZombieList.First();
     }
 
