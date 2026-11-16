@@ -1,5 +1,6 @@
 
 using System.Collections;
+using System.Drawing;
 using Unity.VisualScripting;
 using UnityEngine;
 // This script is attached to the 3D zombie prefab and handles its behavior in the game world
@@ -60,20 +61,20 @@ public class Enemy3dBehaviour : MonoBehaviour //!!!!!! PLACE THIS IN A NOTHER SC
     }
 
     public void Pushback3DSpace()
-    {
-        Vector3 player_pos = player.transform.position;
+    { 
 
-        Vector3 diff = player_pos - this.transform.position; diff.Normalize();
+        var distance_to_player = Vector3.Distance(transform.position, player.transform.position);
 
         if (Mathf.Abs(diff.x) > Mathf.Abs(diff.z))
         {
             transform.position = new Vector3(transform.position.x + (transform.position.x / 2),transform.position.y, transform.position.z);
         }
 
-        if (Mathf.Abs(diff.z) > Mathf.Abs(diff.x))
-        {
-            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + (transform.position.z / 2));
-        }
+        float max_push = 2.5f;
+
+        float strength = Mathf.Clamp01(1f - distance_to_player / max_range) * max_push;
+
+        transform.position += -transform.forward * strength;
 
         Debug.Log("Stopped coroutine");
         StopAllCoroutines();
