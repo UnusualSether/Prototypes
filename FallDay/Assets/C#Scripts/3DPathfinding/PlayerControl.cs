@@ -30,6 +30,7 @@ public class PlayerControl : MonoBehaviour
         this.characterMove = characterMove;
         this.GH = this.gridGen.GetGH();
         this.GH.SucessfulShot += ShootZombie;
+        this.GH.ZombieAimChanged += ZombieToAimAt;
         pathFolower.pathFolowerSetUp(gridGen, Vector3.negativeInfinity, 0, afterWalkCall);
     }
     public void serchNewPathSetUp(Vector3 targetPos)
