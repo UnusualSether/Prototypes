@@ -16,6 +16,7 @@ MonoBehaviour:
   _trinket_namePTBR: Salgueiro
   trinket_difficulty: 0
   _trinket_description: '"I wish for a million dollars."'
+  _trinket_effect_desc: Gain 3 coins after every encounter your complete.
   _trinket_sprite:
   - {fileID: 370454264, guid: a0c503f403bf47e428a63e06022fade8, type: 3}
   - {fileID: -1261184164, guid: a0c503f403bf47e428a63e06022fade8, type: 3}
