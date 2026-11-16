@@ -21,6 +21,9 @@ public class MenuTrinketEquipping : MonoBehaviour
 
     public Label currency_display;
 
+    public VisualElement trinket_info_display;
+
+    public Label trinket_info_display_label;
     public Label current_and_max_trinket_display;
 
     public Label coin_count;
@@ -54,9 +57,15 @@ public class MenuTrinketEquipping : MonoBehaviour
 
         var max_trinket_element = root.Q<VisualElement>("Trinked_Count");
 
+        trinket_info_display = root.Q<VisualElement>("trinket_info_box");
+
+        trinket_info_display_label = trinket_info_display.Q<Label>("trinket_info_label");
+        
         current_and_max_trinket_display = max_trinket_element.Q<Label>("Trinked_Count_Text");
 
         trinket_select_container = root.Q<VisualElement>("trinket_container");
+
+        trinket_info_display.Q<Button>("close").RegisterCallback<ClickEvent>(evt => CloseTrinketInfo());
 
         var coin_container = root.Q<VisualElement>("Coin_Count");
 
@@ -65,8 +74,6 @@ public class MenuTrinketEquipping : MonoBehaviour
         error_message_label = root.Q<Label>("error_message");
 
         BuildMenuOffData();
-
-        MoneyHolder.PlayerGainedSoftCurrencyDuringRun(5);
 
     }
     public void Update()
@@ -114,6 +121,8 @@ public class MenuTrinketEquipping : MonoBehaviour
 
         trinket_display.Q<Label>("trinket_desc").text = trinket_to_display.trinket_description;
 
+        trinket_display.Q<Button>("info_button").RegisterCallback<ClickEvent>(evt => DisplayTrinketInfo(trinket_to_display));
+
         trinket_display.Q<Toggle>("trinket_toggle").RegisterValueChangedCallback(evt => PassToEquipAndUnequip(trinket_to_display, trinket_display));
 
         if (GlobalTrinketHolder.player_chosen_trinkets.Contains(trinket_to_display))
@@ -145,6 +154,20 @@ public class MenuTrinketEquipping : MonoBehaviour
 
             TrinketName.Q<Label>("trinket_name").text = trinket.trinket_name;
         }
+    }
+
+    public void DisplayTrinketInfo(Trinket displayed_trinket)
+    {
+        trinket_info_display_label.text = displayed_trinket.trinket_effect_desc;
+
+        trinket_info_display.visible = true;
+    }
+
+    public void CloseTrinketInfo()
+    {
+        trinket_info_display.visible = false;
+
+        trinket_info_display_label.text = "";
     }
 
     void InsertInstantiatedIntoMain(VisualElement element)

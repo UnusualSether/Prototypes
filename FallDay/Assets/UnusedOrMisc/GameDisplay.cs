@@ -280,6 +280,9 @@ public partial class GameDisplay : MonoBehaviour
         handler.ZombieHurt -= ApplyZombieDamageNumber;
         handler.ZombieHealed -= ApplyZombieHealNumber;
 
+        PlayerInstance.PlayerHealed -= DisplayHeal;
+        PlayerInstance.PlayerGainedCurrency -= DisplayCurrencyGain;
+
         handler.BulletSelected -= PlayerClickSound;
 
         handler.ZombieDamaged -= ShakeZombieVisual;
@@ -740,7 +743,7 @@ public partial class GameDisplay : MonoBehaviour
             zombieDisplayElement.AddToClassList("zombieSpotOccupied");
 
             zombieDisplayList.Remove(assignedDisplay);
-            StartZombieAnimation(assignedDisplay);
+            //StartZombieAnimation(assignedDisplay);
             occupiedZombieDisplay.Add(assignedDisplay);
 
             cachedZombies = new List<Zombie>(handler.ZombieList);
@@ -781,7 +784,7 @@ public partial class GameDisplay : MonoBehaviour
             zombieDisplayElement.RemoveFromClassList("warning");
 
             zombieDisplayList.Add(assignedDisplay);
-            StopZombieAnimation(assignedDisplay);
+            //StopZombieAnimation(assignedDisplay);
             occupiedZombieDisplay.Remove(assignedDisplay);
 
 

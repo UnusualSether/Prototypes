@@ -1,0 +1,937 @@
+fileFormatVersion: 2
+guid: f26b6b19c877d7b4d887c50bad1ff4e3
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ExplosiveTrinketSheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 474
+        width: 115
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e5d83c62465bae47a643529ff66ff98
+      internalID: 1915693574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveTrinketSheet_1
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 475
+        width: 117
+        height: 147
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6959041f97807945ab0a68359babc92
+      internalID: 207324335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveTrinketSheet_2
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 474
+        width: 114
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a8b633eabc93a647b4ef3ed3e5e8a88
+      internalID: -151127128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveTrinketSheet_3
+      rect:
+        serializedVersion: 2
+        x: 376
+        y: 475
+        width: 108
+        height: 147
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e61e3124aa375140b2d556eb1604bf6
+      internalID: -812493990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveTrinketSheet_4
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 475
+        width: 98
+        height: 147
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9656740f6d386304fb5f3dc482227c80
+      internalID: -189857776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveTrinketSheet_5
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 475
+        width: 85
+        height: 147
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 095d9a16adb8d254c8b34f01bf59ea98
+      internalID: -288725043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveTrinketSheet_6
+      rect:
+        serializedVersion: 2
+        x: 697
+        y: 474
+        width: 70
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e31ff52eb7d95784f9ed14ff9f091c77
+      internalID: -236197993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveTrinketSheet_7
+      rect:
+        serializedVersion: 2
+        x: 777
+        y: 475
+        width: 51
+        height: 147
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa070cfdb146c5e4086b87a4cecda360
+      internalID: 1782087501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveTrinketSheet_8
+      rect:
+        serializedVersion: 2
+        x: 838
+        y: 475
+        width: 32
+        height: 147
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: babd07efefe71ae498a00ace87e83082
+      internalID: -1871223812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveTrinketSheet_9
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 475
+        width: 15
+        height: 147
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7deca577a741233489066482745ee579
+      internalID: -1030899770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveTrinketSheet_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 323
+        width: 11
+        height: 141
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bf35765ce9786947bed3788bd7d6d51
+      internalID: 156908830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveTrinketSheet_11
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 317
+        width: 32
+        height: 147
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21ed7ceb2e87ae941a441a2d5167003d
+      internalID: 514473632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveTrinketSheet_12
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 316
+        width: 52
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f115cb7f511826499c0f8dc118e40b7
+      internalID: -711791169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveTrinketSheet_13
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 317
+        width: 69
+        height: 147
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff03dc55f5c056d4586968efcf92cb34
+      internalID: 681544217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveTrinketSheet_14
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 316
+        width: 85
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e358c5e56b370744ca2ec571cd744840
+      internalID: 481243664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveTrinketSheet_15
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 317
+        width: 97
+        height: 147
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54a956f562e29c64db5f2a532e75509c
+      internalID: -689400084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveTrinketSheet_16
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 317
+        width: 107
+        height: 147
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 271c03d07a878264f89652ae0effca86
+      internalID: 1319569710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveTrinketSheet_17
+      rect:
+        serializedVersion: 2
+        x: 523
+        y: 316
+        width: 113
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80b6b4c3c821e6b40836844946a5dc15
+      internalID: 904079968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveTrinketSheet_18
+      rect:
+        serializedVersion: 2
+        x: 646
+        y: 317
+        width: 116
+        height: 147
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2ad3dfe37bdf124c9d17de8ff041900
+      internalID: -1090068759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveTrinketSheet_19
+      rect:
+        serializedVersion: 2
+        x: 772
+        y: 316
+        width: 115
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25a5205c50914e8468944ac5d1d2ec2d
+      internalID: -426578756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveTrinketSheet_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 159
+        width: 111
+        height: 147
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc43f2abeb41bea4d8e5700ce0a8ad12
+      internalID: 1274208517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveTrinketSheet_21
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 158
+        width: 103
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff7923ccdc72f0e4686630bea548feba
+      internalID: -1566025990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveTrinketSheet_22
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 159
+        width: 92
+        height: 147
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbaa3aac1414f5647879c4630475178e
+      internalID: -45445162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveTrinketSheet_23
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 159
+        width: 78
+        height: 147
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b075b24a35c617b4f969df2d5aedb41f
+      internalID: 1930308018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveTrinketSheet_24
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 158
+        width: 61
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d0d14ce489ede945bf03969c81a13ae
+      internalID: -372291950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveTrinketSheet_25
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 159
+        width: 42
+        height: 147
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a22e0c2641b3a464397e79777aed25a9
+      internalID: 1453012846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveTrinketSheet_26
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 159
+        width: 22
+        height: 147
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f413ea653013c474a9a73fb5ffd98f0b
+      internalID: -1315970131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveTrinketSheet_27
+      rect:
+        serializedVersion: 2
+        x: 579
+        y: 158
+        width: 13
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9858243a2f6e1314f868fba7b953be86
+      internalID: 1142270815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveTrinketSheet_28
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 161
+        width: 21
+        height: 145
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae6de7b2770a9c347aca201785fa265d
+      internalID: -337678746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveTrinketSheet_29
+      rect:
+        serializedVersion: 2
+        x: 633
+        y: 158
+        width: 41
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c814dbfa07237843a58c50ee1473236
+      internalID: 1450037557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveTrinketSheet_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1
+        width: 61
+        height: 147
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5c6f08cb17ddb84cab860d1e1871266
+      internalID: -967865445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveTrinketSheet_31
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 0
+        width: 78
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca015534bef76604094e53f5de3a4f9f
+      internalID: -23837102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveTrinketSheet_32
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 1
+        width: 92
+        height: 147
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c350af86455b6344692cfe20e8cae141
+      internalID: -655995240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveTrinketSheet_33
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 1
+        width: 104
+        height: 147
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a97371324d3156643899c2fcc42d0ce4
+      internalID: -1518692955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveTrinketSheet_34
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 1
+        width: 112
+        height: 147
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1eef545f3372064085e6cecf52dd91d
+      internalID: 718875156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: fe39a5a8bdc9c114093569d84c17cb4d
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      ExplosiveTrinketSheet_0: 1915693574
+      ExplosiveTrinketSheet_1: 207324335
+      ExplosiveTrinketSheet_10: 156908830
+      ExplosiveTrinketSheet_11: 514473632
+      ExplosiveTrinketSheet_12: -711791169
+      ExplosiveTrinketSheet_13: 681544217
+      ExplosiveTrinketSheet_14: 481243664
+      ExplosiveTrinketSheet_15: -689400084
+      ExplosiveTrinketSheet_16: 1319569710
+      ExplosiveTrinketSheet_17: 904079968
+      ExplosiveTrinketSheet_18: -1090068759
+      ExplosiveTrinketSheet_19: -426578756
+      ExplosiveTrinketSheet_2: -151127128
+      ExplosiveTrinketSheet_20: 1274208517
+      ExplosiveTrinketSheet_21: -1566025990
+      ExplosiveTrinketSheet_22: -45445162
+      ExplosiveTrinketSheet_23: 1930308018
+      ExplosiveTrinketSheet_24: -372291950
+      ExplosiveTrinketSheet_25: 1453012846
+      ExplosiveTrinketSheet_26: -1315970131
+      ExplosiveTrinketSheet_27: 1142270815
+      ExplosiveTrinketSheet_28: -337678746
+      ExplosiveTrinketSheet_29: 1450037557
+      ExplosiveTrinketSheet_3: -812493990
+      ExplosiveTrinketSheet_30: -967865445
+      ExplosiveTrinketSheet_31: -23837102
+      ExplosiveTrinketSheet_32: -655995240
+      ExplosiveTrinketSheet_33: -1518692955
+      ExplosiveTrinketSheet_34: 718875156
+      ExplosiveTrinketSheet_4: -189857776
+      ExplosiveTrinketSheet_5: -288725043
+      ExplosiveTrinketSheet_6: -236197993
+      ExplosiveTrinketSheet_7: 1782087501
+      ExplosiveTrinketSheet_8: -1871223812
+      ExplosiveTrinketSheet_9: -1030899770
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

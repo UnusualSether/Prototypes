@@ -28,7 +28,7 @@ Slider #unity-tracker {
     height: 29px;
     top: 20px;
     -unity-background-image-tint-color: rgb(255, 255, 255);
-    background-color: rgba(0, 0, 0, 0.04);
+    background-color: rgba(0, 0, 0, 0.1);
     border-left-color: rgb(0, 0, 0);
     border-right-color: rgb(0, 0, 0);
     border-top-color: rgb(0, 0, 0);
@@ -36,14 +36,26 @@ Slider #unity-tracker {
 }
 
 Slider #unity-dragger {
-    height: 44px;
+    height: 45px;
     top: 21px;
-    background-color: rgb(72, 64, 64);
+    background-color: rgb(0, 0, 0);
+    width:45px;
+    border-radius:10px;
+    border-width:2px;
+    
+    border-top-color:rgb(195, 60, 31);
+    border-bottom-color:rgb(104, 40, 5);
+    border-left-color:rgb(195, 60, 31);
+    border-right-color:rgb(195, 60, 31);
 }
 
 .unity-base-slider__fill {
     -unity-background-image-tint-color: rgb(255, 255, 255);
-    background-color: rgb(132, 126, 135);
+    background-color: rgb(132, 28, 6);
+
+    border-width:3px;
+    border-top-color:rgb(195, 60, 31);
+    border-bottom-color:rgb(104, 40, 5);
 }
 
 .white-text {
@@ -294,4 +306,20 @@ Slider #unity-dragger {
     display: none;
     opacity: 1;
     position: absolute;
+}
+
+
+.touch-indicator {
+    opacity: 1;
+    scale: 1 1;
+    transition-property: scale, opacity;
+    transition-duration: 0.15s, 0.35s;
+}
+
+.touch-indicator--hidden {
+    opacity: 0;
+    scale: 0.5 0.5;
+}
+.btn_setpainel:hover{
+    scale:.95;
 }

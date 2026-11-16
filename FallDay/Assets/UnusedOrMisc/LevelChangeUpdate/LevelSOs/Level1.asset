@@ -18,7 +18,6 @@ MonoBehaviour:
   possible_rewards:
   - {fileID: 11400000, guid: 6f7af05ace959b444a8c55e391b2a80d, type: 2}
   - {fileID: 11400000, guid: 1859cc4f9b7903f46989ce791ec1060a, type: 2}
-  - {fileID: 0}
   difficulty: {fileID: 0}
   possible_rooms:
   - {fileID: 11400000, guid: 4fdbbc16de754f74e905a2d12edbc4f1, type: 2}

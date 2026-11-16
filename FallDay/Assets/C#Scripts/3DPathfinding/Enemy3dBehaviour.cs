@@ -78,11 +78,23 @@ public class Enemy3dBehaviour : MonoBehaviour //!!!!!! PLACE THIS IN A NOTHER SC
         Debug.Log("Stopped coroutine");
         StopAllCoroutines();
 
-        RemakePath();
+        StartCoroutine(Stun(2));
 
-        state = ZombieState.Approaching;
+        
     }
 
+
+    public IEnumerator Stun(int stun_dur)
+    {
+        yield return new WaitForSeconds(stun_dur);
+
+
+        state = ZombieState.Approaching;
+
+        RemakePath();
+
+
+    }
 
     public void RemakePath()
     {

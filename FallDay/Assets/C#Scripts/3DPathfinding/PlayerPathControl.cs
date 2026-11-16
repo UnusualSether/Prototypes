@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerPathControl : MonoBehaviour
@@ -13,10 +12,9 @@ public class PlayerPathControl : MonoBehaviour
     // Start is called once before the first execution
     // of Update after the MonoBehaviour is created
 
-    /////////////////////////////////////
-    /**/
-    private bool debug = true; /**/
-    /////////////////////////////////////
+    ////////////////////////////////////
+    /**/ private bool debug = true; /**/
+    ////////////////////////////////////
 
     public void pathFolowerSetUp(Grid_ grid, CharacterMove characterMove, Action afterWalkCall)
     {

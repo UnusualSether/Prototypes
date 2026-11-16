@@ -16,6 +16,41 @@ MonoBehaviour:
   _trinket_namePTBR: Strange Box
   trinket_difficulty: 2
   _trinket_description: '"It has such sights to show you."'
-  _trinket_sprite: []
+  _trinket_sprite:
+  - {fileID: -1703441144, guid: 3bdc829588911f442a191885af0903ad, type: 3}
+  - {fileID: 1133969749, guid: 3bdc829588911f442a191885af0903ad, type: 3}
+  - {fileID: 1172828235, guid: 3bdc829588911f442a191885af0903ad, type: 3}
+  - {fileID: 1339188310, guid: 3bdc829588911f442a191885af0903ad, type: 3}
+  - {fileID: 742231560, guid: 3bdc829588911f442a191885af0903ad, type: 3}
+  - {fileID: -578109962, guid: 3bdc829588911f442a191885af0903ad, type: 3}
+  - {fileID: -213173084, guid: 3bdc829588911f442a191885af0903ad, type: 3}
+  - {fileID: 798678828, guid: 3bdc829588911f442a191885af0903ad, type: 3}
+  - {fileID: 1446946425, guid: 3bdc829588911f442a191885af0903ad, type: 3}
+  - {fileID: 1751026967, guid: 3bdc829588911f442a191885af0903ad, type: 3}
+  - {fileID: 629135813, guid: 3bdc829588911f442a191885af0903ad, type: 3}
+  - {fileID: -1847227918, guid: 3bdc829588911f442a191885af0903ad, type: 3}
+  - {fileID: 1492660623, guid: 3bdc829588911f442a191885af0903ad, type: 3}
+  - {fileID: 1588112456, guid: 3bdc829588911f442a191885af0903ad, type: 3}
+  - {fileID: -1469656797, guid: 3bdc829588911f442a191885af0903ad, type: 3}
+  - {fileID: -755926752, guid: 3bdc829588911f442a191885af0903ad, type: 3}
+  - {fileID: 1689951441, guid: 3bdc829588911f442a191885af0903ad, type: 3}
+  - {fileID: -1095822627, guid: 3bdc829588911f442a191885af0903ad, type: 3}
+  - {fileID: -391697819, guid: 3bdc829588911f442a191885af0903ad, type: 3}
+  - {fileID: -868983529, guid: 3bdc829588911f442a191885af0903ad, type: 3}
+  - {fileID: 375228724, guid: 3bdc829588911f442a191885af0903ad, type: 3}
+  - {fileID: 896292001, guid: 3bdc829588911f442a191885af0903ad, type: 3}
+  - {fileID: -1607637957, guid: 3bdc829588911f442a191885af0903ad, type: 3}
+  - {fileID: 1669107862, guid: 3bdc829588911f442a191885af0903ad, type: 3}
+  - {fileID: -394534654, guid: 3bdc829588911f442a191885af0903ad, type: 3}
+  - {fileID: 393964590, guid: 3bdc829588911f442a191885af0903ad, type: 3}
+  - {fileID: -119366744, guid: 3bdc829588911f442a191885af0903ad, type: 3}
+  - {fileID: 1250647082, guid: 3bdc829588911f442a191885af0903ad, type: 3}
+  - {fileID: -1709686251, guid: 3bdc829588911f442a191885af0903ad, type: 3}
+  - {fileID: 1650974990, guid: 3bdc829588911f442a191885af0903ad, type: 3}
+  - {fileID: -390370620, guid: 3bdc829588911f442a191885af0903ad, type: 3}
+  - {fileID: 1284861764, guid: 3bdc829588911f442a191885af0903ad, type: 3}
+  - {fileID: 1202334070, guid: 3bdc829588911f442a191885af0903ad, type: 3}
+  - {fileID: 2131451602, guid: 3bdc829588911f442a191885af0903ad, type: 3}
+  - {fileID: -771025318, guid: 3bdc829588911f442a191885af0903ad, type: 3}
   _acquired: 1
   _trinket_cost: 0

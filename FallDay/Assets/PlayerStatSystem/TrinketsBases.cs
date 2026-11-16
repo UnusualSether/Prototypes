@@ -115,6 +115,9 @@ public class Trinket : ScriptableObject
     [SerializeField] protected string _trinket_description;
     public string trinket_description { get => _trinket_description; set => _trinket_description = value; }
 
+    [SerializeField] protected string _trinket_effect_desc;
+    public string trinket_effect_desc { get => _trinket_effect_desc; set => _trinket_effect_desc = value; }
+
     [SerializeField] protected Sprite[] _trinket_sprite;
     public Sprite[] trinket_sprite => _trinket_sprite;
 
