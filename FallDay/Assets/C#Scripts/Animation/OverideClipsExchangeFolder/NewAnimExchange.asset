@@ -16,3 +16,7 @@ MonoBehaviour:
   ClipList:
   - BaseClip: {fileID: 0}
     OverrideClip: {fileID: 0}
+  - BaseClip: {fileID: 0}
+    OverrideClip: {fileID: 0}
+  - BaseClip: {fileID: 0}
+    OverrideClip: {fileID: 0}
