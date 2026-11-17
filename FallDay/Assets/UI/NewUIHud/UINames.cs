@@ -60,4 +60,7 @@ public static class UINames
     // Atenção: o código original usava "tutorial-Menu_on" (t minúsculo) na janela da pergunta.
     
     public const string TutorialQuestionOn = "tutorial-Menu_on";
+
+    //vibração
+    public const string HapticsToggle = "HapticsToggle";
 }

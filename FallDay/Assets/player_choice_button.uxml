@@ -1,6 +1,6 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <engine:Button text="" style="background-image: url(&quot;project://database/Assets/ArtTechDemo/Sprites/BathRoom%20Floor.png?fileID=2800000&amp;guid=aa872b9d8bebc8d479b53fba0df2a882&amp;type=3#BathRoom Floor&quot;);">
-        <engine:Image name="reward_image"/>
+    <engine:Button text="" style="background-image: url(&quot;project://database/Assets/ArtTechDemo/Sprites/BathRoom%20Floor.png?fileID=2800000&amp;guid=aa872b9d8bebc8d479b53fba0df2a882&amp;type=3#BathRoom Floor&quot;); width: 250px; height: 250px; border-left-color: rgb(250, 235, 215); border-right-color: rgb(250, 235, 215); border-top-color: rgb(250, 235, 215); border-bottom-color: rgb(250, 235, 215); border-top-width: 6px; border-right-width: 6px; border-bottom-width: 6px; border-left-width: 6px; border-top-left-radius: 30px; border-top-right-radius: 30px; border-bottom-right-radius: 30px; border-bottom-left-radius: 30px; align-self: center; justify-content: space-between; align-items: center; align-content: center;">
+        <engine:Image name="reward_image" style="width: 250px; height: 250px; align-self: center; align-content: stretch; align-items: center; justify-content: space-around;"/>
         <engine:Label text="&#10;" name="name_of_reward" style="-unity-text-align: upper-center;"/>
         <engine:Label text="&#10;" name="reward_description" style="-unity-text-align: upper-center;"/>
         <engine:Image name="direction_arrow"/>
