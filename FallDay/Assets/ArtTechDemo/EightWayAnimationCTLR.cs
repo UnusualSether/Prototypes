@@ -16,7 +16,8 @@ public class EightWayAnimationCTLR : MonoBehaviour
     public PathFolower pathFolower;
 
     //public SpriteRenderer spriteRenderer;
-    public Transform cameraTransform;
+    private Transform cameraTransform;
+    [Header("Transform used to determine the forward direction of the sprite")]
     public Transform directionSource;
 
     //////////////////////////////////

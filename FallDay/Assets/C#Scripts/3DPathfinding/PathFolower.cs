@@ -135,7 +135,7 @@ public class PathFolower : MonoBehaviour
             if (index < path.Count)
             {
                 Vector3 nextPoint = path[index];
-                StartCoroutine(TurnToTargetCoroutine(nextPoint, () =>
+                StartCoroutine(TurnToTargetCoroutine(nextPoint, null, () =>
                 {
                     StartCoroutine(WalkToNextPoint(nextPoint, () =>
                     {
