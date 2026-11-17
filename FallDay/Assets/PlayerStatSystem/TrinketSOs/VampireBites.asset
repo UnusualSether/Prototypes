@@ -16,6 +16,7 @@ MonoBehaviour:
   _trinket_namePTBR: Mordida de Vampiro
   trinket_difficulty: 0
   _trinket_description: '"I woke up with a few mosquito bites on my neck this morning."'
+  _trinket_effect_desc: Regenerate 5 HP after killing an enemy.
   _trinket_sprite:
   - {fileID: 1785110927, guid: ac57c1d6f2f06e140a108067e209516d, type: 3}
   - {fileID: 1901993828, guid: ac57c1d6f2f06e140a108067e209516d, type: 3}
