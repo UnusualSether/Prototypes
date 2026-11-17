@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StalkerTrinket
   _trinket_name: Discolored Mask
   _trinket_namePTBR: 
+  trinket_difficulty: 0
   _trinket_description: For all your stalking needs.
+  _trinket_effect_desc: 
   _trinket_sprite:
   - {fileID: -859730689, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
   - {fileID: -1318377883, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
@@ -59,10 +61,12 @@ MonoBehaviour:
     PhaseTimer: 5
     Diff: 0
     EnemyType: Shambler
+    zombie_3d_space: {fileID: 0}
     difficulty: 0
     damage: 2
     debugisOn: 0
     handler: {fileID: 0}
+    effects: []
     phase: 3
     currentDisplay: 0
   - id: 0
@@ -70,10 +74,12 @@ MonoBehaviour:
     PhaseTimer: 5
     Diff: 0
     EnemyType: Shambler
+    zombie_3d_space: {fileID: 0}
     difficulty: 0
     damage: 2
     debugisOn: 0
     handler: {fileID: 0}
+    effects: []
     phase: 3
     currentDisplay: 0
   - id: 0
@@ -81,10 +87,12 @@ MonoBehaviour:
     PhaseTimer: 5
     Diff: 0
     EnemyType: Shambler
+    zombie_3d_space: {fileID: 0}
     difficulty: 0
     damage: 2
     debugisOn: 0
     handler: {fileID: 0}
+    effects: []
     phase: 2
     currentDisplay: 0
   - id: 0
@@ -92,10 +100,12 @@ MonoBehaviour:
     PhaseTimer: 5
     Diff: 0
     EnemyType: Shambler
+    zombie_3d_space: {fileID: 0}
     difficulty: 0
     damage: 2
     debugisOn: 0
     handler: {fileID: 0}
+    effects: []
     phase: 3
     currentDisplay: 0
   - id: 0
@@ -103,10 +113,12 @@ MonoBehaviour:
     PhaseTimer: 5
     Diff: 0
     EnemyType: Shambler
+    zombie_3d_space: {fileID: 0}
     difficulty: 0
     damage: 2
     debugisOn: 0
     handler: {fileID: 0}
+    effects: []
     phase: 1
     currentDisplay: 0
   - id: 0
@@ -114,10 +126,12 @@ MonoBehaviour:
     PhaseTimer: 5
     Diff: 0
     EnemyType: Shambler
+    zombie_3d_space: {fileID: 0}
     difficulty: 0
     damage: 2
     debugisOn: 0
     handler: {fileID: 0}
+    effects: []
     phase: 2
     currentDisplay: 0
   stalked_damage_bonus: 3

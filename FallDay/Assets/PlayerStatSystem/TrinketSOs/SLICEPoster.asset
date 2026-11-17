@@ -16,6 +16,7 @@ MonoBehaviour:
   _trinket_namePTBR: 
   trinket_difficulty: 1
   _trinket_description: '"Heard the movie was based off true events."'
+  _trinket_effect_desc: 
   _trinket_sprite:
   - {fileID: -328770090, guid: 24f55e67c45a6af47869f8bb524029da, type: 3}
   - {fileID: -736888120, guid: 24f55e67c45a6af47869f8bb524029da, type: 3}
