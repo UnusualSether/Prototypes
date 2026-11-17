@@ -75,8 +75,8 @@ public partial class GameHandler : MonoBehaviour
     public event Action<int> SucessfulShot;
 
     public event Action<int, Zombie> ZombieHurt;
-
     public event Action<int, Zombie> ZombieHealed;
+    public event Action<Zombie> ChangedPreferdZombie;
     public event Action FailedShot;
     public event Action<VisualElement> BulletSelected;
 
@@ -114,7 +114,7 @@ public partial class GameHandler : MonoBehaviour
     public int zombieHP;
     private int stachedZombieID;
 
-    public int preferenceZombie;
+    public int preferenceZombie {  get; private set; }
     public int nulledPreference = -1;
 
     public int SelectedZombie;
@@ -636,6 +636,13 @@ public partial class GameHandler : MonoBehaviour
             //SelectedZombie = ZombieList.First().id;
         }
     }
+    public void ChangePrefrenceZombie(int newPreference)
+    {
+        preferenceZombie = newPreference;
+        ChangedPreferdZombie?.Invoke(ZombieList[preferenceZombie]);
+        zombieToAimAt(); // call this to update the aim target after changing preference
+    }
+
     public Zombie zombieToAimAt()
     {
         if (ZombieList.Count == 0)

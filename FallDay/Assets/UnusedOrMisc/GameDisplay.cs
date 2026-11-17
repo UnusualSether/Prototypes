@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -73,12 +72,8 @@ public partial class GameDisplay : MonoBehaviour
 
             icon = root.Query<Image>("icon");
 
-
         }
 
-        
-
-       
 
 
         public void Appear()
@@ -115,8 +110,6 @@ public partial class GameDisplay : MonoBehaviour
 
             reward_icon = displayElement.Q<Image>("reward_image");
 
-
-
         }
 
         public void UpdateRewardDisplay()
@@ -145,23 +138,9 @@ public partial class GameDisplay : MonoBehaviour
             {
                 reward_name.text = displayed_reward.reward_name;
             }
-
-
-
         }
-
-
-
-
-
     }
 
-    private void Awake()
-    {
-
-
-
-    }
     private void OnEnable()
     {
 
@@ -677,8 +656,8 @@ public partial class GameDisplay : MonoBehaviour
 
         int preferenceZombieID = occupiedZombieDisplay.Find(e => e.displayElement == selectedElement).displayedZombie.id;
 
-        handler.preferenceZombie = preferenceZombieID;
-
+        handler.ChangePrefrenceZombie(preferenceZombieID);
+        
         ClickedCrosshair(selectedElement);
     }
 

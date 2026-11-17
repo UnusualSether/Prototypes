@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 2161411980007192437}
   - component: {fileID: 2911725528273654127}
   m_Layer: 0
-  m_Name: ShamblerPrefab
+  m_Name: ShamblerBataPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

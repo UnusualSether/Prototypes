@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 6102984875840490107}
   - component: {fileID: 5795788025339709590}
   m_Layer: 0
-  m_Name: RunnerPrefab
+  m_Name: RunnerBataPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
