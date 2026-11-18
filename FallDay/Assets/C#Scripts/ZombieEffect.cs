@@ -1,8 +1,4 @@
 using System;
-using System.Security.Cryptography;
-using UnityEditor.ShaderKeywordFilter;
-using UnityEngine;
-using UnityEngine.Localization.SmartFormat.Utilities;
 
 
 
