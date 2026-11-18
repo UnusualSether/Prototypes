@@ -10,7 +10,7 @@ public class EightWayAnimationCTLR : MonoBehaviour
     /// The character's 8 sprites will be placed in this array in the following order:
     ///0 = front, 1 = front-right, 2 = right, 3 = right-back, 4 = back, 5 = back-left, 6 = left, 7 = left-front.
     /// </summary>
-    public Sprite[] directionalSprites = new Sprite[8]; // array of sprites for the 8 directions
+    //public Sprite[] directionalSprites = new Sprite[8]; // array of sprites for the 8 directions
 
     public Animator animator;
     public PathFolower pathFolower;
