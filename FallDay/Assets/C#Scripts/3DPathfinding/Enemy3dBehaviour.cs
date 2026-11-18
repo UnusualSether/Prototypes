@@ -62,13 +62,8 @@ public class Enemy3dBehaviour : MonoBehaviour //!!!!!! PLACE THIS IN A NOTHER SC
 
     public void Pushback3DSpace()
     { 
-
+        float max_range = 5f;
         var distance_to_player = Vector3.Distance(transform.position, player.transform.position);
-
-        if (Mathf.Abs(diff.x) > Mathf.Abs(diff.z))
-        {
-            transform.position = new Vector3(transform.position.x + (transform.position.x / 2),transform.position.y, transform.position.z);
-        }
 
         float max_push = 2.5f;
 
