@@ -8,6 +8,8 @@ public class TrinkedPanel : UIPanel
     private readonly Button _return;
     private readonly Button _openLevel;
     private readonly Action _onOpenLevel;
+    /*carrossel*/
+    private readonly CarouselSnap _carousel;
 
     public TrinkedPanel(VisualElement root, UISoundManager sound, Action onOpenLevel)
         : base(root, UINames.TrinkedWindow, UINames.TrinkedOn, UINames.TrinkedOff)
@@ -25,6 +27,8 @@ public class TrinkedPanel : UIPanel
         UIUtils.BindSound(sound, _play, "Confirm");
         UIUtils.BindSound(sound, _return, "Confirm");
         UIUtils.BindSound(sound, _openLevel, "Confirm");
+        /*carrossel*/
+        _carousel = new CarouselSnap(root.Q<ScrollView>(UINames.TrinketContainer));
     }
 
     private void OnPlay(ClickEvent evt) => Show();
@@ -37,5 +41,8 @@ public class TrinkedPanel : UIPanel
         _play?.UnregisterCallback<ClickEvent>(OnPlay);
         _return?.UnregisterCallback<ClickEvent>(OnReturn);
         _openLevel?.UnregisterCallback<ClickEvent>(OnOpenLevel);
+
+        /*carrossel*/
+        _carousel?.Dispose();
     }
 }

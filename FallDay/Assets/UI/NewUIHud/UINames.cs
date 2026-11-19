@@ -63,4 +63,7 @@ public static class UINames
 
     //vibração
     public const string HapticsToggle = "HapticsToggle";
+
+    //carrossel
+    public const string TrinketContainer = "trinket_container";
 }
