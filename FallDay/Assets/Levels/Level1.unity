@@ -196,18 +196,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc16ebeeda2f1e43bc69c1e24fe7ba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EightWaySpriteView
-  directionalSprites:
-  - {fileID: -1673792648, guid: d2ebb430f9a731b4da544aa5eb2a1554, type: 3}
-  - {fileID: -1673792648, guid: d2ebb430f9a731b4da544aa5eb2a1554, type: 3}
-  - {fileID: -935531765, guid: 22873b447a6316c4ea759710c607dc7c, type: 3}
-  - {fileID: 552229298, guid: c8fa992e4c406894c9db610316291cbf, type: 3}
-  - {fileID: 2132856581, guid: 5774e04817ae57d408a9a89512c3d262, type: 3}
-  - {fileID: 552229298, guid: c8fa992e4c406894c9db610316291cbf, type: 3}
-  - {fileID: -1494957870, guid: 73286d11018d21840b1ff7ebedfe4590, type: 3}
-  - {fileID: 57809865, guid: db5d90f4f95263c4e92960c731ebbb1c, type: 3}
   animator: {fileID: 127173199}
   pathFolower: {fileID: 1088469945}
-  cameraTransform: {fileID: 1444338430}
   directionSource: {fileID: 27993027}
 --- !u!212 &127173198
 SpriteRenderer:
@@ -340,6 +330,7 @@ MonoBehaviour:
   cellHeightOverrite: 3
   gameHandler: {fileID: 2043720488}
   player: {fileID: 1088469939}
+  playerControl: {fileID: 1088469946}
   debug: 1
 --- !u!1 &258183357
 GameObject:
@@ -1139,7 +1130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PathFolower
   speed: 2
-  rotationSpeed: 80
+  rotationSpeed: 10
 --- !u!114 &1088469946
 MonoBehaviour:
   m_ObjectHideFlags: 0

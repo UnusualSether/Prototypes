@@ -7,7 +7,6 @@ public class PlayerControl : MonoBehaviour
     public PathFolower pathFolower;
 
     private Grid_Generator gridGen;
-    private CharacterMove characterMove;
     private Vector3 pathTargetPos;
     private GameHandler GH;
 
@@ -21,16 +20,13 @@ public class PlayerControl : MonoBehaviour
     private void OnDisable()
     {
         this.GH.SucessfulShot -= ShootZombie;
-        this.GH.ZombieAimChanged -= ZombieToAimAt;
     }
 
-    public void pathFolowerSetUp(Grid_Generator gridGen, CharacterMove characterMove, Action afterWalkCall)
+    public void pathFolowerSetUp(Grid_Generator gridGen, Action afterWalkCall)
     {
         this.gridGen = gridGen;
-        this.characterMove = characterMove;
         this.GH = this.gridGen.GetGH();
         this.GH.SucessfulShot += ShootZombie;
-        this.GH.ZombieAimChanged += ZombieToAimAt;
         pathFolower.pathFolowerSetUp(gridGen, Vector3.negativeInfinity, 0, afterWalkCall);
     }
     public void serchNewPathSetUp(Vector3 targetPos)
@@ -45,14 +41,7 @@ public class PlayerControl : MonoBehaviour
         pathFolower.canWalk();
     }
 
-    public void ZombieToAimAt(Zombie zombie)
-    {
-        if (debug) Debug.Log("PlayerControl: ZombieToAimAt called");
-        gridGen.GetZombieObject(zombie,out GameObject zombieObject);
-        aimAtZombie(zombieObject.transform.position);
-    }
-
-    private void aimAtZombie(Vector3 zombiePos)
+    public void aimAtZombie(Vector3 zombiePos)
     {
         if (debug) Debug.Log("PlayerControl: aimAtZombie called");
         isAiming = false;

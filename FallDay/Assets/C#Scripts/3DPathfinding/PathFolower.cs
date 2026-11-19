@@ -124,6 +124,7 @@ public class PathFolower : MonoBehaviour
 
     public void aimIntoPosition(Vector3 target, Action startCall = null, Action endCall = null)
     {
+        StopAllCoroutines();
         StartCoroutine(TurnToTargetCoroutine(target, startCall, endCall));
     }
 
@@ -134,6 +135,7 @@ public class PathFolower : MonoBehaviour
         {
             if (index < path.Count)
             {
+                StopAllCoroutines();
                 Vector3 nextPoint = path[index];
                 StartCoroutine(TurnToTargetCoroutine(nextPoint, null, () =>
                 {

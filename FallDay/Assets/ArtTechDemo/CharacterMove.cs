@@ -46,7 +46,7 @@ public class CharacterMove : MonoBehaviour
         charTransform = this.gameObject.GetComponent<Transform>();
         //navMesh = gameObject.GetComponent<NavMeshAgent>();
 
-        PathCtlr.pathFolowerSetUp(Grid_Generator, this, OnTargetReached);
+        PathCtlr.pathFolowerSetUp(Grid_Generator, OnTargetReached);
     }
 
     //Subscribe the player move to next waypoint function to whenevr the gamehandler deetcts that we're suppose to be on rails/
