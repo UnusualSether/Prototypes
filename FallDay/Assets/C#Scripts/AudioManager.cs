@@ -63,7 +63,7 @@ public class AudioManager : MonoBehaviour
         {
             
             gameHandler.PieceConnected += TocarTickConexao;
-            gameHandler.SucessfulHit += TocarSucessoLigacao; 
+            gameHandler.SucessfulShot += TocarSucessoLigacao; 
             gameHandler.FailedShot += TocarErroLigacao;
         }
     }
@@ -78,7 +78,7 @@ public class AudioManager : MonoBehaviour
         if (gameHandler != null)
         {
             gameHandler.PieceConnected -= TocarTickConexao;
-            gameHandler.SucessfulHit -= TocarSucessoLigacao;
+            gameHandler.SucessfulShot -= TocarSucessoLigacao;
             gameHandler.FailedShot -= TocarErroLigacao;
         }
     }

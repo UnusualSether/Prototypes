@@ -1,7 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class HealthDisplay : MonoBehaviour
 {
@@ -31,7 +29,17 @@ public class HealthDisplay : MonoBehaviour
 
         if(debugisOn) Debug.Log("HP, MaxHP, SizeX, SizeY, Damage, Heal: " + HP + ", " + MaxHP + ", " + SizeX + ", " + SizeY + ", " + Heal);
 
+        
+    }
+
+    public void OnEnable()
+    {
         GameHandler.PlayerTookDamage += CurrentHealth;
+    }
+
+    public void OnDisable()
+    {
+        GameHandler.PlayerTookDamage -= CurrentHealth;
     }
 
     void Update()

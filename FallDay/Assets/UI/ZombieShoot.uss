@@ -129,11 +129,11 @@
 
 .healingBullet {
     background-color: rgba(255, 255, 255, 0);
-    background-image: url("project://database/Assets/TestIcons/Plus%201st%2064px.png?fileID=2800000&guid=e2831f4e84c622842a61874ac3aef37c&type=3#Plus 1st 64px");
+    background-image: url("project://database/Assets/Sprites/BulletButtons/NewHealthIcon2.png?fileID=2800000&guid=c1f83250e2e226d4fa8dde6301605388&type=3#NewHealthIcon2");
 }
 
 .escapeBullet {
-    background-image: url("project://database/Assets/TestIcons/Warning%201st%2064px.png?fileID=2800000&guid=b080d098ba9d5fa42bfc15b5e66ffc25&type=3#Warning 1st 64px");
+    background-image: url("project://database/Assets/Sprites/BulletButtons/NewDodgeIcon2.png?fileID=2800000&guid=a0e7cd333378edc4bbadceb260d05f0a&type=3#NewDodgeIcon2");
     background-color: rgba(255, 255, 255, 0);
 }
 
@@ -152,4 +152,8 @@
 }
 
 .statusOn {
+}
+
+.stalked {
+    background-color: rgb(240, 180, 180);
 }

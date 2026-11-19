@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   enemyName: Runner
   devToDevDescription: "A zombie with a low phase timer but also low \nhealth."
-  HP: 30
+  HP: 50
   Damage: 8
+  DamegeTimer: 0.5
   phaseTimer: 3
-  Zprefab: {fileID: 3609652424333018288, guid: f9ae0d6c7ec4ea444903f017f987a3e0, type: 3}
+  Zprefab: {fileID: 7950749782550973647, guid: 35a70222a12f0ed46aa18fced76fcfea, type: 3}

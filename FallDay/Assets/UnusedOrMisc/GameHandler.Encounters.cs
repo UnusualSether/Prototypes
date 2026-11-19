@@ -1,6 +1,4 @@
-using System.Runtime.CompilerServices;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public partial class GameHandler
 {
@@ -52,10 +50,5 @@ public partial class GameHandler
 
             zombieTimer = data.zombieTimer;
         }
-
-
-
-       
     }
-
 }

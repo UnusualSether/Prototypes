@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using UnityEditor;
 using UnityEngine.Localization.Settings;
+using Unity.VisualScripting;
 
 
 
@@ -12,14 +13,64 @@ public static class GlobalTrinketHolder
 {
     public static List<Trinket> player_chosen_trinkets = new List<Trinket>();
 
+    public static int max_trinkets = 2;
+
     public static void ReceiveTrinketAdd(Trinket recieved_trinket)
-    {
+    { 
+
         player_chosen_trinkets.Add(recieved_trinket);
     }
 
     public static void ReceiveTrinketRemove(Trinket remove_request_trinket)
     {
         player_chosen_trinkets.Remove(remove_request_trinket);
+    }
+
+    public enum EquipResult
+    {
+        Equippable,
+        EquipLimitReached,
+
+        AlreadyEquipped
+    }
+
+    public static EquipResult IsEquipPossible(Trinket recieved_)
+    {
+        if (player_chosen_trinkets.Count >= max_trinkets)
+        {
+            return EquipResult.EquipLimitReached;
+        }
+
+        if (player_chosen_trinkets.Contains(recieved_))
+        {
+            return EquipResult.AlreadyEquipped;
+        }
+
+        else
+        {
+            return EquipResult.Equippable;
+        }
+    }
+
+    public static bool TryEquip(Trinket recieved_)
+    {
+        if (player_chosen_trinkets.Count >= max_trinkets)
+        {
+            return false;
+        }
+
+        if (player_chosen_trinkets.Contains(recieved_))
+        { 
+            return false;
+        }
+
+        else
+        {
+            ReceiveTrinketAdd(recieved_);
+            return true;
+        }
+
+
     }
 }
 
@@ -31,15 +82,24 @@ public static class GlobalTrinketHolder
 public class Trinket : ScriptableObject
 {
 
+    enum TrinketDifficulty
+    {
+        Simple,
+        Intermediate,
+        Advanced
+    }
+
     [SerializeField] protected string _trinket_name;
     [SerializeField] protected string _trinket_namePTBR;
+
+    [SerializeField] TrinketDifficulty trinket_difficulty;
     public string trinket_name
     {
         get
         {
             string currentLocale = LocalizationSettings.SelectedLocale.Identifier.Code;
 
-            if(currentLocale.StartsWith("pt"))
+            if (currentLocale.StartsWith("pt"))
             {
                 return _trinket_namePTBR;
             }
@@ -48,27 +108,41 @@ public class Trinket : ScriptableObject
                 return _trinket_name;
             }
         }
-        set => _trinket_name = value; 
+        set => _trinket_name = value;
     }
 
 
     [SerializeField] protected string _trinket_description;
     public string trinket_description { get => _trinket_description; set => _trinket_description = value; }
 
+    [SerializeField] protected string _trinket_effect_desc;
+    public string trinket_effect_desc { get => _trinket_effect_desc; set => _trinket_effect_desc = value; }
+
     [SerializeField] protected Sprite[] _trinket_sprite;
     public Sprite[] trinket_sprite => _trinket_sprite;
 
+    [SerializeField] protected bool _acquired;
+    public bool acquired { get => _acquired; set => _acquired = value; }
+
+    [SerializeField] protected int _trinket_cost;
+    public int trinket_cost { get => _trinket_cost; set => trinket_cost = value;  }
+
+    public void AcquireTrinket()
+    {
+        _acquired = true;
+    }
+
 }
 
-
-/// <summary>
-/// USed to distinguish which trinkets should activate on which effects.
-/// </summary>
-public enum TrinketEventType
+    /// <summary>
+    /// USed to distinguish which trinkets should activate on which effects.
+    /// </summary>
+    public enum TrinketEventType
 {
     OnKill,
     OnRoomComplete,
-    OnTakeDamage
+    OnTakeDamage,
+    NewEncounterPulled
 }
 
 
@@ -83,6 +157,20 @@ public interface IEventTricket
 }
 
 
+public interface IVisualClassApplyingTrinket
+{
+    string VisualClass();
+}
+
+public interface IDamageFilterTrinket
+{ 
+
+   
+    
+    int ModifiedDamage(int damage, Zombie target);
+}
+
+
 /// <summary>
 /// Interface for all trinkets which apply passive stat boosts to the player's PlayerStats class.
 /// </summary>
@@ -93,6 +181,13 @@ public interface IPassiveTrinket
     void ApplyPassive(PlayerStats stats) { }
 }
 
+
+public interface IPullInfoFromEncounterTrinket
+{
+
+
+    void PullEncounterInfo(EncounterData encounter_data);
+}
 
 #endregion
 
@@ -127,6 +222,9 @@ public class OnKillTrinket : Trinket, IEventTricket
     }
 
 }
+
+
+
 
 
 /// <summary>

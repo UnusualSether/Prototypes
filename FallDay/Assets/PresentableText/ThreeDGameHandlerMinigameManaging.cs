@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public partial class ThreeDGameHandlerMinigameManaging : MonoBehaviour
 {
@@ -20,8 +19,8 @@ public partial class ThreeDGameHandlerMinigameManaging : MonoBehaviour
 
     }
 
-        private void WhenToDeactivateMinigame()
-        {
+    private void WhenToDeactivateMinigame()
+    {
         if (Input.GetKeyDown(KeyCode.F))
         {
             if(UIDocument != null)

@@ -12,8 +12,11 @@ public class Pathfinding
 
     private List<Cell_> NaborList;
 
-    private bool debug = true;
-
+    private bool EmergencyBreak = false;
+    private int EmergencyBreakCounter = 4;
+    /////////////////////////////
+    private bool debug = true; //
+    /////////////////////////////
     public Pathfinding(Grid_ grid)
     {
         grid_ = grid;
@@ -34,15 +37,17 @@ public class Pathfinding
     /// <summary>  Main Pathfinding Algorithm - A* _3D (A Star) Implementation (Resets uppon each call to FindPath)
     /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /// </summary>
-    private bool EmergencyBreak = false;
 
     public List<Vector3> FindPath(Vector3 startPos, Vector3 endPos) // Returns a list of Vector3 positions representing the path from startPos to endPos
     {
         grid_.GetXYZ(startPos, out int startX, out int startY, out int startZ);
         grid_.GetXYZ(endPos, out int endX, out int endY, out int endZ);
-        if(debug) Debug.Log($"startPos = {startPos} endPos = {endPos} startX = {startX} startY = {startY} startZ = {startZ} endX = {endX} endY = {endY} endZ = {endZ}");
-        List<Cell_> pathCells = FindPath(startX, startY, startZ, endX, endY, endZ);
-
+        if (debug) Debug.Log($"startPos = {startPos} endPos = {endPos} startX = {startX} startY = {startY} startZ = {startZ} endX = {endX} endY = {endY} endZ = {endZ}");
+        List<Cell_> pathCells = FindPath(startX, 0, startZ, endX, 0, endZ);
+        if(pathCells == null)
+        {
+            return null;
+        }
         // Convert the list of cells to a list of Vector3 positions
         List<Vector3> pathPositions = new List<Vector3>();
         foreach (Cell_ cell in pathCells)
@@ -53,7 +58,9 @@ public class Pathfinding
         return pathPositions;
     }
 
-    public List<Cell_> FindPath(int startX, int startY, int startZ, int endX, int endY, int endZ) {
+    public List<Cell_> FindPath(int startX, int startY, int startZ, int endX, int endY, int endZ)
+    {
+        if(debug) Debug.Log($"FindPath(); startX = {startX} startY = {startY} startZ = {startZ} endX = {endX} endY = {endY} endZ = {endZ}");
         Cell_ startCell = grid_.ReturnCell(startX, startY, startZ);//Get Start Cell
         Cell_ endCell = grid_.ReturnCell(endX, endY, endZ);//Get End Cell
 
@@ -75,12 +82,15 @@ public class Pathfinding
         openList = new List<Cell_> { startCell };
         closeList = new List<Cell_>();
 
-        grid_.returnWidthLenghHeight(out int width, out int height, out int lengh); 
+        grid_.returnWidthLenghHeight(out int width, out int height, out int lengh);
 
         // Reset all Cells gCost, hCost, fCost and PreveousCell to initial values before starting the pathfinding algorithm
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-                for (int z = 0; z < lengh; z++) {
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                for (int z = 0; z < lengh; z++)
+                {
                     Cell_ cell = grid_.ReturnCell(x, y, z);
                     cell.g = int.MaxValue;
                     cell.CalcFCost();
@@ -95,13 +105,15 @@ public class Pathfinding
         startCell.CalcFCost();
 
         // Start the pathfinding loop
-        while (openList.Count > 0) {
+        while (openList.Count > 0)
+        {
             Cell_ currentCell = GetLowestFCostNode(openList);
 
             if (debug) Debug.Log("currentNode = " + currentCell + " endNode = " + endCell);
 
             // Check if the current cell is the end cell
-            if (currentCell == endCell) {
+            if (currentCell == endCell)
+            {
                 return CalculatePath(endCell);
             }
 
@@ -119,7 +131,8 @@ public class Pathfinding
                 }
 
                 int tentativeGCost = currentCell.g + CalculateDistanceCost(currentCell, neighbourCell);
-                if (tentativeGCost < neighbourCell.g) {
+                if (tentativeGCost < neighbourCell.g)
+                {
                     neighbourCell.PreveousCell = currentCell;
                     neighbourCell.g = tentativeGCost;
                     neighbourCell.h = CalculateDistanceCost(neighbourCell, endCell);
@@ -134,7 +147,12 @@ public class Pathfinding
             // Emergency Break for Debugging (allows to stop the pathfinding loop)
             if (EmergencyBreak)
             {
-                break;
+                if(EmergencyBreakCounter > 0) // counter to limit the number of iterations before breaking the loop // used for debugging purposes
+                {
+                    if(debug) Debug.LogWarning($"Emergency Break Activated at {EmergencyBreakCounter} iterations");
+                    EmergencyBreakCounter--;
+                }
+                else { break; }
             }
         }
         //Out Of Nodes on openList
@@ -158,7 +176,7 @@ public class Pathfinding
                 for (int varX = -1; varX <= 1; ++varX)
                 {
                     // All Nodes in a 3x3x3 grid around the current node, including diagonals and the current node itself
-                    Nabors.Add(grid_.ReturnCell(currentCell.x + varX, currentCell.y + varY, currentCell.z + varZ)); //
+                    Nabors.Add(grid_.ReturnCell(currentCell.x + varX, 0, currentCell.z + varZ)); //
                 }
             }
         }
@@ -170,7 +188,7 @@ public class Pathfinding
             {
                 for (int varX = -1; varX <= 1; ++varX) // -1, 0, 1 | x
                 {
-                    NaborSelectshift(Nabors, currentCell, varX, varY, varZ);
+                    NaborSelectshift(Nabors, currentCell, varX, 0, varZ);
                 }
             }
         }
@@ -196,7 +214,8 @@ public class Pathfinding
                 // none (leve this section empty)
                 break;
 
-            case (-1, 0, 0): case (1, 0, 0): //right and left neighbors | x
+            case (-1, 0, 0):
+            case (1, 0, 0): //right and left neighbors | x
                 toCheck = grid_.ReturnCell(currentCell.x + xpos, currentCell.y, currentCell.z);
                 if (toCheck != null && toCheck.walkable == false)
                 {
@@ -204,7 +223,8 @@ public class Pathfinding
                 }
                 break;
 
-            case (0, -1, 0): case (0, 1, 0): //up and down neighbors | y
+            case (0, -1, 0):
+            case (0, 1, 0): //up and down neighbors | y
                 toCheck = grid_.ReturnCell(currentCell.x, currentCell.y + ypos, currentCell.z);
                 if (toCheck != null && toCheck.walkable == false)
                 {
@@ -212,7 +232,8 @@ public class Pathfinding
                 }
                 break;
 
-            case (0, 0, -1): case (0, 0, 1): //front and back neighbors | z
+            case (0, 0, -1):
+            case (0, 0, 1): //front and back neighbors | z
                 toCheck = grid_.ReturnCell(currentCell.x, currentCell.y, currentCell.z + zpos);
                 if (toCheck != null && toCheck.walkable == false)
                 {
@@ -250,34 +271,40 @@ public class Pathfinding
     }
 
     // Calculate the path from the end cell to the start cell by following the PreveousCell references
-    private List<Cell_> CalculatePath(Cell_ endCell){
+    private List<Cell_> CalculatePath(Cell_ endCell)
+    {
         List<Cell_> path = new List<Cell_>();
         path.Add(endCell);
         Cell_ currentCell = endCell;
-        while (currentCell.PreveousCell != null) { 
+        while (currentCell.PreveousCell != null)
+        {
             path.Add(currentCell.PreveousCell);
             currentCell = currentCell.PreveousCell;
         }
         path.Reverse();
-        
-        if(debug){ DebugPathDysplay(path); }
+
+        if (debug) { DebugPathDysplay(path); }
         return path;
     }
     // Calculate the distance cost between two cells using Manhattan distance with diagonal movement
-    private int CalculateDistanceCost(Cell_ a, Cell_ b)
+    private int CalculateDistanceCost(Cell_ a, Cell_ b)// achei o erro
     {
         int xDistance = Mathf.Abs(a.x - b.x);
-        int yDistance = Mathf.Abs (a.y - b.y);
-        int nOfStraitCell = Mathf.Abs(xDistance - yDistance);
-        int nOfDiagonalCell = Mathf.Min(xDistance, yDistance);
+        int yDistance = Mathf.Abs(a.y - b.y);
+        int zDistance = Mathf.Abs(a.z - b.z);
+        int nOfStraitCell = Mathf.Abs(xDistance - zDistance);
+        int nOfDiagonalCell = Mathf.Min(xDistance, zDistance);
         int ToReturn = MOVE_DIAGONAL_COST * nOfDiagonalCell + MOVE_STRAIGHT_COST * nOfStraitCell;
         return ToReturn;
     }
     // Get the cell with the lowest fCost from a list of cells | Useful for selecting the next cell to evaluate in the A* algorithm
-    private Cell_ GetLowestFCostNode(List<Cell_> CellList) { 
+    private Cell_ GetLowestFCostNode(List<Cell_> CellList)
+    {
         Cell_ lowestFCostNode = CellList[0];
-        for (int i = 1; i< CellList.Count; i++){
-            if (CellList[i].f < lowestFCostNode.f){
+        for (int i = 1; i < CellList.Count; i++)
+        {
+            if (CellList[i].f < lowestFCostNode.f)
+            {
                 lowestFCostNode = CellList[i];
             }
         }
@@ -285,7 +312,8 @@ public class Pathfinding
     }
 
     // Debugging method to print the contents of a list of cells to the console | Can Be Implemented in the future for debugging purposes
-    private void DebugCell_List(List<Cell_> CellList){
+    private void DebugCell_List(List<Cell_> CellList)
+    {
         if (debug)
         {
             for (int i = 0; i < CellList.Count; i++)
@@ -302,8 +330,8 @@ public class Pathfinding
             {
                 for (int i = 0; i < path.Count; i++)
                 {
-                    if (i < path.Count -1) 
-                    { 
+                    if (i < path.Count - 1)
+                    {
                         Debug.DrawLine(grid_.CellWorldPosition(path[i].x, path[i].y, path[i].z), grid_.CellWorldPosition(path[i + 1].x, path[i + 1].y, path[i + 1].z), Color.blue, 30f);
                     }
                 }

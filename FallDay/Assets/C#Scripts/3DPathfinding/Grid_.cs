@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,12 +18,12 @@ public class Grid_
     Vector3 cellOffset; // Offset to center the debug objects within each cell
 
     //// !!!WARNING!!! NOT ALL SETUPS ARE FUNCTIONAL////
-    //////////////////////////////////////////////////////////////////////////////////////////////////////
-    /// ---------- Driffrent ways to start up the grid, with or without debug object, 
-    /// with Vector3 or int values for width, hight, and length -------------
-    //////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////
+    /// ---------- Driffrent ways to start up the grid, with or without debug object,  ///
+    /// with Vector3 or int values for width, hight, and length -------------          ///
+    //////////////////////////////////////////////////////////////////////////////////////
 
-    /// <Vector3Sise> /////////////
+    /// <Vector3Sise> ///
     public Grid_(Vector3 gridSize, float cellSize, Vector3 originPosition)//start up grid with debug object
     {
         GridSetUp((int)gridSize.x, (int)gridSize.y, (int)gridSize.z, cellSize, originPosition);
@@ -38,21 +37,21 @@ public class Grid_
         GridSetUp((int)gridSize.x, (int)gridSize.y, (int)gridSize.z, cellSize, originPosition);
     }
 
-    /// <IntSise> /////////////
+    /// <IntSise> ///
     public Grid_(int width, int hight, int lengh, float cellSize, Vector3 originPosition)//start up grid with no debug object
     {
         GridSetUp(width, hight, lengh, cellSize, originPosition);
     }
     public Grid_(int width, int hight, int lengh, float cellSize, Vector3 originPosition, GameObject DebugGenObject)//start up grid with debug object
     {
-        if(DebugGenObject != null)//if debug object is not null, set the generator object to the debug object
+        if (DebugGenObject != null)//if debug object is not null, set the generator object to the debug object
         {
             GeneratorObject = DebugGenObject;
         }
         GridSetUp(width, hight, lengh, cellSize, originPosition);
     }
 
-    /// <Vector3SiseWithHeightOverrite> /////////
+    /// <Vector3SiseWithHeightOverrite> ///
     public Grid_(Vector3 gridSize, float cellSize, float cellHeightRayOverrite, Vector3 originPosition)//start up grid with debug object
     {
         GridSetUpRayOverriteCall((int)gridSize.x, (int)gridSize.y, (int)gridSize.z, cellSize, cellHeightRayOverrite, originPosition);
@@ -65,7 +64,7 @@ public class Grid_
         }
         GridSetUpRayOverriteCall((int)gridSize.x, (int)gridSize.y, (int)gridSize.z, cellSize, cellHeightRayOverrite, originPosition);
     }
-    /// </IntSiseWithHeightOverrite> ///////////
+    /// </IntSiseWithHeightOverrite> ///
     public Grid_(int width, int hight, int lengh, float cellSize, float cellHeightRayOverrite, Vector3 originPosition)//start up grid with no debug object
     {
         GridSetUpRayOverriteCall(width, hight, lengh, cellSize, cellHeightRayOverrite, originPosition);
@@ -78,7 +77,7 @@ public class Grid_
         }
         GridSetUpRayOverriteCall(width, hight, lengh, cellSize, cellHeightRayOverrite, originPosition);
     }
-    /// -------------------------------- Main Grid Set Up logic ----------------------------- //////////////////////////
+    /// -------------------------------- Main Grid Set Up logic ----------------------------- ///
     private void GridSetUpRayOverriteCall(int width, int hight, int lengh, float cellSize, float cellHeightRayOverrite, Vector3 originPosition)//sets up the grid with the given parameters
     {
         this.cellHeightRayOverrite = cellHeightRayOverrite; //sets the height override of each cell in the grid
@@ -93,7 +92,7 @@ public class Grid_
 
         gridArray = new Cell_[width, hight, lengh]; //creates a new 3D array of cells with the given width (x), height (y), and length (z)
 
-        cellOffset = new Vector3(cellSize *0.5f, cellSize * 0.5f, cellSize * 0.5f); //sets the debug offset to center the debug objects within each cell
+        cellOffset = new Vector3(cellSize * 0.5f, cellSize * 0.5f, cellSize * 0.5f); //sets the debug offset to center the debug objects within each cell
 
         // cicles through the grid and creates a new cell for each position in the grid
         for (int y = 0; y < gridArray.GetLength(1); y++) //
@@ -118,10 +117,10 @@ public class Grid_
     {
         pathfinding = new Pathfinding(this);
     }
-    ////////////////////////////////////////////////////////
-    /// ---------------- Grid Functions -----------------
-    ////////////////////////////////////////////////////////
-    
+    /////////////////////////////////////////////////////////
+    /// ---------------- Grid Functions ----------------- ///
+    /////////////////////////////////////////////////////////
+
     public void UpdateGrid(Vector3 newOriginPosition) //Updates the grid by checking the walkable status of all cells
     {
         originPosition = newOriginPosition;
@@ -132,7 +131,7 @@ public class Grid_
     // Loops For Cells verifying if they are walkable or not,
     // and sets the walkable value accordingly
     // (can be used to update the walkable status of all cells after grid generation)
-    private void checkWalkableAll() 
+    private void checkWalkableAll()
     {
         //originPosition.x = GeneratorObject.transform.position.x;
         //originPosition.z = GeneratorObject.transform.position.z;
@@ -153,10 +152,10 @@ public class Grid_
     }
     //Upon Cell Position,
     //Check if the Cell is Walkable or not
-    private void IsCellWalkable(int xpos, int ypos, int zpos) 
+    private void IsCellWalkable(int xpos, int ypos, int zpos)
     {
         Cell_ N = ReturnCell(xpos, ypos, zpos);
-        if(fivePointRaycast(xpos, ypos, zpos) != true) // RayCast To check the spot
+        if (fivePointRaycast(xpos, ypos, zpos) != true) // RayCast To check the spot
         {
             N.walkable = false;
         }
@@ -169,7 +168,7 @@ public class Grid_
     // It casts rays from the center and four corners of the cell downwards to check for obstacles.
     // If any of the rays hit an obstacle, the cell is considered not walkable.
     // The function returns true if the cell is walkable and false otherwise.
-    private bool fivePointRaycast(int xpos, int ypos, int zpos) 
+    private bool fivePointRaycast(int xpos, int ypos, int zpos)
     {
         int rayCount = 4;
         bool isWalkable = true;
@@ -192,14 +191,14 @@ public class Grid_
             if (DetectorSystem != null)
             {
                 RaycastHit[] hits = Physics.RaycastAll(DetectorSystem[i], Vector3.down, cellSize + cellHeightRayOverrite, ~LayerMask.GetMask("Player"), QueryTriggerInteraction.Ignore);
-                if(debug) Debug.DrawRay(DetectorSystem[i], Vector3.down * (cellSize + cellHeightRayOverrite), Color.green, 5f);
+                if (debug) Debug.DrawRay(DetectorSystem[i], Vector3.down * (cellSize + cellHeightRayOverrite), Color.green, 1f);
                 foreach (RaycastHit hitInfo in hits)
                 {
                     if (hitInfo.collider != null)
                     {
-                        if(hitInfo.collider.gameObject.tag == "obstacle")
+                        if (hitInfo.collider.gameObject.tag == "obstacle")
                         {
-                            if (debug) { Debug.DrawRay(DetectorSystem[i], Vector3.down * (cellSize + cellHeightRayOverrite), Color.red, 5f); }
+                            if (debug) { Debug.DrawRay(DetectorSystem[i], Vector3.down * (cellSize + cellHeightRayOverrite), Color.red, 1.5f); }
                             if (debug) { Debug.Log($"Cell at {xpos}, {ypos}, {zpos} is not walkable due to obstacle: {hitInfo.collider.gameObject.name} - RayTrigger {i}"); }
                             isWalkable = false;
                         }
@@ -211,64 +210,74 @@ public class Grid_
     }
     //returns the world position of the given cell coordinates
     //(This is the bottom close corner of the cell NOT IT'S CENTER)
-    public Vector3 CellWorldPosition(int x, int y, int z) 
+    public Vector3 CellWorldPosition(int x, int y, int z)
     {
         return ((new Vector3(x, y, z) * cellSize) + originPosition);
     }
     // returns the cell coordinates of the given world position
-    public void GetXYZ(Vector3 worldPosition, out int x,out int y,out int z) 
+    public bool GetXYZ(Vector3 worldPosition, out int x, out int y, out int z)
     {
-        x = Mathf.FloorToInt((worldPosition - originPosition).x / cellSize); // calculates the x coordinate of the cell by subtracting the origin position and cell offset from the world position, dividing by the cell size, and flooring the result to get an integer value
+        bool InGrid = true;
+        x = Mathf.FloorToInt((worldPosition - originPosition).x / cellSize); // calculates the x coordinate of the cell by subtracting the origin position and
+                                                                             // cell offset from the world position, dividing by the cell size,
+                                                                             // and flooring the result to get an integer value
         y = Mathf.FloorToInt((worldPosition - originPosition).y / cellSize);
         z = Mathf.FloorToInt((worldPosition - originPosition).z / cellSize);
+        return InGrid;
     }
     // Returns the cell at the given grid coordinates in the grid,
     // or null if the coordinates are out of grid bounds
-    public Cell_ ReturnCell(int x, int y, int z) 
+    public Cell_ ReturnCell(int x, int y, int z)
     {
-        if (x >= 0 && y >= 0 && z>=0 && x< width && y < hight && z < lengh) {
+        if (x >= 0 && y >= 0 && z >= 0 && x < width && y < hight && z < lengh)
+        {
             return gridArray[x, y, z];
         }
-        else {
-            if (debug){
-                Debug.Log($"Out of Grid Bownds x = {x} y = {y} z = {z}");
+        else
+        {
+            if (debug)
+            {
+                Debug.LogError($"Out of Grid Bownds x = {x} y = {y} z = {z}");
             }
             return null;
-    }   }
+        }
+    }
     // Returns the width, height, and length of the grid through out parameters
-    public void returnWidthLenghHeight(out int width, out int hight, out int lengh) 
+    public void returnWidthLenghHeight(out int width, out int hight, out int lengh)
     {
         width = this.width; hight = this.hight; lengh = this.lengh;
     }
 
     // Sets cell walkable to true or false based on the current state of the cell at the given world position
-    public void SetNodeTrueFalse(Vector3 NodePos) 
+    public void SetNodeTrueFalse(Vector3 NodePos)
     {
-        GetXYZ(NodePos, out int x, out int y,out int z);
+        GetXYZ(NodePos, out int x, out int y, out int z);
         SetNodeTrueFalse(x, y, z);
     }
     // Sets cell walkable to true or false based on the current state of the cell at the given grid coordinates
-    public void SetNodeTrueFalse(int x, int y, int z) 
+    public void SetNodeTrueFalse(int x, int y, int z)
     {
         SetNodeTrueFalse(ReturnCell(x, y, z));
     }
     // Sets cell walkable to true or false based on the current state of the given cell
-    public void SetNodeTrueFalse(Cell_ N) 
+    public void SetNodeTrueFalse(Cell_ N)
     {
         bool changed = false;
-        if(N.walkable == true && changed == false) {
+        if (N.walkable == true && changed == false)
+        {
             N.walkable = false;
             changed = true;
         }
-        if(N.walkable == false && changed == false) {
+        if (N.walkable == false && changed == false)
+        {
             N.walkable = true;
             changed = true;
         }
     }
 
-    ////////////////////////////////////////////////////////////////////////////////////////
-    /// ------------------------ DEBUG FUNCTIONS -------------------------------------------
-    ////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////
+    /// ------------------------ DEBUG FUNCTIONS ------------------------------------------- ///
+    ////////////////////////////////////////////////////////////////////////////////////////////
 
     //Function to generate debug objects for each cell in the grid,
     //allowing for visual representation and debugging of the grid structure and cell properties.
@@ -285,6 +294,7 @@ public class Grid_
                     debugObj.transform.position = CellWorldPosition(x, y, z);
                     debugObj.transform.parent = GeneratorObject.transform;
                     debugArray[x, y, z] = debugObj.AddComponent<Cell_Debug>();
+                    debugArray[x, y, z].grid = this;
                     debugArray[x, y, z].UpdateDebugInfo(gridArray[x, y, z]);
                 }
             }
@@ -292,7 +302,7 @@ public class Grid_
     }
     // Draws the outline of the grid in the scene view for debugging purposes,
     // using blue lines to represent the edges of the grid.
-    public void DisplayGridOutline() 
+    public void DisplayGridOutline()
     {
         Vector3 pos1 = CellWorldPosition(0, 0, 0);
         Vector3 pos2 = CellWorldPosition(width, 0, 0);

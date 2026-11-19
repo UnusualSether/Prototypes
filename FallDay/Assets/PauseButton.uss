@@ -121,3 +121,8 @@
     display: flex;
     opacity: 1;
 }
+
+.pause_panel_on {
+    opacity: 1;
+    display: flex;
+}

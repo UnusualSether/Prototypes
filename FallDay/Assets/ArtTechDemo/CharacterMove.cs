@@ -2,9 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.AI.Navigation;
 using UnityEngine;
-using UnityEngine.AI;
 
 
 [Serializable]
@@ -16,6 +14,7 @@ public class Waypoint
     public GameObject belongingRoom;
 
 }
+
 
 public class CharacterMove : MonoBehaviour
 {
@@ -35,32 +34,24 @@ public class CharacterMove : MonoBehaviour
 
     public float speed = 0.2f;
 
-    public GameObject GridGenerator;
-    public Grid_Generator grid_Gen;
-    public NavMeshAgent navMesh;
+    //public NavMeshAgent navMesh;
 
-    public NavMeshSurface surface;
+    //public NavMeshSurface surface;
 
+    public Grid_Generator Grid_Generator;
+    public PlayerControl PathCtlr;
+    
     public void Start()
     {
         charTransform = this.gameObject.GetComponent<Transform>();
-        navMesh = gameObject.GetComponent<NavMeshAgent>();
-        grid_Gen = GridGenerator.GetComponent<Grid_Generator>();
+        //navMesh = gameObject.GetComponent<NavMeshAgent>();
+
+        PathCtlr.pathFolowerSetUp(Grid_Generator, OnTargetReached);
     }
 
     //Subscribe the player move to next waypoint function to whenevr the gamehandler deetcts that we're suppose to be on rails/
     void OnEnable() { ThreeDGameHandler.RailStarted += FindNextWaypoint; ThreeDGameHandler.RoomSetupComplete += InitializeWaypoints; ThreeDGameHandler.PlayerSwipedOnChoice += PlayerSwipe; }
     void OnDisable() { ThreeDGameHandler.RailStarted -= FindNextWaypoint; ThreeDGameHandler.RoomSetupComplete -= InitializeWaypoints; ThreeDGameHandler.PlayerSwipedOnChoice -= PlayerSwipe; }
-
-
-    public void Update()
-    {
-
-
-        CheckStatus();
-
-    }
-
 
     public List<Waypoint> wayPointList = new List<Waypoint>();
 
@@ -69,16 +60,10 @@ public class CharacterMove : MonoBehaviour
 
     public void InitializeWaypoints()
     {
-
         var foundObjects = GameObject.FindGameObjectsWithTag("Waypoint");
-
-
-
 
         foreach (var item in foundObjects)
         {
-
-
             var newWaypoint = new Waypoint()
             {
                 wayPointPosition = item.transform.position,
@@ -91,8 +76,9 @@ public class CharacterMove : MonoBehaviour
             Destroy(item);
         }
 
-        // Update Required 
-        grid_Gen.UpdateGrid();
+        
+        //surface.BuildNavMesh();
+        Grid_Generator.UpdateGrid();
 
     }
 
@@ -105,7 +91,6 @@ public class CharacterMove : MonoBehaviour
 
 
         InitializeWaypoints();
-
     }
 
 
@@ -130,7 +115,6 @@ public class CharacterMove : MonoBehaviour
         GoToNextWaypoint(nextWayPoint);
 
         WayPointMaintenance();
-
     }
 
 
@@ -147,11 +131,8 @@ public class CharacterMove : MonoBehaviour
 
     private void ManualMove(Waypoint wp)
     {
-
-
-       
-        
-        StartCoroutine(CheckIfArrived(wp.wayPointPosition));
+        PathCtlr.serchNewPathSetUp(wp.wayPointPosition);
+        //StartCoroutine(CheckIfArrived(wp.wayPointPosition));
     }
 
     IEnumerator CheckIfArrived(Vector3 targetPos)
@@ -176,7 +157,6 @@ public class CharacterMove : MonoBehaviour
                 transform.position = Vector3.MoveTowards(transform.position, targetPos, step);
                 yield return null;
             }
-               
         }
 
         OnTargetReached();
@@ -191,34 +171,6 @@ public class CharacterMove : MonoBehaviour
         wayPointList.Clear();
         InitializeWaypoints();
     }
-    bool encounterGate = false;
-    private void CheckStatus()
-    {
-        if (wayPointList.Count <= 0) return;
-
-        //Debug.Log($"[Player] Checking status, has path: {navMesh.hasPath}, path pending: {navMesh.pathPending}, remaining distance: {navMesh.remainingDistance}");
-        bool hasPath = navMesh.hasPath || navMesh.pathPending;
-        bool reachedDestination = !navMesh.pathPending
-                               && navMesh.hasPath
-                               && navMesh.remainingDistance < 0.1f;
-
-        if (reachedDestination)
-        {
-            if (debugisOn) Debug.Log($"[Player] Reached destination at {transform.position}");
-            PlayerHasReachedNextPoint?.Invoke();
-            PlayerWillClearList?.Invoke(wayPointList);
-            wayPointList.Clear();
-            InitializeWaypoints();
-
-        }
-
-        if (transform.position == wayPointList[0].wayPointPosition)
-        {
-            if (debugisOn) Debug.Log($"[Player] Reached waypoint at {transform.position}");
-            InitializeWaypoints();
-        }
-    }
-
 
     public bool PathBlocked()
     {
@@ -230,8 +182,6 @@ public class CharacterMove : MonoBehaviour
         {
             return true;
         }
-
-
 
         return false;
     }
@@ -250,6 +200,9 @@ public class CharacterMove : MonoBehaviour
 
     }
 
+
+
+
     
     public void PlayerSwipe(ThreeDGameHandler.SwipeDirection dir)
     {
@@ -258,28 +211,9 @@ public class CharacterMove : MonoBehaviour
         var posToGo = FetchWayPoint(dir);
         GoToNextWaypoint(posToGo);
         PlayerMovingTowardsUnLoadedRoom?.Invoke(posToGo);
-        ChangeSprite(dir);
+        //ChangeSprite(dir);
 
     }
-
-    public void ChangeSprite(ThreeDGameHandler.SwipeDirection dir)
-    {
-        if (dir == ThreeDGameHandler.SwipeDirection.Up)
-        {
-            gameObject.transform.rotation = new Quaternion(0, 0, 0,0);
-        }
-
-        if (dir == ThreeDGameHandler.SwipeDirection.Right)
-        {
-            gameObject.transform.rotation = new Quaternion(0, 0.707106829f, 0, 0.707106829f);
-        }
-
-        if (dir == ThreeDGameHandler.SwipeDirection.Left)
-        {
-            gameObject.transform.rotation = new Quaternion(0, -0.707106829f, 0, 0.707106829f);
-        }
-    }
-
 
     public Waypoint FetchWayPoint(ThreeDGameHandler.SwipeDirection dir)
     {

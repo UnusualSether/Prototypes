@@ -29,6 +29,13 @@ public class EncounterData : ScriptableObject
 
     }
 
+    public EnemyData RandomEnemy()
+    {
+        var random_index = Random.Range(0, enemies.Count);
+
+        return enemies[random_index];
+    }
+
     public virtual EnemyData ReturnTheEnemyType()
     {
         return enemies[0];

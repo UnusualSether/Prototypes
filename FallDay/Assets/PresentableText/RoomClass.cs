@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using System;
 using UnityEngine;
 using System.Collections.Generic;
@@ -7,8 +6,6 @@ using System.Linq;
 [Serializable]
 public class Room
 {
-
-   
     enum DoorTilePos
     {
         Backmost,

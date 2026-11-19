@@ -13,7 +13,7 @@ public class Cell_
     {
         x = PosX; y = PosY; z = PosZ; this.cellSize = cellSize; g = gCost; h = hCost; f = gCost + hCost; walkable = true;
     }
-    public void CalcFCost() {f = g+h;}
+    public void CalcFCost() { f = g + h; }
     public override string ToString()
     {
         return x + "," + y + "," + z;

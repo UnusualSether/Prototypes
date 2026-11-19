@@ -1,28 +1,32 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UIElements;
-using static ZombieAnimatorProxy;
+//using static ZombieAnimatorProxy;
 
+
+// Este cessão de codigo do GameDysplay Traduz os Comandos do Controle de animação do GameDysplay para as proxies
+// que rodam as animaçoes a parte
+
+
+// Os GameObjects ficam fora de cena ou com posição absurda (ex: y = -9999)
 public partial class GameDisplay
 {
     [Header("Zombie Animator Proxies")]
     public ZombieAnimatorProxy[] zombieProxies;
-    public bool debugisOn = false;
+    public bool debug = false;
     // ^ Um proxy por ZombieSpot — arraste no Inspector
-    // Os GameObjects ficam fora de cena ou com posição absurda (ex: y = -9999)
 
     // Mapeia cada ZombieDisplay ao seu proxy correspondente
     private ZombieAnimatorProxy GetProxyForDisplay(ZombieDisplay display)
     {
         if (zombieProxies == null || zombieProxies.Length == 0)
         {
-            if (debugisOn) Debug.LogError("zombieProxies não foi preenchido no Inspector!");
+            if (debug) Debug.LogError("zombieProxies não foi preenchido no Inspector!");
             return null;
         }
         if (display.displayId >= zombieProxies.Length)
         {
-            if (debugisOn) Debug.LogError($"displayId {display.displayId} não tem proxy correspondente. Total de proxies: {zombieProxies.Length}");
+            if (debug) Debug.LogError($"displayId {display.displayId} não tem proxy correspondente. Total de proxies: {zombieProxies.Length}");
             return null;
         }
         int index = Mathf.Clamp(display.displayId, 0, zombieProxies.Length - 1);
@@ -31,86 +35,11 @@ public partial class GameDisplay
 
     public void RegisterAnimationEvents()
     {
-        handler.ZombieDamaged += OnZombieDamaged;
+        //handler.ZombieDamaged += OnZombieDamaged;
     }
 
     public void UnregisterAnimationEvents()
     {
-        handler.ZombieDamaged -= OnZombieDamaged;
-    }
-
-    // Chamado quando o zumbi entra no display
-    public void StartZombieAnimation(ZombieDisplay display)
-    {
-        ZombieAnimatorProxy proxy = GetProxyForDisplay(display);
-        // Add The proxy character Change
-        proxy.setUpNewEnemy(display.displayedZombie.EnemyType);
-        handler.zPhaseChange += OnZombiePhaseChanged;
-        proxy.SetPhase(display.displayedZombie.phase);
-        proxy.SetAnimationLock();
-        display.activeAnimation = StartCoroutine(SyncSpriteToUI(display, proxy));
-    }
-
-    // Chamado quando o zumbi sai do display
-    public void StopZombieAnimation(ZombieDisplay display)
-    {
-        handler.zPhaseChange -= OnZombiePhaseChanged;
-        StopDisplayAnimation(display);
-
-        ZombieAnimatorProxy proxy = GetProxyForDisplay(display);
-        if (proxy == null) return;
-        proxy.ResetProxy();
-        display.displayElement.style.backgroundImage = StyleKeyword.Null;
-    }
-
-    // Responde à mudança de fase do zumbi
-    private void OnZombiePhaseChanged(Zombie zombie)
-    {
-        if (debugisOn) Debug.Log($"Fase do zumbi mudou para {zombie.phase}");
-        ZombieDisplay display = occupiedZombieDisplay
-            .Find(d => d.displayedZombie == zombie);
-
-        if (display == null) return;
-
-        ZombieAnimatorProxy proxy = GetProxyForDisplay(display);
-        proxy.SetPhase(zombie.phase);
-    }
-
-    // Responde ao evento de dano do GameHandler
-    private void OnZombieDamaged(Zombie zombie)
-    {
-        ZombieDisplay display = occupiedZombieDisplay
-            .Find(d => d.displayedZombie == zombie);
-
-        if (display == null) return;
-
-        ZombieAnimatorProxy proxy = GetProxyForDisplay(display);
-        proxy.TriggerDamaged();
-    }
-
-    // Copia o sprite atual do Animator para o elemento do UI Toolkit a cada frame
-    private IEnumerator SyncSpriteToUI(ZombieDisplay display, ZombieAnimatorProxy proxy)
-    {
-        while (true)
-        {
-            Sprite current = proxy.CurrentSprite;
-
-            if (current != null)
-            {
-                display.displayElement.style.backgroundImage =
-                    new StyleBackground(current);
-            }
-
-            yield return new WaitForEndOfFrame(); // espera o próximo frame
-        }
-    }
-
-    private void StopDisplayAnimation(ZombieDisplay display)
-    {
-        if (display.activeAnimation != null)
-        {
-            StopCoroutine(display.activeAnimation);
-            display.activeAnimation = null;
-        }
+        //handler.ZombieDamaged -= OnZombieDamaged;
     }
 }

@@ -12,7 +12,7 @@ public partial class TutorialControler : MonoBehaviour
 
     private int tutorialpage = 1;
 
-    public static bool TutorialEnded = false;
+    public static bool TutorialEnded = true;
 
     private void Start()
     {

@@ -11,8 +11,8 @@ public partial class ZombieAnimatorProxy
     }
     */
     [Header("Scriptable Object References")]
-    public ProxyesInfoHolder proxyesInfoHolder;
-    private CharacterAnimationProfile activeProfileObject;
+    public AlternativeAnimHolder proxyesInfoHolder;
+    //private CharacterAnimationProfile activeProfileObject;
 
     private AnimatorOverrideController overrideController;
     private List<KeyValuePair<AnimationClip, AnimationClip>> clipOverrides;
@@ -53,7 +53,6 @@ public partial class ZombieAnimatorProxy
 
     private void ApplyProfile(CharacterAnimationProfile newProfileObject)
     {
-        activeProfileObject = newProfileObject;
         if (newProfileObject == null || newProfileObject.ClipList == null) return;
 
         // 1. Map [BaseClip -> OverrideClip] from your ScriptableObject

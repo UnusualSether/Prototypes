@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
-using static GameDisplay;
 
 public partial class GameDisplay : MonoBehaviour
 {
@@ -73,12 +72,8 @@ public partial class GameDisplay : MonoBehaviour
 
             icon = root.Query<Image>("icon");
 
-
         }
 
-        
-
-       
 
 
         public void Appear()
@@ -115,8 +110,6 @@ public partial class GameDisplay : MonoBehaviour
 
             reward_icon = displayElement.Q<Image>("reward_image");
 
-
-
         }
 
         public void UpdateRewardDisplay()
@@ -145,23 +138,9 @@ public partial class GameDisplay : MonoBehaviour
             {
                 reward_name.text = displayed_reward.reward_name;
             }
-
-
-
         }
-
-
-
-
-
     }
 
-    private void Awake()
-    {
-
-
-
-    }
     private void OnEnable()
     {
 
@@ -175,6 +154,8 @@ public partial class GameDisplay : MonoBehaviour
         handler.ZombieKilled += RemoveCrosshair;
 
         handler.ZombieHurt += ApplyZombieDamageNumber;
+
+        handler.ZombieHealed += ApplyZombieHealNumber;
 
         handler.BulletSelected += ShakeBullet;
 
@@ -274,6 +255,13 @@ public partial class GameDisplay : MonoBehaviour
 
         handler.BulletSelected -= ShakeBullet;
 
+
+        handler.ZombieHurt -= ApplyZombieDamageNumber;
+        handler.ZombieHealed -= ApplyZombieHealNumber;
+
+        PlayerInstance.PlayerHealed -= DisplayHeal;
+        PlayerInstance.PlayerGainedCurrency -= DisplayCurrencyGain;
+
         handler.BulletSelected -= PlayerClickSound;
 
         handler.ZombieDamaged -= ShakeZombieVisual;
@@ -313,6 +301,8 @@ public partial class GameDisplay : MonoBehaviour
             Debug.Log("Couldn't find zombie display!");
         }
 
+        zombie_display.zombie_damage_display_label.style.color = Color.red;
+
         zombie_display.zombie_damage_display_label.text = total_damage.ToString();
 
         if (zombie_display.zombie_damage_display_label == null)
@@ -322,7 +312,32 @@ public partial class GameDisplay : MonoBehaviour
 
         ShakeLabel(zombie_display.zombie_damage_display_label);
 
-        Debug.Log($"Applied {total_damage} to zombie with id nmb {damaged_zombie.id} ");
+       
+
+        HandleNumberDisappear(zombie_display.zombie_damage_display_label);
+
+    }
+
+    public void ApplyZombieHealNumber(int total_healed, Zombie healed_zombie)
+    {
+        var zombie_display = occupiedZombieDisplay.FirstOrDefault(x => x.displayedZombie == healed_zombie);
+
+        if (zombie_display == null)
+        {
+            Debug.Log("Couldn't find zombie display!");
+        }
+
+        zombie_display.zombie_damage_display_label.style.color = Color.green;
+
+        zombie_display.zombie_damage_display_label.text = total_healed.ToString();
+
+        if (zombie_display.zombie_damage_display_label == null)
+        {
+            Debug.Log("Couldn't find label!");
+        }
+
+        ShakeLabel(zombie_display.zombie_damage_display_label);
+
 
         HandleNumberDisappear(zombie_display.zombie_damage_display_label);
 
@@ -458,6 +473,12 @@ public partial class GameDisplay : MonoBehaviour
 
     public void SetDirectionDisplayOn()
     {
+
+        if (handler.transition_to_new_level)
+        {
+            return;
+        }
+
         foreach (var dir_button in direction_and_reward_buttons)
         {
             
@@ -635,8 +656,8 @@ public partial class GameDisplay : MonoBehaviour
 
         int preferenceZombieID = occupiedZombieDisplay.Find(e => e.displayElement == selectedElement).displayedZombie.id;
 
-        handler.preferenceZombie = preferenceZombieID;
-
+        handler.ChangePrefrenceZombie(preferenceZombieID);
+        
         ClickedCrosshair(selectedElement);
     }
 
@@ -653,7 +674,7 @@ public partial class GameDisplay : MonoBehaviour
         clickedElement.AddToClassList("aimed");
     }
 
-    private void RemoveCrosshair(Zombie zombie)
+    private void RemoveCrosshair(Zombie z)
     {
         foreach (var display in occupiedZombieDisplay)
         {
@@ -701,7 +722,7 @@ public partial class GameDisplay : MonoBehaviour
             zombieDisplayElement.AddToClassList("zombieSpotOccupied");
 
             zombieDisplayList.Remove(assignedDisplay);
-            StartZombieAnimation(assignedDisplay);
+            //StartZombieAnimation(assignedDisplay);
             occupiedZombieDisplay.Add(assignedDisplay);
 
             cachedZombies = new List<Zombie>(handler.ZombieList);
@@ -742,7 +763,7 @@ public partial class GameDisplay : MonoBehaviour
             zombieDisplayElement.RemoveFromClassList("warning");
 
             zombieDisplayList.Add(assignedDisplay);
-            StopZombieAnimation(assignedDisplay);
+            //StopZombieAnimation(assignedDisplay);
             occupiedZombieDisplay.Remove(assignedDisplay);
 
 

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1851650461633327550}
   - component: {fileID: 6672005967606011397}
+  - component: {fileID: 6601381068543295345}
   - component: {fileID: 8480385079831560420}
   - component: {fileID: 4843042637732838402}
   m_Layer: 0
@@ -58,6 +59,9 @@ Transform:
   - {fileID: 6469534459480278689}
   - {fileID: 667642086968904980}
   - {fileID: 2699179664355590109}
+  - {fileID: 6855426276761535448}
+  - {fileID: 4490479919982181336}
+  - {fileID: 2525419972731610412}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6672005967606011397
@@ -72,11 +76,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c1aecb6f3f7d17468a7f8dae37d3334, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  debugisOn: 0
   doors:
   - {fileID: 6326366640920535337}
   - {fileID: 8401835703245098119}
   - {fileID: 8258993778013047561}
   - {fileID: 9155276205816318866}
+--- !u!114 &6601381068543295345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 38049718111097171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a338b5adb8622334e98a00da08f31b3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoomIndexer
+  zombiesSpawnPositions:
+  - {fileID: 8896106807967498677}
+  - {fileID: 4390154501220017217}
+  - {fileID: 1857769681924209331}
 --- !u!114 &8480385079831560420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1076,6 +1097,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
+--- !u!1 &1857769681924209331
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2525419972731610412}
+  m_Layer: 0
+  m_Name: ZSpawnPos (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2525419972731610412
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1857769681924209331}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0.81, y: -0.02, z: -0}
+  m_LocalScale: {x: 1, y: 0.99999976, z: 0.99999976}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1851650461633327550}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2210416915708526685
 GameObject:
   m_ObjectHideFlags: 0
@@ -1632,6 +1684,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
+--- !u!1 &4390154501220017217
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4490479919982181336}
+  m_Layer: 0
+  m_Name: ZSpawnPos (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4490479919982181336
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4390154501220017217}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 2.01, y: 2.713, z: -0}
+  m_LocalScale: {x: 1, y: 0.99999976, z: 0.99999976}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1851650461633327550}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4965836527198897739
 GameObject:
   m_ObjectHideFlags: 0
@@ -3470,6 +3553,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54259dc8c39cc2f4095f7d102426c735, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TileAutoDestroyer
+--- !u!1 &8896106807967498677
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6855426276761535448}
+  m_Layer: 0
+  m_Name: ZSpawnPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6855426276761535448
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8896106807967498677}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 4.74, y: 0.01, z: 0}
+  m_LocalScale: {x: 1, y: 0.99999976, z: 0.99999976}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1851650461633327550}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9155276205816318866
 GameObject:
   m_ObjectHideFlags: 0

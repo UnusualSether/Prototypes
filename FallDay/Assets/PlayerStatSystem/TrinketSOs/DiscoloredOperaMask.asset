@@ -1,0 +1,124 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53ccf59ba8c463d42a9769e6f657e3b8, type: 3}
+  m_Name: DiscoloredOperaMask
+  m_EditorClassIdentifier: Assembly-CSharp::StalkerTrinket
+  _trinket_name: Discolored Mask
+  _trinket_namePTBR: 
+  _trinket_description: For all your stalking needs.
+  _trinket_sprite:
+  - {fileID: -859730689, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: -1318377883, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: 125319853, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: -469246451, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: -833806291, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: 1613843824, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: 1256697170, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: -1100804947, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: 1454253689, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: 1900926937, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: -1986746900, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: -2078019846, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: 273220462, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: 184063365, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: -1137402925, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: -1800861647, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: -385107428, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: -880580138, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: -795702123, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: -567418212, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: -1912677486, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: -1073740294, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: -1549022521, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: -153932010, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: 604222548, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: -2006564946, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: 608759328, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: 1916303788, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: 1408017718, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: -1704925441, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: -1053219137, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: 217261921, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: 1043296821, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: 163975673, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  - {fileID: -481343280, guid: 81f35a7673c0d134c8b6be26e47293f1, type: 3}
+  _acquired: 1
+  _trinket_cost: 0
+  stalked_list:
+  - id: 0
+    hp: 38
+    PhaseTimer: 5
+    Diff: 0
+    EnemyType: Shambler
+    difficulty: 0
+    damage: 2
+    debugisOn: 0
+    handler: {fileID: 0}
+    phase: 3
+    currentDisplay: 0
+  - id: 0
+    hp: 14
+    PhaseTimer: 5
+    Diff: 0
+    EnemyType: Shambler
+    difficulty: 0
+    damage: 2
+    debugisOn: 0
+    handler: {fileID: 0}
+    phase: 3
+    currentDisplay: 0
+  - id: 0
+    hp: -19
+    PhaseTimer: 5
+    Diff: 0
+    EnemyType: Shambler
+    difficulty: 0
+    damage: 2
+    debugisOn: 0
+    handler: {fileID: 0}
+    phase: 2
+    currentDisplay: 0
+  - id: 0
+    hp: 8
+    PhaseTimer: 5
+    Diff: 0
+    EnemyType: Shambler
+    difficulty: 0
+    damage: 2
+    debugisOn: 0
+    handler: {fileID: 0}
+    phase: 3
+    currentDisplay: 0
+  - id: 0
+    hp: 10
+    PhaseTimer: 5
+    Diff: 0
+    EnemyType: Shambler
+    difficulty: 0
+    damage: 2
+    debugisOn: 0
+    handler: {fileID: 0}
+    phase: 1
+    currentDisplay: 0
+  - id: 0
+    hp: 10
+    PhaseTimer: 5
+    Diff: 0
+    EnemyType: Shambler
+    difficulty: 0
+    damage: 2
+    debugisOn: 0
+    handler: {fileID: 0}
+    phase: 2
+    currentDisplay: 0
+  stalked_damage_bonus: 3
+  status_icon: {fileID: 0}
