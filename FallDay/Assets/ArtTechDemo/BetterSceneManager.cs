@@ -31,6 +31,8 @@ namespace BetterSceneManagement
         {
             SceneManager.LoadScene(scene_to_load);
 
+            //BetterSceneManager.LoadScene("Level1", AnimationType.Stairs);
+
             DoneLoading.Invoke();
 
             scene_to_load = "";
