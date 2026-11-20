@@ -46,6 +46,9 @@ public class TutorialPanel
     // ---------- Pergunta ----------
     public void ShowQuestion()
     {
+        //vibracao
+        Haptics.Play(HapticStrength.Medium);
+
         if (_question == null) return;
 
         _question.style.display = DisplayStyle.Flex;
@@ -78,6 +81,9 @@ public class TutorialPanel
     // ---------- Páginas ----------
     private void StartPages()
     {
+        //vibracao
+        Haptics.Play(HapticStrength.Medium);
+
         if (_pagesRoot == null) return;
 
         _pagesRoot.style.display = DisplayStyle.Flex;

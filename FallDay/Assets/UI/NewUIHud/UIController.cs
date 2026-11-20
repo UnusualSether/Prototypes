@@ -20,6 +20,11 @@ public class UIController : MonoBehaviour
     private TutorialPanel _tutorial;
     private TrinkedPanel _trinked;
 
+    //vibracao
+    private VisualElement _root;
+    private HapticsSettingsPanel _haptics;
+    //vibracao
+
     private bool _built;
 
     void OnEnable() => TryBuild();
@@ -51,6 +56,11 @@ public class UIController : MonoBehaviour
         UIUtils.Pulse(root.Q<Image>(UINames.TapToStart), min: 0.9f, max: 1.1f, speed: 2f);
 
         _built = true;
+        //vibracao
+        _root = root;
+        _haptics = new HapticsSettingsPanel(root);
+        _root.RegisterCallback<ClickEvent>(OnAnyClick, TrickleDown.TrickleDown);
+        //vibracao
     }
 
     private void Teardown()
@@ -67,5 +77,19 @@ public class UIController : MonoBehaviour
         _tutorial = null;
         _trinked = null;
         _built = false;
+        //vibracao
+        _root?.UnregisterCallback<ClickEvent>(OnAnyClick, TrickleDown.TrickleDown);
+        _haptics?.Dispose();
+        _haptics = null;
+        _root = null;
+        //vibracao
     }
+
+    //vibracao
+    private void OnAnyClick(ClickEvent evt)
+    {
+        if (evt.target is VisualElement ve && ve.GetFirstOfType<Button>() != null)
+            Haptics.Play(HapticStrength.Light);
+    }
+    //vibracao
 }

@@ -126,3 +126,52 @@
     opacity: 1;
     display: flex;
 }
+
+    /*sound bar*/
+    #ScreenSetting #unity-tracker {
+    height: 29px;
+    top: 20px;
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 0.1);
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+    /*modificaç~eos*/
+    
+    background-color: rgba(68, 68, 62, 0.5);
+    border-width:3px;
+    border-top-color:rgb(57, 57, 70);
+    border-bottom-color:rgb(29, 29, 31);
+    border-left-color:rgb(57, 57, 57);
+    border-right-color:rgb(57, 57, 57);
+}
+
+Slider #unity-dragger {
+    height: 35px;
+    width:35px;
+    top: 25px;
+    background-color: rgb(0, 0, 0);
+    
+    /*border-radius:10px;*/
+    border-width:2px;
+    
+    border-top-color:rgb(195, 60, 31);
+    border-bottom-color:rgb(104, 40, 5);
+    border-left-color:rgb(195, 60, 31);
+    border-right-color:rgb(195, 60, 31);
+}
+
+.unity-base-slider__fill {
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    background-color: rgb(132, 28, 6);
+
+    border-width:3px;
+    border-top-color:rgb(195, 60, 31);
+    border-bottom-color:rgb(104, 40, 5);
+}
+/*set botão interaction*/
+
+.btn_setAction:hover{
+    scale:.95;
+}
