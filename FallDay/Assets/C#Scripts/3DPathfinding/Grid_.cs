@@ -239,8 +239,24 @@ public class Grid_
             {
                 Debug.LogError($"Out of Grid Bownds x = {x} y = {y} z = {z}");
             }
-            return null;
+            return GetClosestCell(x, y, z);
         }
+    }
+
+    private Cell_ GetClosestCell(int x, int y, int z)
+    {
+        // x is width, y is hight, z is lengh
+        if(debug) { Debug.LogWarning($"Grid: GetClosestCell called 'Clamping coordinates to grid bounds x = {x} y = {y} z = {z}'"); }
+            //Chose this method of writing the code for practice
+            x = width - 1 < x ? width - 1 : x;      //
+        y = hight - 1 < y ? hight - 1 : y;      // <= code checks if the given coordinates are out of bounds and clamps them to the maximum valid index for each dimension.
+        z = lengh - 1 < z ? lengh - 1 : z;      //
+    
+        x = x < 0 ? 0 : x;                      //
+        y = y < 0 ? 0 : y;                      // <= code checks if the given coordinates are negative and clamps them to 0, ensuring that the returned cell is always within the valid range of the grid.
+        z = z < 0 ? 0 : z;                      //
+        if (debug) { Debug.LogWarning($"Grid: GetClosestCell called 'coordinates are x = {x} y = {y} z = {z}'"); }
+        return gridArray[x, y, z];
     }
     // Returns the width, height, and length of the grid through out parameters
     public void returnWidthLenghHeight(out int width, out int hight, out int lengh)
