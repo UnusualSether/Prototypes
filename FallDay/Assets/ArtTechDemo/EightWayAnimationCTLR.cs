@@ -76,7 +76,7 @@ public class EightWayAnimationCTLR : MonoBehaviour
     }
     public void Damaged()
     {
-        animator.SetBool("damade", true);
+        animator.SetTrigger("Damaged");
     }
     private void UpdateWalkCondition()
     {
