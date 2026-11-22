@@ -20,4 +20,4 @@ MonoBehaviour:
   Damage: 20
   DamegeTimer: 1.5
   phaseTimer: 7
-  Zprefab: {fileID: 3666786984904150799, guid: fb5cfd50cb3e23c41bff309a2a2c231a, type: 3}
+  Zprefab: {fileID: 3666786984904150799, guid: 560a35953e4c6d541bb7378c120ff363, type: 3}

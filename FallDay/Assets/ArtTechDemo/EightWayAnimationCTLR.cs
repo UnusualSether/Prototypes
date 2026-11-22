@@ -14,7 +14,6 @@ public class EightWayAnimationCTLR : MonoBehaviour
 
     public Animator animator;
     public PathFolower pathFolower;
-
     //public SpriteRenderer spriteRenderer;
     private Transform cameraTransform;
     [Header("Transform used to determine the forward direction of the sprite")]
@@ -75,7 +74,10 @@ public class EightWayAnimationCTLR : MonoBehaviour
     {
         animator.SetTrigger("Attack");
     }
-
+    public void Damaged()
+    {
+        animator.SetBool("damade", true);
+    }
     private void UpdateWalkCondition()
     {
         if(pathFolower != null)

@@ -194,6 +194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy3dBehaviour
   pathFolower: {fileID: 2911725528273654127}
+  eightWayAnimationCTLR: {fileID: 3189743669285569295}
   whileControl: 0
   state: 0
   minimum_attack_distance: 2
