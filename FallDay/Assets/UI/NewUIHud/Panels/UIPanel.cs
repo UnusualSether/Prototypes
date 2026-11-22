@@ -23,6 +23,8 @@ public abstract class UIPanel
     public virtual void Show()
     {
         if (Root == null) return;
+        //vibracao
+        Haptics.Play(HapticStrength.Medium);
 
         Root.style.display = DisplayStyle.Flex;
         Root.RemoveFromClassList(_offClass);
@@ -32,6 +34,8 @@ public abstract class UIPanel
     public virtual void Hide()
     {
         if (Root == null) return;
+        //vibracao
+        Haptics.Play(HapticStrength.Medium);
 
         Root.RemoveFromClassList(_onClass);
         Root.AddToClassList(_offClass);

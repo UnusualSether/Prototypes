@@ -66,6 +66,10 @@ public class BottomSheetPanel
         // Cliques rápidos durante a descida: só atualiza o conteúdo que vai aparecer
         if (_swapPending)
         {
+            //vibracao
+            Haptics.Play(HapticStrength.Medium);
+
+
             _pendingContent = content;
             return;
         }
@@ -95,6 +99,10 @@ public class BottomSheetPanel
 
     private void OnClose(ClickEvent evt)
     {
+
+        //vibracao
+        Haptics.Play(HapticStrength.Medium);
+
         _swapTask?.Pause();
         _swapPending = false;
 

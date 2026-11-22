@@ -33,14 +33,23 @@ Slider #unity-tracker {
     border-right-color: rgb(0, 0, 0);
     border-top-color: rgb(0, 0, 0);
     border-bottom-color: rgb(0, 0, 0);
+    /*modificaç~eos*/
+    
+    background-color: rgba(68, 68, 62, 0.5);
+    border-width:3px;
+    border-top-color:rgb(57, 57, 70);
+    border-bottom-color:rgb(29, 29, 31);
+    border-left-color:rgb(57, 57, 57);
+    border-right-color:rgb(57, 57, 57);
 }
 
 Slider #unity-dragger {
-    height: 45px;
-    top: 21px;
+    height: 35px;
+    width:35px;
+    top: 25px;
     background-color: rgb(0, 0, 0);
-    width:45px;
-    border-radius:10px;
+    
+    /*border-radius:10px;*/
     border-width:2px;
     
     border-top-color:rgb(195, 60, 31);
@@ -322,4 +331,62 @@ Slider #unity-dragger {
 }
 .btn_setpainel:hover{
     scale:.95;
+}
+/* Trilho */
+.switch-toggle .unity-toggle__input {
+    width: 238px;
+    height: 85px;
+    padding: 1px;
+    border-width: 0;
+    /*border-radius: 10px;*/
+    background-color: rgba(68, 68, 62, 0.5);
+    flex-direction: row;
+    align-items: center;
+    transition-property: background-color;
+    transition-duration: 0.2s;
+
+    border-width:5px;
+    border-top-color:rgb(57, 57, 70);
+    border-bottom-color:rgb(29, 29, 31);
+    border-left-color:rgb(57, 57, 57);
+    border-right-color:rgb(57, 57, 57);
+}
+
+.switch-toggle .unity-toggle__input:checked {
+    background-color: rgb(76, 29, 3);
+}
+
+/* botao */
+.switch-toggle .unity-toggle__checkmark {
+    width: 82px;
+    height: 78px;
+    margin: 0;
+    /*border-radius: 10px;*/
+    background-color: rgb(0, 0, 0);
+    background-image: none;
+    translate: 0 0;
+    transition-property: translate;
+    transition-duration: 0.2s;
+
+
+     border-width:5px;
+    border-top-color:rgb(195, 60, 31);
+    border-bottom-color:rgb(104, 40, 5);
+    border-left-color:rgb(195, 60, 31);
+    border-right-color:rgb(195, 60, 31);
+}
+
+.switch-toggle .unity-toggle__input:checked .unity-toggle__checkmark {
+    background-image: none;
+    translate: 148px 0;   /* largura 120 - padding 12 - bolinha 52 */
+}
+
+
+
+/*icone do botão de idioma*/
+
+#LanguageSelector .unity-image {
+    width: 58px;
+    height: 58px;
+    -unity-background-scale-mode: scale-to-fit;
 }

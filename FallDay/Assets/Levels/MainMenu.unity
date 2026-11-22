@@ -876,7 +876,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TouchIndicatorUI
   useTouchSimulation: 0
-  size: 120
+  size: 250
   frames:
   - {fileID: -546749573, guid: f5d5a68f43b1a544fa29a8e45a21b52a, type: 3}
   - {fileID: 1505766669, guid: f5d5a68f43b1a544fa29a8e45a21b52a, type: 3}
