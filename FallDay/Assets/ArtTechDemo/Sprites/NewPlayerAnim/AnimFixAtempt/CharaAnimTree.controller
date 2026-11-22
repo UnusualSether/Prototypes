@@ -7,7 +7,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Far 5
+  m_Name: DamegeLeft
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -21,7 +21,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: ab53d7b8bdfe9974fb6268c2b71b3e9a, type: 2}
+  m_Motion: {fileID: 7400000, guid: 40677536ba555aa42a310646e792de76, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -646,7 +646,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Far 6
+  m_Name: DamegeFL
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -660,7 +660,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: ab53d7b8bdfe9974fb6268c2b71b3e9a, type: 2}
+  m_Motion: {fileID: 7400000, guid: 008086e1a5606434ba680b1f853045be, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -890,7 +890,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Far 0
+  m_Name: DamegeFR
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -904,7 +904,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: ab53d7b8bdfe9974fb6268c2b71b3e9a, type: 2}
+  m_Motion: {fileID: 7400000, guid: 380109652dd1e2c43b5b83da5d29a443, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -1643,7 +1643,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Far 3
+  m_Name: DamegeBack
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -1657,7 +1657,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: ab53d7b8bdfe9974fb6268c2b71b3e9a, type: 2}
+  m_Motion: {fileID: 7400000, guid: 7a0e5624c57286049b709a77cba11890, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -2076,7 +2076,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Far 2
+  m_Name: DamegeBR
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -2090,7 +2090,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: ab53d7b8bdfe9974fb6268c2b71b3e9a, type: 2}
+  m_Motion: {fileID: 7400000, guid: 3acdb65eeb71300459bd393d8933dd88, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -2337,7 +2337,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Far
+  m_Name: DamegeForward
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -2351,7 +2351,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: ab53d7b8bdfe9974fb6268c2b71b3e9a, type: 2}
+  m_Motion: {fileID: 7400000, guid: f0a96d3d4068a8c4a82aafa966b6bbec, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -2419,7 +2419,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Far 4
+  m_Name: DamegeBL
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -2433,7 +2433,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: ab53d7b8bdfe9974fb6268c2b71b3e9a, type: 2}
+  m_Motion: {fileID: 7400000, guid: 4a15bad94574fdc40b1505c82abb82e9, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -2568,7 +2568,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Far 1
+  m_Name: DamegeRight
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -2582,7 +2582,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: ab53d7b8bdfe9974fb6268c2b71b3e9a, type: 2}
+  m_Motion: {fileID: 7400000, guid: 97a8ca2a93238fe469d3b5d2021cd41b, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
