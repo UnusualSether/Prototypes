@@ -38,7 +38,6 @@ public class EfeitoDanoVisual : MonoBehaviour
             telaVermelha.color = corInvisivel;
         }
 
-        
         if (fonteAudio == null)
         {
             fonteAudio = GetComponent<AudioSource>();
@@ -47,7 +46,6 @@ public class EfeitoDanoVisual : MonoBehaviour
 
     private void AtivarPiscarDano(float danoRecebido)
     {
-        
         if (fonteAudio != null && somDeDano != null)
         {
             fonteAudio.PlayOneShot(somDeDano);

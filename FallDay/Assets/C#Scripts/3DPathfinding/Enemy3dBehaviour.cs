@@ -168,8 +168,8 @@ public class Enemy3dBehaviour : MonoBehaviour //!!!!!! PLACE THIS IN A NOTHER SC
         {
             if (debug) Debug.Log($"{gameObject.name} Enemy3DBehaviour : ThisZombieTakesDamage called for this zombie.");
             StopAllCoroutines();
-            eightWayAnimationCTLR.Damaged();
             StartCoroutine(Stun(0.5f));
+            eightWayAnimationCTLR.Damaged();
             RemakePath();
         }
     }

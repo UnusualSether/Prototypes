@@ -25,8 +25,9 @@ public class PlayerControl : MonoBehaviour
     public void pathFolowerSetUp(Grid_Generator gridGen, Action afterWalkCall)
     {
         this.gridGen = gridGen;
-        this.GH = this.gridGen.GetGH();
-        this.GH.SucessfulShot += ShootZombie;
+        GH = this.gridGen.GetGH();
+        GH.SucessfulShot += ShootZombie;
+        GameHandler.PlayerTookDamage += TakeDamage;
         pathFolower.pathFolowerSetUp(gridGen, Vector3.negativeInfinity, 0, afterWalkCall);
     }
     public void serchNewPathSetUp(Vector3 targetPos)
@@ -40,6 +41,12 @@ public class PlayerControl : MonoBehaviour
         pathFolower.FindPath(transform.position, pathTargetPos);
         pathFolower.canWalk();
     }
+    public void TakeDamage(float a)
+    {
+        if (debug) Debug.Log($"PlayerControl: TakeDamage called");
+        eightWayAnimationCTLR.Damaged();
+    }
+
 
     public void aimAtZombie(Vector3 zombiePos)
     {

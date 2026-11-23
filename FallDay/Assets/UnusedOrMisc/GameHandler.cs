@@ -86,8 +86,6 @@ public partial class GameHandler : MonoBehaviour
 
     public event Action<Zombie> zPhaseChange;
     public event Action<Zombie> ZombieKilled;
-    //public event Action<Zombie> ZombieIsClose;
-
 
     //Objective related events
     public event Action PlayerKilledAllZombies;
@@ -1324,11 +1322,7 @@ public partial class GameHandler : MonoBehaviour
         {
             OnZombieUpdate -= zombie.UpdatePhase;
         }
-
-
         zombieLookup.Clear();
         ZombieList.Clear();
-
-        
     }
 }
