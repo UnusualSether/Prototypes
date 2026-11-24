@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3f2061c161f44a348b9afce026f30b56, type: 3}
-  m_Name: ShamblerExchange
+  m_Name: ShamblerWalkExchange
   m_EditorClassIdentifier: Assembly-CSharp::CharacterAnimationProfile
   EnemyTipe: Shambler
   ClipList:

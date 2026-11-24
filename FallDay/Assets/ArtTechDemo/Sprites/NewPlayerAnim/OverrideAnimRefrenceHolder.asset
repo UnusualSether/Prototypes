@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c05be8163a5dfb43b55964719d65a80, type: 3}
-  m_Name: OverrideAnimHolder
+  m_Name: OverrideAnimRefrenceHolder
   m_EditorClassIdentifier: Assembly-CSharp::AlternativeAnimHolder
   characterAnimationGroups:
   - {fileID: 11400000, guid: bee10ffc38653fd4d9f709f9bc4ce752, type: 2}
