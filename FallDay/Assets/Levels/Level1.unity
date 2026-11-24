@@ -196,19 +196,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc16ebeeda2f1e43bc69c1e24fe7ba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EightWaySpriteView
-  directionalSprites:
-  - {fileID: -1673792648, guid: d2ebb430f9a731b4da544aa5eb2a1554, type: 3}
-  - {fileID: -1673792648, guid: d2ebb430f9a731b4da544aa5eb2a1554, type: 3}
-  - {fileID: -935531765, guid: 22873b447a6316c4ea759710c607dc7c, type: 3}
-  - {fileID: 552229298, guid: c8fa992e4c406894c9db610316291cbf, type: 3}
-  - {fileID: 2132856581, guid: 5774e04817ae57d408a9a89512c3d262, type: 3}
-  - {fileID: 552229298, guid: c8fa992e4c406894c9db610316291cbf, type: 3}
-  - {fileID: -1494957870, guid: 73286d11018d21840b1ff7ebedfe4590, type: 3}
-  - {fileID: 57809865, guid: db5d90f4f95263c4e92960c731ebbb1c, type: 3}
   animator: {fileID: 127173199}
-  cameraTransform: {fileID: 1444338430}
+  pathFolower: {fileID: 1088469945}
   directionSource: {fileID: 27993027}
-  debug: 0
 --- !u!212 &127173198
 SpriteRenderer:
   serializedVersion: 2
@@ -278,7 +268,7 @@ Animator:
   m_GameObject: {fileID: 127173195}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a00c42c63994b664ebafaa6b0ecf8b9c, type: 2}
+  m_Controller: {fileID: 9100000, guid: 8df5076873f0ee24890a2c73a685b340, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -334,12 +324,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87706a25d1e09c04dae4d53139d1c661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Grid_Generator
-  gridSize: {x: 30, y: 1, z: 30}
+  gridSize: {x: 50, y: 1, z: 50}
   gridCenterOffset: {x: 0, y: 2, z: 0}
   cellSize: 0.5
   cellHeightOverrite: 3
   gameHandler: {fileID: 2043720488}
   player: {fileID: 1088469939}
+  playerControl: {fileID: 1088469946}
   debug: 1
 --- !u!1 &258183357
 GameObject:
@@ -1106,7 +1097,7 @@ MonoBehaviour:
   charTransform: {fileID: 1088469944}
   speed: 5
   Grid_Generator: {fileID: 187929143}
-  PPathCtlr: {fileID: 1088469946}
+  PathCtlr: {fileID: 1088469946}
   wayPointList: []
 --- !u!4 &1088469944
 Transform:
@@ -1139,7 +1130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PathFolower
   speed: 2
-  rotationSpeed: 80
+  rotationSpeed: 10
 --- !u!114 &1088469946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1152,6 +1143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 411318feeda01194399d822493703b38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPathControl
+  eightWayAnimationCTLR: {fileID: 127173197}
   pathFolower: {fileID: 1088469945}
 --- !u!4 &1090628604 stripped
 Transform:

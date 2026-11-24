@@ -17,7 +17,8 @@ public class Grid_Generator : MonoBehaviour
     // References for other components and objects
     public GameHandler gameHandler; // Reference to the GameHandler script, which manages game events and state
     public GameObject player; // Reference to the player GameObject, used for positioning and interactions
-    
+    public PlayerControl playerControl; // Reference to the PlayerControl script, which handles player movement and actions
+
     private RoomIndexer roomIndexer; // Reference to the RoomIndexer script, which holds references to objects in the room for easy access
     private Transform[] roomIndexerAlternative; // Alternative array of Transforms for spawn positions, if RoomIndexer is not used (startingRoom)
     private bool useAlternativeRoomIndexer = false; // Flag to determine whether to use the alternative room indexer or the RoomIndexer script
@@ -38,17 +39,25 @@ public class Grid_Generator : MonoBehaviour
     {
         if (gridSize == Vector3.zero)
         {
-            if (debug) Debug.LogError("Grid Size NotSetInpo: " + gridSize);
+            if (debug) Debug.LogError("Grid_Generator : Grid Size NotSetInspector: " + gridSize);
         }
         if (gameHandler != null)
         {
             gameHandler.ZombieSpawned += generateEnemy;
+            gameHandler.ZombieSpawned += IATZ_False;
+            gameHandler.ZombieKilled += IATZ_False;
             gameHandler.ZombieKilled += zombieDeath;
+            gameHandler.ZombieAimChanged += IATZ_True;
         }
         else
         {
-            if (debug) Debug.LogError("GameHandler NotSetInpo: " + gameHandler);
+            if (debug) Debug.LogError("Grid_Generator : GameHandler NotSetInspector: " + gameHandler);
         }
+        if(player == null)
+        {
+            Debug.LogError("Grid_Generator : Player NotSetInspector: " + player);
+        }
+        playerControl = (playerControl != null) ? playerControl : player.GetComponent<PlayerControl>();
 
         Vector3 initialOrigin = GetCenteredOriginPosition();
         grid = new Grid_(gridSize, cellSize, cellHeightOverrite, initialOrigin, this.gameObject);
@@ -58,6 +67,9 @@ public class Grid_Generator : MonoBehaviour
     {
         gameHandler.ZombieSpawned -= generateEnemy;
         gameHandler.ZombieKilled -= zombieDeath;
+        gameHandler.ZombieSpawned -= IATZ_False;
+        gameHandler.ZombieKilled -= IATZ_False;
+        gameHandler.ZombieAimChanged -= IATZ_True;
     }
 
 
@@ -111,7 +123,6 @@ public class Grid_Generator : MonoBehaviour
         c = 0;
         useAlternativeRoomIndexer = false; // Set the flag to use the RoomIndexer script
     }
-    ///
     
     public Vector3 getSpawnPosition() // Called when player Enters a new room, to get a spawn position for the zombie, based on the grid and the player position.
     {
@@ -119,7 +130,7 @@ public class Grid_Generator : MonoBehaviour
         {
             if (roomIndexerAlternative == null || roomIndexerAlternative.Length == 0)
             {
-                Debug.LogError("roomIndexerAlternative in Grid_Generator is not set or empty.");
+                Debug.LogError("Grid_Generator : roomIndexerAlternative is not set or empty.");
                 return Vector3.zero; // Return a default value if the alternative room indexer is not set
             }
             Vector3 spawnPosition = roomIndexerAlternative[c].position;
@@ -130,7 +141,7 @@ public class Grid_Generator : MonoBehaviour
         {
             if (roomIndexer == null || roomIndexer.zombiesSpawnPositions == null || roomIndexer.zombiesSpawnPositions.Length == 0)
             {
-                Debug.LogError("RoomIndexer or zombiesSpawnPositions in Grid_Generator is not set or empty.");
+                Debug.LogError("Grid_Generator : RoomIndexer or zombiesSpawnPositions is not set or empty.");
                 return Vector3.zero; // Return a default value if the RoomIndexer or spawn positions are not set
             }
             Vector3 spawnPosition = roomIndexer.zombiesSpawnPositions[c].transform.position;
@@ -160,7 +171,7 @@ public class Grid_Generator : MonoBehaviour
         pathFolowerComponer = spawnedEnemy.GetComponent<PathFolower>();
         ThreeD_Zombie.Add(zombie, spawnedEnemy);
         
-        Enemy3dBehaviour.Zombie3SetUP(zombie, gameHandler, player, grid, pathFolowerComponer);
+        Enemy3dBehaviour.Zombie3SetUP(zombie, gameHandler, player, this, pathFolowerComponer);
         Enemy3dBehaviour.startWalk();
     }
 
@@ -171,8 +182,48 @@ public class Grid_Generator : MonoBehaviour
         ThreeD_Zombie.Remove(zombie);
     }
 
+    public GameHandler GetGH()
+    {
+        return gameHandler;
+    }
+    
+    public void IATZ_True(Zombie a)
+    {
+        IsAimingAtZombie(a, true);
+    }
+    public void IATZ_False(Zombie a)
+    {
+        IsAimingAtZombie(a);
+    }
+    private void IsAimingAtZombie(Zombie a, bool ZombieToBeUsed = false) // Variable Onde para adicionar isso aos Eventos
+    {
+        if(a != null && gameHandler.ZombieList.Count > 0)
+        {
+            if (ZombieToBeUsed)
+            {
+                playerControl.aimAtZombie((GetZombieObject(a).transform.position));
+            }
+            else
+            {
+                gameHandler.zombieToAimAt();
+            }
+        }
+    }
 
-
+    public GameObject GetZombieObject(Zombie zombie)
+    {
+        GameObject zombieObject;
+        if (ThreeD_Zombie.TryGetValue(zombie, out GameObject foundZombieObject))
+        {
+            zombieObject = foundZombieObject;
+        }
+        else
+        {
+            Debug.LogError($"Grid_Generator : Zombie object not found for the given Zombie data: {zombie}");
+            zombieObject = null; // Return null if the zombie object is not found
+        }
+        return zombieObject;
+    }
 
     /////////////////////////////////////////////////////////////
     // ----------------- GridDebugFuiinction ----------------- //
@@ -186,7 +237,7 @@ public class Grid_Generator : MonoBehaviour
         {
             grid.returnWidthLenghHeight(out int width, out int hight, out int lengh);
             Vector3 worldPos = grid.CellWorldPosition(x, 0, z);
-            Debug.Log($"Cell ({x}, {z}) World Position: {worldPos}");
+            Debug.Log($"Grid_Generator : Cell ({x}, {z}) World Position: {worldPos}");
             switch (changeCase) {
                 case 0:
                     x = x + 3;
@@ -206,7 +257,7 @@ public class Grid_Generator : MonoBehaviour
             }
             return worldPos; // Return the first position for testing; you can modify this to return other positions as needed
         }
-        Debug.LogError($"Grid is null or empty. Cannot cycle through spawn positions.");
+        Debug.LogError($"Grid_Generator : Grid is null or empty. Cannot cycle through spawn positions.");
         return Vector3.zero; // Return a default value if the grid is null or empty
     }
 }

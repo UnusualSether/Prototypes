@@ -44,7 +44,10 @@ public class Pathfinding
         grid_.GetXYZ(endPos, out int endX, out int endY, out int endZ);
         if (debug) Debug.Log($"startPos = {startPos} endPos = {endPos} startX = {startX} startY = {startY} startZ = {startZ} endX = {endX} endY = {endY} endZ = {endZ}");
         List<Cell_> pathCells = FindPath(startX, 0, startZ, endX, 0, endZ);
-
+        if(pathCells == null)
+        {
+            return null;
+        }
         // Convert the list of cells to a list of Vector3 positions
         List<Vector3> pathPositions = new List<Vector3>();
         foreach (Cell_ cell in pathCells)
@@ -245,9 +248,9 @@ public class Pathfinding
     private List<Cell_> nineCellSectionRemover(List<Cell_> Nabors, Cell_ currentCell, int switchSelect, int nVar) //switchSelect selects which axis to remove cells from (0 = x-axis, 1 = y-axis, 2 = z-axis), nVar is the offset for the selected axis
     {
         // Loop through the 3x3 section around the current cell
-        for (int varA = -1; varA <= 1; ++varA) // -1, 0, 1 |
+        for (int varA = -1; varA <= 1; ++varA) // -1, 0, 1 ||
         {
-            for (int varB = -1; varB <= 1; ++varB) // -1, 0, 1 |
+            for (int varB = -1; varB <= 1; ++varB) // -1, 0, 1 ||
             {
                 // Determine which axis to remove cells from based on switchSelect
                 switch (switchSelect)

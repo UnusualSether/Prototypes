@@ -1,11 +1,9 @@
-using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Localization.SmartFormat.Utilities;
 using UnityEngine.UIElements;
 
 
@@ -75,16 +73,17 @@ public partial class GameHandler : MonoBehaviour
     public event Action<int> SucessfulShot;
 
     public event Action<int, Zombie> ZombieHurt;
-
     public event Action<int, Zombie> ZombieHealed;
+    public event Action<Zombie> ChangedPreferdZombie;
     public event Action FailedShot;
     public event Action<VisualElement> BulletSelected;
 
     //Zombie related events
     public event Action<Zombie> ZombieSpawned;
     public event Action<Zombie> ZombieDamaged;
+    public event Action<Zombie> ZombieAimChanged;
 
-    
+
     public event Action<Zombie> zPhaseChange;
     public event Action<Zombie> ZombieKilled;
     //public event Action<Zombie> ZombieIsClose;
@@ -95,9 +94,6 @@ public partial class GameHandler : MonoBehaviour
 
     //Sound detect events
     public event Action PieceConnected;
-
-    //Animação UI
-    public event Action<int> SucessfulHit;
 
     //Rewards
     public event Action NewRewardsGenerated;
@@ -116,7 +112,7 @@ public partial class GameHandler : MonoBehaviour
     public int zombieHP;
     private int stachedZombieID;
 
-    public int preferenceZombie;
+    public int preferenceZombie {  get; private set; }
     public int nulledPreference = -1;
 
     public int SelectedZombie;
@@ -638,11 +634,19 @@ public partial class GameHandler : MonoBehaviour
             //SelectedZombie = ZombieList.First().id;
         }
     }
+    public void ChangePrefrenceZombie(int newPreference)
+    {
+        preferenceZombie = newPreference;
+        ChangedPreferdZombie?.Invoke(ZombieList[preferenceZombie]);
+        zombieToAimAt(); // call this to update the aim target after changing preference
+    }
+
     public Zombie zombieToAimAt()
     {
         if (ZombieList.Count == 0)
         {
             if(debugisOn) Debug.LogWarning("Tried to find a zombie to aim at but there are no zombies! Returning null.");
+            ZombieAimChanged?.Invoke(null);
             return null;
         }
         if (preferenceZombie != nulledPreference)
@@ -651,12 +655,13 @@ public partial class GameHandler : MonoBehaviour
             if (foundZombie == null)
             {
                 Debug.Log("Preference zombie did not return a valid zombie! Auto aiming fail safe activating...");
+                ZombieAimChanged?.Invoke(ZombieList.First());
                 return ZombieList.First();
             }
-
+            ZombieAimChanged?.Invoke(foundZombie);
             return foundZombie;
         }
-
+        ZombieAimChanged?.Invoke(ZombieList.First());
         return ZombieList.First();
     }
 
@@ -1058,7 +1063,6 @@ public partial class GameHandler : MonoBehaviour
         //Debug.Log($"Did {totalDamage} damage with {numberUsed} {bulletType.name}s!");
 
         SucessfulShot?.Invoke(totalDamage);
-        SucessfulHit?.Invoke(totalDamage);
         ApplyDamage(totalDamage, targetZombie);
     }
 

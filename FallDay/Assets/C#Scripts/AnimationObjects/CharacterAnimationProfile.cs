@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewAnimProfile", menuName = "Animation/Character Anim Profile")]
+[CreateAssetMenu(fileName = "NewAnimExchange", menuName = "Animation/Character AnimClip Exchange")]
 public class CharacterAnimationProfile : ScriptableObject
 {
     public string EnemyTipe; // Check ZombieAnimatorProxy partial enum data for int refrence 

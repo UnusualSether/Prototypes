@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Security.Cryptography;
 using UnityEngine;
 
 public class PathFolower : MonoBehaviour
@@ -18,9 +16,10 @@ public class PathFolower : MonoBehaviour
     public float speed = 0.0001f; //Speed of the object along the path
     public float rotationSpeed = 0.5f; // Speed of rotation when turning towards the next point in the path
 
-    private Vector3 targetPosition; // Target position to move towards
+    private Vector3 targetPosition = Vector3.negativeInfinity; // Target position to move towards
 
-    
+    [HideInInspector]
+    public bool IsWalking { get; private set; } = false; // Flag to indicate if the object is currently walking along the path
 
     private bool isThereTarget = false; // Control say there is a path terget start pos is always this game object
     private List<Vector3> path;
@@ -30,9 +29,9 @@ public class PathFolower : MonoBehaviour
     /////////////////////////////
     private bool debug = true; // Debugging flag to enable or disable debug logs and other debug features
     /////////////////////////////
-    public void pathFolowerSetUp(Grid_ grid, Vector3 targetPosition, int ReducePathOveride, Action afterWalkCall)
+    public void pathFolowerSetUp(Grid_Generator gridGen, Vector3 targetPosition, int ReducePathOveride, Action afterWalkCall)
     {
-        this.grid = grid;
+        this.grid = gridGen.grid;
         pathFolowerSetUp(targetPosition, ReducePathOveride, afterWalkCall);
     }
     public void pathFolowerSetUp(Vector3 targetPosition, int ReducePathOveride, Action afterWalkCall)
@@ -82,67 +81,11 @@ public class PathFolower : MonoBehaviour
             if (debug) Debug.Log($"[{gameObject.name}]Path found with {path.Count} points");
         }
     }
-    private IEnumerator WalkPathCoroutine()
-    {
-
-        if (isThereTarget && targetPosition != Vector3.negativeInfinity) // Check if there is a target position to move towards (avoids null reference)
-        {
-            for (int i = 0; i < path.Count; i++)
-            {
-                float alinhamento;
-                bool needTurn = false;
-                Vector3 nextPoint = path[i];
-                Vector3 preveosPoint = i > 0 ? path[i - 1] : path[i];
-                Vector3 vectorBetweenPoints = Vector3.zero;
-                if(nextPoint != preveosPoint)
-                {
-                    vectorBetweenPoints = (nextPoint - preveosPoint).normalized;
-                    needTurn = true;
-                }
-
-                while ((gameObject.transform.position - nextPoint).magnitude > 0.02f && needTurn && Vector3.Dot(transform.forward.normalized, vectorBetweenPoints) < 0.99f)
-                {
-                    // Rotate the object to face the next point in the path
-                    Vector3 directionOfNextPoint = (nextPoint - transform.position).normalized;  // Calculate the direction to the next point
-
-
-                    Quaternion targetRotation = Quaternion.LookRotation(directionOfNextPoint);  // Calculate the target rotation to face the next point
-                    targetRotation = new Quaternion(0, targetRotation.y, 0, targetRotation.w); // Keep the y position constant to avoid tilting the object
-                    //transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, speed * Time.deltaTime); // Smoothly rotate towards the target rotation
-
-                    alinhamento = Vector3.Dot(transform.forward.normalized, vectorBetweenPoints); // Calculate the alignment between the object's forward direction and the direction to the next point
-
-
-                    if(alinhamento > 0.99f)
-                    {
-                        transform.rotation = targetRotation; // Set the object's forward direction to face the next point, keeping the y position constant
-                    }
-                    yield return new WaitForFixedUpdate();
-                }
-
-                do
-                {
-                    float step = speed * Time.deltaTime;
-                    transform.position = Vector3.MoveTowards(transform.position, nextPoint, step);
-                    yield return new WaitForFixedUpdate();
-                } while ((gameObject.transform.position - nextPoint).magnitude > 0.1f);
-            }
-            /*
-            foreach (Vector3 point in path)
-            {
-                while (true)
-                {
-                    yield return new WaitForFixedUpdate();
-                }
-            }
-            */
-            canWalk();
-        }
-    }
+    /// <summary>
+    /// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// </summary>
     // Emrgency check to see if the object is close enough to the start position of the path,
     // and if not, it will attempt to find a new path.
-    // This is a safety measure in case the path becomes invalid or the object is not close enough to the start position.
     public void canWalk()
     {
         if (isThereTarget && targetPosition != Vector3.negativeInfinity)
@@ -154,7 +97,7 @@ public class PathFolower : MonoBehaviour
             {
                 if (path.Count > 0) // is there path to follow
                 {
-                    if ((gameObject.transform.position - path[path.Count - 1]).magnitude < 0.2f)
+                    if ((gameObject.transform.position - path[path.Count - 1]).magnitude < 0.2f) // Has Reached Target
                     {
                         if(debug) {Debug.Log($"[{gameObject.name}]Has gotten Close to the end of the path");}
                         AfeterpathCall();
@@ -163,12 +106,12 @@ public class PathFolower : MonoBehaviour
 
                     Vector3 a = new Vector3 (gameObject.transform.position.x, 0, gameObject.transform.position.z); // Pos atual
                     Vector3 b = new Vector3(path[0].x, 0, path[0].z); //Pos inicial do caminho
-                    if ((a - b).magnitude < 0.3f) // is close enough to start pos (is path valid)
+                    if ((a - b).magnitude < 1f) // is close enough to start pos (is path valid)
                     {
                         //is close enough to stert pos
                         //start walk
-                        if (debug) {Debug.Log($"[{gameObject.name}]Starting Walk Coroutine if is {(a - b).magnitude < 0.3f}");}
-                        StartCoroutine(WalkPathCoroutine());
+                        if (debug) {Debug.Log($"[{gameObject.name}]Starting Walk Coroutine if is {(a - b).magnitude < 1f}");}
+                        WalkPath();
                     }
                     else
                     {
@@ -177,6 +120,85 @@ public class PathFolower : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void aimIntoPosition(Vector3 target, Action startCall = null, Action endCall = null)
+    {
+        StopAllCoroutines();
+        StartCoroutine(TurnToTargetCoroutine(target, startCall, endCall));
+    }
+
+
+    private void WalkPath(int index = 0)
+    {
+        if (isThereTarget && targetPosition != Vector3.negativeInfinity) // Check if there is a target position to move towards (avoids null reference)
+        {
+            if (index < path.Count)
+            {
+                StopAllCoroutines();
+                Vector3 nextPoint = path[index];
+                StartCoroutine(TurnToTargetCoroutine(nextPoint, null, () =>
+                {
+                    StartCoroutine(WalkToNextPoint(nextPoint, () =>
+                    {
+                        WalkPath(index + 1); // Recursively call WalkPath with the next index
+                    }));
+                }));
+            }
+            else
+            {
+                AfeterpathCall(); // Call the AfterWalkCall action when the path is completed
+            }
+        }
+    }
+
+    private IEnumerator WalkToNextPoint(Vector3 nextPoint, Action endCall)
+    {
+        IsWalking = true;
+
+        // 1. A 'while' loop is safer than 'do-while' in case the object is already at the destination.
+        // 2. Vector3.MoveTowards automatically clamps at the exact target without overshooting, 
+        // so checking for exact inequality is completely safe and avoids calculating magnitudes.
+        while (transform.position != nextPoint)
+        {
+            // 3. Match Time.deltaTime with yield return null (Update loop)
+            float step = speed * Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, nextPoint, step);
+
+            yield return null;
+        }
+
+        IsWalking = false;
+
+        // 4. Simplify the callback invocation
+        endCall?.Invoke();
+    }
+    private IEnumerator TurnToTargetCoroutine(Vector3 target, Action startCall = null, Action endCall = null)
+    {
+        // 1. Flatten the target position to the object's Y level before calculating direction.
+        // This safely prevents tilting without breaking quaternion mathematics.
+        Vector3 flatTarget = new Vector3(target.x, transform.position.y, target.z);
+        Vector3 directionToTarget = (flatTarget - transform.position).normalized;
+
+        // Prevent LookRotation from throwing an error if the object is exactly on the target
+        if (directionToTarget != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
+            startCall?.Invoke();
+            // 2. Use Quaternion.Angle for a predictable threshold (e.g., stop when within 1 degree)
+            while (Quaternion.Angle(transform.rotation, targetRotation) > 1f)
+            {
+                // 3. Match Time.deltaTime with yield return null (Update loop)
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+                yield return null;
+            }
+
+            // Snap to the exact target rotation to prevent leftover micro-inaccuracies
+            transform.rotation = targetRotation;
+        }
+
+        // 4. Simplify the callback with the null-conditional operator
+        endCall?.Invoke();
     }
     private void AfeterpathCall()
     {
