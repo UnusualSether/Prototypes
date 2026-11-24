@@ -157,3 +157,48 @@
 .stalked {
     background-color: rgb(240, 180, 180);
 }
+#Lifebar #unity-tracker {
+   
+    height: 115px;
+    width:435px;
+    
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    
+    /*modificaç~eos*/
+    
+    background-color: rgba(68, 68, 62, 0.5);
+    border-width:1px;
+    border-top-color:rgb(57, 57, 70);
+    border-bottom-color:rgb(29, 29, 31);
+    border-left-color:rgb(57, 57, 57);
+    border-right-color:rgb(57, 57, 57);
+    border-radius:60px;
+    overflow:hidden;
+}
+
+#Lifebar #unity-dragger {
+    height: 0px;
+    width:0px;
+    top: 60px;
+    background-color: rgba(50, 0, 0,0);
+    
+    /*border-radius:10px;*/
+    border-width:0px;
+    
+    border-top-color:rgb(195, 60, 31);
+    border-bottom-color:rgb(104, 40, 5);
+    border-left-color:rgb(195, 60, 31);
+    border-right-color:rgb(195, 60, 31);
+}
+
+.unity-base-slider__fill {
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    background-color: rgba(104, 35, 5,0.95);
+    
+    border-width:20px;
+    border-top-color:rgba(195, 60, 31,0.9);
+    border-bottom-color:rgba(104, 40, 5,0.9);
+    border-right-color:rgba(104, 30, 5,0.9);
+    border-left-color:rgba(104, 30, 5,0.9);
+    border-radius:60px;
+}
