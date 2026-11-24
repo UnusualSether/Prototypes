@@ -666,7 +666,7 @@ public partial class GameHandler : MonoBehaviour
     #endregion
 
     #region Bullet Handling
-    public void HandleBulletSelect()
+    public void HandleBulletSelect() // <= This is the function that handles the touch input for shooting. It checks if there is a touch on the screen and if the touch phase is ended, it calls the HandleShot() function.
     {
         if (Input.touchCount > 0)
         {
@@ -878,7 +878,7 @@ public partial class GameHandler : MonoBehaviour
 
     #endregion
 
-    public void ClearUsedBullets()
+    public void ClearUsedBullets() // Removes Used Bullets from the selectableBullets array and removes the "used" class from the UI buttons.
     {
         int currentBulletIndex = 0;
 
@@ -940,7 +940,7 @@ public partial class GameHandler : MonoBehaviour
                     attempts++;
                     if (attempts >= maxAttempts)
                     {
-                        
+                        if (debugisOn) Debug.Log("Max attempts reached for restocking bullet.");
                         break;
                     }
                 }
@@ -970,19 +970,12 @@ public partial class GameHandler : MonoBehaviour
 
     private bool InvalidBoard(string[] futureBoard)
     {
-
-
-
-
-
-
         bool[] visited = new bool[futureBoard.Length];
 
         for (int i = 0; i < futureBoard.Length; i++)
         {
             if (visited[i] || string.IsNullOrEmpty(futureBoard[i]))
                 continue;
-
 
             List<int> group = new List<int>();
             Queue<int> queue = new Queue<int>();
