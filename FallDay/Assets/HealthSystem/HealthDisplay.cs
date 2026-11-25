@@ -1,10 +1,45 @@
 using System;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class HealthDisplay : MonoBehaviour
 {
 
+    
     public GameHandler handler;
+    [SerializeField] private UIDocument uiDocument;
+
+    private PlayerInstance Player => handler.player;
+    private Slider lifebar;
+
+    void OnEnable()
+    {
+        lifebar = uiDocument.rootVisualElement.Q<Slider>("Lifebar");
+        lifebar.pickingMode = PickingMode.Ignore; 
+        GameHandler.PlayerTookDamage += OnPlayerTookDamage;
+    }
+    void Start() => Refresh();
+    void Update() => Refresh();
+
+    void OnDisable()
+    {
+        GameHandler.PlayerTookDamage -= OnPlayerTookDamage;
+    }
+
+    private void OnPlayerTookDamage(float damage) => Refresh();
+
+    private void Refresh()
+    {
+        if (lifebar == null|| Player==null) return;
+        //Debug.Log($"HP {Player.current_hp} / {Player.stats.max_hp}");
+
+        lifebar.lowValue = 0;
+        lifebar.highValue = Player.stats.max_hp;
+        lifebar.SetValueWithoutNotify(Mathf.Clamp(Player.current_hp, 0, Player.stats.max_hp));
+    }
+
+
+   /* public GameHandler handler;
 
     public PlayerInstance player_instance => handler.player;
 
@@ -81,6 +116,6 @@ public class HealthDisplay : MonoBehaviour
     
 
 
-    //Botões para curar e receber dano
+    //Botões para curar e receber dano*/
     
 }
