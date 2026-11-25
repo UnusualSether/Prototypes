@@ -37,10 +37,10 @@ public partial class ZombieAnimatorProxy
     public void setUpNewEnemy(string selectEnemy)
     {
         overrideController.GetOverrides(clipOverrides);
-        CharacterAnimationProfile profileToApply = FindClipList(selectEnemy);
-        ApplyProfile(profileToApply);
+        //CharacterAnimationProfile profileToApply = FindClipList(selectEnemy);
+        //ApplyProfile(profileToApply);
     }
-
+    /*
     public CharacterAnimationProfile FindClipList(string enemyTipe)
     {
         // Uses the ultra-fast lookup we added to ProxyesInfoHolder
@@ -50,7 +50,7 @@ public partial class ZombieAnimatorProxy
         }
         return null;
     }
-
+    */
     private void ApplyProfile(CharacterAnimationProfile newProfileObject)
     {
         if (newProfileObject == null || newProfileObject.ClipList == null) return;

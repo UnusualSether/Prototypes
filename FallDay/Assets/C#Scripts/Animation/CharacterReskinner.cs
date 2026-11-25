@@ -38,11 +38,10 @@ public class CharacterReskinner : MonoBehaviour
     public void setUpNewEnemy(string selectEnemy)
     {
         overrideController.GetOverrides(clipOverrides);
-        CharacterAnimationProfile profileToApply = FindClipList(selectEnemy);
-        ApplyProfile(profileToApply);
+        ApplyProfile(FindClipList(selectEnemy));
     }
 
-    public CharacterAnimationProfile FindClipList(string enemyTipe)
+    public List<AnimationSwap> FindClipList(string enemyTipe)
     {
         // Uses the ultra-fast lookup we added to ProxyesInfoHolder
         if (ZombiesAnimationHolder != null)
@@ -52,16 +51,16 @@ public class CharacterReskinner : MonoBehaviour
         return null;
     }
 
-    private void ApplyProfile(CharacterAnimationProfile newProfileObject)
+    private void ApplyProfile(List<AnimationSwap> AnimSwapList)
     {
-        if (newProfileObject == null || newProfileObject.ClipList == null) return;
+        if (AnimSwapList == null) return;
 
         // 1. Map [BaseClip -> OverrideClip] from your ScriptableObject
-        Dictionary<AnimationClip, AnimationClip> lookup = new Dictionary<AnimationClip, AnimationClip>(newProfileObject.ClipList.Count);
+        Dictionary<AnimationClip, AnimationClip> lookup = new Dictionary<AnimationClip, AnimationClip>();
 
-        for (int i = 0; i < newProfileObject.ClipList.Count; i++)
+        for (int i = 0; i < AnimSwapList.Count; i++)
         {
-            AnimationSwap swap = newProfileObject.ClipList[i];
+            AnimationSwap swap = AnimSwapList[i];
             if (swap.BaseClip != null && swap.OverrideClip != null)
             {
                 lookup[swap.BaseClip] = swap.OverrideClip;

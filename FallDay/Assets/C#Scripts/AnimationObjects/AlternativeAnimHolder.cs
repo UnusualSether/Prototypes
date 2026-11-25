@@ -7,28 +7,34 @@ public class AlternativeAnimHolder : ScriptableObject
     public List<CharacterAnimationProfile> characterAnimationGroups;
 
     // Dicionário de cache para transformar a busca linear (foreach) em busca instantânea (O(1))
-    private Dictionary<string, CharacterAnimationProfile> profileLookup;
+    private List<AnimationSwap> animationSwaps;
 
     /// <summary>
     /// Retorna o perfil de animação correto para o tipo de inimigo selecionado.
     /// </summary>
-    public CharacterAnimationProfile GetProfile(string enemyType)
+    public List<AnimationSwap> GetProfile(string enemyType)
     {
         // Inicializa o dicionário de busca na primeira vez que o método for chamado
-        if (profileLookup == null)
+        if (animationSwaps == null)
         {
-            profileLookup = new Dictionary<string, CharacterAnimationProfile>(characterAnimationGroups.Count);
+            animationSwaps = new List<AnimationSwap>();
             foreach (var profile in characterAnimationGroups)
             {
-                if (profile != null && !profileLookup.ContainsKey(profile.EnemyTipe))
+                if (profile != null)
                 {
-                    profileLookup.Add(profile.EnemyTipe, profile);
+                    //!profileLookup.ContainsKey(profile.EnemyTipe) <= may be nscessaryFor modification
+                    if (profile.EnemyTipe == enemyType)
+                    {
+                        foreach (AnimationSwap Swap in profile.ClipList)
+                        {
+                            animationSwaps.Add(Swap);
+                        }
+                    }
                 }
             }
         }
 
         // Tenta resgatar o perfil de forma ultra performática
-        profileLookup.TryGetValue(enemyType, out CharacterAnimationProfile result);
-        return result;
+        return animationSwaps;
     }
 }

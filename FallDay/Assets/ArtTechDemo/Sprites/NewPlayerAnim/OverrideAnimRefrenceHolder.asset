@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: OverrideAnimRefrenceHolder
   m_EditorClassIdentifier: Assembly-CSharp::AlternativeAnimHolder
   characterAnimationGroups:
+  - {fileID: 11400000, guid: e033bb91795ae6a41802964730c2f8dd, type: 2}
   - {fileID: 11400000, guid: bee10ffc38653fd4d9f709f9bc4ce752, type: 2}
+  - {fileID: 11400000, guid: 5921227c612fff84794476d58ded27b3, type: 2}
