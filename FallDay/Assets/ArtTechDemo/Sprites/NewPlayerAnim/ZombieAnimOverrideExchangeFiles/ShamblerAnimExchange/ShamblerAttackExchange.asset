@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f2061c161f44a348b9afce026f30b56, type: 3}
+  m_Name: ShamblerAttackExchange
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterAnimationProfile
+  EnemyTipe: Shambler
+  ClipList:
+  - BaseClip: {fileID: 7400000, guid: 8bc5ea0e5359e5b45bb538260aed835d, type: 2}
+    OverrideClip: {fileID: 7400000, guid: e2b3c39e37f54114481c71e309c94631, type: 2}
+  - BaseClip: {fileID: 7400000, guid: 652f758a50fa7e842994a5472d90888e, type: 2}
+    OverrideClip: {fileID: 7400000, guid: 3a4caf14c8121044cb2477986aad0a7a, type: 2}
+  - BaseClip: {fileID: 7400000, guid: 0dcf7746f9fd78048bd395a111dddbc1, type: 2}
+    OverrideClip: {fileID: 7400000, guid: 296bbedf572f4534d8dc6e953a503357, type: 2}
+  - BaseClip: {fileID: 7400000, guid: f6113004764479f44ba2c9b508540556, type: 2}
+    OverrideClip: {fileID: 7400000, guid: c7f1e98147eb68c4bb21c525984cd61d, type: 2}
+  - BaseClip: {fileID: 7400000, guid: f8e3c150eab088c419c31ec6994a3767, type: 2}
+    OverrideClip: {fileID: 7400000, guid: f305dc4e9fd7c2b40a8c3ba5efa00df4, type: 2}
+  - BaseClip: {fileID: 7400000, guid: 34762e885bb1d2d4aa51a15a94010eb7, type: 2}
+    OverrideClip: {fileID: 7400000, guid: ec28dba9d94996947a9b7a18dc63ca1e, type: 2}
+  - BaseClip: {fileID: 7400000, guid: 6cd6b08ddb3c8a2449af20c354fbb2f1, type: 2}
+    OverrideClip: {fileID: 7400000, guid: c05520f8ec20a6140af9296baf8724dc, type: 2}
+  - BaseClip: {fileID: 7400000, guid: 637829047946d1a4ba88c750f8657535, type: 2}
+    OverrideClip: {fileID: 7400000, guid: f7bfb9cfcddf64f4a9bae3d2375dbe57, type: 2}

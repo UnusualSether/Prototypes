@@ -248,9 +248,9 @@ public class Pathfinding
     private List<Cell_> nineCellSectionRemover(List<Cell_> Nabors, Cell_ currentCell, int switchSelect, int nVar) //switchSelect selects which axis to remove cells from (0 = x-axis, 1 = y-axis, 2 = z-axis), nVar is the offset for the selected axis
     {
         // Loop through the 3x3 section around the current cell
-        for (int varA = -1; varA <= 1; ++varA) // -1, 0, 1 |
+        for (int varA = -1; varA <= 1; ++varA) // -1, 0, 1 ||
         {
-            for (int varB = -1; varB <= 1; ++varB) // -1, 0, 1 |
+            for (int varB = -1; varB <= 1; ++varB) // -1, 0, 1 ||
             {
                 // Determine which axis to remove cells from based on switchSelect
                 switch (switchSelect)

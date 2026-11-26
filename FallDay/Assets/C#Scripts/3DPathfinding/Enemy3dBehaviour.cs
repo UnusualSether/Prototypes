@@ -1,7 +1,4 @@
-
 using System.Collections;
-using System.Drawing;
-using Unity.VisualScripting;
 using UnityEngine;
 // This script is attached to the 3D zombie prefab and handles its behavior in the game world
 // It receives information about the zombie and the player
@@ -12,6 +9,7 @@ using UnityEngine;
 public class Enemy3dBehaviour : MonoBehaviour //!!!!!! PLACE THIS IN A NOTHER SCRIPT FILE, THIS IS A TEMPORARY PLACEHOLDER !!!!!!//
 {
     public PathFolower pathFolower; // Reference to the PathFolower component attached to the 3D zombie prefab
+    public EightWayAnimationCTLR eightWayAnimationCTLR; // Reference to the EightWayAnimationCTLR component attached to the 3D zombie prefab
 
     private Zombie zombie; // Zombie reference to subscride to the damege && death Event and ID refrence
     private GameHandler gameHandler;
@@ -20,7 +18,6 @@ public class Enemy3dBehaviour : MonoBehaviour //!!!!!! PLACE THIS IN A NOTHER SC
     [HideInInspector]
     public bool whileControl;
     ///////////////////////////////////
-    /**/
     private bool debug = true; /**/
     ///////////////////////////////////
 
@@ -47,7 +44,12 @@ public class Enemy3dBehaviour : MonoBehaviour //!!!!!! PLACE THIS IN A NOTHER SC
         if (pathFolower == null) pathFolower = GetComponent<PathFolower>(); //in case the pathFolower is not set in the inspector, it will try to get it from the same gameObject
 
         pathFolower.pathFolowerSetUp(gridGen, player.transform.position, 1, afterWalk);
+        this.gameHandler.ZombieHurt += ThisZombieTakesDamage;
         activationGate = true;
+    }
+    void OnDisable()
+    {
+        this.gameHandler.ZombieHurt -= ThisZombieTakesDamage;
     }
     public void startWalk() // This method is called by the 3DzombieGenerator when the zombie is spawned and is ready to start moving towards the player
     {
@@ -61,15 +63,20 @@ public class Enemy3dBehaviour : MonoBehaviour //!!!!!! PLACE THIS IN A NOTHER SC
     }
 
     public void Pushback3DSpace()
-    { 
-        float max_range = 5f;
-        var distance_to_player = Vector3.Distance(transform.position, player.transform.position);
+    {
+        Vector3 player_pos = player.transform.position;
 
-        float max_push = 2.5f;
+        Vector3 diff = player_pos - this.transform.position; diff.Normalize();
 
-        float strength = Mathf.Clamp01(1f - distance_to_player / max_range) * max_push;
+        if (Mathf.Abs(diff.x) > Mathf.Abs(diff.z))
+        {
+            transform.position = new Vector3(transform.position.x + (transform.position.x / 2),transform.position.y, transform.position.z);
+        }
 
-        transform.position += -transform.forward * strength;
+        if (Mathf.Abs(diff.z) > Mathf.Abs(diff.x))
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + (transform.position.z / 2));
+        }
 
         Debug.Log("Stopped coroutine");
         StopAllCoroutines();
@@ -80,7 +87,7 @@ public class Enemy3dBehaviour : MonoBehaviour //!!!!!! PLACE THIS IN A NOTHER SC
     }
 
 
-    public IEnumerator Stun(int stun_dur)
+    public IEnumerator Stun(float stun_dur)
     {
         yield return new WaitForSeconds(stun_dur);
 
@@ -120,14 +127,13 @@ public class Enemy3dBehaviour : MonoBehaviour //!!!!!! PLACE THIS IN A NOTHER SC
     {
         if (state == ZombieState.Attacking)
         {
-            StartCoroutine(DamegeCorutine());
+            StartCoroutine(DamegePlayerCorutine());
         }
     }
 
     public bool IsPlayerInAttackRange()
     {
         Vector3 player_pos = player.transform.position;
-
         Vector3 diff = player_pos - this.transform.position;
 
         if (diff.x > minimum_attack_distance && diff.z > minimum_attack_distance)
@@ -141,33 +147,34 @@ public class Enemy3dBehaviour : MonoBehaviour //!!!!!! PLACE THIS IN A NOTHER SC
         }
     }
 
-    private IEnumerator DamegeCorutine()
+    private IEnumerator DamegePlayerCorutine()
     {
 
         while(state == ZombieState.Attacking)
         { 
+            if (debug) Debug.Log($"{gameObject.name} Enemy3DBehaviour : DamegePlayerCorutine started attack coroutine whileLoop.");
+            yield return new WaitForSeconds(zombie.enemyData.DamegeTimer);
 
-
-
-        yield return new WaitForSeconds(zombie.enemyData.DamegeTimer);
-        Debug.Log($"{gameObject.name} started attack coroutine.");
-        if (debug) Debug.Log($"Damage Corutine yield return called");
-
-
-
-
-         if (IsPlayerInAttackRange())
-         {
-            zombie.DealDamage();
-         }
-
-
+            if (IsPlayerInAttackRange())
+            {
+                zombie.DealDamage();
+            }
         }
-        
+    }
+    public void ThisZombieTakesDamage( int damage, Zombie zombie)
+    {
+        if (debug) Debug.Log($"{gameObject.name} Enemy3DBehaviour : ThisZombieTakesDamage called.");
+        if (this.zombie == zombie)
+        {
+            if (debug) Debug.Log($"{gameObject.name} Enemy3DBehaviour : ThisZombieTakesDamage called for this zombie.");
+            StopAllCoroutines();
+            StartCoroutine(Stun(0.5f));
+            eightWayAnimationCTLR.Damaged();
+            RemakePath();
+        }
     }
 
 
-   
     public void callerDestroy(Zombie zombie)
     {
         if (activationGate && this.zombie == zombie)

@@ -106,11 +106,11 @@ public class PathFolower : MonoBehaviour
 
                     Vector3 a = new Vector3 (gameObject.transform.position.x, 0, gameObject.transform.position.z); // Pos atual
                     Vector3 b = new Vector3(path[0].x, 0, path[0].z); //Pos inicial do caminho
-                    if ((a - b).magnitude < 0.3f) // is close enough to start pos (is path valid)
+                    if ((a - b).magnitude < 1f) // is close enough to start pos (is path valid)
                     {
                         //is close enough to stert pos
                         //start walk
-                        if (debug) {Debug.Log($"[{gameObject.name}]Starting Walk Coroutine if is {(a - b).magnitude < 0.3f}");}
+                        if (debug) {Debug.Log($"[{gameObject.name}]Starting Walk Coroutine if is {(a - b).magnitude < 1f}");}
                         WalkPath();
                     }
                     else
