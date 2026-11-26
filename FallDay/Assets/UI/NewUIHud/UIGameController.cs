@@ -201,7 +201,7 @@ public class UIGameController : MonoBehaviour
     private void QuitGame(ClickEvent evt)
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene("Scenes/MainMenu");
+        SceneManager.LoadScene("Levels/MainMenu");
     }
 
 }
