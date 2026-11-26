@@ -18,6 +18,7 @@ public class Enemy3dBehaviour : MonoBehaviour //!!!!!! PLACE THIS IN A NOTHER SC
     [HideInInspector]
     public bool whileControl;
     ///////////////////////////////////
+    [Header("Debugging")]
     private bool debug = true; /**/
     ///////////////////////////////////
 

@@ -20,7 +20,12 @@ public class EightWayAnimationCTLR : MonoBehaviour
     public Transform directionSource;
 
     //////////////////////////////////
-    private bool debug = false;       //
+    [Header("Debugging")]
+    [Tooltip("Set this to true to enable debug logs of this component")]
+    public bool debug = false; 
+    [Header("LockZombieAnimations: Set this to true to lock the zombie animations and prevent them from being changed, with the exception of Rotation, For Testing purposes")]
+    public bool LockZombieAnimations = false; // Set this to true to lock the zombie animations and prevent them from being changed For Testing purposes
+    private bool IsWalking = false;
     //////////////////////////////////
 
     public void Start()
@@ -67,23 +72,39 @@ public class EightWayAnimationCTLR : MonoBehaviour
 
         if(debug) Debug.Log($"[EightWaySpriteView] {this.gameObject.name} angle: {angle}, frameIndex: {frameIndex}");
 
-        animator.SetInteger("Rotation", frameIndex);
+        if(animator != null) animator.SetInteger("Rotation", frameIndex);
         UpdateWalkCondition();
     }
     public void Attack()
     {
-        animator.SetTrigger("Attack");
+        if(!LockZombieAnimations && animator != null) animator.SetTrigger("Attack");
     }
     public void Damaged()
     {
-        animator.SetTrigger("Damage");
+        if(!LockZombieAnimations && animator != null) animator.SetTrigger("Damage");
     }
     private void UpdateWalkCondition()
     {
         if(pathFolower != null)
         {
             bool isWalking = pathFolower.IsWalking;
-            animator.SetBool("Walk", isWalking);
+            if(!LockZombieAnimations && animator != null) animator.SetBool("Walk", isWalking);
         }
+    }
+    [ContextMenu("Debug Call Animation Attack")]
+    private void DebugCallAnimationAttack()
+    {
+        if(LockZombieAnimations && animator != null) animator.SetTrigger("Attack");
+    }
+    [ContextMenu("Debug Call Animation Damaged")]
+    private void DebugCallAnimationDamaged()
+    {
+        if(LockZombieAnimations && animator != null) animator.SetTrigger("Damage");
+    }
+    [ContextMenu("Debug Call Animation Walk")]
+    private void DebugCallAnimationWalk()
+    {
+        IsWalking = !IsWalking;
+        if(LockZombieAnimations && animator != null) animator.SetBool("Walk", IsWalking);
     }
 }
