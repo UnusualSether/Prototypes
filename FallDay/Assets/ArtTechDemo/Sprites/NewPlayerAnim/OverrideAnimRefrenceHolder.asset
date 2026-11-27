@@ -14,5 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AlternativeAnimHolder
   characterAnimationGroups:
   - {fileID: 11400000, guid: e033bb91795ae6a41802964730c2f8dd, type: 2}
-  - {fileID: 11400000, guid: bee10ffc38653fd4d9f709f9bc4ce752, type: 2}
   - {fileID: 11400000, guid: 5921227c612fff84794476d58ded27b3, type: 2}
+  - {fileID: 11400000, guid: c64173fdb905d06489345ee8dd9b5654, type: 2}
+  - {fileID: 11400000, guid: bee10ffc38653fd4d9f709f9bc4ce752, type: 2}
+  - {fileID: 11400000, guid: 8cc301a0872bc894daa9c18ec4bf573d, type: 2}
+  - {fileID: 11400000, guid: 94726259cddb0904294af8a4b8ed9a52, type: 2}
+  - {fileID: 11400000, guid: b92c4a010583a6a469f35cbac0893e52, type: 2}
+  - {fileID: 11400000, guid: ab88d4ddf04b04543b8f9dffdbd146b1, type: 2}

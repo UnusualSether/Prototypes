@@ -14,8 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterAnimationProfile
   EnemyTipe: Shambler
   ClipList:
-  - BaseClip: {fileID: 7400000, guid: cf1b68cd81e465c4db57a5f3717806cd, type: 2}
-    OverrideClip: {fileID: 7400000, guid: 1acf615e1c9d35e498770f70131d086a, type: 2}
   - BaseClip: {fileID: 7400000, guid: 1d53d92e816d6db4dbfca0bec60aaca6, type: 2}
     OverrideClip: {fileID: 7400000, guid: 3aa18861d2eb4964095b72a8099e32c4, type: 2}
   - BaseClip: {fileID: 7400000, guid: 90f884bd11b20a9429866179b1866641, type: 2}
@@ -24,9 +22,11 @@ MonoBehaviour:
     OverrideClip: {fileID: 7400000, guid: be361eeffe2eddd4aa76c4c23d85b5d5, type: 2}
   - BaseClip: {fileID: 7400000, guid: 9dc55a79eb40e4b40846fabc96833697, type: 2}
     OverrideClip: {fileID: 7400000, guid: f269f8b2083c96046ab8287605c8b896, type: 2}
-  - BaseClip: {fileID: 7400000, guid: 52817defee3aaaf4fab77dea6c371466, type: 2}
-    OverrideClip: {fileID: 7400000, guid: 5dfefba4c5f4dd840af63442a51eb46e, type: 2}
   - BaseClip: {fileID: 7400000, guid: 0b1a311fb31aa814f9e6caf787bc7365, type: 2}
     OverrideClip: {fileID: 7400000, guid: c66f82ecdde2ec1438cd80a3b545bd04, type: 2}
+  - BaseClip: {fileID: 7400000, guid: cf1b68cd81e465c4db57a5f3717806cd, type: 2}
+    OverrideClip: {fileID: 7400000, guid: 1acf615e1c9d35e498770f70131d086a, type: 2}
   - BaseClip: {fileID: 7400000, guid: 98a8c79b6e078cb4c9577ed07e050081, type: 2}
     OverrideClip: {fileID: 7400000, guid: a1703381f51e5c74faa889eb63518aef, type: 2}
+  - BaseClip: {fileID: 7400000, guid: 52817defee3aaaf4fab77dea6c371466, type: 2}
+    OverrideClip: {fileID: 7400000, guid: 5dfefba4c5f4dd840af63442a51eb46e, type: 2}

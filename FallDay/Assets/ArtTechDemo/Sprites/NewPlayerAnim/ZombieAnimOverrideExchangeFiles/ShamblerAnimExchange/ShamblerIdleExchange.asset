@@ -14,19 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterAnimationProfile
   EnemyTipe: Shambler
   ClipList:
-  - BaseClip: {fileID: 7400000, guid: 1d53d92e816d6db4dbfca0bec60aaca6, type: 2}
-    OverrideClip: {fileID: 0}
-  - BaseClip: {fileID: 7400000, guid: 90f884bd11b20a9429866179b1866641, type: 2}
-    OverrideClip: {fileID: 0}
-  - BaseClip: {fileID: 7400000, guid: cb81688ed97abf8438bfb5bc7339da4d, type: 2}
-    OverrideClip: {fileID: 0}
-  - BaseClip: {fileID: 7400000, guid: 9dc55a79eb40e4b40846fabc96833697, type: 2}
-    OverrideClip: {fileID: 0}
-  - BaseClip: {fileID: 7400000, guid: 0b1a311fb31aa814f9e6caf787bc7365, type: 2}
-    OverrideClip: {fileID: 0}
-  - BaseClip: {fileID: 7400000, guid: cf1b68cd81e465c4db57a5f3717806cd, type: 2}
-    OverrideClip: {fileID: 0}
-  - BaseClip: {fileID: 7400000, guid: 98a8c79b6e078cb4c9577ed07e050081, type: 2}
-    OverrideClip: {fileID: 0}
-  - BaseClip: {fileID: 7400000, guid: 52817defee3aaaf4fab77dea6c371466, type: 2}
-    OverrideClip: {fileID: 0}
+  - BaseClip: {fileID: 7400000, guid: a3757f6f431722b40a4a004430422e9b, type: 2}
+    OverrideClip: {fileID: 7400000, guid: dca0ba83f950de346b97149dadc5a279, type: 2}
+  - BaseClip: {fileID: 7400000, guid: e5eadf7c746e1a84ca88ebe3e8147fd0, type: 2}
+    OverrideClip: {fileID: 7400000, guid: f5379d7f335bd82429902d21438b728e, type: 2}
+  - BaseClip: {fileID: 7400000, guid: e0c18fc489c3b18408c8323796e686d7, type: 2}
+    OverrideClip: {fileID: 7400000, guid: efc96097a1bb6d746aa2833a8732c083, type: 2}
+  - BaseClip: {fileID: 7400000, guid: 5f2548767355fc34a8c5d54dcc752b4a, type: 2}
+    OverrideClip: {fileID: 7400000, guid: 0c75c6e4217ff714e84e4d46a71d9197, type: 2}
+  - BaseClip: {fileID: 7400000, guid: a3879f7304276d849962c9142a50db85, type: 2}
+    OverrideClip: {fileID: 7400000, guid: 17dbfaac4f452304dac995cc79759388, type: 2}
+  - BaseClip: {fileID: 7400000, guid: a8b9f46b65827b84eb7122a380d818b1, type: 2}
+    OverrideClip: {fileID: 7400000, guid: 94774bbe89e91a94fbfd6b33199cc874, type: 2}
+  - BaseClip: {fileID: 7400000, guid: 41fe3099a8f854a4593a74296b48dae1, type: 2}
+    OverrideClip: {fileID: 7400000, guid: a9874ab7d97b2274895ebcc3bc8c7010, type: 2}
+  - BaseClip: {fileID: 7400000, guid: a0768d8ee527a3f4584cd55607012f2e, type: 2}
+    OverrideClip: {fileID: 7400000, guid: d1c9e36d9c2b0d647bab698aed94f62f, type: 2}
