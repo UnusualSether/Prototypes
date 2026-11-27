@@ -130,7 +130,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EightWayAnimationCTLR
   animator: {fileID: 773970389001410325}
   pathFolower: {fileID: 2911725528273654127}
-  directionSource: {fileID: 1833923603969872565}
+  directionSource: {fileID: 2596847730894956307}
+  debug: 0
+  LockZombieAnimations: 0
 --- !u!114 &2742789770736684106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,6 +181,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3080013585872973136}
+  - {fileID: 2596847730894956307}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2161411980007192437
@@ -196,7 +199,6 @@ MonoBehaviour:
   pathFolower: {fileID: 2911725528273654127}
   eightWayAnimationCTLR: {fileID: 3189743669285569295}
   whileControl: 0
-  LockZombieAnimations: 0
   state: 0
   minimum_attack_distance: 2
 --- !u!114 &2911725528273654127
@@ -229,3 +231,34 @@ MonoBehaviour:
   SciseOfCube: 1
   OuterColler: {r: 0.5, g: 0.5, b: 0, a: 0.5}
   InnerColler: {r: 1, g: 0, b: 0, a: 1}
+--- !u!1 &7397541882475646076
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2596847730894956307}
+  m_Layer: 0
+  m_Name: DirectionSorce
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2596847730894956307
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7397541882475646076}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1833923603969872565}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}

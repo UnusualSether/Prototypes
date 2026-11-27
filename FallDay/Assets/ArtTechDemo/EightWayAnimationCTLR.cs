@@ -74,6 +74,7 @@ public class EightWayAnimationCTLR : MonoBehaviour
     }
     public void Attack()
     {
+        if (debug) Debug.Log($"EightWayAnimationCTLR: Attack() {this.gameObject} is Attacking");
         if(!LockZombieAnimations && animator != null) animator.SetTrigger("Attack");
     }
     public void Damaged()

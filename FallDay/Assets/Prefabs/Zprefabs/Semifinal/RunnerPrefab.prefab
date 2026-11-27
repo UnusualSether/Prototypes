@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4504705335701069180}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0.15255594, y: 0.5097096, z: -0.092388205, w: 0.8416575}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -130,7 +130,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EightWayAnimationCTLR
   animator: {fileID: 4443117117180089148}
   pathFolower: {fileID: 5795788025339709590}
-  directionSource: {fileID: 8397936389168806327}
+  directionSource: {fileID: 2080573058052837902}
+  debug: 0
+  LockZombieAnimations: 0
 --- !u!114 &1924104922400849838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,6 +148,37 @@ MonoBehaviour:
   EnemyType: Runner
   currentAnimator: {fileID: 4443117117180089148}
   ZombiesAnimationHolder: {fileID: 11400000, guid: 5b87323717946934185fd4bd344ea8d7, type: 2}
+--- !u!1 &5288861561831491039
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2080573058052837902}
+  m_Layer: 0
+  m_Name: DirectionSorce
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2080573058052837902
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5288861561831491039}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8397936389168806327}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &7950749782550973647
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,6 +211,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2080573058052837902}
   - {fileID: 4237076892950138133}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
