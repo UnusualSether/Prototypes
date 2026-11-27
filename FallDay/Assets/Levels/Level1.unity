@@ -969,6 +969,7 @@ GameObject:
   - component: {fileID: 974282077}
   - component: {fileID: 974282078}
   - component: {fileID: 974282079}
+  - component: {fileID: 974282080}
   m_Layer: 0
   m_Name: PauseButton
   m_TagString: Untagged
@@ -1035,11 +1036,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 974282075}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 070bc1638138c1141ab8ba7f058c4682, type: 3}
+  m_Script: {fileID: 11500000, guid: 624a070cd1bb1064ea1dc143338b4432, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VolumeScript
-  volumeControl: {fileID: 24100000, guid: a99669484a911c741872814f5a57f88a, type: 2}
-  UIDocument: {fileID: 974282077}
+  m_EditorClassIdentifier: Assembly-CSharp::AudioSettingsPanel
+  document: {fileID: 974282077}
+  containerName: ScreenSetting
+  masterName: MasterVolume
+  musicName: MusicVolume
+  sfxName: SFXVolume
+--- !u!114 &974282080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974282075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e28c369ab47f7c94590dffbe2451fde0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UiClickSounds
+  document: {fileID: 974282077}
+  clickId: ui_click
 --- !u!1 &1088469939
 GameObject:
   m_ObjectHideFlags: 0
@@ -1666,6 +1684,52 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1551746655
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1551746657}
+  - component: {fileID: 1551746656}
+  m_Layer: 0
+  m_Name: SettingM
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1551746656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1551746655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91adadd80679e0b43b0da2d39a8a7532, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelMusic
+  playlist: {fileID: 11400000, guid: 8e14f800141a77647af3e571297fa5b0, type: 2}
+  playOnStart: 1
+--- !u!4 &1551746657
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1551746655}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.28111, y: -0.80827, z: -8.71531}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2337,3 +2401,4 @@ SceneRoots:
   - {fileID: 258183359}
   - {fileID: 635302494}
   - {fileID: 1098874423}
+  - {fileID: 1551746657}

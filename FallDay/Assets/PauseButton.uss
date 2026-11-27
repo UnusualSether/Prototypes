@@ -175,3 +175,7 @@ Slider #unity-dragger {
 .btn_setAction:hover{
     scale:.95;
 }
+#PauseButton .unity-image{
+    width:556px;
+    height:556px;
+}
